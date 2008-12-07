@@ -1,0 +1,12 @@
+<h1>Editing paper</h1>
+
+<% form_for(@paper) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @paper %> |
+<%= link_to 'Back', papers_path %>

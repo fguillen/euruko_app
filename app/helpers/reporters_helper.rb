@@ -1,0 +1,2 @@
+module ReportersHelper
+end

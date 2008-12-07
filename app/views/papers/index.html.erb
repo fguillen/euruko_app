@@ -1,0 +1,18 @@
+<h1>Listing papers</h1>
+
+<table>
+  <tr>
+  </tr>
+
+<% for paper in @papers %>
+  <tr>
+    <td><%= link_to 'Show', paper %></td>
+    <td><%= link_to 'Edit', edit_paper_path(paper) %></td>
+    <td><%= link_to 'Destroy', paper, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New paper', new_paper_path %>

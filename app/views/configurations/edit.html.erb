@@ -1,0 +1,12 @@
+<h1>Editing configuration</h1>
+
+<% form_for(@configuration) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @configuration %> |
+<%= link_to 'Back', configurations_path %>

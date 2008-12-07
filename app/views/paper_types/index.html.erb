@@ -1,0 +1,18 @@
+<h1>Listing paper_types</h1>
+
+<table>
+  <tr>
+  </tr>
+
+<% for paper_type in @paper_types %>
+  <tr>
+    <td><%= link_to 'Show', paper_type %></td>
+    <td><%= link_to 'Edit', edit_paper_type_path(paper_type) %></td>
+    <td><%= link_to 'Destroy', paper_type, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New paper_type', new_paper_type_path %>

@@ -1,0 +1,12 @@
+<h1>Editing reporter</h1>
+
+<% form_for(@reporter) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @reporter %> |
+<%= link_to 'Back', reporters_path %>
