@@ -1,0 +1,7 @@
+1:
+  monkey_id: <%= Fixtures.identify(:george) %>
+  pirate_id: <%= Fixtures.identify(:blackbeard) %>
+
+2:
+  monkey_id: <%= Fixtures.identify(:louis) %>
+  pirate_id: <%= Fixtures.identify(:blackbeard) %>

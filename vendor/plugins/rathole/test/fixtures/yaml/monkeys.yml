@@ -1,0 +1,16 @@
+george:
+  name: "Curious George"
+  fruits: apple, orange
+
+louis:
+  name: "King Louis"
+  fruits: [apple, orange]
+
+frederick:
+  name: $LABEL
+
+DEFAULTS: &DEFAULTS
+  fruits: orange, grape
+
+davey:
+  <<: *DEFAULTS

@@ -1,8 +1,9 @@
-require 'test_helper'
+require File.dirname(__FILE__) + '/../test_helper'
 
 class AttendTest < ActiveSupport::TestCase
-  # Replace this with your real tests.
-  test "the truth" do
-    assert true
+  # fixtures :all
+  def test_relations
+    @vote = votes(:vote1)
+    assert_equal( users(:user1), @vote.user )
   end
 end

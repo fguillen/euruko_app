@@ -1,7 +1,13 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+# t.integer       :user_id,   :null => false
+# t.integer       :paper_id,  :null => false
+# t.integer       :points, :null => false
 
-# one:
-#   column: value
-#
-# two:
-#   column: value
+vote1:
+  user: user1
+  paper: paper1
+  points: 1
+  
+vote2:
+  user: user2
+  paper: paper1
+  points: 5

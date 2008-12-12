@@ -1,7 +1,10 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+# t.string      :name, :null => false, :limit => 20
+# t.text        :description
 
-# one:
-#   column: value
-#
-# two:
-#   column: value
+paper_type1:
+  name: Paper Type 1
+  description: Just a Paper Type
+  
+paper_type2:
+  name: Paper Type 2
+  description: Just another Paper Type

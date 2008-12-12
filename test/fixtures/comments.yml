@@ -1,7 +1,9 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+comment1:
+  user: user1
+  paper: paper1
+  text: Just a comment
 
-# one:
-#   column: value
-#
-# two:
-#   column: value
+comment2:
+  user: user2
+  paper: paper1
+  text: Just another comment

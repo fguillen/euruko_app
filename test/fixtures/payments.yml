@@ -1,7 +1,6 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+# t.integer     :user_id,     :null => false
+# t.integer     :event_id,    :null => false
 
-# one:
-#   column: value
-#
-# two:
-#   column: value
+payment1:
+  user: user1
+  event: event1

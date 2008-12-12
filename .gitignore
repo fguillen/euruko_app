@@ -1,2 +1,3 @@
 log
 db/*sqlite
+config/initializers/site_keys.rb

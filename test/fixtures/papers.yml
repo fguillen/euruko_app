@@ -1,7 +1,16 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+# t.string      :title, :null => false, :limit => 255
+# t.text        :description
+# t.integer     :paper_status_id, :null => false
+# t.datetime    :date
+# t.integer     :minutes, :default => -1, :null => false
+# t.integer     :room_id
+# t.integer     :paper_type, :null => false
 
-# one:
-#   column: value
-#
-# two:
-#   column: value
+paper1:
+  title: Paper 1
+  description: Just a Paper
+  paper_type: paper_type1
+  paper_status: paper_status1
+  date: <%= Time.now %>
+  minutes: 1
+  room: room1

@@ -1,7 +1,21 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+# t.string        :name,                  :null => false
+# t.string        :login,                 :null => false
+# t.string        :email,                 :null => false
+# t.string        :crypted_password,                        :limit => 40
+# t.string        :salt,                                    :limit => 40
+# t.string        :remember_token
+# t.datetime      :remember_token_expires_at
+# t.string        :activation_code,                         :limit => 40
+# t.datetime      :activated_at,
 
-# one:
-#   column: value
-#
-# two:
-#   column: value
+user1:
+  name: User 1
+  login: user1
+  email: user1@email.com
+  crypted_password: aaa
+  
+user2:
+  name: User 2
+  login: user2
+  email: user2@email.com
+  crypted_password: aaa

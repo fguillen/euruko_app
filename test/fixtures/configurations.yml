@@ -1,7 +1,8 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+configuration1:
+  name: attr1
+  value: value1
 
-# one:
-#   column: value
-#
-# two:
-#   column: value
+configuration2:
+  name: attr2
+  value: value2
+

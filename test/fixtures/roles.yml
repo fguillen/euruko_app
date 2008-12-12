@@ -1,7 +1,10 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+# t.string      :name,        :null => false, :limit => 20
+# t.string      :description
 
-# one:
-#   column: value
-#
-# two:
-#   column: value
+role1:
+  name: Role 1
+  description: Just a Role
+  
+role1:
+  name: Role 2
+  description: Just another Role

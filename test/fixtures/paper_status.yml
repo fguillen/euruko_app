@@ -1,0 +1,10 @@
+# t.string      :name, :null => false, :limit => 20
+# t.text        :description
+
+paper_status1:
+  name: Paper Status 1
+  description: Just a Paper Status
+  
+paper_status2:
+  name: Paper Status 2
+  description: Just another Paper Status

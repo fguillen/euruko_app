@@ -1,7 +1,10 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+# t.integer       :user_id,   :null => false
+# t.integer       :paper_id,  :null => false
 
-# one:
-#   column: value
-#
-# two:
-#   column: value
+user1_go_paper1:
+  user: user1
+  paper: paper1
+  
+user2_go_paper1:
+  user: user2
+  paper: paper1

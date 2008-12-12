@@ -1,7 +1,6 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+# t.integer     :user_id
+# t.integer     :paper_id
 
-# one:
-#   column: value
-#
-# two:
-#   column: value
+speaker1:
+  user: user1
+  paper: paper1

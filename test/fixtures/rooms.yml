@@ -1,7 +1,6 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+# t.string      :name, :null => false, :limit => 255
+# t.text        :notes
 
-# one:
-#   column: value
-#
-# two:
-#   column: value
+room1:
+  name: Room 1
+  notes: Just a Room
