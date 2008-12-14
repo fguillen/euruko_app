@@ -5,8 +5,6 @@ class User < ActiveRecord::Base
   include Authentication::ByPassword
   include Authentication::ByCookieToken
   
-  belongs_to :role
-
   validates_presence_of     :login
   validates_length_of       :login,    :within => 3..40
   validates_uniqueness_of   :login
@@ -20,7 +18,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of   :email
   validates_format_of       :email,    :with => Authentication.email_regex, :message => Authentication.bad_email_message
   
-  validates_presence_of :role_id
+  validates_presence_of :role
 
   before_create :make_activation_code 
 
@@ -29,7 +27,10 @@ class User < ActiveRecord::Base
   # anything else you want your user to change should be added here.
   attr_accessible :login, :email, :name, :password, :password_confirmation
 
-
+  # CONSTANTS
+  ROLE_USER   = "User"
+  ROLE_ADMIN  = "Admin"
+  
   # Activates the user in the database.
   def activate!
     @activated = true

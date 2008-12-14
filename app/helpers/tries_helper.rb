@@ -1,2 +1,0 @@
-module TriesHelper
-end

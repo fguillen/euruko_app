@@ -9,8 +9,8 @@
 paper1:
   title: Paper 1
   description: Just a Paper
-  paper_type: paper_type1
-  paper_status: paper_status1
+  type: <%= Paper::TYPE_TUTORIAL %>
+  status: <%= Paper::TYPE_TUTORIAL %>
   date: <%= Time.now %>
   minutes: 1
   room: room1

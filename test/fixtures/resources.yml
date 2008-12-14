@@ -1,0 +1,9 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+resource1:
+  paper: paper1 
+  url: http://mydomain.com/files/myfile1
+
+resource2:
+  paper: paper1 
+  url: http://mydomain.com/files/myfile2

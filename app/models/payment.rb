@@ -4,5 +4,4 @@ class Payment < ActiveRecord::Base
   
   validates_presence_of :event_id
   validates_presence_of :user_id
-  
 end
