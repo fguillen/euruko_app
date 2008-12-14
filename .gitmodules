@@ -1,3 +1,0 @@
-[submodule "vendor/plugins/restful_authentication_i18n"]
-	path = vendor/plugins/restful_authentication_i18n
-	url = git://github.com/dcrec1/restful-authentication-i18n.git
