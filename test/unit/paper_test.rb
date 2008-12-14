@@ -35,39 +35,47 @@ class PaperTest < ActiveSupport::TestCase
       Paper.create(
         :title        => @paper.title,
         :description  => @paper.description,
-        :type         =>  @paper.type,
+        :family       => @paper.family,
         :status       => @paper.status
       )
     end
   end
 
   def test_destroy_with_attends_should_destroy_attends
-    assert_difference "Attend.count", -1 do
+    assert_difference "Attend.count", -2 do
       assert_difference "Paper.count", -1 do
         @paper.destroy
       end
     end
   end
 
-
-  def test_destroy_without_payments
-    @paper = Paper.create(:name => 'paper', :description => 'description')
-    
-    assert_difference "Paper.count", -1 do
-      @paper.destroy
-    end
-  end
-
   def test_foreign_keys
+    assert_raise(ActiveRecord::StatementInvalid) do
+      Paper.create(
+        :title        => @paper.title,
+        :description  => @paper.description,
+        :family       => @paper.family,
+        :status       => @paper.status,
+        :room_id      => -1
+      )
+    end
   end
 
   def test_validations
     paper = Paper.new()
     assert( !paper.valid? )
-    assert( paper.errors.on(:name) )
+    assert( paper.errors.on(:title) )
     assert( paper.errors.on(:description) )
+    assert( paper.errors.on(:family) )
+    assert( paper.errors.on(:status) )
     
-    paper = Paper.new(:name => 'paper', :description => 'description')
+    paper = 
+      Paper.new(
+        :title        => @paper.title,
+        :description  => @paper.description,
+        :family       => @paper.family,
+        :status       => @paper.status
+      )
     assert( paper.valid? )
   end
 end

@@ -8,9 +8,9 @@ class Paper < ActiveRecord::Base
   
   belongs_to :room
   
-  validates_presence_of :name
+  validates_presence_of :title
   validates_presence_of :description
-  validates_presence_of :type
+  validates_presence_of :family
   validates_presence_of :status
   validates_numericality_of :minutes
   
@@ -20,9 +20,9 @@ class Paper < ActiveRecord::Base
   STATUS_DECLINED       = "Declined"
   STATUS_CONFIRMED      = "Confirmed"
   
-  TYPE_TUTORIAL         = "Tutorial"
-  TYPE_SESSION          = "Session"
-  TYPE_KEYNOTE          = "Keynote"
-  TYPE_EVENT            = "Event"
+  FAMILY_TUTORIAL         = "Tutorial"
+  FAMILY_SESSION          = "Session"
+  FAMILY_KEYNOTE          = "Keynote"
+  FAMILY_EVENT            = "Event"
   
 end

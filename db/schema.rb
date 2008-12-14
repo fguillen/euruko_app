@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(:version => 20081214211933) do
   create_table "papers", :force => true do |t|
     t.string   "title",                       :null => false
     t.text     "description"
-    t.string   "type",                        :null => false
+    t.string   "family",                      :null => false
     t.string   "status",                      :null => false
     t.datetime "date"
     t.integer  "minutes",     :default => -1, :null => false
