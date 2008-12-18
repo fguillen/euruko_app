@@ -14,6 +14,8 @@ class Paper < ActiveRecord::Base
   validates_presence_of :status
   validates_numericality_of :minutes
   
+  # validates_inclusion_of :source_type, :in => SOURCE_TYPES.keys.map(&:to_s)
+  
   STATUS_PROPOSED       = "Proposed"
   STATUS_UNDER_REVIEW   = "Under Review"
   STATUS_ACEPTED        = "Acepted"
