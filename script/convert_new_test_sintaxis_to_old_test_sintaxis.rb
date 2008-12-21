@@ -3,16 +3,25 @@ if ARGV[0].nil?
   exit
 end
 
-File.read(ARGV[0]).each do |line|
+if not File.exists?(ARGV[0])
+  puts "Fichero no encontrado: #{ARGV[0]}" 
+  exit
+end
+
+result = ""
+
+File.open(ARGV[0]).read.each do |line|
   if line =~ /^\s*test ".*" do$/
-    line.gsub!( /\"\sdo\s*$/, "" )
+    line.gsub!( /\"\sdo\s*/, "" )
     line.gsub!( /"/, "" )
     line.gsub!( /^\s*/, "" )
     line.gsub!( /\s/, "_" )
     line.gsub!( /^/, "def ")
 
-    line = "  " + line
+    line = "  " + line + "\n"
   end
   
-  puts line
+  result << line
 end
+
+File.new( ARGV[0], "w+" ).puts( result )

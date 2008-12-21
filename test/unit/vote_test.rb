@@ -15,7 +15,11 @@ class VoteTest < ActiveSupport::TestCase
 
   def test_create
     assert_difference "Vote.count", 1 do
-      Vote.create(:user => @user, :paper => papers(:paper2), :points => 2)
+      Vote.create(
+        :user => @user, 
+        :paper => papers(:paper2), 
+        :points => 2
+      )
     end
   end
 

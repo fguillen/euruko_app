@@ -14,7 +14,11 @@ class ResourceTest < ActiveSupport::TestCase
 
   def test_create
     assert_difference "Resource.count", 1 do
-      Resource.create(:user => @user, :paper => @paper, :url => 'http://mi.url')
+      Resource.create(
+        :user => @user, 
+        :paper => @paper, 
+        :url => 'http://mi.url'
+      )
     end
   end
 

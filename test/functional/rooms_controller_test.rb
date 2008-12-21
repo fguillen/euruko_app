@@ -1,43 +1,43 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class RoomsControllerTest < ActionController::TestCase
-  test "should get index" do
+  def test_should_get_index
     get :index
     assert_response :success
     assert_not_nil assigns(:rooms)
   end
 
-  test "should get new" do
+  def test_should_get_new
     get :new
     assert_response :success
   end
 
-  test "should create room" do
+  def test_should_create_room
     assert_difference('Room.count') do
-      post :create, :room => { }
+      post :create, :room => { :name => 'room' }
     end
 
     assert_redirected_to room_path(assigns(:room))
   end
 
-  test "should show room" do
-    get :show, :id => rooms(:one).id
+  def test_should_show_room
+    get :show, :id => rooms(:room1).id
     assert_response :success
   end
 
-  test "should get edit" do
-    get :edit, :id => rooms(:one).id
+  def test_should_get_edit
+    get :edit, :id => rooms(:room1).id
     assert_response :success
   end
 
-  test "should update room" do
-    put :update, :id => rooms(:one).id, :room => { }
+  def test_should_update_room
+    put :update, :id => rooms(:room1).id, :room => { }
     assert_redirected_to room_path(assigns(:room))
   end
 
-  test "should destroy room" do
+  def test_should_destroy_room
     assert_difference('Room.count', -1) do
-      delete :destroy, :id => rooms(:one).id
+      delete :destroy, :id => rooms(:room2).id
     end
 
     assert_redirected_to rooms_path
