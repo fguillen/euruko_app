@@ -9,22 +9,16 @@ ActionController::Routing::Routes.draw do |map|
   map.signup    '/signup',                    :controller => 'users',     :action => 'new'
   
   map.resources :users
-  map.resource :session
-  map.resources :tries
+  map.resource  :session
   map.resources :attends
   map.resources :votes
-  map.resources :files
-  map.resources :paper_types
+  map.resources :resources
   map.resources :comments
   map.resources :rooms
   map.resources :speakers
-  map.resources :reporters
   map.resources :papers
-  map.resources :configurations
-  map.resources :roles
   map.resources :events
   map.resources :payments
-  map.resources :users
 
   
   map.connect ':controller/:action/:id'
