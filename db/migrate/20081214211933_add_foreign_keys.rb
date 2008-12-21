@@ -10,23 +10,24 @@ class AddForeignKeys < ActiveRecord::Migration
     add_foreign_key( :papers, :room_id, :rooms, :id, :name => :fk_paper_room )
     
     # resources
-    add_foreign_key( :resources, :paper_id, :papers, :id, :on_delete => :cascade, :name => :fk_resource_paper )
-    
+    add_foreign_key( :resources, :paper_id, :papers, :id, :name => :fk_resource_paper )
+    add_foreign_key( :resources, :user_id, :users, :id, :name => :fk_resource_user )
+
     # attends
-    add_foreign_key( :attends, :paper_id, :papers, :id, :on_delete => :cascade, :name => :fk_attend_paper )
-    add_foreign_key( :attends, :user_id, :users, :id, :on_delete => :cascade, :name => :fk_attend_user )
+    add_foreign_key( :attends, :paper_id, :papers, :id, :name => :fk_attend_paper )
+    add_foreign_key( :attends, :user_id, :users, :id, :name => :fk_attend_user )
     
     # speakers
-    add_foreign_key( :speakers, :paper_id, :papers, :id, :on_delete => :cascade, :name => :fk_speaker_paper )
-    add_foreign_key( :speakers, :user_id, :users, :id, :on_delete => :cascade, :name => :fk_speaker_user )
+    add_foreign_key( :speakers, :paper_id, :papers, :id, :name => :fk_speaker_paper )
+    add_foreign_key( :speakers, :user_id, :users, :id, :name => :fk_speaker_user )
     
     # votes
-    add_foreign_key( :votes, :paper_id, :papers, :id, :on_delete => :cascade, :name => :fk_vote_paper )
-    add_foreign_key( :votes, :user_id, :users, :id, :on_delete => :cascade, :name => :fk_vote_user )
+    add_foreign_key( :votes, :paper_id, :papers, :id, :name => :fk_vote_paper )
+    add_foreign_key( :votes, :user_id, :users, :id, :name => :fk_vote_user )
     
     # comments
-    add_foreign_key( :comments, :paper_id, :papers, :id, :on_delete => :cascade, :name => :fk_comment_paper )
-    add_foreign_key( :comments, :user_id, :users, :id, :on_delete => :cascade, :name => :fk_comment_user )
+    add_foreign_key( :comments, :paper_id, :papers, :id, :name => :fk_comment_paper )
+    add_foreign_key( :comments, :user_id, :users, :id, :name => :fk_comment_user )
     
   end
 
@@ -37,6 +38,7 @@ class AddForeignKeys < ActiveRecord::Migration
     remove_foreign_key( :papers, :fk_paper_room )
     
     remove_foreign_key( :resources, :fk_resource_paper )
+    remove_foreign_key( :resources, :fk_resource_user )
     
     remove_foreign_key( :attends, :fk_attend_paper )
     remove_foreign_key( :attends, :fk_attend_user )

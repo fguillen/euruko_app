@@ -1,10 +1,12 @@
 class Paper < ActiveRecord::Base
-  has_many :speakers
-  has_many :user_speakers, :through => :speakers, :source => :user
-  has_many :comments
-  has_many :resources
-  has_many :attends
-  has_many :attendents, :through => :attends, :source => :user
+  has_many :speakers,       :dependent => :destroy
+  has_many :comments,       :dependent => :destroy
+  has_many :votes,          :dependent => :destroy
+  has_many :resources,      :dependent => :destroy
+  has_many :attends,        :dependent => :destroy
+
+  has_many :attendents,     :through => :attends, :source => :user
+  has_many :user_speakers,  :through => :speakers, :source => :user
   
   belongs_to :room
   

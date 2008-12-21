@@ -48,6 +48,39 @@ class PaperTest < ActiveSupport::TestCase
       end
     end
   end
+  
+  def test_destroy_with_resources_should_destroy_resources
+    assert_difference "Resource.count", -2 do
+      assert_difference "Paper.count", -1 do
+        @paper.destroy
+      end
+    end
+  end
+  
+  def test_destroy_with_votes_should_destroy_votes
+    assert_difference "Vote.count", -2 do
+      assert_difference "Paper.count", -1 do
+        @paper.destroy
+      end
+    end
+  end
+  
+  def test_destroy_with_speakers_should_destroy_speakers
+    assert_difference "Speaker.count", -1 do
+      assert_difference "Paper.count", -1 do
+        @paper.destroy
+      end
+    end
+  end
+  
+  
+  def test_destroy_with_comments_should_destroy_comments
+    assert_difference "Comment.count", -2 do
+      assert_difference "Paper.count", -1 do
+        @paper.destroy
+      end
+    end
+  end
 
   def test_foreign_keys
     assert_raise(ActiveRecord::StatementInvalid) do

@@ -4,4 +4,5 @@ class Attend < ActiveRecord::Base
   
   validates_presence_of :user_id
   validates_presence_of :paper_id
+  validates_uniqueness_of :paper_id, :scope => :user_id, :message => 'This User is already attend to this Paper'
 end

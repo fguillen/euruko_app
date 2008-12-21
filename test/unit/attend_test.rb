@@ -15,7 +15,7 @@ class AttendTest < ActiveSupport::TestCase
   
   def test_create
     assert_difference "Attend.count", 1 do
-      Attend.create(:user => @user, :paper => @paper)
+      Attend.create(:user => @user, :paper => papers(:paper2))
     end
   end
   
@@ -32,6 +32,15 @@ class AttendTest < ActiveSupport::TestCase
     
     assert_raise(ActiveRecord::StatementInvalid) do
       Attend.create(:user_id => 23, :paper => @paper)
+    end
+  end
+  
+  def test_uniqueness
+    assert_difference "Attend.count", 0 do
+      Attend.create(
+        :user     => @user,
+        :paper    => @paper
+      )
     end
   end
   
