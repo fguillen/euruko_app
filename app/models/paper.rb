@@ -16,17 +16,23 @@ class Paper < ActiveRecord::Base
   validates_presence_of :status
   validates_numericality_of :minutes
   
-  # validates_inclusion_of :source_type, :in => SOURCE_TYPES.keys.map(&:to_s)
+  # TODO: hacer que esto funcione
+  # validates_inclusion_of :status, :in => Paper::STATUS.values
+  # validates_inclusion_of :family, :in => FAMILIES.values
   
-  STATUS_PROPOSED       = "Proposed"
-  STATUS_UNDER_REVIEW   = "Under Review"
-  STATUS_ACEPTED        = "Acepted"
-  STATUS_DECLINED       = "Declined"
-  STATUS_CONFIRMED      = "Confirmed"
+  STATUS = {
+    :PROPOSED       => 'Proposed',
+    :UNDER_REVIEW   => 'Under Review',
+    :ACEPTED        => 'Acepted',
+    :DECLINED       => 'Declined',
+    :CONFIRMED      => 'Confirmed'  
+  }
   
-  FAMILY_TUTORIAL         = "Tutorial"
-  FAMILY_SESSION          = "Session"
-  FAMILY_KEYNOTE          = "Keynote"
-  FAMILY_EVENT            = "Event"
+  FAMILY = {
+    :TUTORIAL => 'Tutorial',
+    :SESSION  => 'Session',
+    :KEYNOTE  => 'Keynote',
+    :EVENT    => 'Event' 
+  }
   
 end

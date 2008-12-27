@@ -1,6 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :resources
 
+  map.root :controller => 'papers'
+  
   # restful_authentication
   map.activate  '/activate/:activation_code', :controller => 'users',     :action => 'activate', :activation_code => nil 
   map.logout    '/logout',                    :controller => 'sessions',  :action => 'destroy'
@@ -8,18 +9,27 @@ ActionController::Routing::Routes.draw do |map|
   map.register  '/register',                  :controller => 'users',     :action => 'create'
   map.signup    '/signup',                    :controller => 'users',     :action => 'new'
   
-  map.resources :users
-  map.resource  :session
-  map.resources :attends
-  map.resources :votes
-  map.resources :resources
-  map.resources :comments
-  map.resources :rooms
-  map.resources :speakers
-  map.resources :papers
+  # especcial routes
+  map.shoping_cart  '/shoping_cart',          :controller => 'shoping_cart',  :action => 'new'    
+  map.user_searcher '/user_searcher',         :controller => 'user',          :action => 'search'
+  map.calendar_conf '/calendar_conf',         :controller => 'calendar',      :action => 'config'
+  
+  
+  map.resources :users do |users|
+    map.resources :payments
+  end
+  
+  map.resources :papers do |papers|
+    papers.resources :comments
+    papers.resources :speakers
+    papers.resources :votes
+    papers.resources :attends
+    papers.resources :resources
+  end
+  
+  map.resource :session
+  map.resources :rooms  
   map.resources :events
-  map.resources :payments
-
   
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'

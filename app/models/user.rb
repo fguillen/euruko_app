@@ -41,8 +41,10 @@ class User < ActiveRecord::Base
   
 
   # CONSTANTS
-  ROLE_USER   = "User"
-  ROLE_ADMIN  = "Admin"
+  ROLE = {
+    :USER   => "User",
+    :ADMIN  => "Admin"
+  }
   
   # Activates the user in the database.
   def activate!
@@ -80,6 +82,10 @@ class User < ActiveRecord::Base
 
   def email=(value)
     write_attribute :email, (value ? value.downcase : nil)
+  end
+  
+  def admin?
+    self.role == User::ROLE[:ADMIN]
   end
 
   protected

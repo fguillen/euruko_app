@@ -32,7 +32,7 @@ class UserTest < ActiveSupport::TestCase
         :email        => 'email@email.com',
         :password     => 'pass000',
         :password_confirmation => 'pass000',
-        :role         => User::ROLE_USER
+        :role         => User::ROLE[:USER]
       )
     end
   end
@@ -82,5 +82,27 @@ class UserTest < ActiveSupport::TestCase
   end
 
   def test_validations
+    # login uniqness
+    user = 
+      User.new(
+        :name         => @user.name,
+        :login        => @user.login,
+        :email        => 'email2@email.com',
+        :password     => 'pass000',
+        :password_confirmation => 'pass000',
+        :role         => User::ROLE[:USER]
+      )
+    
+    assert( !user.valid? )
+    assert( user.errors.on(:login) )
+  end
+  
+  def test_admin
+    @user = users(:user1)
+    assert( !@user.admin? )
+    
+    @user.role = User::ROLE[:ADMIN]
+    assert( @user.admin? )
+
   end
 end

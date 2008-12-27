@@ -14,6 +14,7 @@ class PapersController < ApplicationController
   # GET /papers/1.xml
   def show
     @paper = Paper.find(params[:id])
+    @comment = Comment.new
 
     respond_to do |format|
       format.html # show.html.erb
@@ -41,6 +42,7 @@ class PapersController < ApplicationController
   # POST /papers.xml
   def create
     @paper = Paper.new(params[:paper])
+    @paper.status = Paper::STATUS_PROPOSED
 
     respond_to do |format|
       if @paper.save

@@ -1,17 +1,20 @@
-<h1>Listing papers</h1>
+<h2>Listing papers</h2>
 
-<table>
-  <tr>
-  </tr>
-
-<% for paper in @papers %>
-  <tr>
-    <td><%= link_to 'Show', paper %></td>
-    <td><%= link_to 'Edit', edit_paper_path(paper) %></td>
-    <td><%= link_to 'Destroy', paper, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
+<% @papers.each do |paper| %>
+  <div class="paper">
+    <h3><%= link_to paper.title, paper %></h3>
+    <p><%= simple_format(paper.description) %>
+      
+    <% if current_user && current_user.admin? %>
+      <ul>
+        <li><%= link_to 'Edit', edit_paper_path(paper) %></li>
+        <li><%= link_to 'Destroy', paper, :confirm => 'Are you sure?', :method => :delete %></li>
+      </ul>
+    <% end %>
+    
+  </div>
 <% end %>
-</table>
+
 
 <br />
 

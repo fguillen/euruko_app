@@ -9,8 +9,8 @@
 paper1:
   title: Paper 1
   description: Just a Paper
-  family: <%= Paper::FAMILY_TUTORIAL %>
-  status: <%= Paper::STATUS_CONFIRMED %>
+  family: <%= Paper::FAMILY[:TUTORIAL] %>
+  status: <%= Paper::STATUS[:CONFIRMED] %>
   date: <%= Time.now %>
   minutes: 1
   room: room1
@@ -18,8 +18,8 @@ paper1:
 paper2:
   title: Paper 2
   description: Just a Paper 2
-  family: <%= Paper::FAMILY_TUTORIAL %>
-  status: <%= Paper::STATUS_CONFIRMED %>
+  family: <%= Paper::FAMILY[:TUTORIAL] %>
+  status: <%= Paper::STATUS[:CONFIRMED] %>
   date: <%= Time.now %>
   minutes: 1
   room: room1

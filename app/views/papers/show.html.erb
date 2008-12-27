@@ -1,3 +1,77 @@
+<h2><%= @paper.title %></h2>
 
-<%= link_to 'Edit', edit_paper_path(@paper) %> |
-<%= link_to 'Back', papers_path %>
+<h3>Speakers</h3>
+<p>
+  <ul>
+      <% @paper.user_speakers.each do |us| %>
+        <li><% us.name %></li>
+      <% end %>
+  </ul>
+</p>
+
+<h3>Date</h3>
+<p>
+  at <%= @paper.date %> 
+  on <%= @paper.room.nil? ? 'not room yet' : @paper.room.name %>
+</p>
+
+<h3>Description</h3>
+<p><%= @paper.description %></p>
+
+<h3>Resources:</h3>
+<p>
+  <ul>
+    <% @paper.resources.each do |resource| %>
+      <li><%= link_to resource.url, resource.url %></li>
+    <% end %>
+  </ul>
+</p>
+
+<h3>Valoration</h3>
+<p>
+  <ul>
+    <% @paper.votes.each do |vote| %>
+      <li><%= vote.user.name %> => <%= vote.points %></li>
+    <% end %>
+  </ul>
+</p>
+
+<h3>Attends</h3>
+<div>
+  <ul>
+    <% @paper.attendents.each do |attendent| %>
+      <li><%= attendent.name %></li>
+    <% end %>
+  </ul>
+</div>
+
+<h3>Comments</h3>
+<div>
+  <ul>
+    <% @paper.comments.each do |comment| %>
+      <li>
+        <div><strong><%= comment.user.name %></strong> say on <%= comment.created_at %></div>
+        <p><%= comment.text %></p>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+<% if !current_user.nil? %>
+  <h4>New Comment</h4>
+  <div>
+    <% form_for [@paper, @comment], :html => {:method => :post} do |f| -%>
+      <%= f.error_messages %>
+
+      <%= f.text_area :text %>
+      <%= f.submit "Submit", :disable_with => 'Submiting...' %>
+    <% end -%>
+  </div>
+<% end %>
+
+<% if admin? %>
+  <div>
+    <%= link_to 'Edit', edit_paper_path(@paper) %> |
+    <%= link_to 'Back', papers_path %>
+  </div>
+<% end %>
