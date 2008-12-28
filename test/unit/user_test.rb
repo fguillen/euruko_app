@@ -103,6 +103,5 @@ class UserTest < ActiveSupport::TestCase
     
     @user.role = User::ROLE[:ADMIN]
     assert( @user.admin? )
-
   end
 end

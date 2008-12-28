@@ -1,0 +1,21 @@
+<ul>
+  <li>
+    <%= f.label :title, "Title" %>
+    <%= f.text_field :title %>
+  </li>
+  
+  <li>
+    <%= f.label :description, "Description" %>
+    <%= f.text_area :description %>
+  </li>
+  
+  <li>
+    <%= f.label :minutes, "Minutes" %>
+    <%= f.text_field :minutes %>
+  </li>
+
+  <li>
+    <%= f.label :family, "Family" %>
+    <%= select( "paper", "family", Paper::FAMILY.values ) %>
+  </li>
+</ul>

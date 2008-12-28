@@ -1,0 +1,20 @@
+<p>
+  <ul>
+      <% paper.speakers.each do |speaker| %>
+        <li><%= speaker.user.name %> <%= link_to 'delete', paper_speaker_path( paper, speaker ), :method => 'delete' %></li>
+      <% end %>
+  </ul>
+</p>
+<p>
+  <% form_for [paper, Speaker.new] do |f| -%>
+    <%=(
+      select(
+        "speaker", 
+        "user_id", 
+        User.find(:all).collect {|u| [ u.name, u.id ] }, 
+        { :include_blank => true }
+      )
+    )%>
+    <%= f.submit "Add Speaker" %>
+  <% end -%>
+</p>

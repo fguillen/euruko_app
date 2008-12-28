@@ -1,4 +1,8 @@
 class SpeakersController < ApplicationController
+  
+  before_filter :load_paper, :only => [:create, :destroy]
+  
+  
   # GET /speakers
   # GET /speakers.xml
   def index
@@ -14,15 +18,20 @@ class SpeakersController < ApplicationController
   # POST /speakers
   # POST /speakers.xml
   def create
-    @speaker = Speaker.new(params[:speaker])
+    @speaker =
+      Speaker.new(
+        :paper    => @paper,
+        :user_id  => params[:speaker][:user_id]
+      )
 
     respond_to do |format|
       if @speaker.save
         flash[:notice] = 'Speaker was successfully created.'
-        format.html { redirect_to(@speaker) }
+        format.html { redirect_to( edit_paper_path(@paper) ) }
         format.xml  { render :xml => @speaker, :status => :created, :location => @speaker }
       else
-        format.html { render :action => "new" }
+        flash[:error] = "Error trying to adding an speaker to the paper: #{@speaker.errors.full_messages}."
+        format.html { redirect_to( edit_paper_path(@paper) ) }
         format.xml  { render :xml => @speaker.errors, :status => :unprocessable_entity }
       end
     end
@@ -33,11 +42,17 @@ class SpeakersController < ApplicationController
   # DELETE /speakers/1.xml
   def destroy
     @speaker = Speaker.find(params[:id])
-    @speaker.destroy
 
     respond_to do |format|
-      format.html { redirect_to(speakers_url) }
-      format.xml  { head :ok }
+      if @speaker.destroy
+        flash[:notice] = 'Speaker was successfully eliminated.'
+        format.html { redirect_to( edit_paper_path(@paper) ) }
+        format.xml  { head :ok }
+      else
+        flash[:error] = "Error trying to eliminating an speaker to the paper: #{@speaker.errors.full_messages}."
+        format.html { redirect_to( edit_paper_path(@paper) ) }
+        format.xml  { render :xml => @vote.errors, :status => :unprocessable_entity }
+      end
     end
   end
 end

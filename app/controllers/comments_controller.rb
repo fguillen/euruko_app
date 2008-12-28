@@ -1,13 +1,16 @@
 class CommentsController < ApplicationController
 
+  before_filter :load_paper_by_paper_id
+  
   # POST /comments
   # POST /comments.xml
   def create
-    @comment = Comment.new(params[:comment])
-    @paper = Paper.find_by_id(params[:paper_id])
-    @comment.paper  = @paper
-    @comment.user   = current_user
-
+    @comment = 
+      Comment.new(
+        :text   => params[:comment][:text]
+        :paper  => @paper,
+        :user   => current_user
+      )
     
     respond_to do |format|
       if @comment.save
@@ -22,5 +25,6 @@ class CommentsController < ApplicationController
       end
     end
   end
+  
 
 end

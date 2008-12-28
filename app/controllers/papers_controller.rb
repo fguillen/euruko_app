@@ -1,4 +1,7 @@
 class PapersController < ApplicationController
+  
+  before_filter :load_paper_by_id, :only => [:show, :edit, :update, :update_status, :destroy]
+  
   # GET /papers
   # GET /papers.xml
   def index
@@ -13,7 +16,6 @@ class PapersController < ApplicationController
   # GET /papers/1
   # GET /papers/1.xml
   def show
-    @paper = Paper.find(params[:id])
     @comment = Comment.new
 
     respond_to do |format|
@@ -26,6 +28,7 @@ class PapersController < ApplicationController
   # GET /papers/new.xml
   def new
     @paper = Paper.new
+    @paper.family = Paper::FAMILY[:SESSION]
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,14 +38,14 @@ class PapersController < ApplicationController
 
   # GET /papers/1/edit
   def edit
-    @paper = Paper.find(params[:id])
   end
 
   # POST /papers
   # POST /papers.xml
   def create
     @paper = Paper.new(params[:paper])
-    @paper.status = Paper::STATUS_PROPOSED
+    @paper.status = Paper::STATUS[:PROPOSED]
+    @paper.user_speakers << current_user
 
     respond_to do |format|
       if @paper.save
@@ -59,15 +62,30 @@ class PapersController < ApplicationController
   # PUT /papers/1
   # PUT /papers/1.xml
   def update
-    @paper = Paper.find(params[:id])
-
     respond_to do |format|
       if @paper.update_attributes(params[:paper])
         flash[:notice] = 'Paper was successfully updated.'
-        format.html { redirect_to(@paper) }
+        format.html { redirect_to( edit_paper_path(@paper) ) }
         format.xml  { head :ok }
       else
-        format.html { render :action => "edit" }
+        flash[:error] = "Some error trying to update the Paper: #{paper.errors.full_messages}."
+        format.html { redirect_to( edit_paper_path(@paper) ) }
+        format.xml  { render :xml => @paper.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+  
+  def update_status
+    @paper.status = params[:status]
+    
+    respond_to do |format|
+      if @paper.save
+        flash[:notice] = 'Status Paper was successfully updated.'
+        format.html { redirect_to( edit_paper_path(@paper) ) }
+        format.xml  { head :ok }
+      else
+        flash[:error] = "Some error trying to update the status of the Paper: #{paper.errors.full_messages}."
+        format.html { redirect_to( edit_paper_path(@paper) ) }
         format.xml  { render :xml => @paper.errors, :status => :unprocessable_entity }
       end
     end
@@ -76,7 +94,6 @@ class PapersController < ApplicationController
   # DELETE /papers/1
   # DELETE /papers/1.xml
   def destroy
-    @paper = Paper.find(params[:id])
     @paper.destroy
 
     respond_to do |format|

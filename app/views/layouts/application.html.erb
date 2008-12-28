@@ -16,9 +16,11 @@
 <div class="container">
   <h1>Euruko 2009</h1>
   <hr /> 
+  
   <div class="menu-header">
-    Menu
+    <%= render :partial => 'layouts/menu_header'%>
   </div>
+  
   <div class="span-18">
     <p style="color: green"><%= flash[:notice] %></p>
     <p style="color: red"><%= flash[:error] %></p>

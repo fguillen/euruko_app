@@ -4,7 +4,7 @@
 <p>
   <ul>
       <% @paper.user_speakers.each do |us| %>
-        <li><% us.name %></li>
+        <li><%= link_to us.name, us %></li>
       <% end %>
   </ul>
 </p>
@@ -35,6 +35,10 @@
     <% end %>
   </ul>
 </p>
+<h4>My valoration</h4>
+<p>
+  <%= render :partial => 'votes', :locals => { :paper => @paper } %>
+</p>
 
 <h3>Attends</h3>
 <div>
@@ -60,7 +64,7 @@
 <% if !current_user.nil? %>
   <h4>New Comment</h4>
   <div>
-    <% form_for [@paper, @comment], :html => {:method => :post} do |f| -%>
+    <% form_for [@paper, @comment] do |f| -%>
       <%= f.error_messages %>
 
       <%= f.text_area :text %>

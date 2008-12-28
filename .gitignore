@@ -3,3 +3,4 @@ db/*sqlite
 config/initializers/site_keys.rb
 db/schema.rb
 test/performance/tmp/
+public/resources/*

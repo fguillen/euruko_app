@@ -17,4 +17,13 @@ class ApplicationController < ActionController::Base
   # filter_parameter_logging :password
   
   layout 'application'
+  
+  private
+    def load_paper_by_paper_id
+      @paper = Paper.find_by_id( params[:paper_id] )
+    end
+    
+    def load_paper_by_id
+      @paper = Paper.find_by_id( params[:id] )
+    end
 end
