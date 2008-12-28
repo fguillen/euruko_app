@@ -1,6 +1,12 @@
 namespace :populate do
   desc "Create the default admin"
   task :admin => :environment do
+    require 'mocha'
+    
+    # Not emails
+    UserObserver.any_instance.stubs(:after_create).returns(true)
+    UserObserver.any_instance.stubs(:after_save).returns(true)
+    
     user = 
       User.create!(
         :name         => 'Administrator',
@@ -8,7 +14,8 @@ namespace :populate do
         :email        => 'admin@email.com',
         :password     => 'adminpass',
         :password_confirmation => 'adminpass',
-        :role         => User::ROLE[:ADMIN]
+        :role         => User::ROLE[:ADMIN],
+        :text         => 'The default adeministrator'
       )
       
     user.activate!
@@ -53,7 +60,12 @@ namespace :populate do
           :email        => Faker::Internet.free_email,
           :password     => password,
           :password_confirmation => password,
-          :role         => [User::ROLE[:ADMIN], User::ROLE[:USER]].rand
+          :role         => [User::ROLE[:ADMIN], User::ROLE[:USER]].rand,
+          :text         => Faker::Lorem.paragraphs.join("\n"),
+          :personal_web_name  => Faker::Lorem.words.join(" "),
+          :personal_web_url   => "http://#{Faker::Internet.domain_name}/#{Faker::Lorem.words.join('/')}",
+          :company_name       => Faker::Lorem.words.join(" "),
+          :company_url        => "http://#{Faker::Internet.domain_name}/#{Faker::Lorem.words.join('/')}"
         )
       user.activate!
     end

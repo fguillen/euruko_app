@@ -1,6 +1,6 @@
 class SpeakersController < ApplicationController
   
-  before_filter :load_paper, :only => [:create, :destroy]
+  before_filter :load_paper_by_paper_id, :only => [:create, :destroy]
   
   
   # GET /speakers
