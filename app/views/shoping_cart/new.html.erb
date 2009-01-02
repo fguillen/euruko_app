@@ -1,0 +1,28 @@
+<% form_tag(:action => "create") do %>
+  <ul>
+  <% Event.find(:all).each do |event| %>
+    <% if event.is_paid_for_user?( current_user ) %>
+      <li class="paid">
+        X
+        <%= event.name %> (<%= event.price_cents %>)
+      </li>
+    <% else %>
+      <li>
+        <%= check_box_tag event.id %>
+        <%= event.name %> (<%= event.price_cents %>)
+      </li>
+    <% end %>
+  <% end %>
+  </ul>
+  
+  <p>TOTAL: <span id="total">100</span></p>
+  
+  <p>
+    <%= label_tag :bill_info %><br />
+    <%= text_area_tag :bill_info %>
+  </p>
+  
+  <p>
+    <%= submit_tag "Pay, throught PayPal", :disabled => false, :disable_with => "Please wait..." %>
+  </p>
+<% end %>

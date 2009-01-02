@@ -3,6 +3,45 @@
 <% form_for(@user) do |f| %>
   <%= f.error_messages %>
 
+  <p><%= f.label :login, "Login" %><br/>
+  <%= f.text_field :login %></p>
+
+  <p><%= f.label :name, "Name" %><br/>
+  <%= f.text_field :name %></p>
+
+  <p><%= f.label :text, "Text" %><br/>
+  <%= f.text_area :text %></p>
+  
+  <p><%= f.label :personal_web_name, "Personal Web Name" %><br />
+  <%= f.text_field :personal_web_name %></p>
+  
+  <p><%= f.label :personal_web_url, "Personal Web Url" %><br />
+  <%= f.text_field :personal_web_url %></p>
+  
+  <p><%= f.label :company_name, "Company Name" %><br />
+  <%= f.text_field :company_name %></p>
+  
+  <p><%= f.label :company_url, "Company Url" %><br />
+  <%= f.text_field :company_url %></p>
+
+  <p><%= f.check_box :public_profile %>
+  <%= f.label 'public_profile', 'Public Profile' %></p>
+  
+  <p><%= check_box_tag :change_password %>
+  <%= f.label 'change_password', 'Change Password' %></p>
+  
+  <p><%= f.label :password_actual, "Actual Password" %><br />
+  <%= f.text_field :password_actual %></p>
+  
+  <p><%= f.label :password, "New Password" %><br/>
+  <%= f.password_field :password %></p>
+
+  <p><%= f.label :password_confirmation, 'Confirm New Password' %><br/>
+  <%= f.password_field :password_confirmation %></p>
+  
+  <p><%= f.label :role, "Role" %><br />
+  <%= select( "user", "role", User::ROLE.values ) %></p>
+  
   <p>
     <%= f.submit "Update" %>
   </p>

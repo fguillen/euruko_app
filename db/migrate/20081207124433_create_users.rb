@@ -17,6 +17,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string        :personal_web_url
       t.string        :company_name
       t.string        :company_url
+      t.boolean       :public_profile,        :null => false
 
       t.timestamps
     end

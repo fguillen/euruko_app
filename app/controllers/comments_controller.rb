@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
   def create
     @comment = 
       Comment.new(
-        :text   => params[:comment][:text]
+        :text   => params[:comment][:text],
         :paper  => @paper,
         :user   => current_user
       )
@@ -20,6 +20,7 @@ class CommentsController < ApplicationController
         format.xml  { render :xml => @comment, :status => :created, :location => @comment }
       else
         logger.debug( "error en comentario: #{@comment.errors.full_messages}")
+        flash[:error] = 'Error when try to save the Comment.'
         format.html { render :template => 'papers/show' }
         format.xml  { render :xml => @comment.errors, :status => :unprocessable_entity }
       end

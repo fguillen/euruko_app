@@ -15,4 +15,12 @@ class Event < ActiveRecord::Base
       raise NotDeletableEventException.new("It has payments")
     end
   end
+  
+  def is_paid_for_user?( user_id )
+    if !Payment.find_by_event_id_and_user_id( self.id, user_id ).nil?
+      return true
+    else
+      return false
+    end
+  end
 end

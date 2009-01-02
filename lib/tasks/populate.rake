@@ -15,7 +15,8 @@ namespace :populate do
         :password     => 'adminpass',
         :password_confirmation => 'adminpass',
         :role         => User::ROLE[:ADMIN],
-        :text         => 'The default adeministrator'
+        :text         => 'The default adeministrator',
+        :public_profile => true
       )
       
     user.activate!
@@ -55,17 +56,18 @@ namespace :populate do
       
       user = 
         User.create(
-          :name         => Faker::Name.name,
-          :login        => Faker::Internet.user_name + num.to_s,
-          :email        => Faker::Internet.free_email,
-          :password     => password,
+          :name               => Faker::Name.name,
+          :login              => Faker::Internet.user_name + num.to_s,
+          :email              => Faker::Internet.free_email,
+          :password           => password,
           :password_confirmation => password,
-          :role         => [User::ROLE[:ADMIN], User::ROLE[:USER]].rand,
-          :text         => Faker::Lorem.paragraphs.join("\n"),
+          :role               => [User::ROLE[:ADMIN], User::ROLE[:USER]].rand,
+          :text               => Faker::Lorem.paragraphs.join("\n"),
           :personal_web_name  => Faker::Lorem.words.join(" "),
           :personal_web_url   => "http://#{Faker::Internet.domain_name}/#{Faker::Lorem.words.join('/')}",
           :company_name       => Faker::Lorem.words.join(" "),
-          :company_url        => "http://#{Faker::Internet.domain_name}/#{Faker::Lorem.words.join('/')}"
+          :company_url        => "http://#{Faker::Internet.domain_name}/#{Faker::Lorem.words.join('/')}",
+          :public_profile     => (1 == Kernel.rand(2))
         )
       user.activate!
     end
@@ -95,7 +97,8 @@ namespace :populate do
     (1..5).each do |num|
       Event.create(
         :name         => Faker::Lorem.sentence, 
-        :description  => Faker::Lorem.paragraphs
+        :description  => Faker::Lorem.paragraphs,
+        :price_cents  => Kernel.rand(30001)
       )
     end
     puts "... #{Event.count} events created"

@@ -1,0 +1,8 @@
+<% @attend = Attend.find_by_paper_id_and_user_id( @paper.id, current_user.id ) %>
+<p>
+  <% if !@attend.nil? %>
+    <%= link_to 'I don\'t go', paper_attend_path( @paper, @attend ), :method => :delete %>
+  <% else %>
+    <%= link_to 'I go', paper_attends_path( @paper ), :method => :post %>
+  <% end %>
+</p>

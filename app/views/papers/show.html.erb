@@ -47,6 +47,7 @@
       <li><%= attendent.name %></li>
     <% end %>
   </ul>
+  <%= render :partial => 'attends', :locals => { :paper => @paper } %>  
 </div>
 
 <h3>Comments</h3>

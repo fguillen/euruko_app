@@ -48,9 +48,11 @@ class User < ActiveRecord::Base
     :personal_web_name,
     :personal_web_url,
     :company_name,
-    :company_url
+    :company_url,
+    :public_profile
   )
 
+  attr_accessor :password_actual
   
 
   # CONSTANTS

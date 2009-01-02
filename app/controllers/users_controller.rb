@@ -32,7 +32,7 @@ class UsersController < ApplicationController
     logout_keeping_session!
     
     @user = User.new(params[:user])
-    @user.role ||= User::ROLE_USER
+    @user.role ||= User::ROLE[:USER]
     
     success = @user && @user.save
     if success && @user.errors.empty?

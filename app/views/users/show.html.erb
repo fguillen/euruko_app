@@ -1,12 +1,32 @@
 <h2><%= @user.name %></h2>
 <%= simple_format( @user.text ) %>
-<p>
-  <%= link_to @user.personal_web_name, @user.personal_web_url %>
-</p>
 
-<p>
-  And works at <%= link_to @user.company_name, @user.company_url %>
-</p>
+<% if !@user.personal_web_url.blank? %>
+  <p>
+    <%= link_to @user.personal_web_name, @user.personal_web_url %>
+  </p>
+<% end %>
+
+<% if !@user.company_url.blank? %>
+  <p>
+    And works at <%= link_to @user.company_name, @user.company_url %>
+  </p>
+<% end %>
+
+<% if !@user.speaker_on.empty? %>
+  <div>
+    <h3>Participa en las siguientes charlas</h3>
+    <ul>
+      <% @user.speaker_on.each do |paper| %>
+        <li>
+          <strong><%= link_to paper.title, paper %></strong> (<%= paper.status %>)
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
 
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
