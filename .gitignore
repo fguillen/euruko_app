@@ -1,6 +1,12 @@
-log
-db/*sqlite
-config/initializers/site_keys.rb
+.DS_Store
+Capfile
+config/deploy.rb
+log/*.log
+tmp/*
 db/schema.rb
-test/performance/tmp/
+db/*.sqlite3
+config/*.yml
+config/initializers/site_keys.rb
 public/resources/*
+public/stylesheets/*
+test/performance/tmp/
