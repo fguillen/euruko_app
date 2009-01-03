@@ -9,3 +9,4 @@ config/database.yml
 config/initializers/site_keys.rb
 public/resources/*
 test/performance/tmp/
+public/stylesheets/*.css
