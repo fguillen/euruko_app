@@ -8,15 +8,13 @@ class User < ActiveRecord::Base
   has_many :speakers,   :dependent => :destroy
   has_many :votes,      :dependent => :destroy
   has_many :comments,   :dependent => :destroy
-  has_many :attends,    :dependent => :destroy
+  has_many :attendees,    :dependent => :destroy
   has_many :resources,  :dependent => :destroy
   has_many :payments,   :dependent => :destroy
 
-  
   has_many :speaker_on,   :through => :speakers,  :source => :paper
-  has_many :attend_to,    :through => :attends,   :source => :paper
+  has_many :attendee_to,    :through => :attendees,   :source => :paper
 
-  
   validates_presence_of     :login
   validates_length_of       :login,    :within => 3..40
   validates_uniqueness_of   :login

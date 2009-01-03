@@ -4,8 +4,8 @@ require File.dirname(__FILE__) + '/../test_helper'
 # has_many :user_speakers, :through => :speakers, :source => :user
 # has_many :comments
 # has_many :resources
-# has_many :attends
-# has_many :attendents, :through => :attendents, :source => :user
+# has_many :attendees
+# has_many :attendees, :through => :attendees, :source => :user
 # 
 # belongs_to :room
 
@@ -27,7 +27,7 @@ class PaperTest < ActiveSupport::TestCase
     assert_equal( @user, @paper.user_speakers[0] )
     assert( @paper.comments.include?(comments(:comment1)) )
     assert( @paper.resources.include?(resources(:resource1)) )
-    assert( @paper.attendents.include?(@user) )
+    assert( @paper.attendees.include?(@user) )
   end
 
   def test_create
@@ -41,8 +41,8 @@ class PaperTest < ActiveSupport::TestCase
     end
   end
 
-  def test_destroy_with_attends_should_destroy_attends
-    assert_difference "Attend.count", -2 do
+  def test_destroy_with_attendees_should_destroy_attendees
+    assert_difference "Attendee.count", -2 do
       assert_difference "Paper.count", -1 do
         @paper.destroy
       end

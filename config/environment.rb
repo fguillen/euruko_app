@@ -23,7 +23,7 @@ Rails::Initializer.run do |config|
   # Specify gems that this application depends on. 
   # They can then be installed with "rake gems:install" on new installations.
   # You have to specify the :lib option for libraries, where the Gem name (sqlite3-ruby) differs from the file itself (sqlite3)
-  # config.gem "bj"
+  config.gem "haml"
   # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
   # config.gem "sqlite3-ruby", :lib => "sqlite3"
   # config.gem "aws-s3", :lib => "aws/s3"
@@ -75,5 +75,7 @@ Rails::Initializer.run do |config|
   
   # restful_authentication
   config.active_record.observers = :user_observer
-  
 end
+
+I18n.default_locale = 'es-ES'
+I18n.locale = 'es-ES'

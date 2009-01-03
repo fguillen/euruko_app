@@ -40,7 +40,7 @@ class VoteTest < ActiveSupport::TestCase
   end
   
   def test_uniqueness
-    assert_difference "Attend.count", 0 do
+    assert_difference "Attendee.count", 0 do
       Vote.create(
         :user     => @vote.user,
         :paper    => @vote.paper

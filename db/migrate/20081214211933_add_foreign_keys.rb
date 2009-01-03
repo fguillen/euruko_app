@@ -13,9 +13,9 @@ class AddForeignKeys < ActiveRecord::Migration
     add_foreign_key( :resources, :paper_id, :papers, :id, :name => :fk_resource_paper )
     add_foreign_key( :resources, :user_id, :users, :id, :name => :fk_resource_user )
 
-    # attends
-    add_foreign_key( :attends, :paper_id, :papers, :id, :name => :fk_attend_paper )
-    add_foreign_key( :attends, :user_id, :users, :id, :name => :fk_attend_user )
+    # attendees
+    add_foreign_key( :attendees, :paper_id, :papers, :id, :name => :fk_attendee_paper )
+    add_foreign_key( :attendees, :user_id, :users, :id, :name => :fk_attendee_user )
     
     # speakers
     add_foreign_key( :speakers, :paper_id, :papers, :id, :name => :fk_speaker_paper )
@@ -40,8 +40,8 @@ class AddForeignKeys < ActiveRecord::Migration
     remove_foreign_key( :resources, :fk_resource_paper )
     remove_foreign_key( :resources, :fk_resource_user )
     
-    remove_foreign_key( :attends, :fk_attend_paper )
-    remove_foreign_key( :attends, :fk_attend_user )
+    remove_foreign_key( :attendees, :fk_attendee_paper )
+    remove_foreign_key( :attendees, :fk_attendee_user )
     
     remove_foreign_key( :speakers, :fk_speaker_paper )
     remove_foreign_key( :speakers, :fk_speaker_user )

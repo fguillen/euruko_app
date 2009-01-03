@@ -40,14 +40,14 @@
   <%= render :partial => 'votes', :locals => { :paper => @paper } %>
 </p>
 
-<h3>Attends</h3>
+<h3>Attendees</h3>
 <div>
   <ul>
-    <% @paper.attendents.each do |attendent| %>
-      <li><%= attendent.name %></li>
+    <% @paper.attendees.each do |attendee| %>
+      <li><%= attendee.name %></li>
     <% end %>
   </ul>
-  <%= render :partial => 'attends', :locals => { :paper => @paper } %>  
+  <%= render :partial => 'attendees', :locals => { :paper => @paper } %>  
 </div>
 
 <h3>Comments</h3>

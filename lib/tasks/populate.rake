@@ -34,7 +34,7 @@ namespace :populate do
     
     # delete everything
     puts "Deleting Everything..."
-    Attend.delete_all
+    Attendee.delete_all
     Vote.delete_all
     Comment.delete_all
     Payment.delete_all
@@ -158,14 +158,14 @@ namespace :populate do
     puts "... #{Vote.count} votes created"
 
     
-    puts "Creating Attends..."
+    puts "Creating Attendees..."
     (1..100).each do |num|
-      Attend.create(
+      Attendee.create(
         :user     => User.find(:first, :order => 'rand()'),
         :paper    => Paper.find(:first, :order => 'rand()')
       )
     end
-    puts "... #{Attend.count} attends created"
+    puts "... #{Attendee.count} attendees created"
 
   end
   

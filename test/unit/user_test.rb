@@ -21,7 +21,7 @@ class UserTest < ActiveSupport::TestCase
     assert( @user.speaker_on.include?( @paper) )
     assert( @user.comments.include?(comments(:comment1)) )
     assert( @user.resources.include?(resources(:resource1)) )
-    assert( @user.attend_to.include?(@paper) )
+    assert( @user.attendee_to.include?(@paper) )
   end
 
   def test_create
@@ -37,8 +37,8 @@ class UserTest < ActiveSupport::TestCase
     end
   end
 
-  def test_destroy_with_attends_should_destroy_attends
-    assert_difference "Attend.count", -1 do
+  def test_destroy_with_attendees_should_destroy_attendees
+    assert_difference "Attendee.count", -1 do
       assert_difference "User.count", -1 do
         @user.destroy
       end

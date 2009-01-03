@@ -3,9 +3,9 @@ class Paper < ActiveRecord::Base
   has_many :comments,       :dependent => :destroy
   has_many :votes,          :dependent => :destroy
   has_many :resources,      :dependent => :destroy
-  has_many :attends,        :dependent => :destroy
+  has_many :attendees,      :dependent => :destroy
 
-  has_many :attendents,     :through => :attends, :source => :user
+  has_many :attendees,      :through => :attendees, :source => :user
   has_many :user_speakers,  :through => :speakers, :source => :user
   
   belongs_to :room
