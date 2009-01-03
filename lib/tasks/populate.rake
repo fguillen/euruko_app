@@ -107,8 +107,8 @@ namespace :populate do
     puts "Creating Speakers..."
     (1..50).each do |num|
       Speaker.create(
-        :user      => User.find(:first, :order => 'rand()'),
-        :paper     => Paper.find(:first, :order => 'rand()')
+        :user      => User.random(1),
+        :paper     => Paper.random(1)
       )
     end
     puts "... #{Speaker.count} speakers created"
@@ -117,8 +117,8 @@ namespace :populate do
     puts "Creating Resources..."
     (1..150).each do |num|
       Resource.create(
-        :user   => User.find(:first, :order => 'rand()'),
-        :paper  => Paper.find(:first, :order => 'rand()'), 
+        :user   => User.random(1),
+        :paper  => Paper.random(1), 
         :url    => "http://#{Faker::Internet.domain_name}/#{Faker::Lorem.words.join('/')}"
       )
     end
@@ -129,8 +129,8 @@ namespace :populate do
     puts "Creating Payments..."
     (1..50).each do |num|
       Payment.create(
-        :user   => User.find(:first, :order => 'rand()'),
-        :event  => Event.find(:first, :order => 'rand()') 
+        :user   => User.random(1),
+        :event  => Event.random(1) 
       )
     end
     puts "... #{Payment.count} payments created"
@@ -139,8 +139,8 @@ namespace :populate do
     puts "Creating Comments..."
     (1..200).each do |num|
       Comment.create(
-        :user   => User.find(:first, :order => 'rand()'),
-        :paper  => Paper.find(:first, :order => 'rand()'),
+        :user   => User.random(1),
+        :paper  => Paper.random(1),
         :text   => Faker::Lorem.paragraph
       )
     end
@@ -150,8 +150,8 @@ namespace :populate do
     puts "Creating Votes..."
     (1..100).each do |num|
       Vote.create(
-        :user     => User.find(:first, :order => 'rand()'),
-        :paper    => Paper.find(:first, :order => 'rand()'),
+        :user     => User.random(1),
+        :paper    => Paper.random(1),
         :points   => Kernel.rand(6)
       )
     end
@@ -161,8 +161,8 @@ namespace :populate do
     puts "Creating Attendees..."
     (1..100).each do |num|
       Attendee.create(
-        :user     => User.find(:first, :order => 'rand()'),
-        :paper    => Paper.find(:first, :order => 'rand()')
+        :user     => User.random(1),
+        :paper    => Paper.random(1)
       )
     end
     puts "... #{Attendee.count} attendees created"
