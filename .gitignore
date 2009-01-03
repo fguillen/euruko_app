@@ -5,8 +5,7 @@ log/*.log
 tmp/*
 db/schema.rb
 db/*.sqlite3
-config/*.yml
+config/database.yml
 config/initializers/site_keys.rb
 public/resources/*
-public/stylesheets/*
 test/performance/tmp/
