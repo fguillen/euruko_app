@@ -6,7 +6,7 @@ class CreatePapers < ActiveRecord::Migration
       t.string      :family,    :null => false
       t.string      :status,    :null => false
       t.datetime    :date
-      t.integer     :minutes,   :default => -1, :null => false
+      t.integer     :minutes,   :default => 0, :null => false
       t.integer     :room_id
       t.timestamps
     end

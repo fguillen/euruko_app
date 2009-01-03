@@ -25,16 +25,6 @@ class AttendeeTest < ActiveSupport::TestCase
     end
   end
   
-  def test_foreign_keys
-    assert_raise(ActiveRecord::StatementInvalid) do
-      Attendee.create(:user => @user, :paper_id => 23)
-    end
-    
-    assert_raise(ActiveRecord::StatementInvalid) do
-      Attendee.create(:user_id => 23, :paper => @paper)
-    end
-  end
-  
   def test_uniqueness
     assert_difference "Attendee.count", 0 do
       Attendee.create(
@@ -56,6 +46,11 @@ class AttendeeTest < ActiveSupport::TestCase
     assert( attendee.errors.on(:paper_id) )
 
     attendee = Attendee.new(:user => @user, :paper => @paper)
+    assert( !attendee.valid? )
+    assert( !attendee.errors.on(:user_id) )
+    assert( attendee.errors.on(:paper_id) )
+    
+    attendee = Attendee.new(:user => @user, :paper => papers(:paper2))
     assert( attendee.valid? )
   end
 end

@@ -24,19 +24,20 @@ class PaperTest < ActiveSupport::TestCase
   end
 
   def test_relations
-    assert_equal( @user, @paper.user_speakers[0] )
+    assert_equal( @user, @paper.speakers[0].user )
     assert( @paper.comments.include?(comments(:comment1)) )
     assert( @paper.resources.include?(resources(:resource1)) )
-    assert( @paper.attendees.include?(@user) )
+    assert( @paper.attendees.collect{ |a| a.user }.include?(@user) )
   end
 
   def test_create
     assert_difference "Paper.count", 1 do
-      Paper.create(
+      @paper = Paper.create(
         :title        => @paper.title,
         :description  => @paper.description,
         :family       => @paper.family,
-        :status       => @paper.status
+        :status       => @paper.status,
+        :minutes      => 0
       )
     end
   end
@@ -82,18 +83,6 @@ class PaperTest < ActiveSupport::TestCase
     end
   end
 
-  def test_foreign_keys
-    assert_raise(ActiveRecord::StatementInvalid) do
-      Paper.create(
-        :title        => @paper.title,
-        :description  => @paper.description,
-        :family       => @paper.family,
-        :status       => @paper.status,
-        :room_id      => -1
-      )
-    end
-  end
-
   def test_validations
     paper = Paper.new()
     assert( !paper.valid? )
@@ -107,7 +96,8 @@ class PaperTest < ActiveSupport::TestCase
         :title        => @paper.title,
         :description  => @paper.description,
         :family       => @paper.family,
-        :status       => @paper.status
+        :status       => @paper.status,
+        :minutes      => @paper.minutes
       )
     assert( paper.valid? )
   end

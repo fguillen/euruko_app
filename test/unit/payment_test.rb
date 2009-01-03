@@ -23,15 +23,6 @@ class PaymentTest < ActiveSupport::TestCase
       )
     end
   end
-
-  def test_foreign_keys
-    assert_raise(ActiveRecord::StatementInvalid) do
-      Payment.create(
-        :user       => @user,
-        :event_id   => -1
-      )
-    end
-  end
   
   def test_uniqueness
     assert_difference "Payment.count", 0 do

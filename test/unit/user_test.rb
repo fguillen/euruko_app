@@ -26,13 +26,14 @@ class UserTest < ActiveSupport::TestCase
 
   def test_create
     assert_difference "User.count", 1 do
-      User.create!(
+      User.create(
         :name         => @user.name,
         :login        => 'other_login',
         :email        => 'email@email.com',
         :password     => 'pass000',
         :password_confirmation => 'pass000',
-        :role         => User::ROLE[:USER]
+        :role         => User::ROLE[:USER],
+        :public_profile => true
       )
     end
   end

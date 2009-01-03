@@ -23,16 +23,7 @@ class SpeakerTest < ActiveSupport::TestCase
       @speaker.destroy
     end
   end
-  
-  def test_foreign_keys
-    assert_raise(ActiveRecord::StatementInvalid) do
-      Speaker.create(:user => @user, :paper_id => -1)
-    end
-    
-    assert_raise(ActiveRecord::StatementInvalid) do
-      Speaker.create(:user_id => -1, :paper => @paper)
-    end
-  end
+
   
   def test_uniqueness
     assert_difference "Speaker.count", 0 do

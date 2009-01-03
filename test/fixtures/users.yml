@@ -14,6 +14,7 @@ user1:
   email: user1@email.com
   crypted_password: aaa
   role: <%= User::ROLE[:USER] %>
+  public_profile: true
   
 user2:
   name: User 2
@@ -21,3 +22,4 @@ user2:
   email: user2@email.com
   crypted_password: aaa
   role: <%= User::ROLE[:USER] %>
+  public_profile: true

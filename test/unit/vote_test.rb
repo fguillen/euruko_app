@@ -28,16 +28,6 @@ class VoteTest < ActiveSupport::TestCase
       @vote.destroy
     end
   end
-
-  def test_foreign_keys
-    assert_raise(ActiveRecord::StatementInvalid) do
-      Vote.create(:user => @user, :paper_id => -1, :points => 2)
-    end
-
-    assert_raise(ActiveRecord::StatementInvalid) do
-      Vote.create(:user_id => -1, :paper => @paper, :points => 2)
-    end
-  end
   
   def test_uniqueness
     assert_difference "Attendee.count", 0 do

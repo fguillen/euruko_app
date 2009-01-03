@@ -28,16 +28,6 @@ class ResourceTest < ActiveSupport::TestCase
     end
   end
 
-  def test_foreign_keys
-    assert_raise(ActiveRecord::StatementInvalid) do
-      Resource.create(:user => @user, :paper_id => -1, :url => 'http://mi.url')
-    end
-
-    assert_raise(ActiveRecord::StatementInvalid) do
-      Resource.create(:user_id => -1, :paper => @paper, :url => 'http://mi.url')
-    end
-  end
-
   def test_validations
     resource = Resource.new()
     assert( !resource.valid? )

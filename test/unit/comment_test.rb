@@ -29,16 +29,6 @@ class CommentTest < ActiveSupport::TestCase
     end
   end
 
-  def test_foreign_keys
-    assert_raise(ActiveRecord::StatementInvalid) do
-      Comment.create(:user => @user, :paper_id => 23, :text => 'Just a Comment')
-    end
-
-    assert_raise(ActiveRecord::StatementInvalid) do
-      Comment.create(:user_id => 23, :paper => @paper, :text => 'Just a Comment')
-    end
-  end
-
   def test_validations
     comment = Comment.new()
     assert( !comment.valid? )

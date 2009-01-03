@@ -29,6 +29,7 @@ class User < ActiveRecord::Base
   validates_format_of       :email,    :with => Authentication.email_regex, :message => Authentication.bad_email_message
   
   validates_presence_of     :role
+  validates_presence_of     :public_profile
 
   before_create :make_activation_code 
 
