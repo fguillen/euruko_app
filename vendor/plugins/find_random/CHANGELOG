@@ -1,0 +1,8 @@
+r176
+* Adding support for requesting a result set of size 0, which just returns
+  an empty array. (Thanks Mike Larkin)
+
+r175
+* Applied patch from Sergey Kojin which makes find_random work in the case
+  that the count of records are less than the limit requested
+	
