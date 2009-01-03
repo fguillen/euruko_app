@@ -77,5 +77,5 @@ Rails::Initializer.run do |config|
   config.active_record.observers = :user_observer
 end
 
-I18n.default_locale = 'es-ES'
-I18n.locale = 'es-ES'
+# I18n.default_locale = 'es-ES'
+# I18n.locale = 'es-ES'
