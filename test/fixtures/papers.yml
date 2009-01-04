@@ -11,7 +11,7 @@ paper1:
   description: Just a Paper
   family: <%= Paper::FAMILY[:TUTORIAL] %>
   status: <%= Paper::STATUS[:CONFIRMED] %>
-  date: <%= Time.now %>
+  date: <%= Time.now.to_s(:db) %>
   minutes: 1
   room: room1
 
@@ -20,6 +20,6 @@ paper2:
   description: Just a Paper 2
   family: <%= Paper::FAMILY[:TUTORIAL] %>
   status: <%= Paper::STATUS[:CONFIRMED] %>
-  date: <%= Time.now %>
+  date: <%= Time.now.to_s(:db) %>
   minutes: 1
   room: room1

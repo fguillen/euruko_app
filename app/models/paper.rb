@@ -20,6 +20,8 @@ class Paper < ActiveRecord::Base
   # validates_inclusion_of :status, :in => Paper::STATUS.values
   # validates_inclusion_of :family, :in => FAMILIES.values
   
+  before_save :update_date
+  
   STATUS = {
     :PROPOSED       => 'Proposed',
     :UNDER_REVIEW   => 'Under Review',
@@ -35,8 +37,36 @@ class Paper < ActiveRecord::Base
     :EVENT    => 'Event' 
   }
   
+  
   def add_speaker(user)
     self.speakers.build( :user => user )
   end
+
+  ## date form system : INI ##
+  def date_form
+    return nil  if self.date.nil?
+    return self.date.strftime( "%Y/%m/%d" )
+  end
+  
+  def time_form
+    return nil  if self.date.nil?
+    return self.date.strftime( "%H:%M" )
+  end
+  
+  def date_form=( value )
+    @date_form = value
+  end
+
+  def time_form=( value )
+    @time_form = value
+  end
+
+  def update_date
+    if( !@date_form.blank? && !@time_form.blank? )
+      self.date = Time.parse( "#{@date_form} #{@time_form}" )
+    end
+  end
+  ## date form system : END ##
+
   
 end

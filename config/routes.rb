@@ -9,24 +9,22 @@ ActionController::Routing::Routes.draw do |map|
   map.register  '/register',                  :controller => 'users',     :action => 'create'
   map.signup    '/signup',                    :controller => 'users',     :action => 'new'
   
-  # especcial routes
-  map.shoping_cart  '/shoping_cart',          :controller => 'shoping_cart',  :action => 'new'    
-  map.user_searcher '/user_searcher',         :controller => 'user',          :action => 'search'
-  map.calendar_conf '/calendar_conf',         :controller => 'calendar',      :action => 'config'
-  
   
   map.resources :users do |users|
     map.resources :payments
   end
   
-  map.resources :papers do |papers|
-    papers.resources :comments
-    papers.resources :speakers
-    papers.resources :votes
-    papers.resources :attendees
-    papers.resources :resources    
+  map.resources :papers do |paper|
+    paper.resources :comments
+    paper.resources :speakers
+    paper.resources :votes
+    paper.resources :attendees
+    paper.resources :resources    
   end
   map.resources :papers, :member => { :update_status => :put }
+  
+  map.resource :calendar
+  map.resource :shoping_cart
   
   map.resource :session
   map.resources :rooms  

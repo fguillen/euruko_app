@@ -1,0 +1,16 @@
+<h2>Calendar</h2>
+
+<% @papers.each do |paper| %>
+  <div class="paper">
+    <h3><%= link_to paper.title, paper %></h3>
+    <p><%= simple_format(paper.description) %>
+      
+    <% if current_user && current_user.admin? %>
+      <ul>
+        <li><%= link_to 'Edit', edit_paper_path(paper) %></li>
+        <li><%= link_to 'Destroy', paper, :confirm => 'Are you sure?', :method => :delete %></li>
+      </ul>
+    <% end %>
+    
+  </div>
+<% end %>
