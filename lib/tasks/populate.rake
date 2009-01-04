@@ -90,7 +90,9 @@ namespace :populate do
         :title        => Faker::Lorem.sentence,
         :description  => Faker::Lorem.paragraphs.join("\n"),
         :family       => Paper::FAMILY.values.rand,
-        :status       => Paper::STATUS.values.rand
+        :status       => Paper::STATUS.values.rand,
+        :minutes      => Kernel.rand(101),
+        :date         => random_datetime( '2009/04/10 08:00', '2009/04/14 21:00' )
       )
     end
     puts "... #{Paper.count} papers created"
@@ -172,4 +174,12 @@ namespace :populate do
 
   end
   
+  def random_datetime( date_ini = '1970/01/01 10:10', date_end = '2010/01/01 10:10' )
+    time_ini_int = Time.parse( date_ini ).to_i
+    time_end_int = Time.parse( date_end ).to_i
+    
+    time_random_int = Kernel.rand( time_end_int - time_ini_int ) + time_ini_int
+    
+    return Time.at( time_random_int )
+  end
 end
