@@ -5,6 +5,7 @@ class CreateSpeakers < ActiveRecord::Migration
       t.integer     :paper_id
       t.timestamps
     end
+    add_index( :speakers, [:user_id, :paper_id], :unique => true, :name => 'idx_unique_user_id_paper_id_on_speakers' )
   end
 
   def self.down

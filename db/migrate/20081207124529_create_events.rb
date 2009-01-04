@@ -6,6 +6,7 @@ class CreateEvents < ActiveRecord::Migration
       t.integer     :price_cents, :default => 0, :null => false
       t.timestamps
     end
+    add_index( :events, :name, :unique => true )
   end
 
   def self.down

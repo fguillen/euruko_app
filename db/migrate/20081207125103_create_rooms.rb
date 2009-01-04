@@ -5,6 +5,7 @@ class CreateRooms < ActiveRecord::Migration
       t.text        :notes
       t.timestamps
     end
+    add_index( :rooms, :name, :unique => true )
   end
 
   def self.down
