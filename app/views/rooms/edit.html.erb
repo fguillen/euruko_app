@@ -1,7 +1,7 @@
 <h1>Editing room</h1>
 
 <% form_for(@room) do |f| %>
-  <%= f.error_messages %>
+  <%= render :partial => 'form', :locals => { :f => f } %>
 
   <p>
     <%= f.submit "Update" %>

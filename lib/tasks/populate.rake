@@ -77,7 +77,10 @@ namespace :populate do
     
     puts "Creating Rooms..."
     (1..5).each do |num|
-      Room.create( :name => Faker::Lorem.words(1) )
+      Room.create( 
+        :name   => Faker::Lorem.words(2).join(" "),
+        :notes  => Faker::Lorem.paragraph
+      )
     end
     puts "... #{Room.count} rooms created"
 
@@ -97,7 +100,7 @@ namespace :populate do
     (1..5).each do |num|
       Event.create(
         :name         => Faker::Lorem.sentence, 
-        :description  => Faker::Lorem.paragraphs,
+        :description  => Faker::Lorem.paragraphs.join("\n"),
         :price_cents  => Kernel.rand(30001)
       )
     end

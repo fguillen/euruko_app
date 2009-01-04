@@ -1,3 +1,6 @@
+<h2><%= @room.name %></h2>
+<%= simple_format( @room.notes ) %>
+
 
 <%= link_to 'Edit', edit_room_path(@room) %> |
 <%= link_to 'Back', rooms_path %>

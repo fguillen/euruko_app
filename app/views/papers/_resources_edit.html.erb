@@ -12,7 +12,7 @@
   <% form_for [paper, Resource.new], :html => { :multipart => :true } do |f| -%>
     <%= f.label :url, "Url" %>
     <%= f.text_field :url %>
-    or
+    or upload a file
     <%= f.file_field :file %>
     <%= f.submit "Create" %>
   <% end -%>
