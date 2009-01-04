@@ -23,7 +23,7 @@ ActionController::Routing::Routes.draw do |map|
     papers.resources :comments
     papers.resources :speakers
     papers.resources :votes
-    papers.resources :attends
+    papers.resources :attendees
     papers.resources :resources    
   end
   map.resources :papers, :member => { :update_status => :put }

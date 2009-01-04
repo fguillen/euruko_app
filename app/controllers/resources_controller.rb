@@ -5,8 +5,6 @@ class ResourcesController < ApplicationController
   # POST /resources
   # POST /resources.xml
   def create
-    logger.debug params.inspect
-    
     url = params[:resource][:url]
     is_local = false
     
@@ -22,6 +20,9 @@ class ResourcesController < ApplicationController
         :user     => current_user,
         :is_local => is_local
       )
+    
+    # puts @resource.valid?
+    # puts @resource.errors.full_messages
       
     respond_to do |format|
       if @resource.save

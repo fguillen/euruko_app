@@ -101,4 +101,13 @@ class PaperTest < ActiveSupport::TestCase
       )
     assert( paper.valid? )
   end
+  
+  def test_add_speaker
+    assert_difference "Speaker.count", 1 do
+      @paper.add_speaker( users(:user2) )
+      @paper.save
+    end
+    
+    
+  end
 end

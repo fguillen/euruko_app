@@ -13,6 +13,8 @@ class PapersControllerTest < ActionController::TestCase
   end
 
   def test_should_create_paper
+    login_as users(:user1)
+    
     assert_difference('Paper.count') do
       post(
         :create, 
@@ -20,7 +22,8 @@ class PapersControllerTest < ActionController::TestCase
           :title        => papers(:paper1).title,
           :description  => papers(:paper1).description,
           :family       => papers(:paper1).family,
-          :status       => papers(:paper1).status
+          :status       => papers(:paper1).status,
+          :minutes      => 0
         }
       )
     end
@@ -28,7 +31,13 @@ class PapersControllerTest < ActionController::TestCase
     assert_redirected_to paper_path(assigns(:paper))
   end
 
-  def test_should_show_paper
+  def test_without_login_should_show_paper
+    get :show, :id => papers(:paper1).id
+    assert_response :success
+  end
+
+  def test_with_login_should_show_paper
+    login_as users(:user1)
     get :show, :id => papers(:paper1).id
     assert_response :success
   end
@@ -40,7 +49,7 @@ class PapersControllerTest < ActionController::TestCase
 
   def test_should_update_paper
     put :update, :id => papers(:paper1).id, :paper => { :title => 'another title' }
-    assert_redirected_to paper_path(assigns(:paper))
+    assert_redirected_to edit_paper_path(assigns(:paper))
   end
 
   def test_should_destroy_paper

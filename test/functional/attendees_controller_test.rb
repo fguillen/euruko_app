@@ -7,13 +7,12 @@ class AttendeesControllerTest < ActionController::TestCase
   end
   
   def test_should_create_attendee
+    login_as @user
+    
     assert_difference('Attendee.count', 1) do
       post(
         :create, 
-        :paper_id => @paper.id,
-        :attendee => {
-          :user_id  => @user.id
-        }
+        :paper_id => @paper.id
       )
     end
 
@@ -22,9 +21,13 @@ class AttendeesControllerTest < ActionController::TestCase
 
   def test_should_destroy_attendee
     assert_difference('Attendee.count', -1) do
-      delete :destroy, :id => attendees(:user1_go_paper1).id
+      delete(
+        :destroy, 
+        :paper_id => @paper.id,
+        :id => attendees(:user1_go_paper1).id
+      )
     end
 
-    assert_redirected_to attendees_path
+    assert_redirected_to paper_path(@paper)
   end
 end

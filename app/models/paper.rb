@@ -35,4 +35,8 @@ class Paper < ActiveRecord::Base
     :EVENT    => 'Event' 
   }
   
+  def add_speaker(user)
+    self.speakers.build( :user => user )
+  end
+  
 end

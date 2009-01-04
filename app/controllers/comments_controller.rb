@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.xml
   def create
-    @comment = 
+    @comment =
       Comment.new(
         :text   => params[:comment][:text],
         :paper  => @paper,

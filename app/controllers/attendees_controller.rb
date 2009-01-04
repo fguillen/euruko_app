@@ -5,6 +5,8 @@ class AttendeesController < ApplicationController
   # POST /attendees
   # POST /attendees.xml
   def create
+    puts current_user
+    
     @attendee = 
       Attendee.new(
         :paper  => @paper,

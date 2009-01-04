@@ -22,12 +22,13 @@ class UsersControllerTest < ActionController::TestCase
           :email        => 'email@email.com',
           :password     => 'pass000',
           :password_confirmation => 'pass000',
-          :role         => User::ROLE_USER
+          :role         => User::ROLE[:USER],
+          :public_profile => true
         }
       )
     end
 
-    assert_redirected_to user_path(assigns(:user))
+    assert_redirected_to root_path
   end
 
   def test_should_show_user
