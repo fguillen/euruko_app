@@ -1,19 +1,21 @@
-<% @vote = vote_find_actual( @paper.id ) %>
+<% if !current_user.nil? %>
+  <% @vote = vote_find_actual( @paper.id ) %>
 
-<% if @vote.nil?%>
-  <ul>
-    <% (1..5).each do |points| %>
-      <li><%= link_to points, paper_votes_path( @paper, :points => points ), :method => 'post'%></li>
-    <% end %>
-  </ul>
-<% else %>
-  <ul>
-    <% (1..5).each do |points| %>
-      <% if @vote.points != points %>
-        <li><%= link_to points, paper_vote_path( @paper, @vote, :points => points ), :method => 'put'%></li>
-      <% else %>
-        <li><%= points %></li>
+  <% if @vote.nil?%>
+    <ul>
+      <% (1..5).each do |points| %>
+        <li><%= link_to points, paper_votes_path( @paper, :points => points ), :method => 'post'%></li>
       <% end %>
-    <% end %>
-  </ul>
+    </ul>
+  <% else %>
+    <ul>
+      <% (1..5).each do |points| %>
+        <% if @vote.points != points %>
+          <li><%= link_to points, paper_vote_path( @paper, @vote, :points => points ), :method => 'put'%></li>
+        <% else %>
+          <li><%= points %></li>
+        <% end %>
+      <% end %>
+    </ul>
+  <% end %>
 <% end %>
