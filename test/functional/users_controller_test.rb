@@ -53,4 +53,12 @@ class UsersControllerTest < ActionController::TestCase
 
     assert_redirected_to users_path
   end
+  
+  def test_when_search_speakers_only_assings_speakers
+    get :index, :speakers => true
+    
+    assert_not_nil( assigns(:users) )
+    assert( assigns(:users).include?( users(:user1) ) )
+    assert( !assigns(:users).include?( users(:user2) ) )
+  end
 end

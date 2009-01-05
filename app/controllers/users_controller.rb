@@ -4,7 +4,11 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.xml
   def index
-    @users = User.find(:all)
+    if( params[:speakers] )
+      @users = User.find_speakers
+    else
+      @users = User.find(:all)
+    end
 
     respond_to do |format|
       format.html # index.html.erb

@@ -101,7 +101,11 @@ class User < ActiveRecord::Base
   def admin?
     self.role == User::ROLE[:ADMIN]
   end
-
+  
+  def self.find_speakers
+    User.find(:all, :joins => 'join speakers ON speakers.user_id = users.id')
+  end
+  
   protected
     
     def make_activation_code

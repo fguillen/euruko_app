@@ -1,18 +1,6 @@
 class SpeakersController < ApplicationController
   
   before_filter :load_paper_by_paper_id, :only => [:create, :destroy]
-  
-  
-  # GET /speakers
-  # GET /speakers.xml
-  def index
-    @speakers = Speaker.find(:all)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @speakers }
-    end
-  end
 
 
   # POST /speakers

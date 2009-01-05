@@ -105,4 +105,10 @@ class UserTest < ActiveSupport::TestCase
     @user.role = User::ROLE[:ADMIN]
     assert( @user.admin? )
   end
+  
+  def test_find_speakers
+    assert( User.find_speakers )
+    assert( User.find_speakers.include?( users(:user1) ) )
+    assert( !User.find_speakers.include?( users(:user2) ) )
+  end
 end
