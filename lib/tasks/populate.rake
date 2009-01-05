@@ -92,7 +92,8 @@ namespace :populate do
         :family       => Paper::FAMILY.values.rand,
         :status       => Paper::STATUS.values.rand,
         :minutes      => Kernel.rand(101),
-        :date         => random_datetime( '2009/04/10 08:00', '2009/04/14 21:00' )
+        :date         => random_datetime( '2009/04/10 08:00', '2009/04/14 21:00' ),
+        :room         => Room.random(1)
       )
     end
     puts "... #{Paper.count} papers created"

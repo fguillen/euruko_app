@@ -183,4 +183,21 @@ class PaperTest < ActiveSupport::TestCase
   #   (1..100).each{ |n| puts random_datetime( '2009/01/01 08:00', '2009/01/01 21:00' ) }
   #   
   # end
+  
+  def test_date_just_date
+    assert( @paper.date_just_date )
+    assert_equal( 0, @paper.date_just_date.hour )
+    assert_equal( 0, @paper.date_just_date.min )
+    assert_not_equal( 0, @paper.date_just_date.year )
+    assert_not_equal( 0, @paper.date_just_date.month )
+    assert_not_equal( 0, @paper.date_just_date.day )
+  end
+  
+  def test_on_date_and_room
+    assert( @paper.on_date_and_room_id?( @paper.date_just_date, @paper.room.id ) )
+    assert( !@paper.on_date_and_room_id?( @paper.date_just_date, rooms(:room2).id ) )
+    assert( !@paper.on_date_and_room_id?( Time.parse( '1980/01/01' ), @paper.room.id ) )
+    assert( !@paper.on_date_and_room_id?( Time.parse( '1980/01/01' ), rooms(:room2).id ) )
+  end
+  
 end

@@ -68,5 +68,14 @@ class Paper < ActiveRecord::Base
   end
   ## date form system : END ##
 
+  # Return only the date and not the time
+  def date_just_date
+    Time.mktime( self.date.year, self.date.month, self.date.day )
+  end
+  
+  # Return true if the paper date_just_date is equal to date and the room is the room
+  def on_date_and_room_id?( date, room_id )
+    return self.room.id == room_id && self.date_just_date.to_i == date.to_i
+  end
   
 end

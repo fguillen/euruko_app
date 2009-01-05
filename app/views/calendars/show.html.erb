@@ -1,16 +1,13 @@
 <h2>Calendar</h2>
 
-<% @papers.each do |paper| %>
-  <div class="paper">
-    <h3><%= link_to paper.title, paper %></h3>
-    <p><%= simple_format(paper.description) %>
-      
-    <% if current_user && current_user.admin? %>
-      <ul>
-        <li><%= link_to 'Edit', edit_paper_path(paper) %></li>
-        <li><%= link_to 'Destroy', paper, :confirm => 'Are you sure?', :method => :delete %></li>
-      </ul>
+<% @dates.each do |date| %>
+  <h3><%= date.to_s %></h3>
+  <% @rooms.each do |room| %>
+    <h4><%= room.name %></h4>
+    <% @papers.select{ |p| p.on_date_and_room_id?( date, room.id ) }.each do |paper| %>
+      <h5><%= link_to paper.title, paper %></h5>
+      <p>Date: <%= paper.date %></p>
+      <p>Room: <%= paper.room.name %></p>
     <% end %>
-    
-  </div>
+  <% end %>
 <% end %>

@@ -1,5 +1,5 @@
 class CalendarsController < ApplicationController
   def show
-    @papers = Paper.find_all_by_status( Paper::STATUS[:CONFIRMED] )
+    @rooms, @papers, @dates = Calendar.charge_calendar_elements
   end
 end
