@@ -5,9 +5,6 @@
                         login        /login                                       {:controller=>"sessions", :action=>"new"}
                      register        /register                                    {:controller=>"users", :action=>"create"}
                        signup        /signup                                      {:controller=>"users", :action=>"new"}
-                 shoping_cart        /shoping_cart                                {:controller=>"shoping_cart", :action=>"new"}
-                user_searcher        /user_searcher                               {:controller=>"user", :action=>"search"}
-                calendar_conf        /calendar_conf                               {:controller=>"calendar", :action=>"config"}
                         users GET    /users                                       {:controller=>"users", :action=>"index"}
               formatted_users GET    /users.:format                               {:controller=>"users", :action=>"index"}
                               POST   /users                                       {:controller=>"users", :action=>"create"}
@@ -136,6 +133,30 @@ formatted_update_status_paper PUT    /papers/:id/update_status.:format          
                               PUT    /papers/:id.:format                          {:controller=>"papers", :action=>"update"}
                               DELETE /papers/:id                                  {:controller=>"papers", :action=>"destroy"}
                               DELETE /papers/:id.:format                          {:controller=>"papers", :action=>"destroy"}
+                     calendar POST   /calendar                                    {:controller=>"calendars", :action=>"create"}
+           formatted_calendar POST   /calendar.:format                            {:controller=>"calendars", :action=>"create"}
+                 new_calendar GET    /calendar/new                                {:controller=>"calendars", :action=>"new"}
+       formatted_new_calendar GET    /calendar/new.:format                        {:controller=>"calendars", :action=>"new"}
+                edit_calendar GET    /calendar/edit                               {:controller=>"calendars", :action=>"edit"}
+      formatted_edit_calendar GET    /calendar/edit.:format                       {:controller=>"calendars", :action=>"edit"}
+                              GET    /calendar                                    {:controller=>"calendars", :action=>"show"}
+                              GET    /calendar.:format                            {:controller=>"calendars", :action=>"show"}
+                              PUT    /calendar                                    {:controller=>"calendars", :action=>"update"}
+                              PUT    /calendar.:format                            {:controller=>"calendars", :action=>"update"}
+                              DELETE /calendar                                    {:controller=>"calendars", :action=>"destroy"}
+                              DELETE /calendar.:format                            {:controller=>"calendars", :action=>"destroy"}
+                 shoping_cart POST   /shoping_cart                                {:controller=>"shoping_carts", :action=>"create"}
+       formatted_shoping_cart POST   /shoping_cart.:format                        {:controller=>"shoping_carts", :action=>"create"}
+             new_shoping_cart GET    /shoping_cart/new                            {:controller=>"shoping_carts", :action=>"new"}
+   formatted_new_shoping_cart GET    /shoping_cart/new.:format                    {:controller=>"shoping_carts", :action=>"new"}
+            edit_shoping_cart GET    /shoping_cart/edit                           {:controller=>"shoping_carts", :action=>"edit"}
+  formatted_edit_shoping_cart GET    /shoping_cart/edit.:format                   {:controller=>"shoping_carts", :action=>"edit"}
+                              GET    /shoping_cart                                {:controller=>"shoping_carts", :action=>"show"}
+                              GET    /shoping_cart.:format                        {:controller=>"shoping_carts", :action=>"show"}
+                              PUT    /shoping_cart                                {:controller=>"shoping_carts", :action=>"update"}
+                              PUT    /shoping_cart.:format                        {:controller=>"shoping_carts", :action=>"update"}
+                              DELETE /shoping_cart                                {:controller=>"shoping_carts", :action=>"destroy"}
+                              DELETE /shoping_cart.:format                        {:controller=>"shoping_carts", :action=>"destroy"}
                       session POST   /session                                     {:controller=>"sessions", :action=>"create"}
             formatted_session POST   /session.:format                             {:controller=>"sessions", :action=>"create"}
                   new_session GET    /session/new                                 {:controller=>"sessions", :action=>"new"}
