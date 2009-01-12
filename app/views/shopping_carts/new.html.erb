@@ -1,0 +1,62 @@
+<% form_tag(:action => "confirm") do %>
+  <ul>
+  <% @events.each do |event| %>
+    <% if event.is_paid_for_user?( current_user ) %>
+      <li class="paid">
+        X
+        <%= event.name %> (<%= event.price_cents %>)
+      </li>
+    <% else %>
+      <li>
+        <%= 
+          check_box_tag(
+            'event[]', 
+            event.id, 
+            false, 
+            :onchange => 'update_total_shopping_cart_price()',
+            :id => "event_#{event.id}"
+          )
+        %>
+        
+        <%=
+          text_field_tag(
+            'price[]', 
+            event.price_cents, 
+            :id => "price_#{event.id}"
+          )
+        %>
+        
+        <%= event.name %> (<%= event.price_cents %>)
+      </li>
+    <% end %>
+  <% end %>
+  </ul>
+  
+  <p>TOTAL: <span id="total">0</span></p>
+  
+  <p>
+    <%= label_tag :invoice_info %><br />
+    <%= text_area_tag :invoice_info %>
+  </p>
+  
+  <p>
+    <%= submit_tag "Confirm", :disabled => false, :disable_with => "Please wait..." %>
+  </p>
+<% end %>
+
+<script>
+  function update_total_shopping_cart_price(){
+    total = 0;
+    $(":checkbox").each(
+      function() {
+        if( this.checked ){
+          total += parseInt( $('#price_' + this.value).val() );
+        }
+      }
+    );
+
+    $('#total').html( total + "" );
+  }
+  
+  $(document).ready( function(){ update_total_shopping_cart_price(); } );
+</script>

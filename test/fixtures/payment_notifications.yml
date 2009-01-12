@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  params: MyText
+  status: MyString
+  transaction_id: MyString
+
+two:
+  params: MyText
+  status: MyString
+  transaction_id: MyString

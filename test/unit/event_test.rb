@@ -42,5 +42,13 @@ class EventTest < ActiveSupport::TestCase
     event = Event.new(:name => 'event', :description => 'description')
     assert( event.valid? )
   end
+  
+  def test_total_price
+    @event01 = events(:event1)
+    @event02 = events(:event2)
+    
+    assert( Event.total_price( [@event01, @event02] ) )
+    assert_equal( @event01.price_cents + @event02.price_cents, Event.total_price( [@event01, @event02] ) )
+  end
 
 end

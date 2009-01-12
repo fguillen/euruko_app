@@ -9,6 +9,8 @@ ActionController::Routing::Routes.draw do |map|
   map.register  '/register',                  :controller => 'users',     :action => 'create'
   map.signup    '/signup',                    :controller => 'users',     :action => 'new'  
   
+  # shopping cart
+  
   map.resources :users do |users|
     map.resources :payments
   end
@@ -23,11 +25,13 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :papers, :member => { :update_status => :put }
   
   map.resource :calendar
-  map.resource :shoping_cart
+  map.resource :shopping_cart, :member => { :confirm => :post, :complete => :get }
   
   map.resource :session
   map.resources :rooms  
   map.resources :events
+  map.resources :payment_notifications
+
   
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'

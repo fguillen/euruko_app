@@ -1,0 +1,19 @@
+<% form_tag( ShoppingCart.paypal_url( @events, complete_shopping_cart_url, 'http://fguillen.no-ip.info:3035/payment_notifications' ) ) do %>
+  <ul>
+  <% @events.each do |event| %>
+    <li>        
+      <%= event.name %> (<%= event.price_cents %>)
+    </li>
+  <% end %>
+  </ul>
+  
+  <p>TOTAL: <span id="total"><%= Event.total_price( @events ) %></span></p>
+  
+  <p>
+    <%= @invoice_info %>
+  </p>
+  
+  <p>
+    <%= submit_tag "Pay, throught PayPal", :disabled => false, :disable_with => "Please wait..." %>
+  </p>
+<% end %>

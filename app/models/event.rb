@@ -23,4 +23,8 @@ class Event < ActiveRecord::Base
       return false
     end
   end
+  
+  def self.total_price( events_array )
+    events_array.sum{ |e| e.price_cents }
+  end
 end
