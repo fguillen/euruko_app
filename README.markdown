@@ -28,7 +28,7 @@ Vocabulario
 Casos de Uso (mirar /doc/use_cases)
 ------------------
 
-Screens (mirar /doc/screens)
+Wireframes (mirar /doc/wireframes)
 ------------------
 
 ### 01 Layout Invitado
@@ -188,7 +188,36 @@ Igualmente se podrá seleccionar cualquier Charla en el Calendario y pasarla a l
 
 Ya se verá que sale de todo esto...
 
+Instalar la aplicación
+------------------
+### Instalarla
 
- 
+git clone git://github.com/fguillen/euruko_app.git  
+
+### Iniciar Configuraciones
+
+cd euruko_app
+cp config/database_example.yml config/database.yml 
+cp config/initializers/site_keys_example.rb config/initializers/site_keys.rb
+
+### Iniciar BD
+
+rake db:create:all
+rake db:migrate
+rake db:test:clone
+
+### Correr tests
+
+rake
+
+### Popularizar la BD con datos de pruba
+
+rake populate:random
+
+### Añadir usuario admin
+
+rake populate:admin
+
+
 
 

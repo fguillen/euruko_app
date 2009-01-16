@@ -2,6 +2,9 @@ ActionController::Routing::Routes.draw do |map|
 
   map.root :controller => 'papers'
   
+  # fguillen 2009-01-15: exception_notification
+  map.connect "logged_exceptions/:action/:id", :controller => "logged_exceptions"
+  
   # restful_authentication
   map.activate  '/activate/:activation_code', :controller => 'users',     :action => 'activate', :activation_code => nil 
   map.logout    '/logout',                    :controller => 'sessions',  :action => 'destroy'

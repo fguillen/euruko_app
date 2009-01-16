@@ -16,6 +16,7 @@ class PapersController < ApplicationController
   # GET /papers/1
   # GET /papers/1.xml
   def show
+    raise "otro tipo"
     @comment = Comment.new
 
     respond_to do |format|

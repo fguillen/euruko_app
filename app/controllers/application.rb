@@ -4,6 +4,7 @@
 class ApplicationController < ActionController::Base
   # restful_authentication
   include AuthenticatedSystem
+  include ExceptionLoggable
   
   helper :all # include all helpers, all the time
 
@@ -26,4 +27,11 @@ class ApplicationController < ActionController::Base
     def load_paper_by_id
       @paper = Paper.find_by_id( params[:id] )
     end
+    
+    # fguillen 2009-01-15
+    # just for testing the exception_notification
+    def local_request?
+      false
+    end
+
 end
