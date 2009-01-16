@@ -197,8 +197,8 @@ git clone git://github.com/fguillen/euruko_app.git
 ### Iniciar Configuraciones
 
 cd euruko_app
-cp config/database_example.yml config/database.yml 
-cp config/initializers/site_keys_example.rb config/initializers/site_keys.rb
+cp config/database.yml.example config/database.yml 
+cp config/initializers/site_keys.rb.example config/initializers/site_keys.rb
 
 ### Iniciar BD
 
