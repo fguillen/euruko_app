@@ -219,5 +219,23 @@ rake populate:random
 rake populate:admin
 
 
+Intenciones
+------------------
 
+* <strike>Notificador de excepciones</strike>
+* Títulos de páginas ( http://railscasts.com/episodes/30-pretty-page-title )
+* Observer en create de logged_exception y que envíe un mail a administradores
+* Ajax en comentario
+* Ajax en voy/no voy
+* Ajax en puntuación
+* Seguridad de acceso de sólo administradores ( acordarse de página de excepciones ( http://localhost:3000/logged_exceptions ) )
+* Seguridad de acceso sólo usuarios registrados
+* Seguridad de acceso sólo speakers pueden modificar paper
+* Pantalla últimos comentarios
+* Pantalla últimos pagos
+* Capturar finds no encontrados y mandar a 404
+* Pantalla 404
+* Pantalla 500
+* Urls amigables
+* 
 
