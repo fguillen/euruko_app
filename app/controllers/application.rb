@@ -28,10 +28,9 @@ class ApplicationController < ActionController::Base
       @paper = Paper.find_by_id( params[:id] )
     end
     
-    # fguillen 2009-01-15
-    # just for testing the exception_notification
-    def local_request?
-      false
-    end
+    # # fguillen 2009-01-15: just for testing the exception_notification
+    # def local_request?
+    #   false
+    # end
 
 end
