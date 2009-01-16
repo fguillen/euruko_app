@@ -222,7 +222,7 @@ rake populate:admin
 Intenciones
 ------------------
 
-* --DONE-- Notificador de excepciones
+* **--DONE--** Notificador de excepciones
 * Títulos de páginas ( http://railscasts.com/episodes/30-pretty-page-title )
 * Observer en create de logged_exception y que envíe un mail a administradores
 * Ajax en comentario
