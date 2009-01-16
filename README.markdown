@@ -222,6 +222,8 @@ rake populate:admin
 Intenciones
 ------------------
 
+a ver esto <strike>hola </strike> y mas
+
 * asd<strike>Notificador de excepciones</strike>
 * Títulos de páginas ( http://railscasts.com/episodes/30-pretty-page-title )
 * Observer en create de logged_exception y que envíe un mail a administradores
