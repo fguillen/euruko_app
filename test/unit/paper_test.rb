@@ -33,13 +33,28 @@ class PaperTest < ActiveSupport::TestCase
   def test_create
     assert_difference "Paper.count", 1 do
       Paper.create(
-        :title        => @paper.title,
-        :description  => @paper.description,
-        :family       => @paper.family,
-        :status       => @paper.status,
+        :title        => "Paper Title",
+        :description  => "Paper description",
+        :family       => Paper::FAMILY[:TUTORIAL],
+        :status       => Paper::STATUS[:PROPOSED],
         :minutes      => 0
       )
     end
+  end
+
+  def test_permalink
+    @paper = 
+      Paper.create(
+        :title        => "Paper Title",
+        :description  => "Paper description",
+        :family       => Paper::FAMILY[:TUTORIAL],
+        :status       => Paper::STATUS[:PROPOSED],
+        :minutes      => 0
+      )
+      
+    assert( @paper.valid? )
+    assert_not_nil( @paper.permalink )
+    assert_equal( @paper.id, @paper.to_param.to_i )
   end
 
   def test_destroy_with_attendees_should_destroy_attendees
@@ -93,7 +108,7 @@ class PaperTest < ActiveSupport::TestCase
     
     paper = 
       Paper.new(
-        :title        => @paper.title,
+        :title        => @paper.title + "some more",
         :description  => @paper.description,
         :family       => @paper.family,
         :status       => @paper.status,
@@ -114,11 +129,11 @@ class PaperTest < ActiveSupport::TestCase
   def test_should_update_date_on_save_when_date_form_and_time_form
     @paper = 
       Paper.new(
-        :title        => @paper.title,
-        :description  => @paper.description,
-        :family       => @paper.family,
-        :status       => @paper.status,
-        :minutes      => @paper.minutes
+        :title        => "Paper Title",
+        :description  => "Paper description",
+        :family       => Paper::FAMILY[:TUTORIAL],
+        :status       => Paper::STATUS[:PROPOSED],
+        :minutes      => 0
       )
     
     assert_nil( @paper.date )
@@ -153,21 +168,21 @@ class PaperTest < ActiveSupport::TestCase
   end
   
   def test_find_all_by_status
-    num = Paper.find_all_by_status( Paper::STATUS[:CONFIRMED] ).size
+    num = Paper.find_all_by_status( Paper::STATUS[:PROPOSED] ).size
     
-    @paper = Paper.create(
-      :title        => @paper.title,
-      :description  => @paper.description,
-      :family       => @paper.family,
-      :status       => Paper::STATUS[:CONFIRMED],
-      :minutes      => 0
-    )
+    @paper = 
+      Paper.create!(
+        :title        => "Paper Title",
+        :description  => "Paper description",
+        :family       => Paper::FAMILY[:TUTORIAL],
+        :status       => Paper::STATUS[:PROPOSED],
+        :minutes      => 0
+      )
     
-    assert_equal( num + 1, Paper.find_all_by_status( Paper::STATUS[:CONFIRMED] ).size )
+    assert_equal( num + 1, Paper.find_all_by_status( Paper::STATUS[:PROPOSED] ).size )
     
     @paper.update_attributes( :status => Paper::STATUS[:ACEPTED] )
-    assert_equal( num, Paper.find_all_by_status( Paper::STATUS[:CONFIRMED] ).size )
-
+    assert_equal( num, Paper.find_all_by_status( Paper::STATUS[:PROPOSED] ).size )
   end
   
   # def test_random_datetime

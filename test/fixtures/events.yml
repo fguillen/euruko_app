@@ -1,9 +1,12 @@
 event1:
   name: Event 1
+  permalink: event-1
   description: Just an Event
   price_cents: 100
+  
 
 event2:
   name: Event 2
+  permalink: event-2
   description: Just another Event
   price_cents: 200

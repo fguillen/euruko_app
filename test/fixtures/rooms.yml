@@ -3,8 +3,10 @@
 
 room1:
   name: Room 1
+  permalink: room-1
   notes: Just a Room
   
 room2:
   name: Room 2
+  permalink: room-2
   notes: Just a Room 2

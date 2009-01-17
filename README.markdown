@@ -233,11 +233,14 @@ Intenciones
 * Seguridad de acceso de sólo administradores ( acordarse de página de excepciones ( http://localhost:3000/logged_exceptions ) )
 * Seguridad de acceso sólo usuarios registrados
 * Seguridad de acceso sólo speakers pueden modificar paper
+* Seguridad de acceso a listado de charlas sólo deben aparecer las aprobadas/confirmadas sino es administrador
+* Namescoped en charlas 
 * Pantalla últimos comentarios
 * Pantalla últimos pagos
 * Capturar finds no encontrados y mandar a 404
 * Pantalla 404
 * Pantalla 500
-* Urls amigables
-* 
+* **--DONE--** Urls amigables
+* Namescope para Paper.visible y User.public
+* Speakers salen duplicados.. creo que el join no está bien igual mola más un :include.. o meter un distinct.. 
 

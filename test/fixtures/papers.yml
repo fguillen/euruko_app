@@ -8,6 +8,7 @@
 
 paper1:
   title: Paper 1
+  permalink: paper-1
   description: Just a Paper
   family: <%= Paper::FAMILY[:TUTORIAL] %>
   status: <%= Paper::STATUS[:CONFIRMED] %>
@@ -17,6 +18,7 @@ paper1:
 
 paper2:
   title: Paper 2
+  permalink: paper-2
   description: Just a Paper 2
   family: <%= Paper::FAMILY[:TUTORIAL] %>
   status: <%= Paper::STATUS[:CONFIRMED] %>

@@ -10,6 +10,7 @@
 
 user1:
   name: User 1
+  permalink: user-1
   login: user1
   email: user1@email.com
   crypted_password: aaa
@@ -18,6 +19,7 @@ user1:
   
 user2:
   name: User 2
+  permalink: user-2
   login: user2
   email: user2@email.com
   crypted_password: aaa

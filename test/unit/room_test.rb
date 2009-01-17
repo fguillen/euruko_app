@@ -12,8 +12,21 @@ class RoomTest < ActiveSupport::TestCase
 
   def test_create
     assert_difference "Room.count", 1 do
-      Room.create(:name => 'room')
+      Room.create(
+        :name => 'room'
+      )
     end
+  end
+  
+  def test_permalink
+    @room = 
+      Room.create(
+        :name => 'Room Name'
+      )      
+      
+    assert( @room.valid? )
+    assert_not_nil( @room.permalink )
+    assert_equal( @room.id, @room.to_param.to_i )
   end
 
   def test_validations

@@ -1,4 +1,7 @@
 class Paper < ActiveRecord::Base
+  
+  permalink :title
+  
   has_many :speakers,       :dependent => :destroy
   has_many :comments,       :dependent => :destroy
   has_many :votes,          :dependent => :destroy
@@ -11,6 +14,7 @@ class Paper < ActiveRecord::Base
   belongs_to :room
   
   validates_presence_of :title
+  validates_uniqueness_of :title
   validates_presence_of :description
   validates_presence_of :family
   validates_presence_of :status

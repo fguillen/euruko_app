@@ -2,6 +2,7 @@ class CreateUsers < ActiveRecord::Migration
   def self.up
     create_table :users do |t|
       t.string        :name,                  :null => false
+      t.string        :permalink,             :null => false
       t.string        :login,                 :null => false
       t.string        :email,                 :null => false
       t.string        :crypted_password,                        :limit => 40
@@ -21,8 +22,10 @@ class CreateUsers < ActiveRecord::Migration
 
       t.timestamps
     end
-    add_index :users, :login, :unique => true
-    add_index :users, :email, :unique => true
+    add_index :users, :login,     :unique => true
+    add_index :users, :email,     :unique => true
+    add_index :users, :permalink, :unique => true
+    
   end
 
   def self.down

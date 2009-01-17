@@ -1,6 +1,8 @@
 require 'digest/sha1'
 
 class User < ActiveRecord::Base
+  permalink :name
+
   include Authentication
   include Authentication::ByPassword
   include Authentication::ByCookieToken
@@ -48,7 +50,8 @@ class User < ActiveRecord::Base
     :personal_web_url,
     :company_name,
     :company_url,
-    :public_profile
+    :public_profile,
+    :permalink_field_name
   )
 
   attr_accessor :password_actual

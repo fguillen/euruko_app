@@ -27,15 +27,32 @@ class UserTest < ActiveSupport::TestCase
   def test_create
     assert_difference "User.count", 1 do
       User.create(
-        :name         => @user.name,
-        :login        => 'other_login',
-        :email        => 'email@email.com',
-        :password     => 'pass000',
-        :password_confirmation => 'pass000',
-        :role         => User::ROLE[:USER],
-        :public_profile => true
+        :name                   => 'User Name',
+        :login                  => 'other_login',
+        :email                  => 'email@email.com',
+        :password               => 'pass000',
+        :password_confirmation  => 'pass000',
+        :role                   => User::ROLE[:USER],
+        :public_profile         => true
       )
     end
+  end
+  
+  def test_permalink
+    @user = 
+      User.create(
+        :name                   => 'User Name',
+        :login                  => 'other_login',
+        :email                  => 'email@email.com',
+        :password               => 'pass000',
+        :password_confirmation  => 'pass000',
+        :role                   => User::ROLE[:USER],
+        :public_profile         => true
+      )
+      
+    assert( @user.valid? )
+    assert_not_nil( @user.permalink )
+    assert_equal( @user.id, @user.to_param.to_i )
   end
 
   def test_destroy_with_attendees_should_destroy_attendees

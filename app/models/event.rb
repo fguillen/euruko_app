@@ -2,9 +2,12 @@ class NotDeletableEventException < Exception
 end
 
 class Event < ActiveRecord::Base
+  permalink :name
+
   has_many :payments, :dependent => :destroy
   
   validates_presence_of :name
+  validates_uniqueness_of :name
   validates_presence_of :description
   validates_numericality_of :price_cents
   
