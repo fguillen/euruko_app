@@ -234,7 +234,6 @@ TODOs
 * Seguridad de acceso sólo usuarios registrados
 * Seguridad de acceso sólo speakers pueden modificar paper
 * Seguridad de acceso a listado de charlas sólo deben aparecer las aprobadas/confirmadas sino es administrador
-* Namescoped en charlas 
 * Pantalla últimos comentarios
 * Pantalla últimos pagos
 * Capturar finds no encontrados y mandar a 404

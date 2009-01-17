@@ -24,10 +24,11 @@ class ForeignKeysTest < ActiveSupport::TestCase
   def test_paper_foreign_keys
     assert_raise(ActiveRecord::StatementInvalid) do
       Paper.create(
-        :title        => papers(:paper1).title,
-        :description  => papers(:paper1).description,
-        :family       => papers(:paper1).family,
-        :status       => papers(:paper1).status,
+        :title        => "Paper Title",
+        :description  => "Paper description",
+        :family       => Paper::FAMILY[:TUTORIAL],
+        :status       => Paper::STATUS[:PROPOSED],
+        :minutes      => 0,
         :room_id      => -1
       )
     end
