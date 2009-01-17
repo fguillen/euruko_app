@@ -19,10 +19,10 @@ class PapersControllerTest < ActionController::TestCase
       post(
         :create, 
         :paper => { 
-          :title        => papers(:paper1).title,
-          :description  => papers(:paper1).description,
-          :family       => papers(:paper1).family,
-          :status       => papers(:paper1).status,
+          :title        => "Paper Title",
+          :description  => "Paper description",
+          :family       => Paper::FAMILY[:TUTORIAL],
+          :status       => Paper::STATUS[:PROPOSED],
           :minutes      => 0
         }
       )

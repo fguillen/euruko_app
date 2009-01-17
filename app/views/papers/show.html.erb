@@ -3,8 +3,19 @@
 <h3>Speakers</h3>
 <p>
   <ul>
-      <% @paper.speakers.each do |s| %>
-        <li><%= link_to s.user.name, s.user %></li>
+      <% @paper.speakers.collect{ |s| s.user }.each do |user| %>
+        <li>
+          <%=
+            gravatar(
+              user.email, 
+              :size => 32, 
+              :default => "#{base_url}/images/avatar.png",
+              :class => 'avatar',
+              :alt => "avatar de #{user.name}"
+            )
+          %>
+          <%= link_to user.name, user %>
+        </li>
       <% end %>
   </ul>
 </p>
@@ -55,6 +66,17 @@
   <ul>
     <% @paper.comments.each do |comment| %>
       <li>
+        <div>
+          <%=
+            gravatar(
+              comment.user.email, 
+              :size => 32, 
+              :default => "#{base_url}/images/avatar.png",
+              :class => 'avatar',
+              :alt => "avatar de #{comment.user.name}"
+            )
+          %>
+        </div>
         <div><strong><%= comment.user.name %></strong> say on <%= comment.created_at %></div>
         <p><%= comment.text %></p>
       </li>

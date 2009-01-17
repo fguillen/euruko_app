@@ -1,4 +1,14 @@
 <h2><%= @user.name %></h2>
+<%=
+  gravatar(
+    @user.email, 
+    :size => 32, 
+    :default => "#{base_url}/images/avatar.png",
+    :class => 'avatar',
+    :alt => "avatar de #{@user.name}"
+  )
+%>
+
 <%= simple_format( @user.text ) %>
 
 <% if !@user.personal_web_url.blank? %>
