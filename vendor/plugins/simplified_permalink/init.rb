@@ -1,0 +1,1 @@
+require 'simplified_permalink'
