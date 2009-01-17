@@ -242,4 +242,4 @@ TODOs
 * **--DONE--** Urls amigables
 * Namescope para Paper.visible y User.public
 * Speakers salen duplicados.. creo que el join no está bien igual mola más un :include.. o meter un distinct.. 
-* Avatares de gravatar
+* **--DONE--** Avatares de gravatar
