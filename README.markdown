@@ -219,7 +219,7 @@ rake populate:random
 rake populate:admin
 
 
-Intenciones
+TODOs
 ------------------
 
 * **--DONE--** Notificador de excepciones
