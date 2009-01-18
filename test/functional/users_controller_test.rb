@@ -51,6 +51,23 @@ class UsersControllerTest < ActionController::TestCase
     assert_redirected_to root_path
   end
 
+  def test_should_create_user_with_public_profile_false
+    assert_difference('User.count') do
+      post(
+        :create, 
+        :user => {
+          :name         => 'name',
+          :login        => 'other_login',
+          :email        => 'email@email.com',
+          :password     => 'pass000',
+          :password_confirmation => 'pass000',
+          :role         => User::ROLE[:USER],
+          :public_profile => false
+        }
+      )
+    end
+  end
+
   def test_on_show_with_not_logged_and_public_user_should_show_user
     get :show, :id => users(:user1).id
     assert_response :success

@@ -37,6 +37,19 @@ class UserTest < ActiveSupport::TestCase
     end
   end
   
+  def test_create_with_public_profile_false
+    assert_difference "User.count", 1 do
+      User.create(
+        :name                   => 'User Name',
+        :login                  => 'other_login',
+        :email                  => 'email@email.com',
+        :password               => 'pass000',
+        :password_confirmation  => 'pass000',
+        :public_profile         => false
+      )
+    end
+  end
+  
   def test_update
     @user = users(:user1)
     @user.update_attributes(

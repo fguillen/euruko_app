@@ -30,8 +30,8 @@ class User < ActiveRecord::Base
   validates_uniqueness_of   :email
   validates_format_of       :email,    :with => Authentication.email_regex, :message => Authentication.bad_email_message
   
-  validates_presence_of     :public_profile
-
+  validates_inclusion_of    :public_profile, :in => [true, false]
+  
   before_create :make_activation_code 
   before_create :update_role
 

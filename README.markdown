@@ -199,6 +199,7 @@ Instalar la aplicación
     cd euruko_app
     cp config/database.yml.example config/database.yml 
     cp config/initializers/site_keys.rb.example config/initializers/site_keys.rb
+    vim config/config.yml
 
 ### Iniciar BD
 
