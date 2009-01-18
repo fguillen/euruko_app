@@ -238,11 +238,11 @@ TODOs
 * Pantalla últimos comentarios
 * Pantalla últimos pagos
 * Cambios de estilo en listados de Papers para diferenciar: familias y estados
-* Capturar finds no encontrados y mandar a 404
-* Pantalla 404
-* Pantalla 500
+* **--DONE--** Capturar finds no encontrados y mandar a 404
+* Diseño: Pantalla 404
+* Diseño: Pantalla 500
 * **--DONE--** Urls amigables
-* Namescope para Paper.visible y User.public
+* **--DONE--** Namescope para Paper.visible
 * Speakers salen duplicados.. creo que el join no está bien igual mola más un :include.. o meter un distinct.. 
 * **--DONE--** Avatares de gravatar
 * Control de textos: escapar html, linkar links, ...
