@@ -192,31 +192,31 @@ Instalar la aplicación
 ------------------
 ### Instalarla
 
-git clone git://github.com/fguillen/euruko_app.git  
+    git clone git://github.com/fguillen/euruko_app.git  
 
 ### Iniciar Configuraciones
 
-cd euruko_app
-cp config/database.yml.example config/database.yml 
-cp config/initializers/site_keys.rb.example config/initializers/site_keys.rb
+    cd euruko_app
+    cp config/database.yml.example config/database.yml 
+    cp config/initializers/site_keys.rb.example config/initializers/site_keys.rb
 
 ### Iniciar BD
 
-rake db:create:all
-rake db:migrate
-rake db:test:clone
+    rake db:create:all
+    rake db:migrate
+    rake db:test:clone
 
 ### Correr tests
 
-rake
+    rake
 
 ### Popularizar la BD con datos de pruba
 
-rake populate:random
+    rake populate:random
 
 ### Añadir usuario admin
 
-rake populate:admin
+    rake populate:admin
 
 
 TODOs
@@ -242,7 +242,7 @@ TODOs
 * Diseño: Pantalla 404
 * Diseño: Pantalla 500
 * **--DONE--** Urls amigables
-* **--DONE--** Namescope para Paper.visible
+* **--DONE--** Namescope para Paper.visible 
 * Speakers salen duplicados.. creo que el join no está bien igual mola más un :include.. o meter un distinct.. 
 * **--DONE--** Avatares de gravatar
 * Control de textos: escapar html, linkar links, ...
