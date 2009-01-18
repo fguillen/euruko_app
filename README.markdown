@@ -256,9 +256,10 @@ TODOs
 * Un usuario puede crear una charla y empezar a asignar speakers sin consentimiento :?
 * gem dependencies (http://railscasts.com/episodes/110-gem-dependencies) (mocha, faker, will-paginate )
 * buscadores avanzados de usuarios y charlas( railscasts 111 y 112 )
-* YOURSITE en notificaciones de registro => modificar intentar que sea dinámico
-* El speaker no puede ver su propia charla
-* Al crear charla si no es Admin no debe ver los campos de room, fechas y demás.. y protegerlos!!
+* **--DONE--** YOURSITE en notificaciones de registro => modificar intentar que sea dinámico
+* **--DONE--** El speaker no puede ver su propia charla
+* **--DONE--** Al crear charla si no es Admin no debe ver los campos de room, fechas y demás.. 
+* Al modificar charla proteger campos room, fechas y demás.. sólo a administradores
 * Al añadir ponente a charla no deben aparecer los que ya están
 * Al añadir ponente a charla el listado de salir ordenado alfabéticamente
 * Al añadir recurso a charla la url del link no es correcta
