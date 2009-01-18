@@ -58,7 +58,31 @@ class PapersControllerTest < ActionController::TestCase
 
     assert_redirected_to paper_path(assigns(:paper))
   end
-  
+
+  def test_on_create_with_logged_should_assign_the_new_paper_to_current_user_when_user_is_not_admin
+    @user = users(:user1)
+    login_as @user
+    
+    assert_difference( 'Speaker.count' ) do
+      assert_difference('Paper.count') do
+        post(
+          :create, 
+          :paper => { 
+            :title        => "Paper Title",
+            :description  => "Paper description",
+            :family       => Paper::FAMILY[:TUTORIAL],
+            :status       => Paper::STATUS[:PROPOSED],
+            :minutes      => 0
+          }
+        )
+      end
+    end
+
+    @paper = Paper.find_by_title( "Paper Title" )
+    assert( @paper.speakers.collect{ |s| s.user}.include?( @user ) )
+    assert( @user.speaker_on.include?( @paper ) )
+  end
+
   def test_on_create_with_not_logged_should_redirect_to_new_session
     assert_difference('Paper.count', 0) do
       post(
@@ -86,25 +110,25 @@ class PapersControllerTest < ActionController::TestCase
     assert_response 404
   end
 
-  def test_with_login_should_show_public_paper
+  def test_on_show_with_login_should_show_public_paper
     login_as users(:user1)
     get :show, :id => papers(:paper1).id
     assert_response :success
   end
 
-  def test_with_login_should_not_show_not_public_paper
+  def test_on_show_with_login_should_not_show_not_public_paper
     login_as users(:user2)
     get :show, :id => papers(:paper1).id
     assert_response 404
   end
 
-  def test_with_speaker_login_should_show_not_public_paper
+  def test_on_show_with_speaker_login_should_show_not_public_paper
     login_as users(:user1)
     get :show, :id => papers(:paper1).id
     assert_response :success
   end
   
-  def test_with_admin_login_should_show_not_public_paper
+  def test_on_show_with_admin_login_should_show_not_public_paper
     login_as users(:user_admin)
     get :show, :id => papers(:paper1).id
     assert_response :success

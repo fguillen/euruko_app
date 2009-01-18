@@ -259,3 +259,6 @@ TODOs
 * YOURSITE en notificaciones de registro => modificar intentar que sea dinámico
 * El speaker no puede ver su propia charla
 * Al crear charla si no es Admin no debe ver los campos de room, fechas y demás.. y protegerlos!!
+* Al añadir ponente a charla no deben aparecer los que ya están
+* Al añadir ponente a charla el listado de salir ordenado alfabéticamente
+* Al añadir recurso a charla la url del link no es correcta

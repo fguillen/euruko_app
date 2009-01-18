@@ -51,9 +51,12 @@ class PapersController < ApplicationController
   # POST /papers.xml
   def create
     @paper = Paper.new( params[:paper] )
+    @paper.family = Paper::FAMILY[:SESSION]  if @paper.family.nil?
 
     respond_to do |format|
       if @paper.save
+        @paper.speakers.create!( :user => current_user )  unless admin?
+
         flash[:notice] = 'Paper was successfully created.'
         format.html { redirect_to(@paper) }
         format.xml  { render :xml => @paper, :status => :created, :location => @paper }

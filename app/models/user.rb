@@ -120,8 +120,9 @@ class User < ActiveRecord::Base
     ( self.admin? || self.is_speaker_on?( paper ) )
   end
   
-  def speaker_on_visibles
-    self.speaker_on.visible
+  def speaker_on_visibles_for_user( user )
+    return self.speaker_on.visible  if self != user
+    return self.speaker_on          if self == user || user.admin?
   end
   
   protected

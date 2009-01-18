@@ -96,9 +96,10 @@
   </div>
 <% end %>
 
-<% if admin? %>
-  <div>
+
+<div>
+  <% if logged_in? && current_user.is_speaker_on_or_admin?( @paper ) %>
     <%= link_to 'Edit', edit_paper_path(@paper) %> |
-    <%= link_to 'Back', papers_path %>
-  </div>
-<% end %>
+  <% end %>
+  <%= link_to 'Back', papers_path %>
+</div>

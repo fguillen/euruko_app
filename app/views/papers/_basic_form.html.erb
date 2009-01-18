@@ -9,39 +9,43 @@
     <%= f.text_area :description %>
   </li>
   
-  <li>
-    <%= f.label :minutes, "Minutes" %>
-    <%= f.text_field :minutes %>
-  </li>
+  <% if admin? %>
+    <li>
+      <%= f.label :minutes, "Minutes" %>
+      <%= f.text_field :minutes %>
+    </li>
 
-  <li>
-    <%= f.label :family, "Family" %>
-    <%= select( "paper", "family", Paper::FAMILY.values ) %>
-  </li>  
+    <li>
+      <%= f.label :family, "Family" %>
+      <%= select( "paper", "family", Paper::FAMILY.values ) %>
+    </li>  
+  <% end %>
 </ul>
 
-<div>
-  <h3>Room and Calendar</h3>
-  <p>
-    <%= f.label :room_id, "Room" %>
-    <%=
-      select(
-        'paper', 
-        'room_id', 
-        Room.find(:all).collect {|r| [ r.name, r.id ] },
-        { :include_blank => true }
-      )
-    %>
-  </p>
-  <p>
-    <%= f.label :date_form, "Date" %>
-    <%= f.text_field :date_form %>
-    <script>
-      $('#paper_date_form').datepicker({firstDay: 1, dateFormat: 'yy/mm/dd' });
-    </script>
-  </p>
-  <p>
-    <%= f.label :time_form, "Time" %>
-    <%= select( 'paper', 'time_form', times_array( '08', '20' ), { :include_blank => true } ) %>
-  </p>
-</div>
+<% if admin? %>
+  <div>
+    <h3>Room and Calendar</h3>
+    <p>
+      <%= f.label :room_id, "Room" %>
+      <%=
+        select(
+          'paper', 
+          'room_id', 
+          Room.find(:all).collect {|r| [ r.name, r.id ] },
+          { :include_blank => true }
+        )
+      %>
+    </p>
+    <p>
+      <%= f.label :date_form, "Date" %>
+      <%= f.text_field :date_form %>
+      <script>
+        $('#paper_date_form').datepicker({firstDay: 1, dateFormat: 'yy/mm/dd' });
+      </script>
+    </p>
+    <p>
+      <%= f.label :time_form, "Time" %>
+      <%= select( 'paper', 'time_form', times_array( '08', '20' ), { :include_blank => true } ) %>
+    </p>
+  </div>
+<% end %>

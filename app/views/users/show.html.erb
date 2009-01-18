@@ -23,11 +23,11 @@
   </p>
 <% end %>
 
-<% if !@user.speaker_on_visibles.empty? %>
+<% if !@user.speaker_on_visibles_for_user( current_user ).empty? %>
   <div>
     <h3>Participa en las siguientes charlas</h3>
     <ul>
-      <% @user.speaker_on_visibles.each do |paper| %>
+      <% @user.speaker_on_visibles_for_user( current_user ).each do |paper| %>
         <li>
           <strong><%= link_to paper.title, paper %></strong> (<%= paper.status %>)
         </li>

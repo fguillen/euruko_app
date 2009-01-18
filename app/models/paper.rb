@@ -92,7 +92,7 @@ class Paper < ActiveRecord::Base
   end
   
   def can_see_it?( user )
-    return ( self.visible? || (!user.nil? && user.is_speaker_on?(self)) || (!user.nil? && user.admin?) )
+    return( self.visible? || (!user.nil? && user.is_speaker_on?(self)) || (!user.nil? && user.admin?) )
   end
   
   def can_change_status_to?( user, status )
