@@ -250,3 +250,8 @@ TODOs
 * Speakers sólo son speakers si alguna de sus charlas está aceptada o confirmada.. vamos si es paper.visible?
 * En perfil de usuarios sólo mostrar las charlas en las que participa si la charla es .visible?
 * Modificar contraseña sólo si se introduce la actual correctamente
+* Una charla en estado UNDER REVIEW no puede se modificada más que por un admin
+* ¿Qué pasa si un user tiene el perfil no-público y además es un speaker?
+* Un usuario puede crear una charla y empezar a asignar speakers sin consentimiento :?
+* gem dependencies (http://railscasts.com/episodes/110-gem-dependencies)
+* buscadores avanzados de usuarios y charlas( railscasts 111 y 112 )

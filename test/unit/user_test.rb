@@ -167,4 +167,15 @@ class UserTest < ActiveSupport::TestCase
     assert( !users(:user2).is_speaker_on_or_admin?( papers(:paper1) ) )
     assert( users(:user3).is_speaker_on_or_admin?( papers(:paper1) ) )
   end
+  def test_speaker_on_visibles
+    @paper = papers(:paper1)
+    assert( users(:user1).speaker_on_visibles )
+    assert( !users(:user1).speaker_on_visibles.include?( @paper ) )
+    
+    @paper.status = Paper::STATUS[:ACEPTED]
+    @paper.save!
+    
+    assert( users(:user1).speaker_on_visibles.include?( @paper ) )
+    
+  end
 end

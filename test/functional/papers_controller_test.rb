@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class PapersControllerTest < ActionController::TestCase
-  def test_on_index_with_not_logged_should_show_only_visibles
+  def test_on_index_with_not_logged_should_show_only_visible
     get :index
     assert_response :success
     assert_not_nil assigns(:papers)
@@ -9,7 +9,7 @@ class PapersControllerTest < ActionController::TestCase
     assert( assigns(:papers).include?( papers(:paper2) ) )
   end
 
-  def test_on_index_with_logged_but_not_admin_should_show_only_visibles
+  def test_on_index_with_logged_but_not_admin_should_show_only_visible
     login_as users(:user1)
     
     get :index

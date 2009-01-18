@@ -9,7 +9,7 @@ class PapersController < ApplicationController
   # GET /papers.xml
   def index
     @papers = Paper.all       if admin?
-    @papers = Paper.visibles  if !admin?
+    @papers = Paper.visible  if !admin?
 
     respond_to do |format|
       format.html # index.html.erb

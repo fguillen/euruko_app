@@ -45,7 +45,7 @@ class Paper < ActiveRecord::Base
     :EVENT    => 'Event' 
   }
   
-  named_scope :visibles,    :conditions => { :status => [Paper::STATUS[:ACEPTED], Paper::STATUS[:CONFIRMED] ]  }
+  named_scope :visible, :conditions => { :status => [Paper::STATUS[:ACEPTED], Paper::STATUS[:CONFIRMED] ]  }
   
   def add_speaker(user)
     self.speakers.build( :user => user )

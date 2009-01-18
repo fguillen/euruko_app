@@ -213,10 +213,10 @@ class PaperTest < ActiveSupport::TestCase
     assert( !@paper.on_date_and_room_id?( Time.parse( '1980/01/01' ), rooms(:room2).id ) )
   end
   
-  def test_visibles
-    assert( Paper.visibles )
-    assert( !Paper.visibles.include?( papers(:paper1) ) )
-    assert( Paper.visibles.include?( papers(:paper2) ) ) 
+  def test_visible
+    assert( Paper.visible )
+    assert( !Paper.visible.include?( papers(:paper1) ) )
+    assert( Paper.visible.include?( papers(:paper2) ) ) 
   end
   
   def test_visible?

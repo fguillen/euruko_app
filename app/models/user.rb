@@ -120,6 +120,10 @@ class User < ActiveRecord::Base
     ( self.admin? || self.is_speaker_on?( paper ) )
   end
   
+  def speaker_on_visibles
+    self.speaker_on.visible
+  end
+  
   protected
     
     def make_activation_code
