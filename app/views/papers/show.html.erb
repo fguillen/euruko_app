@@ -33,7 +33,7 @@
 <p>
   <ul>
     <% @paper.resources.each do |resource| %>
-      <li><%= link_to resource.url, resource.url %></li>
+      <li><%= link_to resource.url_link, resource.url_link %></li>
     <% end %>
   </ul>
 </p>

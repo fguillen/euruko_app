@@ -4,8 +4,10 @@ resource1:
   paper: paper1 
   url: http://mydomain.com/files/myfile1
   user: user1
+  is_local: false
 
 resource2:
   paper: paper1 
-  url: http://mydomain.com/files/myfile2
+  url: /files/myfile2
   user: user1
+  is_local: true
