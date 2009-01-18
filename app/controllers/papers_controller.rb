@@ -51,8 +51,6 @@ class PapersController < ApplicationController
   # POST /papers.xml
   def create
     @paper = Paper.new( params[:paper] )
-    @paper.status = Paper::STATUS[:PROPOSED]
-    # @paper.add_speaker( current_user )
 
     respond_to do |format|
       if @paper.save

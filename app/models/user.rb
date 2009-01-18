@@ -30,10 +30,10 @@ class User < ActiveRecord::Base
   validates_uniqueness_of   :email
   validates_format_of       :email,    :with => Authentication.email_regex, :message => Authentication.bad_email_message
   
-  validates_presence_of     :role
   validates_presence_of     :public_profile
 
   before_create :make_activation_code 
+  before_create :update_role
 
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation
@@ -123,7 +123,11 @@ class User < ActiveRecord::Base
   protected
     
     def make_activation_code
-        self.activation_code = self.class.make_token
+      self.activation_code = self.class.make_token
+    end
+    
+    def update_role
+      self.role = User::ROLE[:USER]
     end
 
 end

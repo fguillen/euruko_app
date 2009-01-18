@@ -18,7 +18,6 @@ class Paper < ActiveRecord::Base
   validates_uniqueness_of :title
   validates_presence_of :description
   validates_presence_of :family
-  validates_presence_of :status
   validates_numericality_of :minutes
   
   # TODO: hacer que esto funcione
@@ -26,6 +25,7 @@ class Paper < ActiveRecord::Base
   # validates_inclusion_of :family, :in => FAMILIES.values
   
   before_save :update_date
+  before_create :update_status
   
   attr_protected :status
   
@@ -98,4 +98,10 @@ class Paper < ActiveRecord::Base
   def can_change_status_to?( user, status )
     return ( user.admin? || ((self.status == Paper::STATUS[:ACEPTED]) && status == Paper::STATUS[:CONFIRMED]) )
   end
+  
+  private
+  
+    def update_status
+      self.status ||= Paper::STATUS[:PROPOSED]
+    end
 end

@@ -32,11 +32,10 @@ class PaperTest < ActiveSupport::TestCase
 
   def test_create
     assert_difference "Paper.count", 1 do
-      Paper.create(
+      Paper.create!(
         :title        => "Paper Title",
         :description  => "Paper description",
         :family       => Paper::FAMILY[:TUTORIAL],
-        :status       => Paper::STATUS[:PROPOSED],
         :minutes      => 0
       )
     end
@@ -48,7 +47,6 @@ class PaperTest < ActiveSupport::TestCase
         :title        => "Paper Title",
         :description  => "Paper description",
         :family       => Paper::FAMILY[:TUTORIAL],
-        :status       => Paper::STATUS[:PROPOSED],
         :minutes      => 0
       )
       
@@ -104,14 +102,12 @@ class PaperTest < ActiveSupport::TestCase
     assert( paper.errors.on(:title) )
     assert( paper.errors.on(:description) )
     assert( paper.errors.on(:family) )
-    assert( paper.errors.on(:status) )
     
     paper = 
       Paper.new(
         :title        => @paper.title + "some more",
         :description  => @paper.description,
         :family       => @paper.family,
-        :status       => @paper.status,
         :minutes      => @paper.minutes
       )
     assert( paper.valid? )

@@ -32,7 +32,6 @@ class UserTest < ActiveSupport::TestCase
         :email                  => 'email@email.com',
         :password               => 'pass000',
         :password_confirmation  => 'pass000',
-        :role                   => User::ROLE[:USER],
         :public_profile         => true
       )
     end
@@ -76,7 +75,6 @@ class UserTest < ActiveSupport::TestCase
         :email                  => 'email@email.com',
         :password               => 'pass000',
         :password_confirmation  => 'pass000',
-        :role                   => User::ROLE[:USER],
         :public_profile         => true
       )
       
@@ -137,8 +135,7 @@ class UserTest < ActiveSupport::TestCase
         :login        => @user.login,
         :email        => 'email2@email.com',
         :password     => 'pass000',
-        :password_confirmation => 'pass000',
-        :role         => User::ROLE[:USER]
+        :password_confirmation => 'pass000'
       )
     
     assert( !user.valid? )

@@ -27,7 +27,6 @@ class ForeignKeysTest < ActiveSupport::TestCase
         :title        => "Paper Title",
         :description  => "Paper description",
         :family       => Paper::FAMILY[:TUTORIAL],
-        :status       => Paper::STATUS[:PROPOSED],
         :minutes      => 0,
         :room_id      => -1
       )
