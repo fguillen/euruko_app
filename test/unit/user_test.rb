@@ -165,7 +165,7 @@ class UserTest < ActiveSupport::TestCase
   def test_is_speaker_on_or_admin
     assert( users(:user1).is_speaker_on_or_admin?( papers(:paper1) ) )
     assert( !users(:user2).is_speaker_on_or_admin?( papers(:paper1) ) )
-    assert( users(:user3).is_speaker_on_or_admin?( papers(:paper1) ) )
+    assert( users(:user_admin).is_speaker_on_or_admin?( papers(:paper1) ) )
   end
   def test_speaker_on_visibles
     @paper = papers(:paper1)

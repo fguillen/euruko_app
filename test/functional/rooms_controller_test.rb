@@ -8,7 +8,7 @@ class RoomsControllerTest < ActionController::TestCase
   end
 
   def test_on_get_with_admin_should_get_new
-    login_as users(:user3)
+    login_as users(:user_admin)
     get :new
     assert_response :success
   end
@@ -25,7 +25,7 @@ class RoomsControllerTest < ActionController::TestCase
   end
 
   def test_on_create_with_admin_should_create_room
-    login_as users(:user3)
+    login_as users(:user_admin)
     assert_difference('Room.count') do
       post :create, :room => { :name => 'room' }
     end
@@ -50,7 +50,7 @@ class RoomsControllerTest < ActionController::TestCase
   end
 
   def test_on_get_with_admin_should_get_edit
-    login_as users(:user3)
+    login_as users(:user_admin)
     get :edit, :id => rooms(:room1).id
     assert_response :success
   end
@@ -63,7 +63,7 @@ class RoomsControllerTest < ActionController::TestCase
 
   def test_on_update_with_admin_should_update_room
     @room = rooms(:room1)
-    login_as users(:user3)
+    login_as users(:user_admin)
     
     put :update, :id => @room.id, :room => { :name => 'other_name' }
     
@@ -85,7 +85,7 @@ class RoomsControllerTest < ActionController::TestCase
   end
 
   def test_on_destroy_with_admin_should_destroy_room
-    login_as users(:user3)
+    login_as users(:user_admin)
     
     assert_difference('Room.count', -1) do
       delete :destroy, :id => rooms(:room2).id

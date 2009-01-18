@@ -39,7 +39,7 @@ class ResourcesControllerTest < ActionController::TestCase
   end
 
   def test_on_create_with_logged_but_not_speaker_but_admin_should_create_resource
-    login_as users(:user3)
+    login_as users(:user_admin)
     
     assert_difference('Resource.count', 1) do
       post(
@@ -104,7 +104,7 @@ class ResourcesControllerTest < ActionController::TestCase
   end
   
   def test_on_destroy_and_logged_but_not_speaker_but_admin_should_destroy_resource
-    login_as users(:user3)
+    login_as users(:user_admin)
     
     assert_difference('Resource.count', -1) do
       delete(

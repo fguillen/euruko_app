@@ -20,7 +20,7 @@ class PapersControllerTest < ActionController::TestCase
   end
 
   def test_on_index_with__admin_should_show_all
-    login_as users(:user3)
+    login_as users(:user_admin)
     
     get :index
     assert_response :success
@@ -105,7 +105,7 @@ class PapersControllerTest < ActionController::TestCase
   end
   
   def test_with_admin_login_should_show_not_public_paper
-    login_as users(:user3)
+    login_as users(:user_admin)
     get :show, :id => papers(:paper1).id
     assert_response :success
   end
@@ -123,7 +123,7 @@ class PapersControllerTest < ActionController::TestCase
   end
 
   def test_on_edit_with_admin_logged_should_get_edit
-    login_as users(:user3)
+    login_as users(:user_admin)
     get :edit, :id => papers(:paper1).id
     assert_response :success
   end
@@ -146,7 +146,7 @@ class PapersControllerTest < ActionController::TestCase
 
   def test_on_update_with_admin_logged_should_update_paper
     @paper = papers(:paper1)
-    login_as users(:user3)
+    login_as users(:user_admin)
     
     put :update, :id => @paper.id, :paper => { :title => 'another title' }
     
@@ -244,7 +244,7 @@ class PapersControllerTest < ActionController::TestCase
   end
   
   def test_on_update_status_with_admin_logged_should_update_status_to_any
-    login_as users(:user3)
+    login_as users(:user_admin)
 
     @paper = papers(:paper1)
     @paper.status = Paper::STATUS[:ACEPTED]
@@ -297,7 +297,7 @@ class PapersControllerTest < ActionController::TestCase
   end
   
   def test_on_destroy_with_admin_logged_should_destroy_paper
-    login_as users(:user3)
+    login_as users(:user_admin)
     
     assert_difference('Paper.count', -1) do
       delete :destroy, :id => papers(:paper1).id

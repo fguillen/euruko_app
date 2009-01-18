@@ -8,7 +8,7 @@ class EventsControllerTest < ActionController::TestCase
   end
 
   def test_on_new_with_admin_should_get_new
-    login_as users(:user3)
+    login_as users(:user_admin)
     get :new
     assert_response :success
   end
@@ -25,7 +25,7 @@ class EventsControllerTest < ActionController::TestCase
   end
 
   def test_on_create_with_admin_should_create_event
-    login_as users(:user3)
+    login_as users(:user_admin)
     
     assert_difference('Event.count') do
       post :create, :event => { :name => 'name', :description => 'description', :price_cents => 1 }
@@ -58,7 +58,7 @@ class EventsControllerTest < ActionController::TestCase
   end
 
   def test_on_edit_with_admin_should_get_edit
-    login_as users(:user3)
+    login_as users(:user_admin)
     
     get :edit, :id => events(:event1).id
     assert_response :success
@@ -77,7 +77,7 @@ class EventsControllerTest < ActionController::TestCase
 
   def test_on_update_with_admin_should_update_event
     @event = events(:event1)
-    login_as users(:user3)
+    login_as users(:user_admin)
     
     put :update, :id => @event.id, :event => { :name => 'other name' }
     
@@ -106,7 +106,7 @@ class EventsControllerTest < ActionController::TestCase
   end
 
   def test_on_destroy_with_admin_should_destroy_event
-    login_as users(:user3)
+    login_as users(:user_admin)
     
     assert_difference('Event.count', -1) do
       delete :destroy, :id => events(:event2).id

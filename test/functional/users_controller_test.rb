@@ -19,7 +19,7 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   def test_on_index_with_logged_admin_should_get_all_users
-    login_as users(:user3)
+    login_as users(:user_admin)
     get :index
     assert_response :success
     assert_not_nil assigns(:users)
@@ -78,7 +78,7 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   def test_on_show_with_admin_and_not_public_user_should_show_user
-    login_as users(:user3)
+    login_as users(:user_admin)
     get :show, :id => users(:user2).id
     assert_response :success
     assert_not_nil( assigns(:user) )
@@ -103,7 +103,7 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   def test_on_edit_when_logged_but_not_the_user_and_admin_should_success
-    login_as users(:user3)
+    login_as users(:user_admin)
     get :edit, :id => users(:user1).id
     assert_response :success
   end
@@ -138,7 +138,7 @@ class UsersControllerTest < ActionController::TestCase
   
   def test_on_update_when_logge_but_not_the_user_and_admin_should_update
     @user = users(:user1)
-    login_as users(:user3)
+    login_as users(:user_admin)
     
     put(
       :update, 
@@ -158,5 +158,47 @@ class UsersControllerTest < ActionController::TestCase
     assert_not_nil( assigns(:users) )
     assert( assigns(:users).include?( users(:user1) ) )
     assert( !assigns(:users).include?( users(:user2) ) )
+  end
+  
+  def test_correct_site_name_on_user_create_email
+    ActionMailer::Base.deliveries = []
+    
+    post(
+      :create, 
+      :user => {
+        :name         => 'name',
+        :login        => 'other_login',
+        :email        => 'email@email.com',
+        :password     => 'pass000',
+        :password_confirmation => 'pass000',
+        :role         => User::ROLE[:USER],
+        :public_profile => true
+      }
+    )
+    
+    assert !ActionMailer::Base.deliveries.empty?
+    sent = ActionMailer::Base.deliveries.last
+        
+    # puts sent
+    
+    assert( sent.subject =~ /\[EuRuKo_test\]/ )
+  end
+  
+  def test_correct_site_name_on_user_create_email
+    @user = users(:user_not_actived)
+    assert( !@user.active? )
+    ActionMailer::Base.deliveries = []
+    
+    get(
+      :activate,
+      :activation_code => @user.activation_code
+    )
+    
+    assert !ActionMailer::Base.deliveries.empty?
+    sent = ActionMailer::Base.deliveries.last
+        
+    # puts sent
+    
+    assert( sent.subject =~ /\[EuRuKo_test\]/ )
   end
 end

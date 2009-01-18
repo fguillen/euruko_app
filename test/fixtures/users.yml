@@ -26,11 +26,22 @@ user2:
   role: <%= User::ROLE[:USER] %>
   public_profile: false
 
-user3:
-  name: User 3
-  permalink: user-3
-  login: user3
-  email: user3@email.com
+user_admin:
+  name: User Admin
+  permalink: user-admin
+  login: user_admin
+  email: user_admin@email.com
   crypted_password: aaa
   role: <%= User::ROLE[:ADMIN] %>
   public_profile: true
+  
+user_not_actived:
+  name: User Not Activated
+  permalink: user-not-activated
+  login: user_not_activated
+  email: user_not_activated@email.com
+  crypted_password: aaa
+  role: <%= User::ROLE[:ADMIN] %>
+  public_profile: true
+  activation_code: activation_code
+

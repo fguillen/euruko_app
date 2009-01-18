@@ -35,7 +35,7 @@ class VotesControllerTest < ActionController::TestCase
   end
 
   def test_when_logged_but_not_any_vote_on_paper_and_try_to_update_should_response_404
-    login_as users(:user3)
+    login_as users(:user_admin)
     @vote = votes(:vote1)
     
     assert_not_equal( 2, @vote.points )

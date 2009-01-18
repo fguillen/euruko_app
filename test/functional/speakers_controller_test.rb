@@ -31,7 +31,7 @@ class SpeakersControllerTest < ActionController::TestCase
 
   def test_on_create_and_logged_and_not_speaker_but_admin_should_create
     @paper = papers(:paper1)
-    login_as users(:user3)
+    login_as users(:user_admin)
     
     assert( !@paper.speakers.collect{|s| s.user}.include?( users(:user2) ) )
     
@@ -95,7 +95,7 @@ class SpeakersControllerTest < ActionController::TestCase
   
   def test_on_destroy_and_logged_and_not_speaker_but_admin_should_destroy_speaker
     @paper = papers(:paper1)
-    login_as users(:user3)
+    login_as users(:user_admin)
 
     assert( @paper.speakers.collect{|s| s.user}.include?( users(:user1) ) )
     

@@ -227,7 +227,7 @@ class PaperTest < ActiveSupport::TestCase
   def test_can_see_it?
     assert( papers(:paper1).can_see_it?( users(:user1) ) )
     assert( !papers(:paper1).can_see_it?( users(:user2) ) )
-    assert( papers(:paper1).can_see_it?( users(:user3) ) )
+    assert( papers(:paper1).can_see_it?( users(:user_admin) ) )
     assert( papers(:paper2).can_see_it?( users(:user2) ) )
   end
   
@@ -236,10 +236,10 @@ class PaperTest < ActiveSupport::TestCase
     assert( !papers(:paper1).can_change_status_to?( users(:user1), Paper::STATUS[:CONFIRMED] ) )
     assert( papers(:paper2).can_change_status_to?( users(:user1), Paper::STATUS[:CONFIRMED] ) )
     
-    assert( papers(:paper1).can_change_status_to?( users(:user3), Paper::STATUS[:PROPOSED] ) )
-    assert( papers(:paper1).can_change_status_to?( users(:user3), Paper::STATUS[:UNDER_REVIEW] ) )
-    assert( papers(:paper1).can_change_status_to?( users(:user3), Paper::STATUS[:ACEPTED] ) )
-    assert( papers(:paper1).can_change_status_to?( users(:user3), Paper::STATUS[:CONFIRMED] ) )
-    assert( papers(:paper1).can_change_status_to?( users(:user3), Paper::STATUS[:DECLINED] ) )
+    assert( papers(:paper1).can_change_status_to?( users(:user_admin), Paper::STATUS[:PROPOSED] ) )
+    assert( papers(:paper1).can_change_status_to?( users(:user_admin), Paper::STATUS[:UNDER_REVIEW] ) )
+    assert( papers(:paper1).can_change_status_to?( users(:user_admin), Paper::STATUS[:ACEPTED] ) )
+    assert( papers(:paper1).can_change_status_to?( users(:user_admin), Paper::STATUS[:CONFIRMED] ) )
+    assert( papers(:paper1).can_change_status_to?( users(:user_admin), Paper::STATUS[:DECLINED] ) )
   end
 end
