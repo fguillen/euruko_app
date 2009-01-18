@@ -43,10 +43,10 @@ class ApplicationController < ActionController::Base
       end
     end
     
-    # fguillen 2009-01-15: just for testing the exception_notification
-    def local_request?
-      false
-    end
+    # # fguillen 2009-01-15: just for testing the exception_notification
+    # def local_request?
+    #   false
+    # end
     
     def speaker_or_admin_required
       if( !current_user.is_speaker_on_or_admin?( @paper ) )

@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  before_filter :login_required,                    :except => [:index, :show, :new, :create]
-  before_filter :load_user,                         :except => [:index, :new, :create]
-  before_filter :should_be_current_user_or_admin,   :except => [:index, :show, :new, :create]
+  before_filter :login_required,                    :except => [:index, :show, :new, :create, :activate]
+  before_filter :load_user,                         :except => [:index, :new, :create, :activate]
+  before_filter :should_be_current_user_or_admin,   :except => [:index, :show, :new, :create, :activate]
 
   # GET /users
   # GET /users.xml

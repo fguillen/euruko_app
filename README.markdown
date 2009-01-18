@@ -253,5 +253,6 @@ TODOs
 * Una charla en estado UNDER REVIEW no puede se modificada más que por un admin
 * ¿Qué pasa si un user tiene el perfil no-público y además es un speaker?
 * Un usuario puede crear una charla y empezar a asignar speakers sin consentimiento :?
-* gem dependencies (http://railscasts.com/episodes/110-gem-dependencies)
+* gem dependencies (http://railscasts.com/episodes/110-gem-dependencies) (mocha, faker, will-paginate )
 * buscadores avanzados de usuarios y charlas( railscasts 111 y 112 )
+* YOURSITE en notificaciones de registro => modificar intentar que sea dinámico

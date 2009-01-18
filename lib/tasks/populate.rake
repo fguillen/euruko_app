@@ -14,11 +14,13 @@ namespace :populate do
         :email        => 'admin@email.com',
         :password     => 'adminpass',
         :password_confirmation => 'adminpass',
-        :role         => User::ROLE[:ADMIN],
-        :text         => 'The default adeministrator',
+        :text         => 'The default administrator',
         :public_profile => true
       )
-      
+    
+    user.role = User::ROLE[:ADMIN]
+    user.save!
+    
     user.activate!
     
     puts "Admin created:"
@@ -61,7 +63,6 @@ namespace :populate do
           :email              => Faker::Internet.free_email,
           :password           => password,
           :password_confirmation => password,
-          :role               => [User::ROLE[:ADMIN], User::ROLE[:USER]].rand,
           :text               => Faker::Lorem.paragraphs.join("\n"),
           :personal_web_name  => Faker::Lorem.words.join(" "),
           :personal_web_url   => "http://#{Faker::Internet.domain_name}/#{Faker::Lorem.words.join('/')}",
@@ -86,16 +87,19 @@ namespace :populate do
 
     puts "Creating Papers..."
     (1..50).each do |num|
-      Paper.create(
-        :title        => Faker::Lorem.sentence,
-        :description  => Faker::Lorem.paragraphs.join("\n"),
-        :family       => Paper::FAMILY.values.rand,
-        :status       => Paper::STATUS.values.rand,
-        :minutes      => Kernel.rand(101),
-        :date         => random_datetime( '2009/04/10 08:00', '2009/04/14 21:00' ),
-        :room         => Room.random(1)
-      )
+      paper =
+        Paper.create(
+          :title        => Faker::Lorem.sentence,
+          :description  => Faker::Lorem.paragraphs.join("\n"),
+          :family       => Paper::FAMILY.values.rand,
+          :minutes      => Kernel.rand(101),
+          :date         => random_datetime( '2009/04/10 08:00', '2009/04/14 21:00' ),
+          :room         => Room.random(1)
+        )
+      paper.status = Paper::STATUS.values.rand
+      paper.save!
     end
+    
     puts "... #{Paper.count} papers created"
     
     
