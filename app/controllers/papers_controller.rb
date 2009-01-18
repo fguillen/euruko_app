@@ -1,11 +1,15 @@
 class PapersController < ApplicationController
+  before_filter :login_required,            :only => [:new, :edit, :update, :create, :update_status, :destroy ]
+  before_filter :load_paper_by_id,          :only => [:show, :edit, :update, :update_status, :destroy]
+  before_filter :speaker_or_admin_required, :only => [:edit, :update, :update_status, :destroy ]
+  before_filter :admin_required,            :only => [:destroy]
   
-  before_filter :load_paper_by_id, :only => [:show, :edit, :update, :update_status, :destroy]
   
   # GET /papers
   # GET /papers.xml
   def index
-    @papers = Paper.find(:all)
+    @papers = Paper.all       if admin?
+    @papers = Paper.visibles  if !admin?
 
     respond_to do |format|
       format.html # index.html.erb
@@ -16,12 +20,15 @@ class PapersController < ApplicationController
   # GET /papers/1
   # GET /papers/1.xml
   def show
-    @comment = Comment.new
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @paper }
-    end
+    if( !@paper.can_see_it?(current_user) )
+      @paper = nil
+      record_not_found
+    else
+      respond_to do |format|
+        format.html # show.html.erb
+        format.xml  { render :xml => @user }
+      end
+    end    
   end
 
   # GET /papers/new
@@ -76,7 +83,9 @@ class PapersController < ApplicationController
   end
   
   def update_status
-    @paper.status = params[:status]
+    if( @paper.can_change_status_to?( current_user, params[:status] ) )
+      @paper.status = params[:status]
+    end
     
     respond_to do |format|
       if @paper.save
@@ -84,7 +93,7 @@ class PapersController < ApplicationController
         format.html { redirect_to( edit_paper_path(@paper) ) }
         format.xml  { head :ok }
       else
-        flash[:error] = "Some error trying to update the status of the Paper: #{paper.errors.full_messages}."
+        flash[:error] = "Some error trying to update the status of the Paper: #{@paper.errors.full_messages}."
         format.html { redirect_to( edit_paper_path(@paper) ) }
         format.xml  { render :xml => @paper.errors, :status => :unprocessable_entity }
       end
@@ -97,7 +106,7 @@ class PapersController < ApplicationController
     @paper.destroy
 
     respond_to do |format|
-      format.html { redirect_to(papers_url) }
+      format.html { redirect_to(papers_path) }
       format.xml  { head :ok }
     end
   end

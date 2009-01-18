@@ -39,8 +39,10 @@
   <p><%= f.label :password_confirmation, 'Confirm New Password' %><br/>
   <%= f.password_field :password_confirmation %></p>
   
-  <p><%= f.label :role, "Role" %><br />
-  <%= select( "user", "role", User::ROLE.values ) %></p>
+  <% if admin? %>
+    <p><%= f.label :role, "Role" %><br />
+    <%= select( "user", "role", User::ROLE.values ) %></p>
+  <% end %>
   
   <p>
     <%= f.submit "Update" %>

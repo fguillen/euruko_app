@@ -14,10 +14,6 @@ module ApplicationHelper
     end
   end
   
-  def admin?
-    current_user && current_user.admin?
-  end
-  
   def times_array( hour_ini = '00', hour_end = '24' )
     times = []
     (hour_ini..hour_end).each do |hh|

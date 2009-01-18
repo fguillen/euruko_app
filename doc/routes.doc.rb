@@ -1,5 +1,6 @@
-(in /Users/fguillen/Documents/develop-ror/euruko_conf_app)
+(in /Users/fguillen/Documents/develop-ror/euruko_app)
                                root        /                                            {:controller=>"papers", :action=>"index"}
+                                           /logged_exceptions/:action/:id               {:controller=>"logged_exceptions"}
                            activate        /activate/:activation_code                   {:controller=>"users", :action=>"activate"}
                              logout        /logout                                      {:controller=>"sessions", :action=>"destroy"}
                               login        /login                                       {:controller=>"sessions", :action=>"new"}

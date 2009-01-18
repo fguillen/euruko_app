@@ -19,18 +19,40 @@ class ApplicationController < ActionController::Base
   
   layout 'application'
   
+  rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
+
+  protected
+
+    def record_not_found
+      render :file => "#{RAILS_ROOT}/public/404.html", :status => 404
+    end
+    
   private
+
     def load_paper_by_paper_id
-      @paper = Paper.find_by_id( params[:paper_id] )
+      @paper = Paper.find_by_id!( params[:paper_id] )
     end
     
     def load_paper_by_id
-      @paper = Paper.find_by_id( params[:id] )
+      @paper = Paper.find_by_id!( params[:id] )
     end
     
-    # # fguillen 2009-01-15: just for testing the exception_notification
-    # def local_request?
-    #   false
-    # end
+    def admin_required
+      if( !admin? )
+        record_not_found
+      end
+    end
+    
+    # fguillen 2009-01-15: just for testing the exception_notification
+    def local_request?
+      false
+    end
+    
+    def speaker_or_admin_required
+      if( !current_user.is_speaker_on_or_admin?( @paper ) )
+        record_not_found
+      end
+    end
+      
 
 end

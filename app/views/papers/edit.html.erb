@@ -14,25 +14,7 @@
 <%= render :partial => 'speakers_edit', :locals => { :paper => @paper } %>
 
 <h3>Status</h3>
-<p>
-  <strong><%= @paper.status %></strong>
-  go to 
-  <%= 
-    link_to(
-      Paper::STATUS[:ACEPTED], 
-      update_status_paper_path( @paper, :status => Paper::STATUS[:ACEPTED] ),
-      :method => 'put'
-    )
-  %>
-  or
-  <%= 
-    link_to(
-      Paper::STATUS[:DECLINED], 
-      update_status_paper_path( @paper, :status => Paper::STATUS[:DECLINED] ),
-      :method => 'put'
-    )
-  %>
-</p>
+<%= render :partial => 'status_edit', :locals => { :paper => @paper } %>
 
 <h3>Resources</h3>
 <%= render :partial => 'resources_edit', :locals => { :paper => @paper } %>

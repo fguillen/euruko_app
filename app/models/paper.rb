@@ -7,6 +7,7 @@ class Paper < ActiveRecord::Base
   has_many :votes,          :dependent => :destroy
   has_many :resources,      :dependent => :destroy
   has_many :attendees,      :dependent => :destroy
+    
   # 
   # has_many :attendees,      :through => :attendees, :source => :user
   # has_many :user_speakers,  :through => :speakers, :source => :user
@@ -26,6 +27,9 @@ class Paper < ActiveRecord::Base
   
   before_save :update_date
   
+  attr_protected :status
+  
+  
   STATUS = {
     :PROPOSED       => 'Proposed',
     :UNDER_REVIEW   => 'Under Review',
@@ -41,6 +45,7 @@ class Paper < ActiveRecord::Base
     :EVENT    => 'Event' 
   }
   
+  named_scope :visibles,    :conditions => { :status => [Paper::STATUS[:ACEPTED], Paper::STATUS[:CONFIRMED] ]  }
   
   def add_speaker(user)
     self.speakers.build( :user => user )
@@ -82,4 +87,15 @@ class Paper < ActiveRecord::Base
     return self.room.id == room_id && self.date_just_date.to_i == date.to_i
   end
   
+  def visible?
+    return [Paper::STATUS[:ACEPTED], Paper::STATUS[:CONFIRMED]].include?( self.status )
+  end
+  
+  def can_see_it?( user )
+    return ( self.visible? || (!user.nil? && user.is_speaker_on?(self)) || (!user.nil? && user.admin?) )
+  end
+  
+  def can_change_status_to?( user, status )
+    return ( user.admin? || ((self.status == Paper::STATUS[:ACEPTED]) && status == Paper::STATUS[:CONFIRMED]) )
+  end
 end

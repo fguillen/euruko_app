@@ -1,4 +1,7 @@
 class RoomsController < ApplicationController
+  before_filter :login_required, :except => [:index, :show]
+  before_filter :admin_required, :except => [:index, :show]
+  
   # GET /rooms
   # GET /rooms.xml
   def index
@@ -76,7 +79,8 @@ class RoomsController < ApplicationController
   def destroy
     @room = Room.find(params[:id])
     @room.destroy
-
+    flash[:notice] = 'Room was successfully deleted.'
+      
     respond_to do |format|
       format.html { redirect_to(rooms_url) }
       format.xml  { head :ok }

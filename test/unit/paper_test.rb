@@ -181,7 +181,9 @@ class PaperTest < ActiveSupport::TestCase
     
     assert_equal( num + 1, Paper.find_all_by_status( Paper::STATUS[:PROPOSED] ).size )
     
-    @paper.update_attributes( :status => Paper::STATUS[:ACEPTED] )
+    @paper.status = Paper::STATUS[:ACEPTED]
+    @paper.save
+    
     assert_equal( num, Paper.find_all_by_status( Paper::STATUS[:PROPOSED] ).size )
   end
   
@@ -215,4 +217,33 @@ class PaperTest < ActiveSupport::TestCase
     assert( !@paper.on_date_and_room_id?( Time.parse( '1980/01/01' ), rooms(:room2).id ) )
   end
   
+  def test_visibles
+    assert( Paper.visibles )
+    assert( !Paper.visibles.include?( papers(:paper1) ) )
+    assert( Paper.visibles.include?( papers(:paper2) ) ) 
+  end
+  
+  def test_visible?
+    assert( !papers(:paper1).visible? )
+    assert( papers(:paper2).visible? )
+  end
+  
+  def test_can_see_it?
+    assert( papers(:paper1).can_see_it?( users(:user1) ) )
+    assert( !papers(:paper1).can_see_it?( users(:user2) ) )
+    assert( papers(:paper1).can_see_it?( users(:user3) ) )
+    assert( papers(:paper2).can_see_it?( users(:user2) ) )
+  end
+  
+  def test_can_change_status_to?
+    assert( !papers(:paper1).can_change_status_to?( users(:user1), Paper::STATUS[:ACEPTED] ) )
+    assert( !papers(:paper1).can_change_status_to?( users(:user1), Paper::STATUS[:CONFIRMED] ) )
+    assert( papers(:paper2).can_change_status_to?( users(:user1), Paper::STATUS[:CONFIRMED] ) )
+    
+    assert( papers(:paper1).can_change_status_to?( users(:user3), Paper::STATUS[:PROPOSED] ) )
+    assert( papers(:paper1).can_change_status_to?( users(:user3), Paper::STATUS[:UNDER_REVIEW] ) )
+    assert( papers(:paper1).can_change_status_to?( users(:user3), Paper::STATUS[:ACEPTED] ) )
+    assert( papers(:paper1).can_change_status_to?( users(:user3), Paper::STATUS[:CONFIRMED] ) )
+    assert( papers(:paper1).can_change_status_to?( users(:user3), Paper::STATUS[:DECLINED] ) )
+  end
 end

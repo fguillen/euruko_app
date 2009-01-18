@@ -84,10 +84,10 @@
   </ul>
 </div>
 
-<% if !current_user.nil? %>
+<% if logged_in? %>
   <h4>New Comment</h4>
   <div>
-    <% form_for [@paper, @comment] do |f| -%>
+    <% form_for [@paper, Comment.new] do |f| -%>
       <%= f.error_messages %>
 
       <%= f.text_area :text %>

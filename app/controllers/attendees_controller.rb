@@ -1,20 +1,11 @@
 class AttendeesController < ApplicationController
-
+  before_filter :login_required
   before_filter :load_paper_by_paper_id
 
   # POST /attendees
   # POST /attendees.xml
   def create
-    puts current_user
-    
-    @attendee = 
-      Attendee.new(
-        :paper  => @paper,
-        :user   => current_user
-      )
-      
-    puts @attendee.valid?
-    puts @attendee.errors.full_messages 
+    @attendee = current_user.attendees.build( :paper => @paper )
 
     respond_to do |format|
       if @attendee.save
@@ -32,7 +23,7 @@ class AttendeesController < ApplicationController
   # DELETE /attendees/1
   # DELETE /attendees/1.xml
   def destroy
-    @attendee = Attendee.find(params[:id])
+    @attendee = current_user.attendees.find_by_id!(params[:id])
     @attendee.destroy
 
     respond_to do |format|

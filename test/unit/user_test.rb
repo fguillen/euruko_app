@@ -38,6 +38,36 @@ class UserTest < ActiveSupport::TestCase
     end
   end
   
+  def test_update
+    @user = users(:user1)
+    @user.update_attributes(
+      :name                   => 'other name',
+      :login                  => 'other_login',
+      :email                  => 'other_email@email.com',
+      :password               => 'other_pass',
+      :password_confirmation  => 'other_pass',
+      :public_profile         => false
+    )
+    
+    assert_equal( 'other name', @user.name )
+    assert_equal( 'other_login', @user.login )
+    assert_equal( 'other_email@email.com', @user.email )
+    assert_equal( 'other_pass', @user.password )
+    assert_equal( false, @user.public_profile )
+  end
+  
+  def test_update_not_update_role
+    @user = users(:user1)
+    
+    assert_not_equal( User::ROLE[:ADMIN], @user.role )
+    
+    @user.update_attributes(
+      :role => User::ROLE[:ADMIN]
+    )
+    
+    assert_not_equal( !User::ROLE[:ADMIN], @user.role )
+  end
+  
   def test_permalink
     @user = 
       User.create(
@@ -127,5 +157,17 @@ class UserTest < ActiveSupport::TestCase
     assert( User.find_speakers )
     assert( User.find_speakers.include?( users(:user1) ) )
     assert( !User.find_speakers.include?( users(:user2) ) )
+  end
+  
+  def test_find_public
+    assert( User.find_public )
+    assert( User.find_public.include?( users(:user1) ) )
+    assert( !User.find_public.include?( users(:user2) ) )
+  end
+  
+  def test_is_speaker_on_or_admin
+    assert( users(:user1).is_speaker_on_or_admin?( papers(:paper1) ) )
+    assert( !users(:user2).is_speaker_on_or_admin?( papers(:paper1) ) )
+    assert( users(:user3).is_speaker_on_or_admin?( papers(:paper1) ) )
   end
 end

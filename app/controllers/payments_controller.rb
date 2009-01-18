@@ -1,5 +1,5 @@
 class PaymentsController < ApplicationController
-
+  before_filter :login_required
 
   # POST /payments
   # POST /payments.xml

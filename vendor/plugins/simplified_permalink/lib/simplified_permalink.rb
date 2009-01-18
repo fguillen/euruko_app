@@ -20,7 +20,7 @@ module SimplifiedPermalink
     #
     def permalink(field_name, permalink_field_name = 'permalink')
       before_save do |record|
-        unless record.send(field_name).blank?
+        if record.send("#{permalink_field_name}").blank? and !record.send(field_name).blank?
           record.send "#{permalink_field_name}=", record.send(field_name).parameterize
         end
       end

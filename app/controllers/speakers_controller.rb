@@ -1,6 +1,7 @@
 class SpeakersController < ApplicationController
-  
+  before_filter :login_required
   before_filter :load_paper_by_paper_id, :only => [:create, :destroy]
+  before_filter :speaker_or_admin_required
 
 
   # POST /speakers
@@ -43,4 +44,6 @@ class SpeakersController < ApplicationController
       end
     end
   end
+  
+
 end

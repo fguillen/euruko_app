@@ -39,12 +39,12 @@
       </div>
 
       <div id="sidebar" class="span-6 last">
-      <% if !current_user %>
-        <%= render :partial => 'partials/login_box' %>
-      <% elsif admin? %>
+      <% if admin? %>
         <%= render :partial => 'partials/admin_menu' %>
-      <% else %>
+      <% elsif logged_in? %>
         <%= render :partial => 'partials/user_menu' %>
+      <% else %>
+        <%= render :partial => 'partials/login_box' %>
       <% end %>
 
         <div id="sponsors">

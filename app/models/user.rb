@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   has_many :speakers,   :dependent => :destroy
   has_many :votes,      :dependent => :destroy
   has_many :comments,   :dependent => :destroy
-  has_many :attendees,    :dependent => :destroy
+  has_many :attendees,  :dependent => :destroy
   has_many :resources,  :dependent => :destroy
   has_many :payments,   :dependent => :destroy
 
@@ -44,7 +44,6 @@ class User < ActiveRecord::Base
     :name, 
     :password, 
     :password_confirmation, 
-    :role,
     :text,
     :personal_web_name,
     :personal_web_url,
@@ -107,6 +106,18 @@ class User < ActiveRecord::Base
   
   def self.find_speakers
     User.find(:all, :joins => 'join speakers ON speakers.user_id = users.id')
+  end
+  
+  def self.find_public
+    User.find(:all, :conditions => {:public_profile => true} )
+  end
+  
+  def is_speaker_on?( paper )
+    Speaker.exists?( :paper_id => paper.id, :user_id => self.id )
+  end
+  
+  def is_speaker_on_or_admin?( paper )
+    ( self.admin? || self.is_speaker_on?( paper ) )
   end
   
   protected

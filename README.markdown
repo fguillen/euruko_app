@@ -230,12 +230,14 @@ TODOs
 * Ajax en comentario
 * Ajax en voy/no voy
 * Ajax en puntuación
-* Seguridad de acceso de sólo administradores ( acordarse de página de excepciones ( http://localhost:3000/logged_exceptions ) )
-* Seguridad de acceso sólo usuarios registrados
-* Seguridad de acceso sólo speakers pueden modificar paper
-* Seguridad de acceso a listado de charlas sólo deben aparecer las aprobadas/confirmadas sino es administrador
+* **--DONE--** Seguridad de acceso de sólo administradores
+* Seguridad en http://localhost:3000/logged_exceptions
+* **--DONE--** Seguridad de acceso sólo usuarios registrados
+* **--DONE--** Seguridad de acceso sólo speakers pueden modificar paper
+* **--DONE--** Seguridad de acceso a listado de charlas sólo deben aparecer las aprobadas/confirmadas sino es administrador
 * Pantalla últimos comentarios
 * Pantalla últimos pagos
+* Cambios de estilo en listados de Papers para diferenciar: familias y estados
 * Capturar finds no encontrados y mandar a 404
 * Pantalla 404
 * Pantalla 500
@@ -243,3 +245,8 @@ TODOs
 * Namescope para Paper.visible y User.public
 * Speakers salen duplicados.. creo que el join no está bien igual mola más un :include.. o meter un distinct.. 
 * **--DONE--** Avatares de gravatar
+* Control de textos: escapar html, linkar links, ...
+* Tabla de vista de calendario
+* Speakers sólo son speakers si alguna de sus charlas está aceptada o confirmada.. vamos si es paper.visible?
+* En perfil de usuarios sólo mostrar las charlas en las que participa si la charla es .visible?
+* Modificar contraseña sólo si se introduce la actual correctamente

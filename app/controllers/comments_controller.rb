@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-
+  before_filter :login_required
   before_filter :load_paper_by_paper_id
   
   # POST /comments

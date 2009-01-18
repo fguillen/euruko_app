@@ -5,6 +5,12 @@ module AuthenticatedSystem
     def logged_in?
       !!current_user
     end
+    
+    # fguillen 2009-01-17: for admin things
+    def admin?
+      logged_in? && current_user.admin?
+    end
+    
 
     # Accesses the current user from the session.
     # Future calls avoid the database because nil is not equal to false.
@@ -64,6 +70,7 @@ module AuthenticatedSystem
     def access_denied
       respond_to do |format|
         format.html do
+          flash[:error] = 'You should be logged in for performance this action'
           store_location
           redirect_to new_session_path
         end
@@ -96,7 +103,7 @@ module AuthenticatedSystem
     # Inclusion hook to make #current_user and #logged_in?
     # available as ActionView helper methods.
     def self.included(base)
-      base.send :helper_method, :current_user, :logged_in?, :authorized? if base.respond_to? :helper_method
+      base.send :helper_method, :current_user, :logged_in?, :authorized?, :admin? if base.respond_to? :helper_method
     end
 
     #

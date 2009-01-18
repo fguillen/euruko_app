@@ -1,7 +1,10 @@
 <p>
   <ul>
       <% paper.speakers.each do |speaker| %>
-        <li><%= speaker.user.name %> <%= link_to 'delete', paper_speaker_path( paper, speaker ), :method => 'delete' %></li>
+        <li>
+          <%= link_to speaker.user.name, speaker.user %>
+          <%= link_to 'delete', paper_speaker_path( paper, speaker ), :method => 'delete' %>
+        </li>
       <% end %>
   </ul>
 </p>
@@ -11,7 +14,7 @@
       select(
         "speaker", 
         "user_id", 
-        User.find(:all).collect {|u| [ u.name, u.id ] }, 
+        User.find_public.collect{|u| [ u.name, u.id ] }, 
         { :include_blank => true }
       )
     )%>

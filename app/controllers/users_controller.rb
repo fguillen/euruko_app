@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
-
+  before_filter :login_required,                    :except => [:index, :show, :new, :create]
+  before_filter :load_user,                         :except => [:index, :new, :create]
+  before_filter :should_be_current_user_or_admin,   :except => [:index, :show, :new, :create]
 
   # GET /users
   # GET /users.xml
@@ -7,7 +9,8 @@ class UsersController < ApplicationController
     if( params[:speakers] )
       @users = User.find_speakers
     else
-      @users = User.find(:all)
+      @users = User.find_public   if !admin?
+      @users = User.all           if admin?
     end
 
     respond_to do |format|
@@ -19,11 +22,14 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.xml
   def show
-    @user = User.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @user }
+    if( !@user.public_profile && current_user != @user && !admin? )
+      @user = nil
+      record_not_found
+    else
+      respond_to do |format|
+        format.html # show.html.erb
+        format.xml  { render :xml => @user }
+      end
     end
   end
 
@@ -67,19 +73,19 @@ class UsersController < ApplicationController
   
   # GET /users/1/edit
   def edit
-    @user = User.find(params[:id])
   end
 
   # PUT /users/1
   # PUT /users/1.xml
   def update
-    @user = User.find(params[:id])
-
-    puts @user.valid?
-    puts @user.errors.full_messages
-    
     respond_to do |format|
       if @user.update_attributes(params[:user])
+        
+        if admin?
+          @user.role = params[:user][:role]
+          @user.save!
+        end
+        
         flash[:notice] = 'User was successfully updated.'
         format.html { redirect_to(@user) }
         format.xml  { head :ok }
@@ -90,15 +96,14 @@ class UsersController < ApplicationController
     end
   end
   
-  # DELETE /rooms/1
-  # DELETE /rooms/1.xml
-  def destroy
-    @user = User.find(params[:id])
-    @user.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(users_url) }
-      format.xml  { head :ok }
+  private
+    def load_user
+      @user = User.find_by_id!(params[:id])
     end
-  end
+    
+    def should_be_current_user_or_admin
+      if( !admin? and current_user.id != @user.id )
+        record_not_found
+      end
+    end
 end

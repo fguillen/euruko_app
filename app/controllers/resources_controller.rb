@@ -1,10 +1,13 @@
 class ResourcesController < ApplicationController
-  
+  before_filter :login_required
   before_filter :load_paper_by_paper_id
+  before_filter :speaker_or_admin_required
   
   # POST /resources
   # POST /resources.xml
   def create
+    # diference between a upload file on the application
+    # or a resource url on other place
     url = params[:resource][:url]
     is_local = false
     

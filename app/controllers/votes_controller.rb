@@ -1,15 +1,14 @@
 class VotesController < ApplicationController
-
+  before_filter :login_required
   before_filter :load_paper_by_paper_id
   
   # POST /votes
   # POST /votes.xml
   def create
     @vote = 
-      Vote.new( 
+      current_user.votes.build( 
         :points => params[:points].to_i,
-        :paper  => @paper,
-        :user   => current_user
+        :paper  => @paper
       )
 
     respond_to do |format|
@@ -28,18 +27,15 @@ class VotesController < ApplicationController
   # PUT /votes/1
   # PUT /votes/1.xml
   def update
-    @vote = 
-      Vote.find_by_paper_id_and_user_id(
-        params[:paper_id], 
-        current_user.id
-      )
+    @vote = current_user.votes.find_by_paper_id!( params[:paper_id] )
 
     respond_to do |format|
-      if @vote.update_attributes( :points => params[:points] )
+      if @vote.update_attributes( :points => params[:points].to_i )
         flash[:notice] = 'Vote was successfully updated.'
         format.html { redirect_to( @paper ) }
         format.xml  { head :ok }
       else
+        puts "XXX: #{@vote.errors.full_messages}"
         flash[:error] = "Error trying to update the vote: #{@vote.errors.full_messages}."        
         format.html { redirect_to( @paper ) }
         format.xml  { render :xml => @vote.errors, :status => :unprocessable_entity }
