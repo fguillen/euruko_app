@@ -18,6 +18,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 # t.integer     :room_id
 
 class PaperTest < ActiveSupport::TestCase
+  
   def setup
     @paper = papers(:paper1)
     @user = users(:user1)
@@ -242,4 +243,11 @@ class PaperTest < ActiveSupport::TestCase
     assert( papers(:paper1).can_change_status_to?( users(:user_admin), Paper::STATUS[:CONFIRMED] ) )
     assert( papers(:paper1).can_change_status_to?( users(:user_admin), Paper::STATUS[:DECLINED] ) )
   end
+  
+  def test_new_papers_notification
+    p = Paper.new :title => Faker::Lorem.sentence, :description => Faker::Lorem.paragraph, :family => Paper.first.family
+    SystemMailer.expects(:deliver_paper).with(APP_CONFIG['email_paper_recipients'], p)
+    p.save
+  end
+  
 end

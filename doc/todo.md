@@ -41,4 +41,5 @@ TODOs
 * Al añadir ponente a charla el listado de salir ordenado alfabéticamente
 * **--DONE--** Al añadir recurso a charla la url del link no es correcta
 * Al añadir ponente a charla hay que filtrar por públicos
-* Notificaciones por email: charla presentada
+* **--DONE--** Notificaciones por email: charla presentada
+* Autologin en activación de cuenta

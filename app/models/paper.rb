@@ -26,6 +26,7 @@ class Paper < ActiveRecord::Base
   
   before_save :update_date
   before_create :update_status
+  after_create :notify_by_mail
   
   attr_protected :status
   
@@ -97,6 +98,10 @@ class Paper < ActiveRecord::Base
   
   def can_change_status_to?( user, status )
     return ( user.admin? || ((self.status == Paper::STATUS[:ACEPTED]) && status == Paper::STATUS[:CONFIRMED]) )
+  end
+
+  def notify_by_mail
+    APP_CONFIG['email_paper_recipients'].split(',').each{ |mail| SystemMailer.deliver_paper(mail, self) }
   end
   
   private
