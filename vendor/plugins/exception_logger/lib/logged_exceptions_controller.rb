@@ -1,6 +1,10 @@
-class LoggedExceptionsController < ActionController::Base
+require 'Application'
+
+class LoggedExceptionsController < ApplicationController
   cattr_accessor :application_name
   layout nil
+
+  before_filter :admin_required
 
   def index
     @exception_names    = LoggedException.find_exception_class_names

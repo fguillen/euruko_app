@@ -232,7 +232,7 @@ TODOs
 * Ajax en voy/no voy
 * Ajax en puntuación
 * **--DONE--** Seguridad de acceso de sólo administradores
-* Seguridad en http://localhost:3000/logged_exceptions
+* **--DONE--** Seguridad en http://localhost:3000/logged_exceptions
 * **--DONE--** Seguridad de acceso sólo usuarios registrados
 * **--DONE--** Seguridad de acceso sólo speakers pueden modificar paper
 * **--DONE--** Seguridad de acceso a listado de charlas sólo deben aparecer las aprobadas/confirmadas sino es administrador
