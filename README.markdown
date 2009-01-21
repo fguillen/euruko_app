@@ -262,4 +262,6 @@ TODOs
 * Al modificar charla proteger campos room, fechas y demás.. sólo a administradores
 * Al añadir ponente a charla no deben aparecer los que ya están
 * Al añadir ponente a charla el listado de salir ordenado alfabéticamente
-* Al añadir recurso a charla la url del link no es correcta
+* **--DONE--** Al añadir recurso a charla la url del link no es correcta
+* Al añadir ponente a charla hay que filtrar por públicos
+* Notificaciones por email: charla presentada
