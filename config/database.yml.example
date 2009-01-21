@@ -32,3 +32,5 @@ production:
   database: euruko
   username: root
   password:
+
+
