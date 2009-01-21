@@ -3,7 +3,6 @@ Capfile
 config/deploy.rb
 log/*.log
 tmp/*
-db/schema.rb
 db/*.sqlite3
 config/database.yml
 config/initializers/site_keys.rb
