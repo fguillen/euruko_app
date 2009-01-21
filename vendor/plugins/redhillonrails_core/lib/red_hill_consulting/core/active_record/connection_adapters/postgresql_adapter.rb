@@ -43,10 +43,10 @@ module RedHillConsulting::Core::ActiveRecord::ConnectionAdapters
       SQL
 
       result.each do |row|
-        if row[2]=~ /\((.*LOWER\([^:]*::text\).*)\)$/i
+        if row[2]=~ /\((.*LOWER\([^:]+(::text)?\).*)\)$/i
           indexes.delete_if { |index| index.name == row[0] }
           column_names = $1.split(", ").map do |name|
-            name = $1 if name =~ /^LOWER\(([^:]*)::text\)$/i
+            name = $1 if name =~ /^LOWER\(([^:]+)(::text)?\)$/i
             name = $1 if name =~ /^"(.*)"$/
             name
           end
@@ -78,6 +78,26 @@ module RedHillConsulting::Core::ActiveRecord::ConnectionAdapters
            AND f.contype = 'f'
            AND t.relname = '#{table_name}'
       SQL
+    end
+
+    def views(name = nil)
+      schemas = schema_search_path.split(/,/).map { |p| quote(p) }.join(',')
+      query(<<-SQL, name).map { |row| row[0] }
+        SELECT viewname
+          FROM pg_views
+         WHERE schemaname IN (#{schemas})
+      SQL
+    end
+    
+    def view_definition(view_name, name = nil)
+      result = query(<<-SQL, name)
+        SELECT pg_get_viewdef(oid)
+          FROM pg_class
+         WHERE relkind = 'v'
+           AND relname = '#{view_name}'
+      SQL
+      row = result.first
+      row.first unless row.nil?
     end
 
     private

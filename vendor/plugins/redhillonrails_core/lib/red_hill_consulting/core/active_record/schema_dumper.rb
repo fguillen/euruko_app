@@ -16,6 +16,7 @@ module RedHillConsulting::Core::ActiveRecord
         tables_without_redhillonrails_core(stream)
         @foreign_keys.rewind
         stream.print @foreign_keys.read
+        views(stream)
       ensure
         @foreign_keys = nil
       end
@@ -42,6 +43,16 @@ module RedHillConsulting::Core::ActiveRecord
         stream.puts
       end
       stream.puts unless foreign_keys.empty?
+    end
+    
+    def views(stream)
+      views = @connection.views
+      views.each do |view_name|
+        definition = @connection.view_definition(view_name)
+        stream.print "  create_view #{view_name.inspect}, #{definition.inspect}"
+        stream.puts
+      end
+      stream.puts unless views.empty?
     end
   end
 end

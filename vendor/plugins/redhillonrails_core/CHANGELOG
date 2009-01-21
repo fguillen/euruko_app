@@ -1,16 +1,28 @@
+[REVISION 20080701]
+
+[FIXED] Looking up schema version fails on Rails 2.1.
+
+[REVISION 20080318]
+
+[FIXED] Case-insensitive text columns not recognised.
+
+[REVISION 20080221]
+
+[NEW] PostgreSQL view management via create_view and drop_view.
+
 [REVISION 20080209]
 
 [FIXED] PostgreSQL columns named the same as database keywords (eg. type, column, user, etc.) caused NoSuchMethod errors during model validation.
 
-[REVISION 200080110]
+[REVISION 20080110]
 
 [FIXED] Workaround for bug in MySQL that adversely affects INFORMATION schema performance take 3 (Michael Latta).
 
-[REVISION 200080103]
+[REVISION 20080103]
 
 [FIXED] Workaround for bug in MySQL that adversely affects INFORMATION schema performance take 2 (Michael Latta).
 
-[REVISION 200080102]
+[REVISION 20080102]
 
 [FIXED] Workaround for bug in MySQL that adversely affects INFORMATION schema performance (Michael Latta).
 

@@ -56,9 +56,7 @@ module RedHillConsulting::Core::ActiveRecord::ConnectionAdapters
     def reverse_foreign_keys(table_name, name = nil)
       @@schema ||= nil
       @@schema_version ||= 0
-      temp = execute("select version from schema_info limit 1", name);
-      current_version = 0
-      temp.each { | row | current_version = row[0] }
+      current_version = ActiveRecord::Migrator.current_version
       if @@schema.nil? || @@schema_version != current_version
         @@schema_version = current_version
         ans = execute(<<-SQL, name)

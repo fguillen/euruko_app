@@ -5,6 +5,21 @@ module RedHillConsulting::Core::ActiveRecord::ConnectionAdapters
         alias_method_chain :drop_table, :redhillonrails_core
       end
     end
+    
+    def create_view(view_name, definition)
+      execute "CREATE VIEW #{view_name} AS #{definition}"
+    end
+    
+    def drop_view(view_name)
+      execute "DROP VIEW #{view_name}"
+    end
+    
+    def views(name = nil)
+      []
+    end
+    
+    def view_definition(view_name, name = nil)
+    end
 
     def foreign_keys(table_name, name = nil)
       []

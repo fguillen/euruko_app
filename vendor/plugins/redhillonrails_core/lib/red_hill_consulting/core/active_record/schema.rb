@@ -15,12 +15,10 @@ module RedHillConsulting::Core::ActiveRecord
       end
 
       def define_with_redhillonrails_core(info={}, &block)
-        begin
-          self.defining = true
-          define_without_redhillonrails_core(info, &block)
-        ensure
-          self.defining = false
-        end
+        self.defining = true
+        define_without_redhillonrails_core(info, &block)
+      ensure
+        self.defining = false
       end
     end
   end

@@ -1,10 +1,19 @@
 = RedHill on Rails Core
 
-RedHill on Rails Core is a plugin that adds the following features:
+RedHill on Rails Core is a plugin that features to support other RedHill on Rails plugins.  Those features include:
 
-* Generic support for foreign-keys;
-* Mechanism for obtaining indexes directly from a model class; and
-* A mechanism for determining when <code>Schema.define()</code> is running.
+* Creating and dropping views;
+* Creating and removing foreign-keys;
+* Obtaining indexes directly from a model class; and
+* Determining when <code>Schema.define()</code> is running.
+
+=== View Support
+
+The plugin provides a mechanism for creating and dropping views as well as
+preserving views when performing a schema dump:
+
+  create_view :normal_customers, "SELECT * FROM customers WHERE status = 'normal'"
+  drop_view :normal_customers
 
 === Foreign Key Support
 
