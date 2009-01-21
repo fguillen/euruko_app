@@ -1,21 +1,19 @@
-class PaymentsController < ApplicationController
-  before_filter :login_required
+class CartsController < ApplicationController
+  protect_from_forgery :except => [:create]
+  
 
-  # POST /payments
-  # POST /payments.xml
+  # update the Cart with the payment notification
   def create
-    @payment = Payment.new(params[:payment])
-
-    respond_to do |format|
-      if @payment.save
-        flash[:notice] = 'Payment was successfully created.'
-        format.html { redirect_to(@payment) }
-        format.xml  { render :xml => @payment, :status => :created, :location => @payment }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @payment.errors, :status => :unprocessable_entity }
-      end
-    end
+    logger.debug( "params: #{params.inspect}" )
+  
+    @cart = Cart.find_by_id( params[:invoice] )
+    record_not_found  if @cart.nil?
+    
+    @cart.params          = params
+    @cart.status          = params[:payment_status]
+    @cart.transaction_id  = params[:txn_id]
+    @cart.purchased_at    = Time.now  if @cart.status == "Completed"
+  
+    render :nothing => true
   end
-
 end

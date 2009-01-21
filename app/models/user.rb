@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   has_many :attendees,  :dependent => :destroy
   has_many :resources,  :dependent => :destroy
   has_many :payments,   :dependent => :destroy
+  has_many :carts,      :dependent => :destroy
 
   has_many :speaker_on,   :through => :speakers,  :source => :paper
   has_many :attendee_to,    :through => :attendees,   :source => :paper
@@ -120,6 +121,8 @@ class User < ActiveRecord::Base
     ( self.admin? || self.is_speaker_on?( paper ) )
   end
   
+  # if current_user admin show all users
+  # if not only public
   def speaker_on_visibles_for_user( user )
     return self.speaker_on.visible  if self != user
     return self.speaker_on          if self == user || user.admin?

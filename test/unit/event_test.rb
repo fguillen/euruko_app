@@ -58,12 +58,12 @@ class EventTest < ActiveSupport::TestCase
     assert( event.valid? )
   end
   
-  def test_total_price
-    @event01 = events(:event1)
-    @event02 = events(:event2)
-    
-    assert( Event.total_price( [@event01, @event02] ) )
-    assert_equal( @event01.price_cents + @event02.price_cents, Event.total_price( [@event01, @event02] ) )
+
+  
+  def test_is_paid_for_user
+    assert( events(:event1).is_paid_for_user?( users(:user1) ) )
+    assert( !events(:event2).is_paid_for_user?( users(:user1) ) )
+    assert( !events(:event1).is_paid_for_user?( users(:user2) ) )
   end
 
 end

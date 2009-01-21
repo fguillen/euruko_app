@@ -1,0 +1,13 @@
+# t.integer       :user_id,       :null => false
+# t.text          :paypal_params
+# t.string        :transaction_id
+# t.datetime      :purchased_at
+# t.string        :status
+# t.text          :invoice_info
+
+cart_user1_event1_purchased:
+  user: user1
+  paypal_params:  paypal params
+  status: Completed
+  invoice_info: invoice info
+  purchased_at: <%= Time.now.to_s(:db) %>

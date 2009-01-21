@@ -27,6 +27,34 @@ namespace :populate do
     puts "login: #{user.login}"
     puts "pass: #{user.password}"
   end
+  
+  desc "Create the random user"
+  task :random_user => :environment do
+    require 'mocha'
+    require 'faker'
+    
+    # Not emails
+    UserObserver.any_instance.stubs(:after_create).returns(true)
+    UserObserver.any_instance.stubs(:after_save).returns(true)
+    
+    password = Faker::Lorem.words.join()
+    
+    user = 
+      User.create(
+        :name               => Faker::Name.name,
+        :login              => Faker::Internet.user_name,
+        :email              => Faker::Internet.free_email,
+        :password           => password,
+        :password_confirmation => password,
+        :text               => Faker::Lorem.paragraphs.join("\n"),
+        :public_profile     => true
+      )
+    user.activate!
+    
+    puts "User created:"
+    puts "login: #{user.login}"
+    puts "pass: #{user.password}"
+  end
 
   desc "Populate with random elements"
   task :random => :environment do
@@ -39,7 +67,7 @@ namespace :populate do
     Attendee.delete_all
     Vote.delete_all
     Comment.delete_all
-    Payment.delete_all
+    Cart.delete_all
     Resource.delete_all
     Speaker.delete_all
     Event.delete_all
@@ -136,14 +164,14 @@ namespace :populate do
 
     
     
-    puts "Creating Payments..."
-    (1..50).each do |num|
-      Payment.create(
-        :user   => User.random(1),
-        :event  => Event.random(1) 
-      )
-    end
-    puts "... #{Payment.count} payments created"
+    # puts "Creating Carts..."
+    # (1..50).each do |num|
+    #   Cart.create(
+    #     :user   => User.random(1),
+    #     :event  => Event.random(1) 
+    #   )
+    # end
+    # puts "... #{Cart.count} carts created"
 
     
     puts "Creating Comments..."

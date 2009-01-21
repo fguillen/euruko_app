@@ -4,7 +4,8 @@ end
 class Event < ActiveRecord::Base
   permalink :name
 
-  has_many :payments, :dependent => :destroy
+  has_many :carts_events, :dependent => :destroy
+  has_many :carts, :through => :carts_events
   
   validates_presence_of :name
   validates_uniqueness_of :name
@@ -14,20 +15,21 @@ class Event < ActiveRecord::Base
   before_destroy :check_for_payments
   
   def check_for_payments
-    if( self.payments.size > 0 )
+    if( self.carts.count > 0 )
       raise NotDeletableEventException.new("It has payments")
     end
   end
   
   def is_paid_for_user?( user_id )
-    if !Payment.find_by_event_id_and_user_id( self.id, user_id ).nil?
-      return true
-    else
-      return false
-    end
-  end
-  
-  def self.total_price( events_array )
-    events_array.sum{ |e| e.price_cents }
+    
+    # User.find(user_id).carts.purchased.events.exists?( :conditions => { :event_id => self.id } )
+    
+    self.carts.purchased.exists?( :user_id => user_id )
+    # 
+    # if !Payment.find_by_event_id_and_user_id( self.id, user_id ).nil?
+    #   return true
+    # else
+    #   return false
+    # end
   end
 end

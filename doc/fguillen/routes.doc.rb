@@ -146,22 +146,22 @@
                                     PUT    /calendar.:format                            {:controller=>"calendars", :action=>"update"}
                                     DELETE /calendar                                    {:controller=>"calendars", :action=>"destroy"}
                                     DELETE /calendar.:format                            {:controller=>"calendars", :action=>"destroy"}
-                      shopping_cart POST   /shopping_cart                               {:controller=>"shopping_carts", :action=>"create"}
-            formatted_shopping_cart POST   /shopping_cart.:format                       {:controller=>"shopping_carts", :action=>"create"}
-                  new_shopping_cart GET    /shopping_cart/new                           {:controller=>"shopping_carts", :action=>"new"}
-        formatted_new_shopping_cart GET    /shopping_cart/new.:format                   {:controller=>"shopping_carts", :action=>"new"}
-                 edit_shopping_cart GET    /shopping_cart/edit                          {:controller=>"shopping_carts", :action=>"edit"}
-       formatted_edit_shopping_cart GET    /shopping_cart/edit.:format                  {:controller=>"shopping_carts", :action=>"edit"}
-             complete_shopping_cart GET    /shopping_cart/complete                      {:controller=>"shopping_carts", :action=>"complete"}
-   formatted_complete_shopping_cart GET    /shopping_cart/complete.:format              {:controller=>"shopping_carts", :action=>"complete"}
-              confirm_shopping_cart POST   /shopping_cart/confirm                       {:controller=>"shopping_carts", :action=>"confirm"}
-    formatted_confirm_shopping_cart POST   /shopping_cart/confirm.:format               {:controller=>"shopping_carts", :action=>"confirm"}
-                                    GET    /shopping_cart                               {:controller=>"shopping_carts", :action=>"show"}
-                                    GET    /shopping_cart.:format                       {:controller=>"shopping_carts", :action=>"show"}
-                                    PUT    /shopping_cart                               {:controller=>"shopping_carts", :action=>"update"}
-                                    PUT    /shopping_cart.:format                       {:controller=>"shopping_carts", :action=>"update"}
-                                    DELETE /shopping_cart                               {:controller=>"shopping_carts", :action=>"destroy"}
-                                    DELETE /shopping_cart.:format                       {:controller=>"shopping_carts", :action=>"destroy"}
+                      cart POST   /cart                               {:controller=>"carts", :action=>"create"}
+            formatted_cart POST   /cart.:format                       {:controller=>"carts", :action=>"create"}
+                  new_cart GET    /cart/new                           {:controller=>"carts", :action=>"new"}
+        formatted_new_cart GET    /cart/new.:format                   {:controller=>"carts", :action=>"new"}
+                 edit_cart GET    /cart/edit                          {:controller=>"carts", :action=>"edit"}
+       formatted_edit_cart GET    /cart/edit.:format                  {:controller=>"carts", :action=>"edit"}
+             complete_cart GET    /cart/complete                      {:controller=>"carts", :action=>"complete"}
+   formatted_complete_cart GET    /cart/complete.:format              {:controller=>"carts", :action=>"complete"}
+              confirm_cart POST   /cart/confirm                       {:controller=>"carts", :action=>"confirm"}
+    formatted_confirm_cart POST   /cart/confirm.:format               {:controller=>"carts", :action=>"confirm"}
+                                    GET    /cart                               {:controller=>"carts", :action=>"show"}
+                                    GET    /cart.:format                       {:controller=>"carts", :action=>"show"}
+                                    PUT    /cart                               {:controller=>"carts", :action=>"update"}
+                                    PUT    /cart.:format                       {:controller=>"carts", :action=>"update"}
+                                    DELETE /cart                               {:controller=>"carts", :action=>"destroy"}
+                                    DELETE /cart.:format                       {:controller=>"carts", :action=>"destroy"}
                             session POST   /session                                     {:controller=>"sessions", :action=>"create"}
                   formatted_session POST   /session.:format                             {:controller=>"sessions", :action=>"create"}
                         new_session GET    /session/new                                 {:controller=>"sessions", :action=>"new"}

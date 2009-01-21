@@ -54,5 +54,17 @@ class ApplicationController < ActionController::Base
       end
     end
       
+    def current_cart
+      if session[:cart_id]
+        @current_cart ||= Cart.find(session[:cart_id])
+        session[:cart_id] = nil if @current_cart.purchased_at
+      end
+      if session[:cart_id].nil?
+        @current_cart = Cart.retrieve_pending_or_new( current_user.id )
+        session[:cart_id] = @current_cart.id
+      end
+      @current_cart
+    end
+    
 
 end

@@ -3,9 +3,8 @@
 class AddForeignKeys < ActiveRecord::Migration
   def self.up
     # events
-    add_foreign_key( :payments, :user_id, :users, :id, :name => :fk_payment_user )
-    add_foreign_key( :payments, :event_id, :events, :id, :name => :fk_payment_event )
-    
+    add_foreign_key( :carts, :user_id, :users, :id, :name => :fk_cart_user )
+        
     # papers
     add_foreign_key( :papers, :room_id, :rooms, :id, :name => :fk_paper_room )
     
@@ -32,8 +31,7 @@ class AddForeignKeys < ActiveRecord::Migration
   end
 
   def self.down
-    remove_foreign_key( :payments, :fk_payment_event )
-    remove_foreign_key( :payments, :fk_payment_user )
+    remove_foreign_key( :carts, :fk_cart_user )
 
     remove_foreign_key( :papers, :fk_paper_room )
     
