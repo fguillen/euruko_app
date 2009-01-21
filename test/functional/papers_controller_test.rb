@@ -5,7 +5,7 @@ class PapersControllerTest < ActionController::TestCase
     get :index
     assert_response :success
     assert_not_nil assigns(:papers)
-    assert( !assigns(:papers).include?( papers(:paper1) ) )
+    assert( !assigns(:papers).include?( papers(:paper3) ) )
     assert( assigns(:papers).include?( papers(:paper2) ) )
   end
 
@@ -15,7 +15,7 @@ class PapersControllerTest < ActionController::TestCase
     get :index
     assert_response :success
     assert_not_nil assigns(:papers)
-    assert( !assigns(:papers).include?( papers(:paper1) ) )
+    assert( !assigns(:papers).include?( papers(:paper3) ) )
     assert( assigns(:papers).include?( papers(:paper2) ) )
   end
 
@@ -113,7 +113,7 @@ class PapersControllerTest < ActionController::TestCase
   end
 
   def test_on_show_without_login_should_not_show_not_public_paper
-    get :show, :id => papers(:paper1).id
+    get :show, :id => papers(:paper3).id
     assert_response 404
   end
 
@@ -125,7 +125,7 @@ class PapersControllerTest < ActionController::TestCase
 
   def test_on_show_with_login_should_not_show_not_public_paper
     login_as users(:private)
-    get :show, :id => papers(:paper1).id
+    get :show, :id => papers(:paper3).id
     assert_response 404
   end
 

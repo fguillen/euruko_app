@@ -13,7 +13,6 @@ TODOs
 * Diseño: Pantalla 500
 * Control de textos: escapar html, linkar links, ...
 * Tabla de vista de calendario
-* Speakers sólo son speakers si alguna de sus charlas está aceptada o confirmada.. vamos si es paper.visible?
 * En perfil de usuarios sólo mostrar las charlas en las que participa si la charla es .visible?
 * Modificar contraseña sólo si se introduce la actual correctamente
 * Una charla en estado UNDER REVIEW no puede se modificada más que por un admin
@@ -31,6 +30,7 @@ WISHLIST
 * Añadir ponentes al crear charla via js
 
 DONE
+* Speakers sólo son speakers si alguna de sus charlas está aceptada o confirmada.. vamos si es paper.visible?
 * Speakers salen duplicados.. creo que el join no está bien igual mola más un :include.. o meter un distinct.. 
 * ¿Qué pasa si un user tiene el perfil no-público y además es un speaker? -> no puede
 * Notificaciones por email: charla presentada

@@ -11,7 +11,7 @@ paper1:
   permalink: paper-1
   description: Just a Paper
   family: <%= Paper::FAMILY[:TUTORIAL] %>
-  status: <%= Paper::STATUS[:PROPOSED] %>
+  status: <%= Paper::STATUS[:ACEPTED] %>
   date: <%= Time.now.to_s(:db) %>
   minutes: 1
   room: room1
@@ -31,7 +31,7 @@ paper3:
   permalink: paper-3
   description: Just a Paper 3
   family: <%= Paper::FAMILY[:TUTORIAL] %>
-  status: <%= Paper::STATUS[:ACEPTED] %>
+  status: <%= Paper::STATUS[:PROPOSED] %>
   date: <%= Time.now.to_s(:db) %>
   minutes: 1
   room: room1

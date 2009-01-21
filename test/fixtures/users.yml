@@ -35,6 +35,15 @@ private:
   role: <%= User::ROLE[:USER] %>
   public_profile: false
 
+paper_submitter:
+  name: User who submitted a paper
+  permalink: submitter
+  login: submitter
+  email: submitted@email.com
+  crypted_password: aaa
+  role: <%= User::ROLE[:USER] %>
+  public_profile: true
+
 user_admin:
   name: User Admin
   permalink: user-admin

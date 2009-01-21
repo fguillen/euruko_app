@@ -109,7 +109,7 @@ class User < ActiveRecord::Base
   end
   
   def self.find_speakers
-    User.find_by_sql 'SELECT DISTINCT u.* FROM users u INNER JOIN speakers s ON u.id = s.user_id'
+    Paper.visible.collect(&:speakers).flatten.collect(&:user)
   end
   
   def self.find_public
