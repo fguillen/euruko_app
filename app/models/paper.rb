@@ -3,14 +3,16 @@ class Paper < ActiveRecord::Base
   permalink :title
   
   has_many :speakers,       :dependent => :destroy
+  has_many :speaking_users,  :through => :speakers, :source => :user
   has_many :comments,       :dependent => :destroy
   has_many :votes,          :dependent => :destroy
   has_many :resources,      :dependent => :destroy
   has_many :attendees,      :dependent => :destroy
+
     
   # 
   # has_many :attendees,      :through => :attendees, :source => :user
-  # has_many :user_speakers,  :through => :speakers, :source => :user
+
   
   belongs_to :room
   
@@ -106,6 +108,10 @@ class Paper < ActiveRecord::Base
 
   def notify_by_mail
     APP_CONFIG['email_paper_recipients'].split(',').each{ |mail| SystemMailer.deliver_paper(mail, self) }
+  end
+
+  def user_candidates
+    User.find_public - self.speaking_users
   end
   
   private

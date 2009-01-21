@@ -19,9 +19,6 @@ TODOs
 * gem dependencies (http://railscasts.com/episodes/110-gem-dependencies) (mocha, faker, will-paginate )
 * buscadores avanzados de usuarios y charlas( railscasts 111 y 112 )
 * Al modificar charla proteger campos room, fechas y demás.. sólo a administradores
-* Al añadir ponente a charla no deben aparecer los que ya están
-* Al añadir ponente a charla el listado de salir ordenado alfabéticamente
-* Al añadir ponente a charla hay que filtrar por públicos
 * Autologin en activación de cuenta
 
 WISHLIST
@@ -30,6 +27,9 @@ WISHLIST
 * Añadir ponentes al crear charla via js
 
 DONE
+* Al añadir ponente a charla no deben aparecer los que ya están
+* Al añadir ponente a charla hay que filtrar por públicos
+* Al añadir ponente a charla el listado de salir ordenado alfabéticamente
 * Speakers sólo son speakers si alguna de sus charlas está aceptada o confirmada.. vamos si es paper.visible?
 * Speakers salen duplicados.. creo que el join no está bien igual mola más un :include.. o meter un distinct.. 
 * ¿Qué pasa si un user tiene el perfil no-público y además es un speaker? -> no puede

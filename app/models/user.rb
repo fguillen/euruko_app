@@ -113,7 +113,7 @@ class User < ActiveRecord::Base
   end
   
   def self.find_public
-    User.find(:all, :conditions => {:public_profile => true} )
+    User.find(:all, :conditions => {:public_profile => true}, :order => :name )
   end
   
   def speaker?
