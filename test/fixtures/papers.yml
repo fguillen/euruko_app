@@ -25,3 +25,13 @@ paper2:
   date: <%= Time.now.to_s(:db) %>
   minutes: 1
   room: room1
+  
+paper3:
+  title: Paper 3
+  permalink: paper-3
+  description: Just a Paper 3
+  family: <%= Paper::FAMILY[:TUTORIAL] %>
+  status: <%= Paper::STATUS[:ACEPTED] %>
+  date: <%= Time.now.to_s(:db) %>
+  minutes: 1
+  room: room1

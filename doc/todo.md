@@ -11,7 +11,6 @@ TODOs
 * Cambios de estilo en listados de Papers para diferenciar: familias y estados
 * Diseño: Pantalla 404
 * Diseño: Pantalla 500
-* Speakers salen duplicados.. creo que el join no está bien igual mola más un :include.. o meter un distinct.. 
 * Control de textos: escapar html, linkar links, ...
 * Tabla de vista de calendario
 * Speakers sólo son speakers si alguna de sus charlas está aceptada o confirmada.. vamos si es paper.visible?
@@ -32,6 +31,7 @@ WISHLIST
 * Añadir ponentes al crear charla via js
 
 DONE
+* Speakers salen duplicados.. creo que el join no está bien igual mola más un :include.. o meter un distinct.. 
 * ¿Qué pasa si un user tiene el perfil no-público y además es un speaker? -> no puede
 * Notificaciones por email: charla presentada
 * Al añadir recurso a charla la url del link no es correcta

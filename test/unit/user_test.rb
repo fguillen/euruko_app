@@ -121,7 +121,7 @@ class UserTest < ActiveSupport::TestCase
   end
   
   def test_destroy_with_speakers_should_destroy_speakers
-    assert_difference "Speaker.count", -1 do
+    assert_difference "Speaker.count", -2 do
       assert_difference "User.count", -1 do
         @user.destroy
       end
@@ -198,6 +198,12 @@ class UserTest < ActiveSupport::TestCase
     user.public_profile = false
     assert !user.valid?
     assert user.errors.on(:public_profile)
+  end
+  
+  def test_speakers_finder
+    users(:user1)
+    assert_equal 1, User.find_speakers.size
+    assert_equal [users(:user1)], User.find_speakers
   end
   
 end
