@@ -1,6 +1,0 @@
-# t.integer     :user_id,     :null => false
-# t.integer     :event_id,    :null => false
-
-payment_user1_event1:
-  user: user1
-  event: event1

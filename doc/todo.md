@@ -1,5 +1,6 @@
 TODOs
 ------------------
+
 * Títulos de páginas ( http://railscasts.com/episodes/30-pretty-page-title )
 * Comunicación PayPal cifrada
 * Posible modelo ShoppingCart
@@ -22,11 +23,15 @@ TODOs
 * Autologin en activación de cuenta
 
 WISHLIST
+------------------
+
 * Un usuario puede crear una charla y empezar a asignar speakers sin consentimiento :?
 * Autocomplete en añadir speaker
 * Añadir ponentes al crear charla via js
 
 DONE
+------------------
+
 * Al añadir ponente a charla no deben aparecer los que ya están
 * Al añadir ponente a charla hay que filtrar por públicos
 * Al añadir ponente a charla el listado de salir ordenado alfabéticamente
