@@ -80,6 +80,10 @@ class User < ActiveRecord::Base
     activation_code.nil?
   end
 
+  def validate
+    errors.add(:public_profile, "You can't have a private profile because you are registered as a speaker") if speakers.any? && !public_profile?
+  end
+
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
   #
   # uff.  this is really an authorization, not authentication routine.  
@@ -110,6 +114,10 @@ class User < ActiveRecord::Base
   
   def self.find_public
     User.find(:all, :conditions => {:public_profile => true} )
+  end
+  
+  def speaker?
+    papers.empty?
   end
   
   def is_speaker_on?( paper )

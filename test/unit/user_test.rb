@@ -172,7 +172,7 @@ class UserTest < ActiveSupport::TestCase
   def test_find_public
     assert( User.find_public )
     assert( User.find_public.include?( users(:user1) ) )
-    assert( !User.find_public.include?( users(:user2) ) )
+    assert( !User.find_public.include?( users(:private) ) )
   end
   
   def test_is_speaker_on_or_admin
@@ -192,4 +192,12 @@ class UserTest < ActiveSupport::TestCase
     
     assert( users(:user1).speaker_on_visibles_for_user( users(:user2) ).include?( @paper ) )
   end
+  
+  def test_speakers_cant_set_profile_to_private
+    user = Speaker.first.user
+    user.public_profile = false
+    assert !user.valid?
+    assert user.errors.on(:public_profile)
+  end
+  
 end

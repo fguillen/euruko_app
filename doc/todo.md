@@ -18,20 +18,21 @@ TODOs
 * En perfil de usuarios sólo mostrar las charlas en las que participa si la charla es .visible?
 * Modificar contraseña sólo si se introduce la actual correctamente
 * Una charla en estado UNDER REVIEW no puede se modificada más que por un admin
-* ¿Qué pasa si un user tiene el perfil no-público y además es un speaker?
 * gem dependencies (http://railscasts.com/episodes/110-gem-dependencies) (mocha, faker, will-paginate )
 * buscadores avanzados de usuarios y charlas( railscasts 111 y 112 )
 * Al modificar charla proteger campos room, fechas y demás.. sólo a administradores
 * Al añadir ponente a charla no deben aparecer los que ya están
 * Al añadir ponente a charla el listado de salir ordenado alfabéticamente
 * Al añadir ponente a charla hay que filtrar por públicos
-
 * Autologin en activación de cuenta
 
 WISHLIST
 * Un usuario puede crear una charla y empezar a asignar speakers sin consentimiento :?
+* Autocomplete en añadir speaker
+* Añadir ponentes al crear charla via js
 
 DONE
+* ¿Qué pasa si un user tiene el perfil no-público y además es un speaker? -> no puede
 * Notificaciones por email: charla presentada
 * Al añadir recurso a charla la url del link no es correcta
 * YOURSITE en notificaciones de registro => modificar intentar que sea dinámico

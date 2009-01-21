@@ -35,6 +35,13 @@ class PapersControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  def test_new_should_not_show_form_to_private_profiles
+    login_as users(:private)
+    get :new
+    assert_select ["form[action=#{papers_path}]"], 0
+    assert_response :success
+  end
+
   def test_on_new_with_not_logged_should_redirect_to_new_session
     get :new
     assert_redirected_to new_session_path
@@ -117,7 +124,7 @@ class PapersControllerTest < ActionController::TestCase
   end
 
   def test_on_show_with_login_should_not_show_not_public_paper
-    login_as users(:user2)
+    login_as users(:private)
     get :show, :id => papers(:paper1).id
     assert_response 404
   end

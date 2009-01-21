@@ -49,7 +49,11 @@ class Paper < ActiveRecord::Base
   named_scope :visible, :conditions => { :status => [Paper::STATUS[:ACEPTED], Paper::STATUS[:CONFIRMED] ]  }
   
   def add_speaker(user)
-    self.speakers.build( :user => user )
+    if user.public_profile?
+      self.speakers.build( :user => user )
+    else
+      raise Exception.new("Users with private profile can't be added as speakers")
+    end
   end
 
   ## date form system : INI ##
