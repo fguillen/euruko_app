@@ -2,7 +2,7 @@ TODOs
 ------------------
 * **--DONE--** Notificador de excepciones
 * Títulos de páginas ( http://railscasts.com/episodes/30-pretty-page-title )
-* Observer en create de LoggedException y que envíe un mail a administradores
+* **--DONE--** Observer en create de LoggedException y que envíe un mail a administradores
 * Comunicación PayPal cifrada
 * Posible modelo ShoppingCart
 * Ajax en comentario
