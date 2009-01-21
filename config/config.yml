@@ -1,15 +1,24 @@
 test:
   site_url: 127.0.0.1:3000
   site_name: EuRuKo_test
-  admin_email: euruko_test@euruko2009.org
-    
+  email_sender: euruko_test@euruko2009.org
+  email_exception_recipients: euruko_test@euruko2009.org
+  email_paper_recipients: euruko_test@euruko2009.org
+  email_payment_recipients: euruko_test@euruko2009.org
+
 development:
   site_url: 127.0.0.1:3000
   site_name: EuRuKo_development
-  admin_email: euruko_development@euruko2009.org
+  email_sender: euruko_development@euruko2009.org
+  email_exception_recipients: euruko_development@euruko2009.org
+  email_paper_recipients: euruko_development@euruko2009.org
+  email_payment_recipients: euruko_development@euruko2009.org
       
 production:
   site_url: eurukostaging.fernandoguillen.info
   site_name: EuRuKo
-  admin_email: euruko@euruko2009.org
+  email_sender: euruko@euruko2009.org
+  email_exception_recipients: euruko@euruko2009.org
+  email_paper_recipients: papers@euruko2009.org
+  email_payment_recipients: payments@euruko2009.org
   

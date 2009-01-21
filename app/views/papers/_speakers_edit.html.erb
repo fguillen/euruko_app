@@ -1,6 +1,6 @@
 <p>
   <ul>
-      <% paper.speakers.each do |speaker| %>
+      <% paper.speakers.sort{ |a,b| a.user.name <=> b.user.name }.each do |speaker| %>
         <li>
           <%= link_to speaker.user.name, speaker.user %>
           <%= link_to 'delete', paper_speaker_path( paper, speaker ), :method => 'delete' %>
@@ -14,7 +14,7 @@
       select(
         "speaker", 
         "user_id", 
-        User.find_public.collect{|u| [ u.name, u.id ] }, 
+        paper.user_candidates.collect{|u| [ u.name, u.id ] }, 
         { :include_blank => true }
       )
     )%>

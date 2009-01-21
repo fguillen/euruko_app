@@ -3,14 +3,16 @@ class Paper < ActiveRecord::Base
   permalink :title
   
   has_many :speakers,       :dependent => :destroy
+  has_many :speaking_users,  :through => :speakers, :source => :user
   has_many :comments,       :dependent => :destroy
   has_many :votes,          :dependent => :destroy
   has_many :resources,      :dependent => :destroy
   has_many :attendees,      :dependent => :destroy
+
     
   # 
   # has_many :attendees,      :through => :attendees, :source => :user
-  # has_many :user_speakers,  :through => :speakers, :source => :user
+
   
   belongs_to :room
   
@@ -26,6 +28,7 @@ class Paper < ActiveRecord::Base
   
   before_save :update_date
   before_create :update_status
+  after_create :notify_by_mail
   
   attr_protected :status
   
@@ -48,7 +51,11 @@ class Paper < ActiveRecord::Base
   named_scope :visible, :conditions => { :status => [Paper::STATUS[:ACEPTED], Paper::STATUS[:CONFIRMED] ]  }
   
   def add_speaker(user)
-    self.speakers.build( :user => user )
+    if user.public_profile?
+      self.speakers.build( :user => user )
+    else
+      raise Exception.new("Users with private profile can't be added as speakers")
+    end
   end
 
   ## date form system : INI ##
@@ -97,6 +104,14 @@ class Paper < ActiveRecord::Base
   
   def can_change_status_to?( user, status )
     return ( user.admin? || ((self.status == Paper::STATUS[:ACEPTED]) && status == Paper::STATUS[:CONFIRMED]) )
+  end
+
+  def notify_by_mail
+    APP_CONFIG['email_paper_recipients'].split(',').each{ |mail| SystemMailer.deliver_paper(mail, self) }
+  end
+
+  def user_candidates
+    User.find_public - self.speaking_users
   end
   
   private

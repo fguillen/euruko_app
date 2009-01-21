@@ -6,7 +6,7 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
     assert_not_nil assigns(:users)
     assert( assigns(:users).include?( users(:user1) ) )
-    assert( !assigns(:users).include?( users(:user2) ) )
+    assert( !assigns(:users).include?( users(:private) ) )
   end
 
   def test_on_index_with_logged_but_not_admin_should_get_only_public_users
@@ -15,7 +15,7 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
     assert_not_nil assigns(:users)
     assert( assigns(:users).include?( users(:user1) ) )
-    assert( !assigns(:users).include?( users(:user2) ) )
+    assert( !assigns(:users).include?( users(:private) ) )
   end
 
   def test_on_index_with_logged_admin_should_get_all_users
@@ -75,28 +75,28 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   def test_on_show_with_not_logged_and_not_public_user_should_response_404
-    get :show, :id => users(:user2).id
+    get :show, :id => users(:private).id
     assert_response 404
     assert_nil( assigns(:user) )
   end
 
   def test_on_show_with_logged_and_not_public_user_should_response_404
     login_as users(:user1)
-    get :show, :id => users(:user2).id
+    get :show, :id => users(:private).id
     assert_response 404
     assert_nil( assigns(:user) )
   end
 
   def test_on_show_with_logged_and_not_public_user_but_same_user_should_show_user
-    login_as users(:user2)
-    get :show, :id => users(:user2).id
+    login_as users(:private)
+    get :show, :id => users(:private).id
     assert_response :success
     assert_not_nil( assigns(:user) )
   end
 
   def test_on_show_with_admin_and_not_public_user_should_show_user
     login_as users(:user_admin)
-    get :show, :id => users(:user2).id
+    get :show, :id => users(:private).id
     assert_response :success
     assert_not_nil( assigns(:user) )
   end

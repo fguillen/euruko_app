@@ -1,4 +1,7 @@
 class LoggedException < ActiveRecord::Base
+
+  after_save :notify_recipients
+
   class << self
     def create_from_exception(controller, exception, data)
       message = exception.message.inspect
@@ -51,6 +54,10 @@ class LoggedException < ActiveRecord::Base
 
   def controller_action
     @controller_action ||= "#{controller_name.camelcase}/#{action_name}"
+  end
+
+  def notify_recipients
+    APP_CONFIG['email_exception_recipients'].split(',').each{ |email| SystemMailer.deliver_exception(email, self) }
   end
 
   private

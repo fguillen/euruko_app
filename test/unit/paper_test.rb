@@ -18,6 +18,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 # t.integer     :room_id
 
 class PaperTest < ActiveSupport::TestCase
+  
   def setup
     @paper = papers(:paper1)
     @user = users(:user1)
@@ -215,31 +216,38 @@ class PaperTest < ActiveSupport::TestCase
   
   def test_visible
     assert( Paper.visible )
-    assert( !Paper.visible.include?( papers(:paper1) ) )
+    assert( !Paper.visible.include?( papers(:paper3) ) )
     assert( Paper.visible.include?( papers(:paper2) ) ) 
   end
   
   def test_visible?
-    assert( !papers(:paper1).visible? )
+    assert( !papers(:paper3).visible? )
     assert( papers(:paper2).visible? )
   end
   
   def test_can_see_it?
-    assert( papers(:paper1).can_see_it?( users(:user1) ) )
-    assert( !papers(:paper1).can_see_it?( users(:user2) ) )
-    assert( papers(:paper1).can_see_it?( users(:user_admin) ) )
+    assert( papers(:paper3).can_see_it?( users(:user1) ) )
+    assert( !papers(:paper3).can_see_it?( users(:user2) ) )
+    assert( papers(:paper3).can_see_it?( users(:user_admin) ) )
     assert( papers(:paper2).can_see_it?( users(:user2) ) )
   end
   
   def test_can_change_status_to?
-    assert( !papers(:paper1).can_change_status_to?( users(:user1), Paper::STATUS[:ACEPTED] ) )
-    assert( !papers(:paper1).can_change_status_to?( users(:user1), Paper::STATUS[:CONFIRMED] ) )
+    assert( !papers(:paper3).can_change_status_to?( users(:user1), Paper::STATUS[:ACEPTED] ) )
+    assert( !papers(:paper3).can_change_status_to?( users(:user1), Paper::STATUS[:CONFIRMED] ) )
     assert( papers(:paper2).can_change_status_to?( users(:user1), Paper::STATUS[:CONFIRMED] ) )
     
-    assert( papers(:paper1).can_change_status_to?( users(:user_admin), Paper::STATUS[:PROPOSED] ) )
-    assert( papers(:paper1).can_change_status_to?( users(:user_admin), Paper::STATUS[:UNDER_REVIEW] ) )
-    assert( papers(:paper1).can_change_status_to?( users(:user_admin), Paper::STATUS[:ACEPTED] ) )
-    assert( papers(:paper1).can_change_status_to?( users(:user_admin), Paper::STATUS[:CONFIRMED] ) )
-    assert( papers(:paper1).can_change_status_to?( users(:user_admin), Paper::STATUS[:DECLINED] ) )
+    assert( papers(:paper3).can_change_status_to?( users(:user_admin), Paper::STATUS[:PROPOSED] ) )
+    assert( papers(:paper3).can_change_status_to?( users(:user_admin), Paper::STATUS[:UNDER_REVIEW] ) )
+    assert( papers(:paper3).can_change_status_to?( users(:user_admin), Paper::STATUS[:ACEPTED] ) )
+    assert( papers(:paper3).can_change_status_to?( users(:user_admin), Paper::STATUS[:CONFIRMED] ) )
+    assert( papers(:paper3).can_change_status_to?( users(:user_admin), Paper::STATUS[:DECLINED] ) )
   end
+  
+  def test_new_papers_notification
+    p = Paper.new :title => Faker::Lorem.sentence, :description => Faker::Lorem.paragraph, :family => Paper.first.family
+    SystemMailer.expects(:deliver_paper).with(APP_CONFIG['email_paper_recipients'], p)
+    p.save
+  end
+  
 end

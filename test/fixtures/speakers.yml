@@ -4,3 +4,8 @@
 speaker_user1_paper1:
   user: user1
   paper: paper1
+
+speaker_user1_paper3:
+  user: user1
+  paper: paper3
+

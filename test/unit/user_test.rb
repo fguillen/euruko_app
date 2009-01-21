@@ -121,7 +121,7 @@ class UserTest < ActiveSupport::TestCase
   end
   
   def test_destroy_with_speakers_should_destroy_speakers
-    assert_difference "Speaker.count", -1 do
+    assert_difference "Speaker.count", -2 do
       assert_difference "User.count", -1 do
         @user.destroy
       end
@@ -172,7 +172,7 @@ class UserTest < ActiveSupport::TestCase
   def test_find_public
     assert( User.find_public )
     assert( User.find_public.include?( users(:user1) ) )
-    assert( !User.find_public.include?( users(:user2) ) )
+    assert( !User.find_public.include?( users(:private) ) )
   end
   
   def test_is_speaker_on_or_admin
@@ -181,7 +181,7 @@ class UserTest < ActiveSupport::TestCase
     assert( users(:user_admin).is_speaker_on_or_admin?( papers(:paper1) ) )
   end
   def test_speaker_on_visibles
-    @paper = papers(:paper1)
+    @paper = papers(:paper3)
     assert( users(:user1).speaker_on_visibles_for_user( users(:user1) ) )
     assert( users(:user1).speaker_on_visibles_for_user( users(:user1) ).include?( @paper ) )
     assert( !users(:user1).speaker_on_visibles_for_user( users(:user2) ).include?( @paper ) )
@@ -192,4 +192,23 @@ class UserTest < ActiveSupport::TestCase
     
     assert( users(:user1).speaker_on_visibles_for_user( users(:user2) ).include?( @paper ) )
   end
+  
+  def test_speakers_cant_set_profile_to_private
+    user = Speaker.first.user
+    user.public_profile = false
+    assert !user.valid?
+    assert user.errors.on(:public_profile)
+  end
+  
+  def test_speakers_finder_returns_unique_users
+    users(:user1)
+    assert_equal 1, User.find_speakers.size
+    assert_equal [users(:user1)], User.find_speakers
+  end
+
+  def test_speakers_finder_doesnt_return_users_without_accepted_papers
+    Paper.all.each{ |p| p.status = Paper::STATUS[:PROPOSED]; p.save }
+    assert_equal [], User.find_speakers
+  end
+  
 end
