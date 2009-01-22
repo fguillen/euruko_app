@@ -1,4 +1,3 @@
-<% form_tag( @cart.paypal_url( complete_cart_url, notificate_cart_url ) ) do %>
   <ul>
   <% @cart.events.each do |event| %>
     <li>        
@@ -12,9 +11,3 @@
   <p>
     <%= @cart.invoice_info %>
   </p>
-  
-  <p>
-    <%= submit_tag "Pay, throught PayPal", :disabled => false, :disable_with => "Please wait..." %> |
-    <%= link_to 'Modify cart', cart_path %>
-  </p>
-<% end %>

@@ -1,8 +1,8 @@
 require 'rubygems'
-# test server from http://github.com/Roman2K/rails-test-serving
-require 'rails_test_serving'
-require 'faker'
-RailsTestServing.boot
+# # test server from http://github.com/Roman2K/rails-test-serving
+# require 'rails_test_serving'
+# require 'faker'
+# RailsTestServing.boot
 
 
 ENV["RAILS_ENV"] = "test"

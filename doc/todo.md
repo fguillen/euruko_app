@@ -21,6 +21,8 @@ TODOs
 * buscadores avanzados de usuarios y charlas( railscasts 111 y 112 )
 * Al modificar charla proteger campos room, fechas y demás.. sólo a administradores
 * Autologin en activación de cuenta
+* Recuperar password, revisar el rest-authetication que lo tiene, sólo habrá que activarlo
+* Sino seleccionas ningún evento en el carrito dá error 404 al confirmar
 
 WISHLIST
 ------------------

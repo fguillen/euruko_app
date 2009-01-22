@@ -18,9 +18,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users do |users|
     map.resources :payments
   end
-    
-  map.resources :payments, :only => [:create]
-  
+      
   map.resources :papers do |paper|
     paper.resources :comments
     paper.resources :speakers
@@ -32,7 +30,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resource :calendar
   
-  map.resource :cart, :member => { :confirm => :post, :complete => :get }
+  map.resource :cart, :member => { :confirm => :post, :complete => :get, :notificate => :post }
   
   map.resource :session
   map.resources :rooms  

@@ -21,7 +21,7 @@
           %>
         
           <%=
-            text_field_tag(
+            hidden_field_tag(
               'price[]', 
               event.price_cents, 
               :id => "price_#{event.id}"
@@ -38,7 +38,7 @@
   
   <p>
     <%= label_tag :invoice_info %><br />
-    <%= text_area_tag :invoice_info %>
+    <%= text_area_tag :invoice_info, @cart.invoice_info %>
   </p>
   
   <p>

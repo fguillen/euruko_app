@@ -4,7 +4,7 @@ class Cart < ActiveRecord::Base
   
   belongs_to :user
   
-  serialize :params
+  serialize :paypal_params
   
   validates_presence_of :user_id
   
@@ -12,7 +12,7 @@ class Cart < ActiveRecord::Base
   
   named_scope :purchased, :conditions => [ 'purchased_at is not null' ]
   
-  def self.paypal_url( events_array, return_url, notify_url )
+  def paypal_url( return_url, notify_url )
     values = {
       :business   => 'seller_1231200230_biz@gmail.com',
       :cmd        => '_cart',
@@ -22,7 +22,7 @@ class Cart < ActiveRecord::Base
       :notify_url => notify_url
     }
     
-    events_array.each_with_index do |event, index|
+    self.events.each_with_index do |event, index|
       values.merge!({
         "amount_#{index+1}"       => event.price_cents,
         "item_name_#{index+1}"    => event.name,
@@ -35,7 +35,7 @@ class Cart < ActiveRecord::Base
   end
   
   def total_price
-    self.events.sum{ |e| e.price_cents }
+    self.events.sum(:price_cents)
   end
   
   def self.retrieve_pending_or_new( user_id )
