@@ -27,6 +27,7 @@ TODOs
 * Tests exhaustivos de cart y carts controller
 * Guardar el usuario que creó la charla para saber a quién preguntar en caso de dudas
 * Una charla se puede quedar sin speakers.. :?
+* Al cambiar de nombre todo.md a TODO.md e install.md a INSTALL.md en el repositorio se han quedado duplicados :?
 
 WISHLIST
 ------------------
