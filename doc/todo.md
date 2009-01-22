@@ -24,6 +24,7 @@ TODOs
 * Recuperar password, revisar el rest-authetication que lo tiene, sólo habrá que activarlo
 * Sino seleccionas ningún evento en el carrito dá error 404 al confirmar
 * Un usuario con carritos pagados no se debería poder eliminar
+* Tests exhaustivos de cart y carts controller
 
 WISHLIST
 ------------------
