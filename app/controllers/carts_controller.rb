@@ -20,7 +20,7 @@ class CartsController < ApplicationController
     logger.debug( "params: #{params.inspect}" )
   
     @cart = Cart.find_by_id( params[:invoice] )
-    record_not_found  if @cart.nil?
+    record_not_found and return  if @cart.nil?
     
     @cart.paypal_params   = params
     @cart.status          = params[:payment_status]
@@ -37,7 +37,7 @@ class CartsController < ApplicationController
     logger.debug( "params: #{params.inspect}" )
     
     @cart = Cart.find_by_id( params[:invoice] )
-    record_not_found  if @cart.nil?
+    record_not_found and return  if @cart.nil?
     
     if @cart.status == "Completed"
       flash[:notice] = 'Payment was successfully.'
