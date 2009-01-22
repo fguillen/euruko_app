@@ -1,14 +1,15 @@
 Instalar la aplicación
 ----------------------
+
 ### Instalarla
 
     git clone git://github.com/fguillen/euruko_app.git  
 
 ### External dependencies
-		gem install mocha
-		gem install faker
-		gem install will-paginate
-		gem install Roman2K-rails-test-serving -s http://gems.github.com # testing accelerator
+    gem install mocha
+    gem install faker
+    gem install will-paginate
+    gem install Roman2K-rails-test-serving -s http://gems.github.com # testing accelerator
 
 ### Iniciar Configuraciones
 
@@ -27,13 +28,7 @@ Instalar la aplicación
 
     rake
 
-### Popularizar la BD con datos de pruba
+### Popularizar la BD con datos de prueba
 
-    rake populate:random
-
-### Añadir usuario admin
-
-    rake populate:admin
-
-
+    rake populate:all
 
