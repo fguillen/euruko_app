@@ -25,6 +25,8 @@ TODOs
 * Sino seleccionas ningún evento en el carrito dá error 404 al confirmar
 * Un usuario con carritos pagados no se debería poder eliminar
 * Tests exhaustivos de cart y carts controller
+* Guardar el usuario que creó la charla para saber a quién preguntar en caso de dudas
+* Una charla se puede quedar sin speakers.. :?
 
 WISHLIST
 ------------------

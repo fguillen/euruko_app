@@ -34,6 +34,8 @@ class User < ActiveRecord::Base
   
   before_create :make_activation_code 
   before_create :update_role
+  
+  named_scope :user_public, :conditions => { :public_profile => true }
 
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation

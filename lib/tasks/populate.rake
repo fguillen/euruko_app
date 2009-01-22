@@ -67,6 +67,7 @@ namespace :populate do
     Attendee.delete_all
     Vote.delete_all
     Comment.delete_all
+    CartsEvent.delete_all
     Cart.delete_all
     Resource.delete_all
     Speaker.delete_all
@@ -145,7 +146,7 @@ namespace :populate do
     puts "Creating Speakers..."
     (1..50).each do |num|
       Speaker.create(
-        :user      => User.random(1),
+        :user      => User.user_public.random(1),
         :paper     => Paper.random(1)
       )
     end
@@ -205,6 +206,10 @@ namespace :populate do
     end
     puts "... #{Attendee.count} attendees created"
 
+  end
+  
+  desc "Populate with random elements, and admin, and a random user"
+  task :all => [:random, :admin, :random_user] do
   end
   
   def random_datetime( date_ini = '1970/01/01 10:10', date_end = '2010/01/01 10:10' )
