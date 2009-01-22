@@ -12,7 +12,6 @@ class User < ActiveRecord::Base
   has_many :comments,   :dependent => :destroy
   has_many :attendees,  :dependent => :destroy
   has_many :resources,  :dependent => :destroy
-  has_many :payments,   :dependent => :destroy
   has_many :carts,      :dependent => :destroy
 
   has_many :speaker_on,   :through => :speakers,  :source => :paper

@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(:version => 20090115211446) do
   end
 
   add_index "carts_events", ["cart_id", "event_id"], :name => "idx_unique_cart_id_event_id_on_carts", :unique => true
+  add_index "carts_events", ["event_id"], :name => "fk_carts_events_event"
 
   create_table "comments", :force => true do |t|
     t.integer  "paper_id",   :null => false
@@ -167,6 +168,9 @@ ActiveRecord::Schema.define(:version => 20090115211446) do
   add_foreign_key "attendees", ["paper_id"], "papers", ["id"], :name => "fk_attendee_paper"
 
   add_foreign_key "carts", ["user_id"], "users", ["id"], :name => "fk_cart_user"
+
+  add_foreign_key "carts_events", ["event_id"], "events", ["id"], :name => "fk_carts_events_event"
+  add_foreign_key "carts_events", ["cart_id"], "carts", ["id"], :name => "fk_carts_events_cart"
 
   add_foreign_key "comments", ["user_id"], "users", ["id"], :name => "fk_comment_user"
   add_foreign_key "comments", ["paper_id"], "papers", ["id"], :name => "fk_comment_paper"

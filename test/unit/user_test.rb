@@ -104,6 +104,14 @@ class UserTest < ActiveSupport::TestCase
     end
   end
   
+  def test_destroy_with_carts_should_destroy_carts
+    assert_difference "Cart.count", -1 do
+      assert_difference "User.count", -1 do
+        @user.destroy
+      end
+    end
+  end
+  
   def test_destroy_with_resources_should_destroy_resources
     assert_difference "Resource.count", -2 do
       assert_difference "User.count", -1 do

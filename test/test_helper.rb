@@ -1,7 +1,8 @@
 require 'rubygems'
+require 'faker'
+
 # # test server from http://github.com/Roman2K/rails-test-serving
 # require 'rails_test_serving'
-# require 'faker'
 # RailsTestServing.boot
 
 

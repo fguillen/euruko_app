@@ -4,7 +4,7 @@ end
 class Event < ActiveRecord::Base
   permalink :name
 
-  has_many :carts_events, :dependent => :destroy
+  has_many :carts_events #, :dependent => :destroy
   has_many :carts, :through => :carts_events
   
   validates_presence_of :name
@@ -15,7 +15,7 @@ class Event < ActiveRecord::Base
   before_destroy :check_for_payments
   
   def check_for_payments
-    if( self.carts.count > 0 )
+    if( !self.carts.empty? )
       raise NotDeletableEventException.new("It has payments")
     end
   end

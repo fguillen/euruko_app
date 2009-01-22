@@ -2,11 +2,10 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 class EventTest < ActiveSupport::TestCase
   def setup
-    @event = events(:event1)
   end
 
   def test_relations
-    assert_equal( 1, @event.payments.size )
+    assert_equal( 1, events(:event1).carts.size )
   end
 
   def test_create
@@ -32,7 +31,7 @@ class EventTest < ActiveSupport::TestCase
 
   def test_destroy_with_payments_should_raise_exception
     assert_raise(NotDeletableEventException) do
-      @event.destroy
+      events(:event1).destroy
     end
   end
 

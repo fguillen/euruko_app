@@ -33,11 +33,18 @@ class ForeignKeysTest < ActiveSupport::TestCase
     end
   end
 
-  def test_payment_foreign_keys
+  def test_carts_events_foreign_keys
     assert_raise(ActiveRecord::StatementInvalid) do
-      Payment.create(
-        :user       => users(:user1),
+      CartsEvent.create(
+        :cart_id    => carts(:cart_user1_event1_purchased).id,
         :event_id   => -1
+      )
+    end
+    
+    assert_raise(ActiveRecord::StatementInvalid) do
+      CartsEvent.create(
+        :cart_id    => -1,
+        :event_id   => events(:event1).id
       )
     end
   end

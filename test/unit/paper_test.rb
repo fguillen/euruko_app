@@ -245,9 +245,14 @@ class PaperTest < ActiveSupport::TestCase
   end
   
   def test_new_papers_notification
-    p = Paper.new :title => Faker::Lorem.sentence, :description => Faker::Lorem.paragraph, :family => Paper.first.family
-    SystemMailer.expects(:deliver_paper).with(APP_CONFIG['email_paper_recipients'], p)
-    p.save
+    paper = 
+      Paper.new(
+        :title => Faker::Lorem.sentence, 
+        :description => Faker::Lorem.paragraph, 
+        :family => Paper.first.family
+      )
+    SystemMailer.expects(:deliver_paper).with(APP_CONFIG['email_paper_recipients'], paper)
+    paper.save!
   end
   
 end

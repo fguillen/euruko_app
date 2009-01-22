@@ -4,6 +4,11 @@ class AddForeignKeys < ActiveRecord::Migration
   def self.up
     # events
     add_foreign_key( :carts, :user_id, :users, :id, :name => :fk_cart_user )
+    
+    # carts_events
+    add_foreign_key( :carts_events, :cart_id, :carts, :id, :name => :fk_carts_events_cart )
+    add_foreign_key( :carts_events, :event_id, :events, :id, :name => :fk_carts_events_event )
+
         
     # papers
     add_foreign_key( :papers, :room_id, :rooms, :id, :name => :fk_paper_room )
@@ -32,6 +37,9 @@ class AddForeignKeys < ActiveRecord::Migration
 
   def self.down
     remove_foreign_key( :carts, :fk_cart_user )
+    
+    remove_foreign_key( :carts_events, :fk_carts_events_cart )
+    remove_foreign_key( :carts_events, :fk_carts_events_event )
 
     remove_foreign_key( :papers, :fk_paper_room )
     
