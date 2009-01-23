@@ -36,6 +36,7 @@ WISHLIST
 * Un usuario puede crear una charla y empezar a asignar speakers sin consentimiento :?
 * Autocomplete en añadir speaker
 * Añadir ponentes al crear charla via js
+* Notificaciones a twitter de nuevos registros y nueva paper presentada
 
 DONE
 ------------------
