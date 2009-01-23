@@ -11,23 +11,21 @@
     <!--[if IE]> 
       <%= stylesheet_link_tag 'ie', :media => "screen, projection" %>  
     <![endif]-->
-    
+
     <%= javascript_include_tag :defaults %>
-    
+
     <!-- datepicker -->
     <link rel="stylesheet" href="http://ui.jquery.com/latest/themes/flora/flora.datepicker.css" type="text/css" media="screen" title="Flora (Default)">
     <script src="http://ui.jquery.com/latest/ui/ui.datepicker.js"></script>
     <!-- datepicker -->
 
-
-    
   </head>
 
   <body>
     <div id="euruko" class="canvas"> <!-- showgrid -->
       <div id="header" class="span-24 last">
         <h1>Euruko 2009</h1>
-        <%= render :partial => 'partials/menu' %>
+        <%= render :partial => 'layouts/menu' %>
       </div>
 
       <div id="main" class="span-18">
@@ -39,25 +37,18 @@
       </div>
 
       <div id="sidebar" class="span-6 last">
-      <% if admin? %>
-        <%= render :partial => 'partials/admin_menu' %>
-      <% elsif logged_in? %>
-        <%= render :partial => 'partials/user_menu' %>
-      <% else %>
-        <%= render :partial => 'partials/login_box' %>
-      <% end %>
-
+        <%= render :partial => 'layouts/user_menu' %>
         <div id="sponsors">
           <p>Dude! sponsors here</p>
         </div>
       </div>
 
       <div id="footer" class="span-24 last">
-        <%= render :partial => 'partials/menu' %>
-        <%= render :partial => 'partials/credits' %>
+        <%= render :partial => 'layouts/menu' %>
+        <%= render :partial => 'layouts/credits' %>
       </div>
     </div>
 
-    <%= render :partial => 'partials/analitycs' %>
+    <%= render :partial => 'layouts/analitycs' %>
   </body>
 </html>
