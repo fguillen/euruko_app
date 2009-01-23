@@ -61,7 +61,7 @@ class ApplicationController < ActionController::Base
         session[:cart_id] = nil  if @current_cart.user != current_user
       end
       if session[:cart_id].nil?
-        @current_cart = Cart.retrieve_pending_or_new( current_user.id )
+        @current_cart = Cart.retrieve_on_sesion_or_new( current_user.id )
         session[:cart_id] = @current_cart.id
       end
       

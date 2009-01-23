@@ -16,6 +16,16 @@ class CartTest < ActiveSupport::TestCase
       @cart.events << events(:event1)
     end
   end
+    
+  def test_on_create_should_initialize_status
+    @cart = users(:user1).carts.create!
+    assert( @cart.valid? )
+    assert_equal( Cart::STATUS[:ON_SESSION], @cart.status )
+  end
   
+  def test_paypal_url
+    assert( carts(:cart_user1_event1_purchased).paypal_url( 'return_url', 'notify_url' ) )
+    # puts carts(:cart_user1_event1_purchased).paypal_url( 'return_url', 'notify_url' )
+  end
   
 end

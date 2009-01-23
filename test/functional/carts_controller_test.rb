@@ -119,8 +119,6 @@ class CartsControllerTest < ActionController::TestCase
     assert_response 404
   end
 
-
-  
   def test_on_complete_when_user_logged_and_cart_completed_should_flash_notice
     login_as users(:user1)
       
@@ -128,7 +126,7 @@ class CartsControllerTest < ActionController::TestCase
       :complete,
       :invoice => carts(:cart_user1_event1_purchased).id
     )
-    
+
     assert_not_nil( flash[:notice] )
     assert_response :success
   end

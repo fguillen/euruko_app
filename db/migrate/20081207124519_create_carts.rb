@@ -5,7 +5,7 @@ class CreateCarts < ActiveRecord::Migration
       t.text          :paypal_params
       t.string        :transaction_id
       t.datetime      :purchased_at
-      t.string        :status
+      t.string        :status,        :null => false
       t.text          :invoice_info
       t.timestamps
     end
