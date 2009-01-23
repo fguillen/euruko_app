@@ -10,3 +10,9 @@ event2:
   permalink: event-2
   description: Just another Event
   price_cents: 200
+
+event3:
+  name: Event 3
+  permalink: event-3
+  description: Just another Event
+  price_cents: 200

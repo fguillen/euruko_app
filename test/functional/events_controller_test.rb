@@ -109,7 +109,7 @@ class EventsControllerTest < ActionController::TestCase
     login_as users(:user_admin)
     
     assert_difference('Event.count', -1) do
-      delete :destroy, :id => events(:event2).id
+      delete :destroy, :id => events(:event3).id
     end
 
     assert_redirected_to events_path

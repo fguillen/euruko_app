@@ -1,6 +1,6 @@
 <%= debug @cart %>
 
-<% form_tag(confirm_cart_path) do |f| %>
+<% form_tag(confirm_cart_path) do %>
 
   <ul>
     <% Event.all.each do |event| %>
