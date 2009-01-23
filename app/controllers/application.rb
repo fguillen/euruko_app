@@ -30,11 +30,11 @@ class ApplicationController < ActionController::Base
   private
 
     def load_paper_by_paper_id
-      @paper = Paper.find_by_id!( params[:paper_id] )
+      @paper = Paper.find( params[:paper_id] )
     end
     
     def load_paper_by_id
-      @paper = Paper.find_by_id!( params[:id] )
+      @paper = Paper.find( params[:id] )
     end
     
     def admin_required
@@ -61,7 +61,7 @@ class ApplicationController < ActionController::Base
         session[:cart_id] = nil  if @current_cart.user != current_user
       end
       if session[:cart_id].nil?
-        @current_cart = Cart.retrieve_pending_or_new( current_user.id )
+        @current_cart = Cart.retrieve_on_sesion_or_new( current_user.id )
         session[:cart_id] = @current_cart.id
       end
       

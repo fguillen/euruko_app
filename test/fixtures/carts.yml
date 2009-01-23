@@ -7,14 +7,15 @@
 
 cart_user1_event1_purchased:
   user: user1
-  paypal_params:  paypal params
-  status: Completed
+  paypal_params: paypal params
+  status: <%= Cart::STATUS[:COMPLETED] %>
   invoice_info: invoice info
   purchased_at: <%= Time.now.to_s(:db) %>
   
 cart_user1_event2_not_purchased:
   user: user1
-
+  status: <%= Cart::STATUS[:ON_SESSION] %>
+  
 cart_user1_empty_and_not_purchased:
   user: user1
-  
+  status: <%= Cart::STATUS[:ON_SESSION] %>

@@ -96,7 +96,7 @@ class UsersController < ApplicationController
   
   private
     def load_user
-      @user = User.find_by_id!(params[:id])
+      @user = User.find(params[:id])
     end
     
     def should_be_current_user_or_admin
