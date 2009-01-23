@@ -3,12 +3,46 @@
 @import grid.sass
 @import forms.sass
 
-#header
-  margin-bottom: 1.5em
+body
+  background: #F7F7F7
 
-  .menu
-    font-size: 1.25em
-    line-height: 1.2
+.highlight
+  color: #B50202
+.highlight:hover
+  color: #F00
+
+#header
+  background: #FFF
+  border-bottom: 2px solid #EEEEEE
+  height: 50px
+  padding-top: 0.75em
+  margin-bottom: 1.5em
+  font-size: 0.95em
+  ul
+    margin-top: 0.5em
+    font-weight: bold
+    color: #000
+  li
+    display: inline
+    margin-right: 15px
+  span
+    font-size: 1.2em
+    font-weight: bold
+  #logo
+    text-align: left
+  #main-menu
+    text-align: center
+  #user-menu
+    text-align: right
+  .content
+    padding-top: 0.5em
+
+#admin-menu
+  ul
+    margin: 0
+  li
+    display: inline-block
+  
 
 #footer
   margin-top: 1.5em
@@ -17,10 +51,3 @@
   font-size: 0.916667em
   line-height: 1.636364em
   margin-top: 0.75em
-
-.menu
-  ul
-    margin: 0
-  li
-    display: inline
-    margin-right: 15px
