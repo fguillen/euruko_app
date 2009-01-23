@@ -33,6 +33,8 @@ class CartsController < ApplicationController
     @cart = current_cart
   end
   
+  
+  
   # this is the IPN paypal action call
   def notificate
     logger.info( "XXX: on notificate" )
