@@ -11,3 +11,10 @@ cart_user1_event1_purchased:
   status: Completed
   invoice_info: invoice info
   purchased_at: <%= Time.now.to_s(:db) %>
+  
+cart_user1_event2_not_purchased:
+  user: user1
+
+cart_user1_empty_and_not_purchased:
+  user: user1
+  

@@ -48,4 +48,13 @@ class Test::Unit::TestCase
   def login_as(user)
     @request.session[:user_id] = user.id
   end
+  
+  def load_current_cart(cart)
+    @request.session[:cart_id] = cart.id
+  end
+
+  def retrieve_current_cart
+    return nil  if @request.session[:cart_id].nil?
+    Cart.find( @request.session[:cart_id] )
+  end
 end

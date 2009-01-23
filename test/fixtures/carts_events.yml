@@ -1,3 +1,7 @@
 cart1_event1:
   cart: cart_user1_event1_purchased
   event: event1
+  
+cart2_event2:
+  cart: cart_user1_event2_not_purchased
+  event: event2

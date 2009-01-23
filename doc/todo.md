@@ -28,6 +28,7 @@ TODOs
 * Guardar el usuario que creó la charla para saber a quién preguntar en caso de dudas
 * Una charla se puede quedar sin speakers.. :?
 * Al cambiar de nombre todo.md a TODO.md e install.md a INSTALL.md en el repositorio se han quedado duplicados :?
+* Cuando Admin accede al show de un Cart tiene que llevarle a una página especial.. o llamar a la accion de crear carrito new o edit o algo así
 
 WISHLIST
 ------------------

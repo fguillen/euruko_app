@@ -2,32 +2,56 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 class CartsControllerTest < ActionController::TestCase
   
-  def test_show
+  def test_on_show_when_user_logged_should_return_current_cart
     login_as users(:user1)
+    
     get :show
+    
     assert_not_nil( assigns(:cart) )
   end
   
-  def test_complete
-    login_as users(:user2)
+  def test_on_show_when_not_user_logged_should_return_new_session
+    get :show
     
-    # assert_difference "Payment.count", 2 do
+    assert_redirected_to new_session_path
+  end
+  
+  def test_on_show_when_admin_logged_should_return_expecified_cart
+    login_as users(:user_admin)
+    
+    get :show, :id => carts(:cart_user1_event1_purchased).id
+    
+    assert_not_nil( assigns(:cart) )
+    assert_equal( carts(:cart_user1_event1_purchased), assigns(:cart) )
+  end
+  
+  def test_on_complete_when_user_logged_and_cart_completed_should_flash_notice
+    login_as users(:user1)
       
-      get(
-        :complete,
-        "protection_eligibility"=>"Eligible", "tax"=>"0.00", "payment_status"=>"Completed", "address_name"=>"Test User", "business"=>"seller_1231200230_biz@gmail.com", "address_country"=>"United States", "address_city"=>"San Jose", "payer_email"=>"buyer_1231201025_per@gmail.com", "receiver_id"=>"PDELP3ZPC4CFL", "residence_country"=>"US", "payment_gross"=>"30243.00", "merchant_return_link"=>"Volver a Fernando Guillen's Test Store", "mc_shipping"=>"0.00", "receiver_email"=>"seller_1231200230_biz@gmail.com", "invoice"=> carts(:cart_user1_event1_purchased), "mc_gross_1"=>"18126.00", "address_street"=>"1 Main St", "mc_handling1"=>"0.00", "verify_sign"=>"AfHifvSigeqzzSlb4WmWwnRdnG9bAwxVKx0P52THhLhk8Gz24YJ9jB42", "mc_gross_2"=>"12117.00", "address_zip"=>"95131", "mc_handling2"=>"0.00", "memo"=>"una nota desde paypal", "item_name1"=>"Necessitatibus quisquam explicabo eius.", "txn_type"=>"cart", "mc_currency"=>"USD", "transaction_subject"=>"Shopping Cart", "charset"=>"windows-1252", "address_country_code"=>"US", "txn_id"=>"02M22715HK8370023", "item_name2"=>"Rerum quos quo est in.", "item_number1"=>events(:event1).id, "notify_version"=>"2.6", "payer_status"=>"verified", "tax1"=>"0.00", "address_state"=>"CA", "payment_fee"=>"877.35", "quantity1"=>"1", "address_status"=>"confirmed", "item_number2"=>events(:event2).id, "payment_date"=>"15:51:17 Jan 11, 2009 PST", "mc_handling"=>"0.00", "mc_fee"=>"877.35", "tax2"=>"0.00", "quantity2"=>"1", "first_name"=>"Test", "num_cart_items"=>"2", "mc_shipping1"=>"0.00", "payment_type"=>"instant", "test_ipn"=>"1", "mc_gross"=>"30243.00", "payer_id"=>"8K4R8XDDXMJY4", "mc_shipping2"=>"0.00", "last_name"=>"User", "custom"=>""
-      )
-    # end
+    get(
+      :complete,
+      :invoice => carts(:cart_user1_event1_purchased).id
+    )
     
     assert_not_nil( flash[:notice] )
-    # assert( events(:event1).is_paid_for_user?( users(:user2) ) )
-    # assert( events(:event2).is_paid_for_user?( users(:user2) ) )
     assert_response :success
   end
   
-  def test_on_complete_with_not_valid_cart_id_should_respond_404
+  def test_on_complete_when_user_logged_and_cart_not_completed_should_flash_error
     login_as users(:user1)
+      
+    get(
+      :complete,
+      :invoice => carts(:cart_user1_event2_not_purchased).id
+    )
     
+    assert_not_nil( flash[:error] )
+    assert_response :success
+  end
+  
+  def test_on_complete_when_user_logged_and_invoice_id_not_valid_should_response_404
+    login_as users(:user1)
+      
     get(
       :complete,
       :invoice => -1
@@ -36,14 +60,98 @@ class CartsControllerTest < ActionController::TestCase
     assert_response 404
   end
   
-  def test_on_notificate_with_not_valid_cart_id_should_respond_404
-    login_as users(:user1)
-    
+  def test_on_complete_when_user_logged_but_not_the_owner_of_the_cart_should_response_404
+    login_as users(:user2)
+      
     get(
-      :notificate,
-      :invoice => -1
+      :complete,
+      :invoice => carts(:cart_user1_event2_not_purchased).id
     )
     
     assert_response 404
   end
+  
+  def test_on_confirm_with_user_logged_should_add_events_to_current_cart
+    login_as users(:user1)    
+    @cart = carts(:cart_user1_empty_and_not_purchased)
+    load_current_cart @cart
+    
+    assert_difference "CartsEvent.count", 2 do
+      post(
+        :confirm,
+        :event_ids => [events(:event1).id, events(:event2).id]
+      )
+    end    
+    
+    assert_equal( 2, @cart.events.count )
+  end
+  
+  def test_on_confirm_with_user_logged_but_not_events_should_empty_the_cart_and_redirect_to_show_again
+    login_as users(:user1)
+    @cart = carts(:cart_user1_event2_not_purchased)
+    load_current_cart @cart
+    
+    assert( !@cart.events.empty? )
+    
+    post( :confirm )
+    
+    assert( @cart.events.empty? )    
+    assert_not_nil( flash[:error] )
+    assert_redirected_to cart_path
+  end
+
+  def test_on_confirm_with_user_not_logged_should_redirected_to_new_session
+    post( :confirm )
+    assert_redirected_to new_session_path
+  end
+
+  def test_on_notificate_with_status_completed_should_update_the_cart
+    @cart = carts(:cart_user1_event2_not_purchased)
+    
+    assert( !@cart.is_purchased? )
+    assert( !events(:event2).is_paid_for_user?( users(:user1).id ) )
+    
+    get(
+      :notificate,
+      :invoice => @cart.id,
+      :payment_status => 'Completed',
+      :txn_id => 1
+    )
+
+    @cart.reload
+    assert( @cart.is_purchased? )
+    assert( events(:event2).is_paid_for_user?( users(:user1).id ) )
+    
+    assert_not_nil( @cart.paypal_params )
+    assert_equal( 'Completed', @cart.status )
+    assert_equal( '1', @cart.transaction_id )
+    
+    assert_response :success
+  end
+  
+  def test_on_notificate_with_not_valid_cart_id_should_respond_404
+    get(
+      :notificate,
+      :invoice => -1,
+      :payment_status => 'Completed',
+      :txn_id => 1
+    )
+    
+    assert_response 404
+  end
+  
+  def test_initialize_cart_if_current_cart_is_not_owned_for_user_logged
+    login_as users(:user2)
+    load_current_cart carts(:cart_user1_event2_not_purchased)
+
+    assert_equal( carts(:cart_user1_event2_not_purchased), retrieve_current_cart )
+    assert_not_equal( retrieve_current_cart.user, users(:user2) )
+    
+    get :show
+    
+    assert_not_equal( carts(:cart_user1_event2_not_purchased), retrieve_current_cart )
+    assert_equal( retrieve_current_cart.user, users(:user2) )
+    assert_equal( retrieve_current_cart, assigns(:cart) )
+  end
+    
 end
