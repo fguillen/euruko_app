@@ -38,18 +38,9 @@
   </ul>
 </p>
 
-<h3>Valoration</h3>
-<p>
-  <ul>
-    <% @paper.votes.each do |vote| %>
-      <li><%= vote.user.name %> => <%= vote.points %></li>
-    <% end %>
-  </ul>
-</p>
-<h4>My valoration</h4>
-<p>
-  <%= render :partial => 'papers/votes', :locals => { :paper => @paper } %>
-</p>
+<div id='valorations'>
+  <%= render :partial => 'papers/valorations', :locals => { :paper => @paper } %>
+</div>
 
 <h3>Attendees</h3>
 <div>
@@ -63,35 +54,32 @@
 
 <h3>Comments</h3>
 <div>
-  <ul>
-    <% @paper.comments.each do |comment| %>
-      <li>
-        <div>
-          <%=
-            gravatar(
-              comment.user.email, 
-              :size => 32, 
-              :default => "#{base_url}/images/avatar.png",
-              :class => 'avatar',
-              :alt => "avatar de #{comment.user.name}"
-            )
-          %>
-        </div>
-        <div><strong><%= comment.user.name %></strong> say on <%= comment.created_at %></div>
-        <p><%= comment.text %></p>
-      </li>
-    <% end %>
+  <ul id="comments">
+    <%= render :partial => 'papers/comment', :collection => @paper.comments %>
   </ul>
 </div>
 
 <% if logged_in? %>
   <h4>New Comment</h4>
+  <div id="comment_error"></div>
   <div>
-    <% form_for [@paper, Comment.new] do |f| -%>
+    <%
+      form_remote_for(
+        [@paper, Comment.new],
+        :update => { :success => "comments", :failure => "comments" },
+        :position => :bottom,
+        :loading => "$('#comment_loading').show()",
+        :complete => "$('#comment_loading').hide();",
+        :success => "$('#comment_textarea').val('')"
+      ) do |f| 
+    -%>
       <%= f.error_messages %>
 
-      <%= f.text_area :text %>
+      <%= f.text_area :text, :id => 'comment_textarea' %>
       <%= f.submit "Submit", :disable_with => 'Submiting...' %>
+      <div id='comment_loading' style="display:none">
+        <%= image_tag 'spinner.gif' %>
+      </div>
     <% end -%>
   </div>
 <% end %>

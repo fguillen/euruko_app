@@ -12,10 +12,12 @@ class AttendeesController < ApplicationController
         flash[:notice] = 'Attendee was successfully created.'
         format.html { redirect_to paper_path(@paper) }
         format.xml  { render :xml => @attendee, :status => :created, :location => @attendee }
+        format.js   { render :partial => 'papers/attendees' }
       else
         flash[:notice] = 'Error trying to delete Attendee.'
         format.html { redirect_to paper_path(@paper) }
         format.xml  { render :xml => @attendee.errors, :status => :unprocessable_entity }
+        format.js   { render :text => 'Some error ocurred', :status => :unprocessable_entity }
       end
     end
   end
@@ -30,6 +32,7 @@ class AttendeesController < ApplicationController
       flash[:notice] = 'Attendee correctly deleted.'
       format.html { redirect_to paper_path(@paper) }
       format.xml  { head :ok }
+      format.js   { render :partial => 'papers/attendees' }
     end
   end
 end

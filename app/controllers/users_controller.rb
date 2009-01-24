@@ -79,7 +79,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.update_attributes(params[:user])
         
-        if admin?
+        if admin? && !params[:user][:role].nil?
           @user.role = params[:user][:role]
           @user.save!
         end

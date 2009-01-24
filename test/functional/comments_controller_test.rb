@@ -31,4 +31,38 @@ class CommentsControllerTest < ActionController::TestCase
     end
     assert_redirected_to new_session_path
   end
+  
+  def test_on_create_with_format_js_should_render_partial
+    login_as users(:user1)
+    
+    post(
+      :create, 
+      :paper_id => papers(:paper2).id,
+      :comment => { 
+        :user_id  => users(:user2).id,
+        :text     => 'text'
+      },
+      :format => 'js'
+    )
+
+    assert_response :success
+    assert_template 'papers/_comment.html.erb'
+  end
+  
+  def test_on_create_with_format_js_and_with_error_should_render_error_partial
+    login_as users(:user1)
+    
+    post(
+      :create, 
+      :paper_id => papers(:paper2).id,
+      :comment => { 
+        :user_id  => users(:user2).id,
+        :text     => ''
+      },
+      :format => 'js'
+    )
+
+    assert_response :unprocessable_entity
+    assert_template 'papers/_comment_error.html.erb'
+  end
 end

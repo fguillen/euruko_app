@@ -5,41 +5,47 @@ class VotesController < ApplicationController
   # POST /votes
   # POST /votes.xml
   def create
-    @vote = 
-      current_user.votes.build( 
-        :points => params[:points].to_i,
-        :paper  => @paper
-      )
+    @vote = Vote.find_by_paper_id_and_user_id( @paper.id, current_user.id )
 
+    if @vote.nil?
+      @vote = current_user.votes.build( :paper  => @paper )
+    end
+
+    @vote.update_attributes( :points => params[:points].to_i )
+    
     respond_to do |format|
       if @vote.save
-        flash[:notice] = 'Vote was successfully created.'
+        flash[:notice] = 'Vote was successfully sended.'
         format.html { redirect_to( @paper ) }
         format.xml  { render :xml => @vote, :status => :created, :location => @vote }
+        format.js   { render :partial => 'papers/valorations' }
       else
         flash[:error] = "Error trying to vote the paper: #{@vote.errors.full_messages}."
         format.html { redirect_to( @paper ) }
         format.xml  { render :xml => @vote.errors, :status => :unprocessable_entity }
+        format.js   { render :text => 'On error ocurred!' }
       end
     end
   end
 
-  # PUT /votes/1
-  # PUT /votes/1.xml
-  def update
-    @vote = current_user.votes.find_by_paper_id!( params[:paper_id] )
-
-    respond_to do |format|
-      if @vote.update_attributes( :points => params[:points].to_i )
-        flash[:notice] = 'Vote was successfully updated.'
-        format.html { redirect_to( @paper ) }
-        format.xml  { head :ok }
-      else
-        puts "XXX: #{@vote.errors.full_messages}"
-        flash[:error] = "Error trying to update the vote: #{@vote.errors.full_messages}."        
-        format.html { redirect_to( @paper ) }
-        format.xml  { render :xml => @vote.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
+  # # PUT /votes/1
+  # # PUT /votes/1.xml
+  # def update
+  #   logger.debug( "XXX: on update" )
+  #   @vote = current_user.votes.find_by_paper_id!( params[:paper_id].to_i )
+  # 
+  #   respond_to do |format|
+  #     if @vote.update_attributes( :points => params[:points].to_i )
+  #       flash[:notice] = 'Vote was successfully updated.'
+  #       format.html { redirect_to( @paper ) }
+  #       format.xml  { head :ok }
+  #       format.js   { render :partial => 'valorations' }
+  #     else
+  #       puts "XXX: #{@vote.errors.full_messages}"
+  #       flash[:error] = "Error trying to update the vote: #{@vote.errors.full_messages}."        
+  #       format.html { redirect_to( @paper ) }
+  #       format.xml  { render :xml => @vote.errors, :status => :unprocessable_entity }
+  #     end
+  #   end
+  # end
 end

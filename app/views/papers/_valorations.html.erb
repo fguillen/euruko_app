@@ -1,0 +1,12 @@
+<h3>Valoration</h3>
+<p>
+  <ul>
+    <% @paper.votes.each do |vote| %>
+      <li><%= vote.user.name %> => <%= vote.points %></li>
+    <% end %>
+  </ul>
+</p>
+<h4>My valoration</h4>
+<p>
+  <%= render :partial => 'papers/votes', :locals => { :paper => @paper } %>
+</p>

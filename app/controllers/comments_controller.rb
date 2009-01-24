@@ -18,11 +18,13 @@ class CommentsController < ApplicationController
         flash[:notice] = 'Comment was successfully created.'
         format.html { redirect_to paper_path(@paper) }
         format.xml  { render :xml => @comment, :status => :created, :location => @comment }
+        format.js   { render :partial => 'papers/comment', :object => @comment }
       else
         logger.debug( "error en comentario: #{@comment.errors.full_messages}")
         flash[:error] = 'Error when try to save the Comment.'
         format.html { render :template => 'papers/show' }
         format.xml  { render :xml => @comment.errors, :status => :unprocessable_entity }
+        format.js   { render :partial => 'papers/comment_error', :object => @comment, :status => :unprocessable_entity }
       end
     end
   end
