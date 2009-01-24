@@ -13,9 +13,14 @@ namespace :init do
   
   desc "Initilizing config files"
   task :config_files do
-    puts "initilizing database.yml..."
+    puts ENV.inspect
+    unless ENV.include?('db') || !['mysql','sqlite'].include?( ENV['db'] )
+      raise "usage: rake db=<mysql|sqlite>" 
+    end
+    
+    puts "initilizing database.yml with #{ENV['db']}..."
     FileUtils.copy_file\
-      "#{RAILS_ROOT}/config/database.yml.example",
+      "#{RAILS_ROOT}/config/database.yml.#{ENV['db']}",
       "#{RAILS_ROOT}/config/database.yml"
       
     puts "initilizing site_keys.rb..."
@@ -27,7 +32,7 @@ namespace :init do
     puts "# /config/config.yml"
     puts File.read( "#{RAILS_ROOT}/config/config.yml" )
     
-    puts "Please press a key to continue"
+    puts "Please press enter to continue"
     $stdin.gets
   end
 end

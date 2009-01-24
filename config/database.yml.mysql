@@ -1,0 +1,21 @@
+## MYSQL  
+development:
+  adapter: mysql
+  encoding: utf8
+  database: euruko_development
+  username: root
+  password:
+
+test:
+  adapter: mysql
+  encoding: utf8
+  database: euruko_test
+  username: root
+  password: 
+
+production:
+  adapter: mysql
+  encoding: utf8
+  database: euruko
+  username: root
+  password:
