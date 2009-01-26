@@ -1,32 +1,37 @@
 TODOs
 ------------------
-
 * Títulos de páginas ( http://railscasts.com/episodes/30-pretty-page-title )
+
+## fguillen:
 * Comunicación PayPal cifrada
+* En perfil de usuarios sólo mostrar las charlas en las que participa si la charla es .visible?
+* Una charla en estado UNDER REVIEW no puede se modificada más que por un admin
+* Al modificar charla proteger campos room, fechas y demás.. sólo a administradores
+* Un usuario con carritos pagados no se debería poder eliminar
+* Tests exhaustivos de cart y carts controller
+* Cuando Admin accede al show de un Cart tiene que llevarle a una página especial.. o llamar a la accion de crear carrito new o edit o algo así
+
+## xuanxu:
 * Pantalla últimos comentarios
 * Pantalla últimos pagos
+
+## marze:
 * Cambios de estilo en listados de Papers para diferenciar: familias y estados
 * Diseño: Pantalla 404
 * Diseño: Pantalla 500
-* Control de textos: escapar html, linkar links, ...
 * Tabla de vista de calendario
-* En perfil de usuarios sólo mostrar las charlas en las que participa si la charla es .visible?
+
+## anybody:
+* Control de textos: escapar html, linkar links, ...
 * Modificar contraseña sólo si se introduce la actual correctamente
-* Una charla en estado UNDER REVIEW no puede se modificada más que por un admin
 * gem dependencies (http://railscasts.com/episodes/110-gem-dependencies) (mocha, faker, will-paginate )
 * buscadores avanzados de usuarios y charlas( railscasts 111 y 112 )
-* Al modificar charla proteger campos room, fechas y demás.. sólo a administradores
-* Sino seleccionas ningún evento en el carrito dá error 404 al confirmar
-* Un usuario con carritos pagados no se debería poder eliminar
-* Tests exhaustivos de cart y carts controller
-* Guardar el usuario que creó la charla para saber a quién preguntar en caso de dudas
 * Una charla se puede quedar sin speakers.. :?
-* Cuando Admin accede al show de un Cart tiene que llevarle a una página especial.. o llamar a la accion de crear carrito new o edit o algo así
-* Si estamos usando sqlite no se deberían ejecutar los test de foreign-keys
+
 
 WISHLIST
 ------------------
-
+* Si estamos usando sqlite no se deberían ejecutar los test de foreign-keys
 * Un usuario puede crear una charla y empezar a asignar speakers sin consentimiento :?
 * Autocomplete en añadir speaker
 * Añadir ponentes al crear charla via js
@@ -34,6 +39,7 @@ WISHLIST
 
 DONE
 ------------------
+* Guardar el usuario que creó la charla para saber a quién preguntar en caso de dudas
 * Autologin en activación de cuenta
 * Recuperar password, revisar el rest-authetication que lo tiene, sólo habrá que activarlo
 * Al cambiar de nombre todo.md a TODO.md e install.md a INSTALL.md en el repositorio se han quedado duplicados :?
