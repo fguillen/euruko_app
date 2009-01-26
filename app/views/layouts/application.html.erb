@@ -42,19 +42,30 @@
         <%= content_tag :div, msg, :id => name %>
       <% end %>
 
-      <div id="main" class="span-18">
-        <%= yield %>
+      <div id="main" class="span-16">
+        <div id="section">
+          <%= yield %>
+        </div>
       </div>
 
-      <div id="sidebar" class="span-6 last">
-        <%= render :partial => 'layouts/admin_menu' %>
+      <div id="sidebar" class="prepend-1 span-7 last">
+        <% if admin? %>
+          <div id="admin-menu">
+            <%= render :partial => 'layouts/admin_menu' %>
+          </div>
+        <% end %>
 
         <div id="sponsors"><p>Dude! sponsors here</p></div>
       </div>
 
       <div id="footer" class="span-24 last">
-        <%= render :partial => 'layouts/main_menu' %>
-        <%= render :partial => 'layouts/credits' %>
+        <div id="footer-menu">
+          <%= render :partial => 'layouts/main_menu' %>
+        </div>
+
+        <div id="credits">
+          <%= render :partial => 'layouts/credits' %>
+        </div>
       </div>
 
       <%= render :partial => 'layouts/analitycs' %>
