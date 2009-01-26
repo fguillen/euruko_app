@@ -12,6 +12,16 @@ class UserMailer < ActionMailer::Base
     @body[:url]  = "http://#{APP_CONFIG['site_url']}/"
   end
 
+  def forgotten_password(user)
+    setup_email(user)
+    @subject    += 'Forgotten password'
+  end
+
+  def reset_password(user)
+    setup_email(user)
+    @subject    += 'Your password has been changed'
+  end
+
   protected
     def setup_email(user)
       @recipients  = "#{user.email}"

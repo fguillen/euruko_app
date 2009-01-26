@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090115211446) do
+ActiveRecord::Schema.define(:version => 20090123211524) do
 
   create_table "attendees", :force => true do |t|
     t.integer  "user_id",    :null => false
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(:version => 20090115211446) do
   end
 
   add_index "attendees", ["user_id", "paper_id"], :name => "idx_unique_user_id_paper_id_on_attendees", :unique => true
+  add_index "attendees", ["paper_id"], :name => "fk_attendee_paper"
 
   create_table "carts", :force => true do |t|
     t.integer  "user_id",        :null => false
@@ -31,6 +32,8 @@ ActiveRecord::Schema.define(:version => 20090115211446) do
     t.datetime "updated_at"
   end
 
+  add_index "carts", ["user_id"], :name => "fk_cart_user"
+
   create_table "carts_events", :force => true do |t|
     t.integer  "cart_id"
     t.integer  "event_id"
@@ -39,6 +42,7 @@ ActiveRecord::Schema.define(:version => 20090115211446) do
   end
 
   add_index "carts_events", ["cart_id", "event_id"], :name => "idx_unique_cart_id_event_id_on_carts", :unique => true
+  add_index "carts_events", ["event_id"], :name => "fk_carts_events_event"
 
   create_table "comments", :force => true do |t|
     t.integer  "paper_id",   :null => false
@@ -47,6 +51,9 @@ ActiveRecord::Schema.define(:version => 20090115211446) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "comments", ["paper_id"], :name => "fk_comment_paper"
+  add_index "comments", ["user_id"], :name => "fk_comment_user"
 
   create_table "events", :force => true do |t|
     t.string   "name",                       :null => false
@@ -57,8 +64,8 @@ ActiveRecord::Schema.define(:version => 20090115211446) do
     t.datetime "updated_at"
   end
 
-  add_index "events", ["permalink"], :name => "idx_events_permalink_unique", :unique => true
   add_index "events", ["name"], :name => "idx_events_name", :unique => true
+  add_index "events", ["permalink"], :name => "idx_events_permalink_unique", :unique => true
 
   create_table "logged_exceptions", :force => true do |t|
     t.string   "exception_class"
@@ -85,6 +92,7 @@ ActiveRecord::Schema.define(:version => 20090115211446) do
   end
 
   add_index "papers", ["permalink"], :name => "idx_papers_permalink", :unique => true
+  add_index "papers", ["room_id"], :name => "fk_paper_room"
 
   create_table "resources", :force => true do |t|
     t.integer  "paper_id",                      :null => false
@@ -95,6 +103,9 @@ ActiveRecord::Schema.define(:version => 20090115211446) do
     t.datetime "updated_at"
   end
 
+  add_index "resources", ["paper_id"], :name => "fk_resource_paper"
+  add_index "resources", ["user_id"], :name => "fk_resource_user"
+
   create_table "rooms", :force => true do |t|
     t.string   "name",       :null => false
     t.string   "permalink"
@@ -103,8 +114,8 @@ ActiveRecord::Schema.define(:version => 20090115211446) do
     t.datetime "updated_at"
   end
 
-  add_index "rooms", ["permalink"], :name => "index_rooms_on_permalink", :unique => true
   add_index "rooms", ["name"], :name => "index_rooms_on_name", :unique => true
+  add_index "rooms", ["permalink"], :name => "index_rooms_on_permalink", :unique => true
 
   create_table "speakers", :force => true do |t|
     t.integer  "user_id"
@@ -114,6 +125,7 @@ ActiveRecord::Schema.define(:version => 20090115211446) do
   end
 
   add_index "speakers", ["user_id", "paper_id"], :name => "idx_unique_user_id_paper_id_on_speakers", :unique => true
+  add_index "speakers", ["paper_id"], :name => "fk_speaker_paper"
 
   create_table "users", :force => true do |t|
     t.string   "name",                                    :null => false
@@ -135,11 +147,12 @@ ActiveRecord::Schema.define(:version => 20090115211446) do
     t.boolean  "public_profile",                          :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "password_reset_code",       :limit => 40
   end
 
-  add_index "users", ["permalink"], :name => "index_users_on_permalink", :unique => true
-  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true
+  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["permalink"], :name => "index_users_on_permalink", :unique => true
 
   create_table "votes", :force => true do |t|
     t.integer  "user_id",    :null => false
@@ -150,5 +163,28 @@ ActiveRecord::Schema.define(:version => 20090115211446) do
   end
 
   add_index "votes", ["user_id", "paper_id"], :name => "idx_unique_user_id_paper_id_on_votes", :unique => true
+  add_index "votes", ["paper_id"], :name => "fk_vote_paper"
+
+  add_foreign_key "attendees", ["user_id"], "users", ["id"], :name => "fk_attendee_user"
+  add_foreign_key "attendees", ["paper_id"], "papers", ["id"], :name => "fk_attendee_paper"
+
+  add_foreign_key "carts", ["user_id"], "users", ["id"], :name => "fk_cart_user"
+
+  add_foreign_key "carts_events", ["event_id"], "events", ["id"], :name => "fk_carts_events_event"
+  add_foreign_key "carts_events", ["cart_id"], "carts", ["id"], :name => "fk_carts_events_cart"
+
+  add_foreign_key "comments", ["user_id"], "users", ["id"], :name => "fk_comment_user"
+  add_foreign_key "comments", ["paper_id"], "papers", ["id"], :name => "fk_comment_paper"
+
+  add_foreign_key "papers", ["room_id"], "rooms", ["id"], :name => "fk_paper_room"
+
+  add_foreign_key "resources", ["user_id"], "users", ["id"], :name => "fk_resource_user"
+  add_foreign_key "resources", ["paper_id"], "papers", ["id"], :name => "fk_resource_paper"
+
+  add_foreign_key "speakers", ["user_id"], "users", ["id"], :name => "fk_speaker_user"
+  add_foreign_key "speakers", ["paper_id"], "papers", ["id"], :name => "fk_speaker_paper"
+
+  add_foreign_key "votes", ["user_id"], "users", ["id"], :name => "fk_vote_user"
+  add_foreign_key "votes", ["paper_id"], "papers", ["id"], :name => "fk_vote_paper"
 
 end

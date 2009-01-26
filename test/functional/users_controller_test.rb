@@ -218,4 +218,81 @@ class UsersControllerTest < ActionController::TestCase
     
     assert( sent.subject =~ /\[EuRuKo_test\]/ )
   end
+  
+  def test_autologin_after_successful_signup
+    @user = users(:user_not_actived)
+    assert( !@user.active? )
+    get :activate, :activation_code => @user.activation_code
+    assert @user.reload.active?
+    assert_equal @user, assigns['current_user']
+    assert_redirected_to '/'
+  end
+  
+  def test_forgot_password_shows_email_form
+    get :forgot_password
+    assert_response :success
+    assert_select "form[action=#{forgot_password_path}]"
+    assert_select "input[name=email]"
+  end
+  
+  def test_forgot_password_sends_email_with_reset_link_to_valid_emails
+    UserMailer.expects(:deliver_forgotten_password).once
+    @user = users(:user1)
+    post :forgot_password, :email => @user.email
+    assert_redirected_to login_path
+  end
+  
+  def test_forgotten_password_not_sent_invalid_emails_and_shows_form_again
+    UserMailer.expects(:deliver_forgotten_password).never
+    post :forgot_password, :email => 'bad@email.com'
+    assert_select "form[action=#{forgot_password_path}]"
+    assert_select "input[name=email]"
+  end
+
+  def test_reset_password_with_invalid_code
+    get :reset_password, :id => 'bad_code'
+    assert_template 'invalid_code'
+  end
+
+  def test_reset_password_with_valid_code_shows_password_form
+    @user = users(:user1)
+    @user.forgot_password
+    get :reset_password, :id => @user.password_reset_code
+    assert_equal @user.id, assigns(:user).id
+    assert_select "form[action=#{reset_password_path}]"
+    assert_select "input[name=password]"
+    assert_select "input[name=password_confirmation]"
+  end
+  
+  def test_reset_password_with_valid_password_and_confirmation
+    @user = users(:user1)
+    old_pwd = @user.crypted_password
+    @user.forgot_password
+    post :reset_password, :id => @user.password_reset_code, :password => 'new password', :password_confirmation => 'new password'
+    assert old_pwd != @user.reload.crypted_password
+    assert_redirected_to login_path
+  end
+  
+  def test_reset_password_with_invalid_password_shows_form_and_error
+    @user = users(:user1)
+    old_pwd = @user.crypted_password
+    @user.forgot_password
+    post :reset_password, :id => @user.password_reset_code, :password => 'abc', :password_confirmation => 'abc'
+    assert_response :success
+    assert_select "form[action=#{reset_password_path}]"
+    assert_select "input[name=password]"
+    assert_select "input[name=password_confirmation]"
+  end
+  
+  def test_reset_password_with_invalid_confirmation_shows_form_and_error
+    @user = users(:user1)
+    old_pwd = @user.crypted_password
+    @user.forgot_password
+    post :reset_password, :id => @user.password_reset_code, :password => 'new password', :password_confirmation => 'different password'
+    assert_response :success
+    assert_select "form[action=#{reset_password_path}]"
+    assert_select "input[name=password]"
+    assert_select "input[name=password_confirmation]"
+  end
+  
 end
