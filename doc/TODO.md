@@ -19,11 +19,12 @@ TODOs
 * Autologin en activación de cuenta
 * Recuperar password, revisar el rest-authetication que lo tiene, sólo habrá que activarlo
 * Un usuario con carritos pagados no se debería poder eliminar
-* Tests exhaustivos de cart y carts controller
+* Tests exhaustivos de cart y carts controller (80%)
 * Guardar el usuario que creó la charla para saber a quién preguntar en caso de dudas
 * Una charla se puede quedar sin speakers.. :?
 * Cuando Admin accede al show de un Cart tiene que llevarle a una página especial.. o llamar a la accion de crear carrito new o edit o algo así
 * Si estamos usando sqlite no se deberían ejecutar los test de foreign-keys
+* Añadir Foto (una y sólo una) a Paper
 
 WISHLIST
 ------------------

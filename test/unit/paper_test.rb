@@ -37,7 +37,8 @@ class PaperTest < ActiveSupport::TestCase
         :title        => "Paper Title",
         :description  => "Paper description",
         :family       => Paper::FAMILY[:TUTORIAL],
-        :minutes      => 0
+        :minutes      => 0,
+        :creator      => users(:user1)
       )
     end
   end
@@ -48,7 +49,8 @@ class PaperTest < ActiveSupport::TestCase
         :title        => "Paper Title",
         :description  => "Paper description",
         :family       => Paper::FAMILY[:TUTORIAL],
-        :minutes      => 0
+        :minutes      => 0,
+        :creator      => users(:user1)
       )
       
     assert( @paper.valid? )
@@ -103,13 +105,15 @@ class PaperTest < ActiveSupport::TestCase
     assert( paper.errors.on(:title) )
     assert( paper.errors.on(:description) )
     assert( paper.errors.on(:family) )
+    assert( paper.errors.on(:creator) )
     
     paper = 
       Paper.new(
         :title        => @paper.title + "some more",
         :description  => @paper.description,
         :family       => @paper.family,
-        :minutes      => @paper.minutes
+        :minutes      => @paper.minutes,
+        :creator      => users(:user1)
       )
     assert( paper.valid? )
   end
@@ -130,7 +134,8 @@ class PaperTest < ActiveSupport::TestCase
         :description  => "Paper description",
         :family       => Paper::FAMILY[:TUTORIAL],
         :status       => Paper::STATUS[:PROPOSED],
-        :minutes      => 0
+        :minutes      => 0,
+        :creator      => users(:user1)
       )
     
     assert_nil( @paper.date )
@@ -168,12 +173,13 @@ class PaperTest < ActiveSupport::TestCase
     num = Paper.find_all_by_status( Paper::STATUS[:PROPOSED] ).size
     
     @paper = 
-      Paper.create!(
+      Paper.create(
         :title        => "Paper Title",
         :description  => "Paper description",
         :family       => Paper::FAMILY[:TUTORIAL],
         :status       => Paper::STATUS[:PROPOSED],
-        :minutes      => 0
+        :minutes      => 0,
+        :creator      => users(:user1)
       )
     
     assert_equal( num + 1, Paper.find_all_by_status( Paper::STATUS[:PROPOSED] ).size )
@@ -249,10 +255,30 @@ class PaperTest < ActiveSupport::TestCase
       Paper.new(
         :title => Faker::Lorem.sentence, 
         :description => Faker::Lorem.paragraph, 
-        :family => Paper.first.family
+        :family => Paper.first.family,
+        :creator => users(:user1)
       )
     SystemMailer.expects(:deliver_paper).with(APP_CONFIG['email_paper_recipients'], paper)
     paper.save!
+  end
+  
+  def test_on_mass_assignament_not_update_protected_attributes
+    @paper = papers(:paper1)
+    
+    assert_not_equal( users(:user2).id, @paper.creator.id )
+    assert_not_equal( Paper::STATUS[:DECLINED], @paper.status )
+    assert_not_equal( 'other text', @paper.description )
+
+    @paper.update_attributes( 
+      :creator_id   => users(:user2).id,
+      :status       => Paper::STATUS[:DECLINED],
+      :description  => 'other text'
+    )
+    @paper.reload
+
+    assert_not_equal( users(:user2).id, @paper.creator.id )
+    assert_not_equal( Paper::STATUS[:DECLINED], @paper.status )
+    assert_equal( 'other text', @paper.description )
   end
   
 end

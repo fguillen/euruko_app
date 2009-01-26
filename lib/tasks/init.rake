@@ -1,11 +1,11 @@
 namespace :init do
 
   desc "Initialize all the basic stuff"
-  task :all => [ 'init:config_files', 'environment', 'init:drop_databases', 'db:create:all', 'db:migrate', 'db:test:clone', 'test', 'populate:all'] do
+  task :all => [ 'init:config_files', 'environment', 'init:drop_dbs', 'db:create:all', 'db:migrate', 'db:test:clone', 'test', 'populate:all'] do
   end
   
   desc "drop all databases if exists"
-  task :drop_databases => [:environment] do
+  task :drop_dbs => [:environment] do
     puts "Drop databases"
     Rake::Task['db:drop:all'].execute rescue nil
   end
@@ -34,5 +34,39 @@ namespace :init do
     
     puts "Please press enter to continue"
     $stdin.gets
+  end
+  
+  desc "Reset databases to actual migrate state"
+  task :reset_dbs => [:environment] do
+    # raise RAILS_ENV
+    
+    # puts "Drop databases"
+    # Rake::Task['db:drop:all'].execute rescue nil
+    # 
+    # puts "Create databases"
+    # Rake::Task['db:create:all'].execute
+    
+    puts "Run migrations"
+    Rake::Task['db:migrate'].execute
+    
+    puts "Undo migrations to VERSION=0"
+    ENV['VERSION']='0'
+    Rake::Task['db:migrate'].execute
+    
+    puts "Re-Run migrations"
+    Rake::Task['db:migrate'].execute
+      
+    puts "Clone test db"
+    Rake::Task['db:test:clone'].execute
+  end
+  
+  desc "Run migrations"
+  task :run_migrations => [:environment] do
+    puts "Create databases"
+    Rake::Task['db:create:all'].execute
+
+    puts "ejecutando migraciones"
+    RAILS_ENV='development'
+    Rake::Task['db:migrate'].execute
   end
 end
