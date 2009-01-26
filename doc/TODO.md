@@ -16,7 +16,6 @@ TODOs
 * gem dependencies (http://railscasts.com/episodes/110-gem-dependencies) (mocha, faker, will-paginate )
 * buscadores avanzados de usuarios y charlas( railscasts 111 y 112 )
 * Al modificar charla proteger campos room, fechas y demás.. sólo a administradores
-* Autologin en activación de cuenta
 * Sino seleccionas ningún evento en el carrito dá error 404 al confirmar
 * Un usuario con carritos pagados no se debería poder eliminar
 * Tests exhaustivos de cart y carts controller
@@ -35,6 +34,7 @@ WISHLIST
 
 DONE
 ------------------
+* Autologin en activación de cuenta
 * Recuperar password, revisar el rest-authetication que lo tiene, sólo habrá que activarlo
 * Al cambiar de nombre todo.md a TODO.md e install.md a INSTALL.md en el repositorio se han quedado duplicados :?
 * Sino seleccionas ningún evento en el carrito dá error 404 al confirmar

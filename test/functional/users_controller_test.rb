@@ -219,6 +219,15 @@ class UsersControllerTest < ActionController::TestCase
     assert( sent.subject =~ /\[EuRuKo_test\]/ )
   end
   
+  def test_autologin_after_successful_signup
+    @user = users(:user_not_actived)
+    assert( !@user.active? )
+    get :activate, :activation_code => @user.activation_code
+    assert @user.reload.active?
+    assert_equal @user, assigns['current_user']
+    assert_redirected_to '/'
+  end
+  
   def test_forgot_password_shows_email_form
     get :forgot_password
     assert_response :success
