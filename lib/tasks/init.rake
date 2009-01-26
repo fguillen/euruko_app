@@ -1,20 +1,18 @@
 namespace :init do
 
   desc "Initialize all the basic stuff"
-  task :all => [ 'init:config_files', 'environment', 'init:drop_dbs', 'db:create:all', 'db:migrate', 'db:test:clone', 'test', 'populate:all'] do
-  end
-  
-  desc "drop all databases if exists"
-  task :drop_dbs => [:environment] do
-    puts "Drop databases"
-    Rake::Task['db:drop:all'].execute rescue nil
-  end
+  task :all => [ 
+    'init:config_files', 
+    'environment', 
+    'init:reset_dbs',
+    'test', 
+    'populate:all'
+  ]
   
   
   desc "Initilizing config files"
   task :config_files do
-    puts ENV.inspect
-    unless ENV.include?('db') || !['mysql','sqlite'].include?( ENV['db'] )
+    if !ENV.include?('db') || !['mysql','sqlite'].include?( ENV['db'] )
       raise "usage: rake db=<mysql|sqlite>" 
     end
     
@@ -38,15 +36,15 @@ namespace :init do
   
   desc "Reset databases to actual migrate state"
   task :reset_dbs => [:environment] do
-    # raise RAILS_ENV
+    puts "Drop databases"
+    Rake::Task['db:drop:all'].execute rescue nil
     
-    # puts "Drop databases"
-    # Rake::Task['db:drop:all'].execute rescue nil
-    # 
-    # puts "Create databases"
-    # Rake::Task['db:create:all'].execute
+    puts "Create databases"
+    Rake::Task['db:create:all'].execute
     
     puts "Run migrations"
+    config = ActiveRecord::Base.configurations[RAILS_ENV]
+    ActiveRecord::Base.establish_connection(config)
     Rake::Task['db:migrate'].execute
     
     puts "Undo migrations to VERSION=0"
@@ -61,12 +59,21 @@ namespace :init do
   end
   
   desc "Run migrations"
-  task :run_migrations => [:environment] do
-    puts "Create databases"
+  task :run_migrations2 => [:environment] do
     Rake::Task['db:create:all'].execute
-
-    puts "ejecutando migraciones"
-    RAILS_ENV='development'
+    
+    config = ActiveRecord::Base.configurations[RAILS_ENV]
+    ActiveRecord::Base.establish_connection(config)
+    ActiveRecord::Base.connection
+    
+    Rake::Task['db:migrate'].execute
+  end
+  
+  desc "Run migrations"
+  task :run_migrations => [:environment] do
+    entries_before = ENV.entries
+    Rake::Task['db:create:all'].execute
+    entries_before.each {|en| ENV[en.first]=en.last}
     Rake::Task['db:migrate'].execute
   end
 end
