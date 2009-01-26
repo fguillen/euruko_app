@@ -33,6 +33,8 @@ class CartsController < ApplicationController
     @cart = current_cart
   end
   
+  
+  
   # this is the IPN paypal action call
   def notificate
     logger.info( "XXX: on notificate" )
@@ -59,7 +61,7 @@ class CartsController < ApplicationController
     @cart = current_user.carts.find( params[:invoice] )
     record_not_found and return  if @cart.nil?
     
-    if @cart.status == "Completed"
+    if @cart.status == Cart::STATUS[:COMPLETED]
       flash[:notice] = 'Payment was successfully.'
     else
       flash[:error] = 'Some error on payment!'

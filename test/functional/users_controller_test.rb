@@ -153,10 +153,10 @@ class UsersControllerTest < ActionController::TestCase
     assert_response 404
   end
   
-  def test_on_update_when_logge_but_not_the_user_and_admin_should_update
+  def test_on_update_when_logged_but_not_the_user_and_admin_should_update
     @user = users(:user1)
     login_as users(:user_admin)
-    
+        
     put(
       :update, 
       :id => @user.id, 

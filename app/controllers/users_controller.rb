@@ -78,7 +78,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.update_attributes(params[:user])
         
-        if admin?
+        if admin? && !params[:user][:role].nil?
           @user.role = params[:user][:role]
           @user.save!
         end
@@ -121,7 +121,7 @@ class UsersController < ApplicationController
   
   private
     def load_user
-      @user = User.find_by_id!(params[:id])
+      @user = User.find(params[:id])
     end
     
     def should_be_current_user_or_admin

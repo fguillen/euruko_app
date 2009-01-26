@@ -24,6 +24,7 @@ class AttendeesControllerTest < ActionController::TestCase
     assert_not_nil( flash[:notice] )
     assert_redirected_to paper_path(@paper)
   end
+  
 
   def test_on_create_with_not_logged_should_redirect_to_new_session
     assert_difference('Attendee.count', 0) do
@@ -77,4 +78,47 @@ class AttendeesControllerTest < ActionController::TestCase
     assert( @user.attendees.collect{|a| a.paper}.include?( @paper ) )    
     assert_response 404
   end
+  
+  def test_on_create_with_js_format_should_render_partial
+    login_as users(:user2)
+    
+    post(
+      :create, 
+      :paper_id => papers(:paper2).id,
+      :format   => 'js'
+    )
+
+    assert_template 'papers/_attendees.html.erb'
+  end
+
+  def test_on_create_with_js_format_with_error_should_response_not_success_and_not_set_flash
+    login_as users(:user1)
+    
+    post(
+      :create, 
+      :paper_id => papers(:paper1).id,
+      :format   => 'js'
+    )
+
+    assert_response :unprocessable_entity
+    assert_nil( flash[:error] )
+    assert_nil( flash[:notice] )
+  end
+
+  def test_on_destroy_with_js_format_should_render_partial_and_not_set_flash
+    login_as users(:user1)
+
+    post(
+      :destroy, 
+      :paper_id => papers(:paper1).id,
+      :id => attendees(:user1_go_paper1).id,
+      :format   => 'js'
+    )
+    
+    assert_response :success
+    assert_template 'papers/_attendees'
+    assert_nil( flash[:error] )
+    assert_nil( flash[:notice] )
+  end
+
 end

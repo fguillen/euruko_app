@@ -3,10 +3,6 @@ TODOs
 
 * Títulos de páginas ( http://railscasts.com/episodes/30-pretty-page-title )
 * Comunicación PayPal cifrada
-* Posible modelo ShoppingCart
-* Ajax en comentario
-* Ajax en voy/no voy
-* Ajax en puntuación
 * Pantalla últimos comentarios
 * Pantalla últimos pagos
 * Cambios de estilo en listados de Papers para diferenciar: familias y estados
@@ -27,6 +23,7 @@ TODOs
 * Guardar el usuario que creó la charla para saber a quién preguntar en caso de dudas
 * Una charla se puede quedar sin speakers.. :?
 * Cuando Admin accede al show de un Cart tiene que llevarle a una página especial.. o llamar a la accion de crear carrito new o edit o algo así
+* Si estamos usando sqlite no se deberían ejecutar los test de foreign-keys
 
 WISHLIST
 ------------------
@@ -34,11 +31,17 @@ WISHLIST
 * Un usuario puede crear una charla y empezar a asignar speakers sin consentimiento :?
 * Autocomplete en añadir speaker
 * Añadir ponentes al crear charla via js
+* Notificaciones a twitter de nuevos registros y nueva paper presentada
 
 DONE
 ------------------
 * Recuperar password, revisar el rest-authetication que lo tiene, sólo habrá que activarlo
 * Al cambiar de nombre todo.md a TODO.md e install.md a INSTALL.md en el repositorio se han quedado duplicados :?
+* Sino seleccionas ningún evento en el carrito dá error 404 al confirmar
+* Posible modelo ShoppingCart
+* Ajax en comentario
+* Ajax en voy/no voy
+* Ajax en puntuación
 * Al añadir ponente a charla no deben aparecer los que ya están
 * Al añadir ponente a charla hay que filtrar por públicos
 * Al añadir ponente a charla el listado de salir ordenado alfabéticamente

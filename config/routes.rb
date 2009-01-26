@@ -30,13 +30,12 @@ ActionController::Routing::Routes.draw do |map|
   end
   map.resources :papers, :member => { :update_status => :put }
 
-  map.resource :calendar
-
-  map.resource :cart, :member => { :confirm => :post, :complete => :get, :notificate => :post }
-
-  map.resource :session
-  map.resources :rooms  
+  map.resources :rooms
   map.resources :events
+
+  map.resource :calendar
+  map.resource :cart, :as => 'pay', :member => { :confirm => :post, :complete => :get, :notificate => :post }
+  map.resource :session
 
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'

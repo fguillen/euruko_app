@@ -154,10 +154,10 @@ formatted_update_status_paper PUT    /papers/:id/update_status.:format          
           formatted_edit_cart GET    /cart/edit.:format                           {:controller=>"carts", :action=>"edit"}
                 complete_cart GET    /cart/complete                               {:controller=>"carts", :action=>"complete"}
       formatted_complete_cart GET    /cart/complete.:format                       {:controller=>"carts", :action=>"complete"}
-                 confirm_cart POST   /cart/confirm                                {:controller=>"carts", :action=>"confirm"}
-       formatted_confirm_cart POST   /cart/confirm.:format                        {:controller=>"carts", :action=>"confirm"}
               notificate_cart POST   /cart/notificate                             {:controller=>"carts", :action=>"notificate"}
     formatted_notificate_cart POST   /cart/notificate.:format                     {:controller=>"carts", :action=>"notificate"}
+                 confirm_cart POST   /cart/confirm                                {:controller=>"carts", :action=>"confirm"}
+       formatted_confirm_cart POST   /cart/confirm.:format                        {:controller=>"carts", :action=>"confirm"}
                               GET    /cart                                        {:controller=>"carts", :action=>"show"}
                               GET    /cart.:format                                {:controller=>"carts", :action=>"show"}
                               PUT    /cart                                        {:controller=>"carts", :action=>"update"}

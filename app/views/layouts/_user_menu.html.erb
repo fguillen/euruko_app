@@ -1,17 +1,10 @@
 <ul>
 <% if logged_in? %>
-  <li><%= link_to 'Tu perfil', user_path(current_user) %></li>
-  <li><%= link_to 'Pay!', cart_path %></li>
-  <li><%= link_to 'Submit talk', new_paper_path %></li>
-  <% if admin? %>
-  <li><%= link_to 'User Searcher', users_path %></li>
-  <li><%= link_to 'Configure Calendar', calendar_path %></li>
-  <li><%= link_to 'Rooms', rooms_path %></li>
-  <li><%= link_to 'Exceptions', :controller => 'logged_exceptions' %></li>
-  <% end %>
-  <li><%= link_to 'Logout', logout_path %></li>
+  <li><%= menu_to 'Perfil', user_path(current_user) %></li>
+  <li><%= menu_to 'Pay!', cart_path, :class => "highlight" %></li>
+  <li><%= menu_to 'Logout', logout_path %></li>
 <% else %>
-  <li><%= link_to 'Register!', new_user_path %></li>
-  <li><%= link_to 'Login', new_session_path %></li>
+  <li><%= menu_to 'Register!', new_user_path, :class => "highlight" %></li>
+  <li><%= menu_to 'Login', new_session_path %></li>
 <% end %>
 </ul>

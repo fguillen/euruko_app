@@ -7,8 +7,16 @@ class Cart < ActiveRecord::Base
   serialize :paypal_params
   
   validates_presence_of :user_id
+  validates_presence_of :status
   
-  attr_protected :params, :status, :transaction_id, :purchased_at
+  attr_protected :params, :status, :transaction_id, :purchased_at, :user_id
+  
+  before_validation_on_create :initialize_status
+  
+  STATUS = {
+    :ON_SESSION       => 'On Session',
+    :COMPLETED        => 'Completed'
+  }
   
   named_scope :purchased, :conditions => [ 'purchased_at is not null' ]
   
@@ -38,8 +46,8 @@ class Cart < ActiveRecord::Base
     self.events.sum(:price_cents)
   end
   
-  def self.retrieve_pending_or_new( user_id )
-    @cart = Cart.find( :first, :conditions => ["user_id = ? and purchased_at is null", user_id] )
+  def self.retrieve_on_sesion_or_new( user_id )
+    @cart = Cart.find( :first, :conditions => ["user_id = ? and status = ?", user_id, STATUS[:ON_SESSION]] )
     
     if @cart.nil?
       @cart = User.find( user_id ).carts.create!()
@@ -52,4 +60,8 @@ class Cart < ActiveRecord::Base
     return !self.purchased_at.nil?
   end
   
+  private
+    def initialize_status
+      self.status ||= STATUS[:ON_SESSION]
+    end
 end

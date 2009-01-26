@@ -18,37 +18,57 @@
     <link rel="stylesheet" href="http://ui.jquery.com/latest/themes/flora/flora.datepicker.css" type="text/css" media="screen" title="Flora (Default)">
     <script src="http://ui.jquery.com/latest/ui/ui.datepicker.js"></script>
     <!-- datepicker -->
-
   </head>
 
   <body>
-    <div id="euruko" class="canvas"> <!-- showgrid -->
-      <div id="header" class="span-24 last">
-        <h1>Euruko 2009</h1>
-        <%= render :partial => 'layouts/menu' %>
-      </div>
-
-      <div id="main" class="span-18">
-        <% flash.each do |name, msg| %>
-          <%= content_tag :div, msg, :id => name %>
-        <% end %>
-
-        <%= yield %>
-      </div>
-
-      <div id="sidebar" class="span-6 last">
-        <%= render :partial => 'layouts/user_menu' %>
-        <div id="sponsors">
-          <p>Dude! sponsors here</p>
+    <div id="header">
+      <div class="content">
+        <div id="logo" class="span-5">
+          <h1><%= link_to_unless_current 'Euruko 2009', root_path %></h1>
         </div>
-      </div>
 
-      <div id="footer" class="span-24 last">
-        <%= render :partial => 'layouts/menu' %>
-        <%= render :partial => 'layouts/credits' %>
+        <div id="main-menu" class="span-13">
+          <%= render :partial => 'layouts/main_menu' %>
+        </div>
+
+        <div id="user-menu" class="span-6 last">
+          <%= render :partial => 'layouts/user_menu' %>
+        </div>
       </div>
     </div>
 
-    <%= render :partial => 'layouts/analitycs' %>
+    <div class="content">
+      <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, :id => name %>
+      <% end %>
+
+      <div id="main" class="span-16">
+        <div id="section">
+          <%= yield %>
+        </div>
+      </div>
+
+      <div id="sidebar" class="prepend-1 span-7 last">
+        <% if admin? %>
+          <div id="admin-menu">
+            <%= render :partial => 'layouts/admin_menu' %>
+          </div>
+        <% end %>
+
+        <div id="sponsors"><p>Dude! sponsors here</p></div>
+      </div>
+
+      <div id="footer" class="span-24 last">
+        <div id="footer-menu">
+          <%= render :partial => 'layouts/main_menu' %>
+        </div>
+
+        <div id="credits">
+          <%= render :partial => 'layouts/credits' %>
+        </div>
+      </div>
+
+      <%= render :partial => 'layouts/analitycs' %>
+    </div>
   </body>
 </html>

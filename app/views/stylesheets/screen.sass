@@ -3,24 +3,100 @@
 @import grid.sass
 @import forms.sass
 
-#header
-  margin-bottom: 1.5em
+body
+  background: #EFEFEF
 
-  .menu
-    font-size: 1.25em
-    line-height: 1.2
+.highlight
+  color: #B50202
+.highlight:hover
+  color: #F00
+
+#header
+  background: #FFF
+  border-bottom: 2px solid #DDD
+  height: 50px
+  padding-top: 0.75em
+  margin-bottom: 1.5em
+  font-size: 0.95em
+  ul
+    margin-top: 0.5em
+    font-weight: bold
+    color: #000
+  li
+    display: inline
+    margin-right: 15px
+  span
+    font-size: 1.2em
+    font-weight: bold
+  #logo
+    text-align: left
+  #main-menu
+    text-align: center
+  #user-menu
+    text-align: right
+  .content
+    padding-top: 0.5em
+
+#alert, #error, #notice
+  font-weight: bold
+  padding: 0.5em 1em 0.5em 1em
+  margin-bottom: 0.5em
+  -webkit-border-radius: 5px
+  -moz-border-radius: 5px
+
+#notice
+  background: #96E474
+  color: #172412
+
+#alert
+  background: #F0E37C
+  color: #413000
+
+#error
+  background: #DB2225
+  color: #FFF
+
+#main
+  background: #FFF
+  -webkit-border-radius: 5px
+  -moz-border-radius: 5px
+  #section
+    padding: 2em 2.5em 1.5em 2em
+
+#main, #sidebar
+  margin-top: 1em
+
+
+#sidebar
+
+  #admin-menu
+    margin-bottom: 1.5em
+    background: #000
+    color: #FFF
+    padding: 1em
+    -webkit-border-radius: 5px
+    -moz-border-radius: 5px
+    ul
+      margin-bottom: 0
+    a
+      color: #CCC
+    a:hover
+      color: #FFF
 
 #footer
-  margin-top: 1.5em
+  margin: 1.5em 0 3em 0
+
+  #footer-menu
+  ul
+    margin: 0
+    font-weight: bold
+    color: #000
+  li
+    display: inline
+    margin-right: 5px
 
 #credits
   font-size: 0.916667em
   line-height: 1.636364em
   margin-top: 0.75em
-
-.menu
-  ul
-    margin: 0
-  li
-    display: inline
-    margin-right: 15px
+  color: #111
