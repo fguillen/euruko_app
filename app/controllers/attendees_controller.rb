@@ -9,13 +9,17 @@ class AttendeesController < ApplicationController
 
     respond_to do |format|
       if @attendee.save
-        flash[:notice] = 'Attendee was successfully created.'
-        format.html { redirect_to paper_path(@paper) }
+        format.html do 
+          flash[:notice] = 'Attendee was successfully created.'
+          redirect_to paper_path(@paper)
+        end
         format.xml  { render :xml => @attendee, :status => :created, :location => @attendee }
         format.js   { render :partial => 'papers/attendees' }
       else
-        flash[:notice] = 'Error trying to delete Attendee.'
-        format.html { redirect_to paper_path(@paper) }
+        format.html do
+          flash[:notice] = 'Error trying to delete Attendee.'
+          redirect_to paper_path(@paper)
+        end
         format.xml  { render :xml => @attendee.errors, :status => :unprocessable_entity }
         format.js   { render :text => 'Some error ocurred', :status => :unprocessable_entity }
       end
@@ -29,8 +33,10 @@ class AttendeesController < ApplicationController
     @attendee.destroy
 
     respond_to do |format|
-      flash[:notice] = 'Attendee correctly deleted.'
-      format.html { redirect_to paper_path(@paper) }
+      format.html do
+        flash[:notice] = 'Attendee correctly deleted.'
+        redirect_to paper_path(@paper)
+      end
       format.xml  { head :ok }
       format.js   { render :partial => 'papers/attendees' }
     end

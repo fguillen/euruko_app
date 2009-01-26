@@ -91,7 +91,7 @@ class AttendeesControllerTest < ActionController::TestCase
     assert_template 'papers/_attendees.html.erb'
   end
 
-  def test_on_create_with_js_format_with_error_should_response_not_success
+  def test_on_create_with_js_format_with_error_should_response_not_success_and_not_set_flash
     login_as users(:user1)
     
     post(
@@ -101,9 +101,11 @@ class AttendeesControllerTest < ActionController::TestCase
     )
 
     assert_response :unprocessable_entity
+    assert_nil( flash[:error] )
+    assert_nil( flash[:notice] )
   end
 
-  def test_on_destroy_with_js_format_should_render_partial
+  def test_on_destroy_with_js_format_should_render_partial_and_not_set_flash
     login_as users(:user1)
 
     post(
@@ -114,7 +116,9 @@ class AttendeesControllerTest < ActionController::TestCase
     )
     
     assert_response :success
-    assert_template 'papers/_attendees.html.erb'
+    assert_template 'papers/_attendees'
+    assert_nil( flash[:error] )
+    assert_nil( flash[:notice] )
   end
 
 end

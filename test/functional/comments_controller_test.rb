@@ -68,4 +68,31 @@ class CommentsControllerTest < ActionController::TestCase
     assert_response :unprocessable_entity
     assert_template 'papers/_comment_error'
   end
+  
+  def test_on_create_with_format_js_should_not_set_flash
+    login_as users(:user1)
+
+    post(
+      :create, 
+      :paper_id => papers(:paper2).id,
+      :comment => { :text => 'text' },
+      :format => 'js'
+    )
+
+    assert_response :success
+    assert_nil( flash[:error] )
+    assert_nil( flash[:notice] )
+
+    
+    post(
+      :create, 
+      :paper_id => papers(:paper2).id,
+      :comment => { :text => '' },
+      :format => 'js'
+    )
+
+    assert_response :unprocessable_entity
+    assert_nil( flash[:error] )
+    assert_nil( flash[:notice] )
+  end
 end

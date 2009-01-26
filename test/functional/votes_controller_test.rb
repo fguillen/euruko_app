@@ -49,7 +49,7 @@ class VotesControllerTest < ActionController::TestCase
   end
   
 
-  def test_on_create_with_js_should_render_partial
+  def test_on_create_with_js_should_render_partial_and_not_set_flash
     login_as users(:user1)
 
     assert_difference('Vote.count') do
@@ -61,6 +61,9 @@ class VotesControllerTest < ActionController::TestCase
       )
     end
     
+    assert_nil( flash[:error] )
+    assert_nil( flash[:notice] )
+
     assert_response :success
     assert_template 'papers/_valorations.html.erb'
   end

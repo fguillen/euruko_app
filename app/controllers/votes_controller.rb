@@ -15,13 +15,17 @@ class VotesController < ApplicationController
     
     respond_to do |format|
       if @vote.save
-        flash[:notice] = 'Vote was successfully sended.'
-        format.html { redirect_to( @paper ) }
+        format.html do
+          flash[:notice] = 'Vote was successfully sended.'
+          redirect_to( @paper ) 
+        end
         format.xml  { render :xml => @vote, :status => :created, :location => @vote }
         format.js   { render :partial => 'papers/valorations' }
       else
-        flash[:error] = "Error trying to vote the paper: #{@vote.errors.full_messages}."
-        format.html { redirect_to( @paper ) }
+        format.html do
+          flash[:error] = "Error trying to vote the paper: #{@vote.errors.full_messages}."
+          redirect_to( @paper )
+        end
         format.xml  { render :xml => @vote.errors, :status => :unprocessable_entity }
         format.js   { render :text => 'On error ocurred!' }
       end
