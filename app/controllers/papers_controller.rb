@@ -50,8 +50,9 @@ class PapersController < ApplicationController
   # POST /papers
   # POST /papers.xml
   def create
-    @paper = Paper.new( params[:paper] )
-    @paper.family = Paper::FAMILY[:SESSION]  if @paper.family.nil?
+    @paper            = Paper.new( params[:paper] )
+    @paper.family     = Paper::FAMILY[:SESSION]  if @paper.family.nil?
+    @paper.creator_id = current_user.id
 
     respond_to do |format|
       if @paper.save
@@ -111,4 +112,5 @@ class PapersController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
 end

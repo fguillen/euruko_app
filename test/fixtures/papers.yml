@@ -15,6 +15,7 @@ paper1:
   date: <%= Time.now.to_s(:db) %>
   minutes: 1
   room: room1
+  creator: user1
 
 paper2:
   title: Paper 2
@@ -25,6 +26,7 @@ paper2:
   date: <%= Time.now.to_s(:db) %>
   minutes: 1
   room: room1
+  creator: user1
   
 paper3:
   title: Paper 3
@@ -35,3 +37,4 @@ paper3:
   date: <%= Time.now.to_s(:db) %>
   minutes: 1
   room: room1
+  creator: user1

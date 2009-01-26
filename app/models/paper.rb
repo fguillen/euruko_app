@@ -15,12 +15,15 @@ class Paper < ActiveRecord::Base
 
   
   belongs_to :room
+  belongs_to :creator, :class_name => 'User'
   
   validates_presence_of :title
   validates_uniqueness_of :title
   validates_presence_of :description
   validates_presence_of :family
   validates_numericality_of :minutes
+  validates_associated :creator
+  validates_presence_of :creator
   
   # TODO: hacer que esto funcione
   # validates_inclusion_of :status, :in => Paper::STATUS.values
@@ -33,6 +36,7 @@ class Paper < ActiveRecord::Base
   after_create :notify_by_mail
   
   attr_protected :status
+  attr_protected :creator_id
   
   
   STATUS = {

@@ -27,6 +27,7 @@ TODOs
 * gem dependencies (http://railscasts.com/episodes/110-gem-dependencies) (mocha, faker, will-paginate )
 * buscadores avanzados de usuarios y charlas( railscasts 111 y 112 )
 * Una charla se puede quedar sin speakers.. :?
+* Añadir Foto (una y sólo una) a Paper
 
 
 WISHLIST

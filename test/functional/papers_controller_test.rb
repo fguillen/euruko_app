@@ -336,4 +336,23 @@ class PapersControllerTest < ActionController::TestCase
 
     assert_redirected_to papers_path
   end
+  
+  
+  
+  def test_on_create_should_initialize_creator_id
+    login_as users(:user1)
+    
+    post(
+      :create, 
+      :paper => { 
+        :title        => "Paper Title",
+        :description  => "Paper description",
+        :family       => Paper::FAMILY[:TUTORIAL],
+        :status       => Paper::STATUS[:PROPOSED],
+        :minutes      => 0
+      }
+    )
+    
+    assert_equal( users(:user1).id, assigns(:paper).creator.id)
+  end
 end

@@ -12,6 +12,7 @@ class AddForeignKeys < ActiveRecord::Migration
         
     # papers
     add_foreign_key( :papers, :room_id, :rooms, :id, :name => :fk_paper_room )
+    add_foreign_key( :papers, :creator_id, :users, :id, :name => :fk_paper_creator )
     
     # resources
     add_foreign_key( :resources, :paper_id, :papers, :id, :name => :fk_resource_paper )
@@ -42,6 +43,7 @@ class AddForeignKeys < ActiveRecord::Migration
     remove_foreign_key( :carts_events, :fk_carts_events_event )
 
     remove_foreign_key( :papers, :fk_paper_room )
+    remove_foreign_key( :papers, :fk_paper_creator )
     
     remove_foreign_key( :resources, :fk_resource_paper )
     remove_foreign_key( :resources, :fk_resource_user )
