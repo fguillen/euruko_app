@@ -26,6 +26,8 @@ class Paper < ActiveRecord::Base
   # validates_inclusion_of :status, :in => Paper::STATUS.values
   # validates_inclusion_of :family, :in => FAMILIES.values
   
+  simple_text_fields
+  
   before_save :update_date
   before_create :update_status
   after_create :notify_by_mail

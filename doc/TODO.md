@@ -22,7 +22,7 @@ TODOs
 * Tabla de vista de calendario
 
 ## anybody:
-* Control de textos: escapar html, linkar links, ...
+* Control de textos: linkar links, ...
 * Modificar contraseña sólo si se introduce la actual correctamente
 * gem dependencies (http://railscasts.com/episodes/110-gem-dependencies) (mocha, faker, will-paginate )
 * buscadores avanzados de usuarios y charlas( railscasts 111 y 112 )
@@ -39,6 +39,7 @@ WISHLIST
 
 DONE
 ------------------
+* Control de textos: escapar html
 * Guardar el usuario que creó la charla para saber a quién preguntar en caso de dudas
 * Autologin en activación de cuenta
 * Recuperar password, revisar el rest-authetication que lo tiene, sólo habrá que activarlo

@@ -11,6 +11,8 @@ class Event < ActiveRecord::Base
   validates_uniqueness_of :name
   validates_presence_of :description
   validates_numericality_of :price_cents
+
+  simple_text_fields
   
   before_destroy :check_for_payments
   
