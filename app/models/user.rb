@@ -34,6 +34,7 @@ class User < ActiveRecord::Base
   
   before_create :make_activation_code 
   before_create :update_role
+  after_create  :send_password_if_forgotten
   
   named_scope :user_public, :conditions => { :public_profile => true }
 
@@ -136,8 +137,39 @@ class User < ActiveRecord::Base
     return self.speaker_on.visible  if self != user
     return self.speaker_on          if self == user || user.admin?
   end
-  
+
+  def forgot_password
+#    @forgotten_password = true
+    self.make_password_reset_code
+UserMailer.deliver_forgotten_password(self)# if recently_forgot_password?    
+  end
+
+  def reset_password
+    # First update the password_reset_code before setting the 
+    # reset_password flag to avoid duplicate email notifications.
+    update_attributes(:password_reset_code => nil)
+UserMailer.deliver_reset_password(self)# if recently_reset_password?
+#    @reset_password = true
+  end
+
+  def recently_reset_password?
+    @reset_password
+  end
+
+  def recently_forgot_password?
+    @forgotten_password
+  end
+
+  def send_password_if_forgotten
+#    UserNotifier.deliver_forgot_password(self) if recently_forgot_password?
+#    UserNotifier.deliver_reset_password(self) if recently_reset_password?
+  end
+
   protected
+
+    def make_password_reset_code
+     self.update_attribute :password_reset_code, Digest::SHA1.hexdigest( Time.now.to_s.split(//).sort_by {rand}.join )
+    end
     
     def make_activation_code
       self.activation_code = self.class.make_token

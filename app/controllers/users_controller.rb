@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  before_filter :login_required,                    :except => [:index, :show, :new, :create, :activate]
-  before_filter :load_user,                         :except => [:index, :new, :create, :activate]
-  before_filter :should_be_current_user_or_admin,   :except => [:index, :show, :new, :create, :activate]
+  before_filter :login_required,                    :except => [:index, :show, :new, :create, :activate, :forgot_password, :reset_password]
+  before_filter :load_user,                         :except => [:index, :new, :create, :activate, :forgot_password, :reset_password]
+  before_filter :should_be_current_user_or_admin,   :except => [:index, :show, :new, :create, :activate, :forgot_password, :reset_password]
 
   # GET /users
   # GET /users.xml
@@ -31,7 +31,6 @@ class UsersController < ApplicationController
       end
     end
   end
-
 
   def new
     @user = User.new
@@ -90,6 +89,32 @@ class UsersController < ApplicationController
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+
+  def forgot_password
+    return unless request.post?
+    if @user = User.find_by_email(params[:email])
+      @user.forgot_password
+      redirect_to(login_path)
+      flash[:notice] = "You will receive an email to reset your password." 
+    else
+      flash[:error] = "No user found with email #{params[:email]}"
+    end
+  end
+
+  def reset_password
+    @user = User.find_by_password_reset_code(params[:id])
+    if @user.nil? 
+      render :action => 'invalid_code'
+    else
+      return unless request.post? && !params[:password].blank?
+      @user.password = params[:password]
+      @user.password_confirmation = params[:password_confirmation]
+      if @user.save
+        flash.now[:notice] = "You have changed your password successfully, use it to log in."
+        redirect_to login_path
       end
     end
   end
