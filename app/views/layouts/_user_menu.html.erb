@@ -4,7 +4,7 @@
   <li><%= menu_to 'Pay!', cart_path, :class => "highlight" %></li>
   <li><%= menu_to 'Logout', logout_path %></li>
 <% else %>
-  <li><%= menu_to 'Register!', new_user_path %></li>
+  <li><%= menu_to 'Register!', new_user_path, :class => "highlight" %></li>
   <li><%= menu_to 'Login', new_session_path %></li>
 <% end %>
 </ul>

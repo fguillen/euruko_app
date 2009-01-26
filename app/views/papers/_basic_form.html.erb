@@ -1,32 +1,30 @@
-<ul>
-  <li>
-    <%= f.label :title, "Title" %>
-    <%= f.text_field :title %>
-  </li>
-  
-  <li>
-    <%= f.label :description, "Description" %>
-    <%= f.text_area :description %>
-  </li>
-  
-  <% if admin? %>
-    <li>
-      <%= f.label :minutes, "Minutes" %>
-      <%= f.text_field :minutes %>
-    </li>
+<p>
+  <%= f.label :title, "Title" %><br />
+  <%= f.text_field :title %>
+</p>
 
-    <li>
-      <%= f.label :family, "Family" %>
-      <%= select( "paper", "family", Paper::FAMILY.values ) %>
-    </li>  
-  <% end %>
-</ul>
+<p>
+  <%= f.label :description, "Description" %><br />
+  <%= f.text_area :description %>
+</p>
+
+<% if admin? %>
+  <p>
+    <%= f.label :minutes, "Minutes" %><br />
+    <%= f.text_field :minutes %>
+  </p>
+
+  <p>
+    <%= f.label :family, "Family" %><br />
+    <%= select( "paper", "family", Paper::FAMILY.values ) %>
+  </p>  
+<% end %>
 
 <% if admin? %>
   <div>
     <h3>Room and Calendar</h3>
     <p>
-      <%= f.label :room_id, "Room" %>
+      <%= f.label :room_id, "Room" %><br />
       <%=
         select(
           'paper', 
@@ -37,14 +35,14 @@
       %>
     </p>
     <p>
-      <%= f.label :date_form, "Date" %>
+      <%= f.label :date_form, "Date" %><br />
       <%= f.text_field :date_form %>
       <script>
         $('#paper_date_form').datepicker({firstDay: 1, dateFormat: 'yy/mm/dd' });
       </script>
     </p>
     <p>
-      <%= f.label :time_form, "Time" %>
+      <%= f.label :time_form, "Time" %><br />
       <%= select( 'paper', 'time_form', times_array( '08', '20' ), { :include_blank => true } ) %>
     </p>
   </div>
