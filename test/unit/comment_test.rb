@@ -40,4 +40,11 @@ class CommentTest < ActiveSupport::TestCase
     assert( comment.valid? )
   end
 
+  def test_sanitized_fields
+    comment = Comment.new :text => '<script>alert("foo!");</script>'
+    assert_equal 'alert("foo!");', comment.text
+    comment.text = '<h1>title</h1>'
+    assert_equal 'title', comment.text
+  end
+
 end

@@ -1,0 +1,28 @@
+SimpleTextFields
+==================
+
+This plugin will remove tags from your models' string and text fields.
+This is thought for those parts of your model where you expect text without tags,
+in stead of striping the tags in the views, as is commonly done, you can use this
+plugin without being afraid of forgetting the 'h' in <%= h @post.title %>, just
+use <%= @post.title %>
+
+simple_text_fields can receive two options. Usage is as follows:
+
+ - simple_text_fields
+   will strip tags from all the string and text fields.
+
+ - simple_text_fields :only => :title
+   will strip tags only in title.
+   
+   simple_text_fields :only => [:title, :brief]
+   will strip tags only in title and brief.
+   
+ - simple_text_fields :except => :title
+   will strip tags from all the fields except title.
+
+ - simple_text_fields :except => [:title, :brief]
+   will strip tags from all the fields except title and brief.
+   
+Every useful bit included in this plugin has been coded by Ernesto Jimenez, extraordinaire spanish hacker.
+His original plugin has been perverted by Raul Murciano, trying to use the nice HTML Sanitizers included on Rails by the always brilliant Rick Olson.

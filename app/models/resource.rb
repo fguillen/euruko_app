@@ -6,6 +6,8 @@ class Resource < ActiveRecord::Base
   validates_presence_of :user_id
   validates_presence_of :paper_id
   validates_uniqueness_of :url, :scope => :paper_id, :message => 'This Paper has already this resource associated'
+
+  simple_text_fields
   
   def self.save_file( paper_id, file_blob )
     path_relative = "resources/#{paper_id}/#{file_blob.original_filename}"
