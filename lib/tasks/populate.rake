@@ -123,7 +123,8 @@ namespace :populate do
           :family       => Paper::FAMILY.values.rand,
           :minutes      => Kernel.rand(101),
           :date         => random_datetime( '2009/04/10 08:00', '2009/04/14 21:00' ),
-          :room         => Room.random(1)
+          :room         => Room.random(1),
+          :creator      => User.random(1)
         )
       paper.status = Paper::STATUS.values.rand
       paper.save!
