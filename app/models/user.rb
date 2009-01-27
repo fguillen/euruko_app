@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   has_many :attendees,  :dependent => :destroy
   has_many :resources,  :dependent => :destroy
   has_many :carts,      :dependent => :destroy
+  has_many :owned_papers, :class_name => 'Paper', :foreign_key => 'creator_id', :dependent => :nullify
 
   has_many :speaker_on,   :through => :speakers,  :source => :paper
   has_many :attendee_to,    :through => :attendees,   :source => :paper

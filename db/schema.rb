@@ -87,12 +87,14 @@ ActiveRecord::Schema.define(:version => 20090123211524) do
     t.datetime "date"
     t.integer  "minutes",     :default => 0, :null => false
     t.integer  "room_id"
+    t.integer  "creator_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "papers", ["permalink"], :name => "idx_papers_permalink", :unique => true
   add_index "papers", ["room_id"], :name => "fk_paper_room"
+  add_index "papers", ["creator_id"], :name => "fk_paper_creator"
 
   create_table "resources", :force => true do |t|
     t.integer  "paper_id",                      :null => false
@@ -176,6 +178,7 @@ ActiveRecord::Schema.define(:version => 20090123211524) do
   add_foreign_key "comments", ["user_id"], "users", ["id"], :name => "fk_comment_user"
   add_foreign_key "comments", ["paper_id"], "papers", ["id"], :name => "fk_comment_paper"
 
+  add_foreign_key "papers", ["creator_id"], "users", ["id"], :name => "fk_paper_creator"
   add_foreign_key "papers", ["room_id"], "rooms", ["id"], :name => "fk_paper_room"
 
   add_foreign_key "resources", ["user_id"], "users", ["id"], :name => "fk_resource_user"
