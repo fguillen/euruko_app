@@ -25,7 +25,9 @@ namespace :populate do
     
     puts "Admin created:"
     puts "login: #{user.login}"
-    puts "pass: #{user.password}"
+    puts "pass:  #{user.password}"
+    puts "email: #{user.email}"
+
   end
   
   desc "Create the random user"
@@ -54,6 +56,7 @@ namespace :populate do
     puts "User created:"
     puts "login: #{user.login}"
     puts "pass: #{user.password}"
+    puts "email: #{user.email}"
   end
 
   desc "Populate with random elements"

@@ -3,19 +3,19 @@ development:
   adapter: mysql
   encoding: utf8
   database: euruko_development
-  username: root
-  password:
+  username: <user>
+  password: <password>
 
 test:
   adapter: mysql
   encoding: utf8
   database: euruko_test
-  username: root
-  password: 
+  username: <user>
+  password: <password>
 
 production:
   adapter: mysql
   encoding: utf8
   database: euruko
-  username: root
-  password:
+  username: <user>
+  password: <password>
