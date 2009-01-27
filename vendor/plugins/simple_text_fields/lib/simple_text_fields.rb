@@ -1,6 +1,6 @@
 require 'actionpack'
 require 'action_controller'
-require 'ruby-debug'
+# require 'ruby-debug'
 
 
 # ActsWithoutScripts
