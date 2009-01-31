@@ -7,4 +7,8 @@ class Utils
     random_array << (1..10).map{ rand.to_s }
     Digest::SHA1.hexdigest( random_array.flatten.join('--') )
   end
+  
+  def self.cents_to_euros( cents )
+    Kernel.sprintf( "%.2f", cents/100.0 )
+  end
 end

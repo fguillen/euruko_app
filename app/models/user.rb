@@ -97,8 +97,10 @@ class User < ActiveRecord::Base
   # This will also let us return a human error message.
   #
   def self.authenticate(login, password)
+    # logger.debug( "authenticate( #{login}, #{password} )" )
     return nil if login.blank? || password.blank?
     u = find :first, :conditions => ['login = ? and activated_at IS NOT NULL', login] # need to get the salt
+    # logger.debug( "u: #{u.inspect} ")
     u && u.authenticated?(password) ? u : nil
   end
 

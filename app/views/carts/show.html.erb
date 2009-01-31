@@ -4,7 +4,7 @@
       <% if event.is_paid_for_user?( current_user ) %>
         <li class="paid">
           X
-          <%= event.name %> (<%= event.price_cents %>)
+          <%= event.name %> (<%= event.price_euros %>€)
         </li>
       <% else %>
         <li>
@@ -25,13 +25,13 @@
             )
           %>
         
-          <%= event.name %> (<%= event.price_cents %>)
+          <%= event.name %> (<%= event.price_euros %>€)
         </li>
       <% end %>
     <% end %>
   </ul>
   
-  <p>TOTAL: <span id="total">0</span></p>
+  <p>TOTAL: <span id="total">0</span>€</p>
   
   <p>
     <%= label_tag :invoice_info %><br />
@@ -54,8 +54,9 @@
         }
       }
     );
-
-    $('#total').html( total + "" );
+    total = total / 100;
+    total = total.toFixed(2);
+    $('#total').html( total );
   }
   
   $(document).ready( function(){ update_total_cart_price(); } );

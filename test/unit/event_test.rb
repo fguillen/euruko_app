@@ -64,5 +64,10 @@ class EventTest < ActiveSupport::TestCase
     assert( !events(:event2).is_paid_for_user?( users(:user1) ) )
     assert( !events(:event1).is_paid_for_user?( users(:user2) ) )
   end
+  
+  def test_price_cents
+    assert_equal( "1.00", events(:event1).price_euros )
+    assert_equal( "2.00", events(:event2).price_euros )
+  end
 
 end

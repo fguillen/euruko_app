@@ -10,6 +10,12 @@ class CartTest < ActiveSupport::TestCase
     assert_equal( events(:event1).price_cents + events(:event2).price_cents, @cart.total_price )
   end
   
+  def test_total_on_euros
+    @cart = carts(:cart_user1_event1_purchased)
+    assert( @cart.total_price_on_euros )
+    assert_equal( events(:event1).price_euros, @cart.total_price_on_euros )
+  end
+  
   def test_one_cart_should_doesnot_have_the_same_event_twice
     @cart = carts(:cart_user1_event1_purchased)
     assert_raise(ActiveRecord::StatementInvalid) do

@@ -47,6 +47,7 @@ module Authentication
       end
       
       def authenticated?(password)
+        # logger.debug( "#{crypted_password} == #{encrypt(password)}")
         crypted_password == encrypt(password)
       end
       

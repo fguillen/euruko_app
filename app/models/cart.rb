@@ -33,7 +33,7 @@ class Cart < ActiveRecord::Base
     
     self.events.each_with_index do |event, index|
       values.merge!({
-        "amount_#{index+1}"       => event.price_cents,
+        "amount_#{index+1}"       => event.price_euros,
         "item_name_#{index+1}"    => event.name,
         "item_number_#{index+1}"  => event.id,
         "quantity_#{index+1}"     => 1
@@ -45,6 +45,10 @@ class Cart < ActiveRecord::Base
   
   def total_price
     self.events.sum(:price_cents)
+  end
+  
+  def total_price_on_euros
+    Utils.cents_to_euros( self.events.sum(:price_cents) )
   end
   
   def self.retrieve_on_sesion_or_new( user_id )

@@ -213,8 +213,7 @@ namespace :populate do
   end
   
   desc "Populate with random elements, and admin, and a random user"
-  task :all => [:random, :admin, :random_user] do
-  end
+  task :all => [:random, :admin, :random_user]
   
   def random_datetime( date_ini = '1970/01/01 10:10', date_end = '2010/01/01 10:10' )
     time_ini_int = Time.parse( date_ini ).to_i

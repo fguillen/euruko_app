@@ -34,4 +34,8 @@ class Event < ActiveRecord::Base
     #   return false
     # end
   end
+  
+  def price_euros
+    Utils.cents_to_euros( self.price_cents )
+  end
 end
