@@ -15,13 +15,19 @@ class SpeakersController < ApplicationController
 
     respond_to do |format|
       if @speaker.save
-        flash[:notice] = 'Speaker was successfully created.'
-        format.html { redirect_to( edit_paper_path(@paper) ) }
+        format.html do
+          flash[:notice] = 'Speaker was successfully created.'          
+          redirect_to( edit_paper_path(@paper) )
+        end
         format.xml  { render :xml => @speaker, :status => :created, :location => @speaker }
+        format.js   { render :partial => 'papers/speakers_edit', :locals => { :paper => @paper } }
       else
-        flash[:error] = "Error trying to adding an speaker to the paper: #{@speaker.errors.full_messages}."
-        format.html { redirect_to( edit_paper_path(@paper) ) }
+        format.html do
+          flash[:error] = "Error trying to adding an speaker to the paper: #{@speaker.errors.full_messages}."
+          redirect_to( edit_paper_path(@paper) )
+        end
         format.xml  { render :xml => @speaker.errors, :status => :unprocessable_entity }
+        format.js   { render :partial => 'papers/speakers_edit', :locals => { :paper => @paper }, :status => :unprocessable_entity }
       end
     end
   end
@@ -34,13 +40,19 @@ class SpeakersController < ApplicationController
 
     respond_to do |format|
       if @speaker.destroy
-        flash[:notice] = 'Speaker was successfully eliminated.'
-        format.html { redirect_to( edit_paper_path(@paper) ) }
+        format.html do
+          flash[:notice] = 'Speaker was successfully eliminated.'
+          redirect_to( edit_paper_path(@paper) )
+        end
         format.xml  { head :ok }
+        format.js   { render :partial => 'papers/speakers_edit', :locals => { :paper => @paper } }
       else
-        flash[:error] = "Error trying to eliminating an speaker to the paper: #{@speaker.errors.full_messages}."
-        format.html { redirect_to( edit_paper_path(@paper) ) }
+        format.html do
+          flash[:error] = "Error trying to eliminating an speaker to the paper: #{@speaker.errors.full_messages}."
+          redirect_to( edit_paper_path(@paper) )
+        end
         format.xml  { render :xml => @vote.errors, :status => :unprocessable_entity }
+        format.js   { render :partial => 'papers/speakers_edit', :locals => { :paper => @paper }, :status => :unprocessable_entity }
       end
     end
   end

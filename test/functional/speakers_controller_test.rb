@@ -132,4 +132,67 @@ class SpeakersControllerTest < ActionController::TestCase
     assert_nil( flash[:notice] )
     assert_response 404
   end
+  
+  def test_on_create_with_js_ok
+    login_as users(:user1)
+    
+    post( 
+      :create,
+      :paper_id => papers(:paper1),
+      :speaker  => { :user_id => users(:user2).id },
+      :format   => 'js'
+    )
+    
+    assert_response :success
+    assert_nil( flash[:notice] )
+    assert_nil( flash[:error] )
+    assert_template 'papers/_speakers_edit'
+  end
+  
+  def test_on_create_with_js_error
+    login_as users(:user1)
+    
+    post( 
+      :create,
+      :paper_id => papers(:paper1),
+      :speaker  => { :user_id => users(:user1).id },
+      :format   => 'js'
+    )
+    
+    assert_response :unprocessable_entity
+    assert_nil( flash[:notice] )
+    assert_nil( flash[:error] )
+    assert_template 'papers/_speakers_edit'
+  end
+  
+  def test_on_destroy_with_js_ok
+    login_as users(:user1)
+    
+    post( 
+      :destroy,
+      :paper_id => papers(:paper1),
+      :id => speakers(:speaker_user1_paper1).id,
+      :format   => 'js'
+    )
+    
+    assert_response :success
+    assert_nil( flash[:notice] )
+    assert_nil( flash[:error] )
+    assert_template 'papers/_speakers_edit'
+  end
+  
+  def test_on_destroy_with_js_error
+    login_as users(:user2)
+    
+    post( 
+      :destroy,
+      :paper_id => papers(:paper1),
+      :id => speakers(:speaker_user1_paper1).id,
+      :format   => 'js'
+    )
+    
+    assert_response 404
+    assert_nil( flash[:notice] )
+    assert_nil( flash[:error] )
+  end
 end

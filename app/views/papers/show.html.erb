@@ -77,9 +77,7 @@
 
       <%= f.text_area :text, :id => 'comment_textarea' %>
       <%= f.submit "Submit", :disable_with => 'Submiting...' %>
-      <div id='comment_loading' style="display:none">
-        <%= image_tag 'spinner.gif' %>
-      </div>
+      <div id='comment_loading' style="display:none"><%= image_tag 'spinner.gif' %></div>
     <% end -%>
   </div>
 <% end %>

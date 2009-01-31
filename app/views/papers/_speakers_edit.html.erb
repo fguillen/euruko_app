@@ -3,21 +3,39 @@
       <% paper.speakers.sort{ |a,b| a.user.name <=> b.user.name }.each do |speaker| %>
         <li>
           <%= link_to speaker.user.name, speaker.user %>
-          <%= link_to 'delete', paper_speaker_path( paper, speaker ), :method => 'delete' %>
+          <%= 
+            link_to_remote(
+              'delete',
+              :url => paper_speaker_path( @paper, speaker ), 
+              :method => :delete,
+              :update => { :success => "speakers", :failure => "speakers" },
+              :loading => "$('#speaker_#{speaker.id}').show()",
+              :complete => "$('#speaker_#{speaker.id}').hide()"
+            ) 
+          %>
+          <span id='speaker_<%= speaker.id %>' style="display:none"><%= image_tag 'spinner.gif' %></span>
         </li>
       <% end %>
   </ul>
 </p>
 <p>
-  <% form_for [paper, Speaker.new] do |f| -%>
-    <%=(
+  <%
+    form_remote_for(
+      [@paper, Speaker.new],
+      :update => { :success => "speakers", :failure => "speakers" },
+      :loading => "$('#speakers_loading').show()",
+      :complete => "$('#speakers_loading').hide();"
+    ) do |f|
+  %>
+    <%=
       select(
         "speaker", 
         "user_id", 
         paper.user_candidates.collect{|u| [ u.name, u.id ] }, 
         { :include_blank => true }
       )
-    )%>
+    %>
     <%= f.submit "Add Speaker" %>
+    <span id='speakers_loading' style="display:none"><%= image_tag 'spinner.gif' %></span>
   <% end -%>
 </p>
