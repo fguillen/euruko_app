@@ -1,7 +1,7 @@
 <h1>Editing event</h1>
 
 <% form_for(@event) do |f| %>
-  <%= f.error_messages %>
+  <%= render :partial => 'form', :locals => { :f => f } %>
 
   <p>
     <%= f.submit "Update" %>

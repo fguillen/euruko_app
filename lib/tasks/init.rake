@@ -65,12 +65,12 @@ namespace :init do
     puts "Run migrations"
     Rake::Task['db:migrate'].invoke
     
-    puts "Undo migrations to VERSION=0"
-    ENV['VERSION']='0'
-    Rake::Task['db:migrate'].invoke
-    
-    puts "Re-Run migrations"
-    Rake::Task['db:migrate'].invoke
+    # puts "Undo migrations to VERSION=0"
+    # ENV['VERSION']='0'
+    # Rake::Task['db:migrate'].invoke
+    # 
+    # puts "Re-Run migrations"
+    # Rake::Task['db:migrate'].invoke
       
     puts "Clone test db"
     Rake::Task['db:test:clone'].invoke

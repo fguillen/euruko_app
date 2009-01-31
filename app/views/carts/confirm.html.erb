@@ -2,7 +2,7 @@
   <ul>
   <% @cart.events.each do |event| %>
     <li>        
-      <%= event.name %> (<%= event.price_euros %>€)
+      <%= link_to event.name, event_path(event) %> (<%= event.price_euros %>€)
     </li>
   <% end %>
   </ul>

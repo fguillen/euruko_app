@@ -117,6 +117,9 @@ namespace :populate do
     end
     puts "... #{Room.count} rooms created"
 
+    # not send emails on paper creation
+    Paper.any_instance.stubs(:notify_by_mail).returns(true)
+    
     puts "Creating Papers..."
     (1..50).each do |num|
       paper =
