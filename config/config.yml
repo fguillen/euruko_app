@@ -1,24 +1,29 @@
 test:
   site_url: 127.0.0.1:3000
   site_name: EuRuKo_test
-  email_sender: euruko_test@euruko2009.org
-  email_exception_recipients: euruko_test@euruko2009.org
-  email_paper_recipients: euruko_test@euruko2009.org
-  email_payment_recipients: euruko_test@euruko2009.org
+  email_sender: fguillen.mail@gmail.com
+  email_exception_recipients: fguillen.mail@gmail.com
+  email_paper_recipients: fguillen.mail@gmail.com
+  email_payment_recipients: fguillen.mail@gmail.com
+  paypal_url: https://www.sandbox.paypal.com/cgi-bin/webscr
+  paypal_seller: seller_1231200230_biz@gmail.com
 
 development:
   site_url: 127.0.0.1:3000
   site_name: EuRuKo_development
-  email_sender: euruko_development@euruko2009.org
-  email_exception_recipients: euruko_development@euruko2009.org
-  email_paper_recipients: euruko_development@euruko2009.org
-  email_payment_recipients: euruko_development@euruko2009.org
-      
+  email_sender: fguillen.mail@gmail.com
+  email_exception_recipients: fguillen.mail@gmail.com
+  email_paper_recipients: fguillen.mail@gmail.com
+  email_payment_recipients: fguillen.mail@gmail.com
+  paypal_url: https://www.sandbox.paypal.com/cgi-bin/webscr
+  paypal_seller: seller_1231200230_biz@gmail.com
+        
 production:
   site_url: eurukostaging.fernandoguillen.info
   site_name: EuRuKo
-  email_sender: euruko@euruko2009.org
-  email_exception_recipients: euruko@euruko2009.org
+  email_sender: fguillen.mail@gmail.com
+  email_exception_recipients: fguillen.mail@gmail.com
   email_paper_recipients: papers@euruko2009.org
   email_payment_recipients: payments@euruko2009.org
-  
+  paypal_url: https://www.sandbox.paypal.com/cgi-bin/webscr
+  paypal_seller: seller_1231200230_biz@gmail.com

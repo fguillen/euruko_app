@@ -16,6 +16,8 @@ namespace :init do
       raise "usage: rake db=<mysql|sqlite> [user=user] [password=password]" 
     end
     
+    require 'utils'
+    
     user      = ENV['user'].nil? ? 'root' : ENV['user']
     password  = ENV['password'].nil? ? '' : ENV['password']
     puts "initilizing database.yml with #{ENV['db']}, user: #{user}, password: #{password}..."
@@ -23,19 +25,15 @@ namespace :init do
       "#{RAILS_ROOT}/config/database.yml.#{ENV['db']}",
       "#{RAILS_ROOT}/config/database.yml"
       
-    buffer = File.read( "#{RAILS_ROOT}/config/database.yml")
-    buffer.gsub!( /<user>/, user )
-    buffer.gsub!( /<password>/, password )
-    
-    file = File.new( "#{RAILS_ROOT}/config/database.yml", 'w' )
-    file.write( buffer )
-    file.flush
-    file.close
+    file_gsub( "#{RAILS_ROOT}/config/database.yml", /<user>/, user )
+    file_gsub( "#{RAILS_ROOT}/config/database.yml", /<password>/, password )
       
     puts "initilizing site_keys.rb..."
     FileUtils.copy_file\
       "#{RAILS_ROOT}/config/initializers/site_keys.rb.example",
       "#{RAILS_ROOT}/config/initializers/site_keys.rb"
+    
+    file_gsub( "#{RAILS_ROOT}/config/initializers/site_keys.rb", /<site_key>/, Utils.site_key_generator )
 
     puts "Please revise this file: /config/config.yml"
     puts "# /config/config.yml"
@@ -87,4 +85,14 @@ namespace :init do
   #   entries_before.each {|en| ENV[en.first]=en.last}
   #   Rake::Task['db:migrate'].execute
   # end
+  
+  def file_gsub( file_path, regex, substitution )
+    buffer = File.read( file_path )
+    buffer.gsub!( regex, substitution )
+    
+    file = File.new( file_path, 'w' )
+    file.write( buffer )
+    file.flush
+    file.close
+  end  
 end

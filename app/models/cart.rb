@@ -22,7 +22,7 @@ class Cart < ActiveRecord::Base
   
   def paypal_url( return_url, notify_url )
     values = {
-      :business   => 'seller_1231200230_biz@gmail.com',
+      :business   => APP_CONFIG['paypal_seller'],
       :cmd        => '_cart',
       :upload     => 1,
       :return     => return_url,
@@ -39,7 +39,7 @@ class Cart < ActiveRecord::Base
       })
     end
     
-    "https://www.sandbox.paypal.com/cgi-bin/webscr?" + values.to_query
+    APP_CONFIG['paypal_url'] + "?" + values.to_query
   end
   
   def total_price
