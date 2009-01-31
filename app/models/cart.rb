@@ -22,12 +22,13 @@ class Cart < ActiveRecord::Base
   
   def paypal_url( return_url, notify_url )
     values = {
-      :business   => APP_CONFIG['paypal_seller'],
-      :cmd        => '_cart',
-      :upload     => 1,
-      :return     => return_url,
-      :invoice    => self.id,
-      :notify_url => notify_url
+      :business       => APP_CONFIG['paypal_seller'],
+      :cmd            => '_cart',
+      :upload         => 1,
+      :return         => return_url,
+      :invoice        => self.id,
+      :notify_url     => notify_url,
+      :currency_code  => 'EUR'
     }
     
     self.events.each_with_index do |event, index|
