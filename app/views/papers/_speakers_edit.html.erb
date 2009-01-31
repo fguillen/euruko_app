@@ -10,7 +10,8 @@
               :method => :delete,
               :update => { :success => "speakers", :failure => "speakers" },
               :loading => "$('#speaker_#{speaker.id}').show()",
-              :complete => "$('#speaker_#{speaker.id}').hide()"
+              :complete => "$('#speaker_#{speaker.id}').hide()",
+              :confirm => 'Are you sure?'
             ) 
           %>
           <span id='speaker_<%= speaker.id %>' style="display:none"><%= image_tag 'spinner.gif' %></span>

@@ -3,7 +3,7 @@
     <% paper.resources.each do |resource| %>
       <li>
         <%= link_to resource.name_link, resource.url_link %>
-        <%= link_to 'delete', paper_resource_path( paper, resource ), :method => :delete %>
+        <%= link_to 'delete', paper_resource_path( paper, resource ), :method => :delete, :confirm => 'Are you sure?' %>
       </li>
     <% end %>
   </ul>
@@ -25,6 +25,9 @@
     <p>
       <%= f.label :file %><br />
       <%= f.file_field :file %>
+    </p>
+    
+    <p>
       <%= f.submit "Create" %>
     </p>
   <% end -%>
