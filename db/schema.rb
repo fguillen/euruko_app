@@ -92,6 +92,7 @@ ActiveRecord::Schema.define(:version => 20090123211524) do
     t.integer  "user_id",                       :null => false
     t.string   "url",                           :null => false
     t.boolean  "is_local",   :default => false, :null => false
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

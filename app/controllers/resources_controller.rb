@@ -21,7 +21,8 @@ class ResourcesController < ApplicationController
         :url      => url,
         :paper    => @paper,
         :user     => current_user,
-        :is_local => is_local
+        :is_local => is_local,
+        :name     => params[:resource][:name]
       )
     
     # puts @resource.valid?

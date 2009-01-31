@@ -5,6 +5,7 @@ resource1:
   url: http://mydomain.com/files/myfile1
   user: user1
   is_local: false
+  name: the name of resource 1
 
 resource2:
   paper: paper1 

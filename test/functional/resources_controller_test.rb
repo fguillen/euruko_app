@@ -11,11 +11,13 @@ class ResourcesControllerTest < ActionController::TestCase
         :paper_id   => papers(:paper1).id,
         :resource => {
           :user_id    => users(:user1).id,
-          :url        => 'http://mi.url'
+          :url        => 'http://mi.url',
+          :name       => 'resource name'
         }
       )
     end
 
+    assert_equal( 'resource name', Resource.last.name )
     assert_not_nil( flash[:notice] )
     assert_redirected_to edit_paper_path(papers(:paper1))
   end

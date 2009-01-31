@@ -63,4 +63,15 @@ class ResourceTest < ActiveSupport::TestCase
     assert_not_equal( resources(:resource2).url, resources(:resource2).url_link )
     assert( resources(:resource2).url_link =~ /#{APP_CONFIG['site_url']}/ )
   end
+  
+  def test_name_link
+    @resource = resources(:resource1)
+    assert_equal( @resource.name, @resource.name_link )
+
+    @resource.update_attribute( :name, nil )
+    assert_equal( @resource.url_link, @resource.name_link )
+
+    @resource.update_attribute( :name, '' )
+    assert_equal( @resource.url_link, @resource.name_link )
+  end
 end

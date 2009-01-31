@@ -5,6 +5,7 @@ class CreateResources < ActiveRecord::Migration
       t.integer   :user_id,   :null => false
       t.string    :url,       :null => false
       t.boolean   :is_local,  :null => false, :default => 0
+      t.string    :name
 
       t.timestamps
     end

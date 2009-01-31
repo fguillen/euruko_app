@@ -2,7 +2,7 @@
   <ul>
     <% paper.resources.each do |resource| %>
       <li>
-        <%= link_to resource.url_link, resource.url_link %>
+        <%= link_to resource.name_link, resource.url_link %>
         <%= link_to 'delete', paper_resource_path( paper, resource ), :method => :delete %>
       </li>
     <% end %>
@@ -10,10 +10,22 @@
 </p>
 <p>
   <% form_for [paper, Resource.new], :html => { :multipart => :true } do |f| -%>
-    <%= f.label :url, "Url" %>
-    <%= f.text_field :url %>
-    or upload a file
-    <%= f.file_field :file %>
-    <%= f.submit "Create" %>
+    <p>
+      <%= f.label :name %> (could be blank)<br />
+      <%= f.text_field :name %>
+    </p>
+
+    <h2>use an url</h2>
+    <p>
+      <%= f.label :url %><br />
+      <%= f.text_field :url %>
+    </p>
+    
+    <h2>or upload a file</h2>
+    <p>
+      <%= f.label :file %><br />
+      <%= f.file_field :file %>
+      <%= f.submit "Create" %>
+    </p>
   <% end -%>
 </p>

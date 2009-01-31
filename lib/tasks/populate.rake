@@ -165,7 +165,8 @@ namespace :populate do
       Resource.create(
         :user   => User.random(1),
         :paper  => Paper.random(1), 
-        :url    => "http://#{Faker::Internet.domain_name}/#{Faker::Lorem.words.join('/')}"
+        :url    => "http://#{Faker::Internet.domain_name}/#{Faker::Lorem.words.join('/')}",
+        :name   => Kernel.rand(2) == 0 ? nil : Faker::Lorem.sentence
       )
     end
     puts "... #{Resource.count} resources created"
