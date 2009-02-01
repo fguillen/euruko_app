@@ -1,6 +1,5 @@
 TODOs
 ------------------
-* Títulos de páginas ( http://railscasts.com/episodes/30-pretty-page-title )
 
 ## fguillen:
 * Comunicación PayPal cifrada
@@ -9,17 +8,19 @@ TODOs
 * Al modificar charla proteger campos room, fechas y demás.. sólo a administradores
 * Un usuario con carritos pagados no se debería poder eliminar
 * Tests exhaustivos de cart y carts controller
-* Cuando Admin accede al show de un Cart tiene que llevarle a una página especial.. o llamar a la accion de crear carrito new o edit o algo así
+* Títulos de páginas ( http://railscasts.com/episodes/30-pretty-page-title )
 
 ## xuanxu:
 * Pantalla últimos comentarios
-* Pantalla últimos pagos
 
 ## marze:
 * Cambios de estilo en listados de Papers para diferenciar: familias y estados
 * Diseño: Pantalla 404
 * Diseño: Pantalla 500
 * Tabla de vista de calendario
+* Mejorar un poco pantalla de carrito (Pay!), la new, la confirm y la complete
+* Mejorar listados, Papers, Users, ...
+
 
 ## anybody:
 * Control de textos: linkar links, ...
@@ -27,7 +28,6 @@ TODOs
 * gem dependencies (http://railscasts.com/episodes/110-gem-dependencies) (mocha, faker, will-paginate )
 * buscadores avanzados de usuarios y charlas( railscasts 111 y 112 )
 * Una charla se puede quedar sin speakers.. :?
-* Añadir Foto (una y sólo una) a Paper
 
 
 WISHLIST
@@ -40,6 +40,10 @@ WISHLIST
 
 DONE
 ------------------
+* Listado de últimos pagos, con mini buscador
+* Ajax en añadir/eliminar ponente a Paper
+* Añadir Foto (una y sólo una) a Paper
+* Cuando Admin accede al show de un Cart tiene que llevarle a una página especial.. o llamar a la accion de crear carrito new o edit o algo así
 * Control de textos: escapar html
 * Guardar el usuario que creó la charla para saber a quién preguntar en caso de dudas
 * Autologin en activación de cuenta

@@ -1,0 +1,5 @@
+<%= image_tag paper.photo.url(:medium) %>
+<% form_tag( paper_photo_path(paper), :multipart => true ) do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag 'upload photo' %>
+<% end %>
