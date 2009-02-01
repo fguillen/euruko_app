@@ -11,7 +11,7 @@ class CartsController < ApplicationController
       @conditions = { :status => Cart::STATUS[params[:status].intern] }
     end
     
-    @carts = Cart.find(:all, :conditions => @conditions)
+    @carts = Cart.find(:all, :conditions => @conditions, :order => 'updated_at desc')
 
     respond_to do |format|
       format.html # index.html.erb
