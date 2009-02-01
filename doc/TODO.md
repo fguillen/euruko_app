@@ -9,6 +9,8 @@ TODOs
 * Un usuario con carritos pagados no se debería poder eliminar
 * Tests exhaustivos de cart y carts controller
 * Títulos de páginas ( http://railscasts.com/episodes/30-pretty-page-title )
+* Tests photo
+* Paperclip sube la photo a la carpeta public/system ??
 
 ## xuanxu:
 * Pantalla últimos comentarios
