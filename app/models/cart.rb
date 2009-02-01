@@ -4,8 +4,9 @@ class Cart < ActiveRecord::Base
   
   belongs_to :user
   
-  serialize :paypal_params
-  
+  serialize :paypal_notify_params
+  serialize :paypal_complete_params
+    
   validates_presence_of :user_id
   validates_presence_of :status
   
@@ -15,7 +16,8 @@ class Cart < ActiveRecord::Base
   
   STATUS = {
     :ON_SESSION       => 'On Session',
-    :COMPLETED        => 'Completed'
+    :COMPLETED        => 'Completed',
+    :NOT_NOTIFIED     => 'Not Notified by PayPal'
   }
   
   named_scope :purchased, :conditions => [ 'purchased_at is not null' ]

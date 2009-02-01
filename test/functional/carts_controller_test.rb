@@ -2,24 +2,24 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 class CartsControllerTest < ActionController::TestCase
   
-  def test_on_show_when_user_logged_should_return_current_cart
+  def test_on_new_when_user_logged_should_return_current_cart
     login_as users(:user1)
     
-    get :show
+    get :new
     
     assert_not_nil( assigns(:cart) )
   end
   
-  def test_on_show_when_not_user_logged_should_return_new_session
-    get :show
+  def test_on_new_when_not_user_logged_should_return_new_session
+    get :new
     
     assert_redirected_to new_session_path
   end
   
-  def test_on_show_when_admin_logged_should_return_expecified_cart
+  def test_on_new_when_admin_logged_should_return_expecified_cart
     login_as users(:user_admin)
     
-    get :show, :id => carts(:cart_user1_event1_purchased).id
+    get :new, :id => carts(:cart_user1_event1_purchased).id
     
     assert_not_nil( assigns(:cart) )
     assert_equal( carts(:cart_user1_event1_purchased), assigns(:cart) )
@@ -40,7 +40,7 @@ class CartsControllerTest < ActionController::TestCase
     assert_equal( 2, @cart.events.count )
   end
   
-  def test_on_confirm_with_user_logged_but_not_events_should_empty_the_cart_and_redirect_to_show_again
+  def test_on_confirm_with_user_logged_but_not_events_should_empty_the_cart_and_redirect_to_new_again
     login_as users(:user1)
     @cart = carts(:cart_user1_event2_not_purchased)
     load_current_cart @cart
@@ -51,7 +51,7 @@ class CartsControllerTest < ActionController::TestCase
     
     assert( @cart.events.empty? )    
     assert_not_nil( flash[:error] )
-    assert_redirected_to cart_path
+    assert_redirected_to new_cart_path
   end
 
   def test_on_confirm_with_user_not_logged_should_redirected_to_new_session
@@ -77,7 +77,7 @@ class CartsControllerTest < ActionController::TestCase
     assert( @cart.is_purchased? )
     assert( events(:event2).is_paid_for_user?( users(:user1).id ) )
     
-    assert_not_nil( @cart.paypal_params )
+    assert_not_nil( @cart.paypal_notify_params )
     assert_equal( 'Completed', @cart.status )
     assert_equal( '1', @cart.transaction_id )
     
@@ -101,7 +101,7 @@ class CartsControllerTest < ActionController::TestCase
     assert( !@cart.is_purchased? )
     assert( !events(:event2).is_paid_for_user?( users(:user1).id ) )
     
-    assert_not_nil( @cart.paypal_params )
+    assert_not_nil( @cart.paypal_notify_params )
     assert_equal( 'ERROR', @cart.status )
     assert_equal( '1', @cart.transaction_id )
     
@@ -121,12 +121,15 @@ class CartsControllerTest < ActionController::TestCase
 
   def test_on_complete_when_user_logged_and_cart_completed_should_flash_notice
     login_as users(:user1)
-      
+    @cart = carts(:cart_user1_event1_purchased)
+    
     get(
       :complete,
-      :invoice => carts(:cart_user1_event1_purchased).id
+      :invoice => @cart.id
     )
-
+    
+    @cart.reload
+    assert_not_nil( @cart.paypal_complete_params )
     assert_not_nil( flash[:notice] )
     assert_response :success
   end
@@ -172,11 +175,27 @@ class CartsControllerTest < ActionController::TestCase
     assert_equal( carts(:cart_user1_event2_not_purchased), retrieve_current_cart )
     assert_not_equal( retrieve_current_cart.user, users(:user2) )
     
-    get :show
+    get :new
     
     assert_not_equal( carts(:cart_user1_event2_not_purchased), retrieve_current_cart )
     assert_equal( retrieve_current_cart.user, users(:user2) )
     assert_equal( retrieve_current_cart, assigns(:cart) )
   end
     
+    
+  def test_on_complete_update_status_to_not_notified_if_still_on_session
+    login_as users(:user1)
+    
+    @cart = carts(:cart_user1_event2_not_purchased)
+      
+    get(
+      :complete,
+      :invoice => @cart.id
+    )
+
+    @cart.reload
+    assert_equal( Cart::STATUS[:NOT_NOTIFIED], @cart.status )
+    assert_not_nil( flash[:error] )
+    assert_response :success
+  end
 end

@@ -34,7 +34,15 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :events
 
   map.resource :calendar
-  map.resource :cart, :as => 'pay', :member => { :confirm => :post, :complete => :get, :notificate => :post }
+  
+  map.resources :carts, 
+                :as => 'pay', 
+                :member => { 
+                  :confirm    => :post, 
+                  :complete   => :get, 
+                  :notificate => :post
+                }
+                
   map.resource :session
 
   map.connect ':controller/:action/:id'

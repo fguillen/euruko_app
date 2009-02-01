@@ -7,7 +7,7 @@
 
 cart_user1_event1_purchased:
   user: user1
-  paypal_params: paypal params
+  paypal_notify_params: paypal params
   status: <%= Cart::STATUS[:COMPLETED] %>
   invoice_info: invoice info
   purchased_at: <%= Time.now.to_s(:db) %>

@@ -23,7 +23,7 @@ production:
   site_name: EuRuKo
   email_sender: fguillen.mail@gmail.com
   email_exception_recipients: fguillen.mail@gmail.com
-  email_paper_recipients: papers@euruko2009.org
-  email_payment_recipients: payments@euruko2009.org
+  email_paper_recipients: fguillen.mail@gmail.com
+  email_payment_recipients: fguillen.mail@gmail.com
   paypal_url: https://www.sandbox.paypal.com/cgi-bin/webscr
   paypal_seller: seller_1231200230_biz@gmail.com

@@ -8,6 +8,7 @@
     <% end %>
   </ul>
 </p>
+<h4>New</h4>
 <p>
   <% form_for [paper, Resource.new], :html => { :multipart => :true } do |f| -%>
     <p>
@@ -15,13 +16,13 @@
       <%= f.text_field :name %>
     </p>
 
-    <h2>use an url</h2>
+    <h5>use an url</h5>
     <p>
       <%= f.label :url %><br />
       <%= f.text_field :url %>
     </p>
     
-    <h2>or upload a file</h2>
+    <h5>or upload a file</h5>
     <p>
       <%= f.label :file %><br />
       <%= f.file_field :file %>

@@ -21,11 +21,12 @@ ActiveRecord::Schema.define(:version => 20090123211524) do
   add_index "attendees", ["user_id", "paper_id"], :name => "idx_unique_user_id_paper_id_on_attendees", :unique => true
 
   create_table "carts", :force => true do |t|
-    t.integer  "user_id",        :null => false
-    t.text     "paypal_params"
+    t.integer  "user_id",                :null => false
+    t.text     "paypal_notify_params"
+    t.text     "paypal_complete_params"
     t.string   "transaction_id"
     t.datetime "purchased_at"
-    t.string   "status",         :null => false
+    t.string   "status",                 :null => false
     t.text     "invoice_info"
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -176,24 +176,26 @@ formatted_update_status_paper PUT    /papers/:id/update_status.:format          
                               PUT    /calendar.:format                           {:controller=>"calendars", :action=>"update"}
                               DELETE /calendar                                   {:controller=>"calendars", :action=>"destroy"}
                               DELETE /calendar.:format                           {:controller=>"calendars", :action=>"destroy"}
-                         cart POST   /pay                                        {:controller=>"carts", :action=>"create"}
-               formatted_cart POST   /pay.:format                                {:controller=>"carts", :action=>"create"}
+                        carts GET    /pay                                        {:controller=>"carts", :action=>"index"}
+              formatted_carts GET    /pay.:format                                {:controller=>"carts", :action=>"index"}
+                              POST   /pay                                        {:controller=>"carts", :action=>"create"}
+                              POST   /pay.:format                                {:controller=>"carts", :action=>"create"}
                      new_cart GET    /pay/new                                    {:controller=>"carts", :action=>"new"}
            formatted_new_cart GET    /pay/new.:format                            {:controller=>"carts", :action=>"new"}
-                    edit_cart GET    /pay/edit                                   {:controller=>"carts", :action=>"edit"}
-          formatted_edit_cart GET    /pay/edit.:format                           {:controller=>"carts", :action=>"edit"}
-                complete_cart GET    /pay/complete                               {:controller=>"carts", :action=>"complete"}
-      formatted_complete_cart GET    /pay/complete.:format                       {:controller=>"carts", :action=>"complete"}
-                 confirm_cart POST   /pay/confirm                                {:controller=>"carts", :action=>"confirm"}
-       formatted_confirm_cart POST   /pay/confirm.:format                        {:controller=>"carts", :action=>"confirm"}
-              notificate_cart POST   /pay/notificate                             {:controller=>"carts", :action=>"notificate"}
-    formatted_notificate_cart POST   /pay/notificate.:format                     {:controller=>"carts", :action=>"notificate"}
-                              GET    /pay                                        {:controller=>"carts", :action=>"show"}
-                              GET    /pay.:format                                {:controller=>"carts", :action=>"show"}
-                              PUT    /pay                                        {:controller=>"carts", :action=>"update"}
-                              PUT    /pay.:format                                {:controller=>"carts", :action=>"update"}
-                              DELETE /pay                                        {:controller=>"carts", :action=>"destroy"}
-                              DELETE /pay.:format                                {:controller=>"carts", :action=>"destroy"}
+                    edit_cart GET    /pay/:id/edit                               {:controller=>"carts", :action=>"edit"}
+          formatted_edit_cart GET    /pay/:id/edit.:format                       {:controller=>"carts", :action=>"edit"}
+                complete_cart GET    /pay/:id/complete                           {:controller=>"carts", :action=>"complete"}
+      formatted_complete_cart GET    /pay/:id/complete.:format                   {:controller=>"carts", :action=>"complete"}
+                 confirm_cart POST   /pay/:id/confirm                            {:controller=>"carts", :action=>"confirm"}
+       formatted_confirm_cart POST   /pay/:id/confirm.:format                    {:controller=>"carts", :action=>"confirm"}
+              notificate_cart POST   /pay/:id/notificate                         {:controller=>"carts", :action=>"notificate"}
+    formatted_notificate_cart POST   /pay/:id/notificate.:format                 {:controller=>"carts", :action=>"notificate"}
+                         cart GET    /pay/:id                                    {:controller=>"carts", :action=>"show"}
+               formatted_cart GET    /pay/:id.:format                            {:controller=>"carts", :action=>"show"}
+                              PUT    /pay/:id                                    {:controller=>"carts", :action=>"update"}
+                              PUT    /pay/:id.:format                            {:controller=>"carts", :action=>"update"}
+                              DELETE /pay/:id                                    {:controller=>"carts", :action=>"destroy"}
+                              DELETE /pay/:id.:format                            {:controller=>"carts", :action=>"destroy"}
                       session POST   /session                                    {:controller=>"sessions", :action=>"create"}
             formatted_session POST   /session.:format                            {:controller=>"sessions", :action=>"create"}
                   new_session GET    /session/new                                {:controller=>"sessions", :action=>"new"}

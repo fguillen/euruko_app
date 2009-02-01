@@ -1,16 +1,31 @@
 class CartsController < ApplicationController
   before_filter :login_required, :except => [:notificate]
+  before_filter :admin_required, :only => [:index]
   
   protect_from_forgery :except => [:notificate]
-  
+
+  def index
+    @conditions = {}
+    
+    if !params[:status].blank?
+      @conditions = { :status => Cart::STATUS[params[:status].intern] }
+    end
+    
+    @carts = Cart.find(:all, :conditions => @conditions)
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @carts }
+    end
+  end  
   
   # this is called for the user or admin
   # if not param[:id] sended return the current_cart
   # if params[:id] sended return the Cart but only if admin?
-  def show
-    @cart = current_cart           if params[:id].nil?
+  def new
+    @cart = current_cart            if params[:id].nil?
     @cart = Cart.find(params[:id])  if !params[:id].nil? && admin?
-    record_not_found and return    if @cart.nil?
+    record_not_found and return  if @cart.nil?
   end
   
   # this is colled for the user
@@ -21,7 +36,7 @@ class CartsController < ApplicationController
     
     if( params[:event_ids].nil? )
       flash[:error] = 'You should select at less one Event'
-      redirect_to :action => 'show'
+      redirect_to :action => 'new'
       return
     end
     
@@ -43,10 +58,10 @@ class CartsController < ApplicationController
     @cart = Cart.find( params[:invoice] )
     record_not_found and return  if @cart.nil?
     
-    @cart.paypal_params   = params
-    @cart.status          = params[:payment_status]
-    @cart.transaction_id  = params[:txn_id]
-    @cart.purchased_at    = Time.now  if @cart.status == "Completed"
+    @cart.paypal_notify_params  = params
+    @cart.status                = params[:payment_status]
+    @cart.transaction_id        = params[:txn_id]
+    @cart.purchased_at          = Time.now  if @cart.status == "Completed"
     
     @cart.save!
   
@@ -60,6 +75,14 @@ class CartsController < ApplicationController
     
     @cart = current_user.carts.find( params[:invoice] )
     record_not_found and return  if @cart.nil?
+    
+    # if cart still ON_SESSION that is because there was not 
+    # a paypal notification
+    if @cart.status == Cart::STATUS[:ON_SESSION]
+      @cart.update_attribute( :status, Cart::STATUS[:NOT_NOTIFIED] )
+    end
+    
+    @cart.update_attribute( :paypal_complete_params, params )
     
     if @cart.status == Cart::STATUS[:COMPLETED]
       flash[:notice] = 'Payment was successfully.'

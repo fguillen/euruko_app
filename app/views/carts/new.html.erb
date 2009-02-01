@@ -1,4 +1,4 @@
-<% form_tag(confirm_cart_path) do %>
+<% form_tag(confirm_cart_path(@cart)) do %>
   <ul>
     <% Event.all.each do |event| %>
       <% if event.is_paid_for_user?( current_user ) %>

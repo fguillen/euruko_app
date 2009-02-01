@@ -1,0 +1,31 @@
+<h1>Listing payments</h1>
+
+<ul>
+  <li><%= link_to 'all', carts_path %></li>
+  <% Cart::STATUS.keys.each do |key| %>
+    <li><%= link_to Cart::STATUS[key], carts_path( :params => { :status => key } ) %></li>
+  <% end %>
+  
+</ul>
+
+<% @carts.each do |cart| %>
+  <p><strong>id:</strong> <%= cart.id %></p>
+  <p><strong>date create:</strong> <%= cart.created_at %></p>
+  <p><strong>date updated:</strong> <%= cart.updated_at %></p>
+  <p><strong>user:</strong> <%= link_to cart.user.name, cart.user %></p>
+  <p><strong>status:</strong> <%= cart.status %></p>
+  <p><strong>notify params:</strong> <%= cart.paypal_notify_params %></p>
+  <p><strong>complete params:</strong> <%= cart.paypal_complete_params %></p>
+  <p><strong>invoice info:</strong> <%= cart.invoice_info %></p>
+  <p><strong>txn id:</strong> <%= cart.transaction_id %></p>
+  <p><strong>purchased_at:</strong> <%= cart.purchased_at %></p>
+  <p><strong>price:</strong> <%= cart.total_price_on_euros %></p>
+
+  <p>
+    <strong>events:</strong>
+    <% cart.events.each do |event| %>
+      <%= link_to event.name, event %>,
+    <% end %>
+  </p>
+<% end %>
+
