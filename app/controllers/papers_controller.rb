@@ -58,10 +58,11 @@ class PapersController < ApplicationController
       if @paper.save
         @paper.speakers.create!( :user => current_user )  unless admin?
 
-        flash[:notice] = 'Paper was successfully created.'
-        format.html { redirect_to(@paper) }
+        flash[:notice] = 'Paper was successfully created. Now you can complete the Paper information'
+        format.html { redirect_to edit_paper_path(@paper) }
         format.xml  { render :xml => @paper, :status => :created, :location => @paper }
       else
+        flash[:error] = 'Some error ocurred while trying to create the Paper'
         format.html { render :action => "new" }
         format.xml  { render :xml => @paper.errors, :status => :unprocessable_entity }
       end

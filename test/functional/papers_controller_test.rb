@@ -63,7 +63,8 @@ class PapersControllerTest < ActionController::TestCase
       )
     end
 
-    assert_redirected_to paper_path(assigns(:paper))
+    assert_not_nil( flash[:notice] )
+    assert_redirected_to edit_paper_path(assigns(:paper))
   end
 
   def test_on_create_with_logged_should_assign_the_new_paper_to_current_user_when_user_is_not_admin

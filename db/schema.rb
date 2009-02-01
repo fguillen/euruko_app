@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090123211524) do
+ActiveRecord::Schema.define(:version => 20090201022848) do
 
   create_table "attendees", :force => true do |t|
     t.integer  "user_id",    :null => false
@@ -73,17 +73,21 @@ ActiveRecord::Schema.define(:version => 20090123211524) do
   end
 
   create_table "papers", :force => true do |t|
-    t.string   "title",                      :null => false
+    t.string   "title",                             :null => false
     t.string   "permalink"
     t.text     "description"
-    t.string   "family",                     :null => false
-    t.string   "status",                     :null => false
+    t.string   "family",                            :null => false
+    t.string   "status",                            :null => false
     t.datetime "date"
-    t.integer  "minutes",     :default => 0, :null => false
+    t.integer  "minutes",            :default => 0, :null => false
     t.integer  "room_id"
     t.integer  "creator_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   add_index "papers", ["permalink"], :name => "idx_papers_permalink", :unique => true

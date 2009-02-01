@@ -120,6 +120,18 @@ formatted_edit_paper_resource GET    /talks/:paper_id/resources/:id/edit.:format
                               PUT    /talks/:paper_id/resources/:id.:format      {:controller=>"resources", :action=>"update"}
                               DELETE /talks/:paper_id/resources/:id              {:controller=>"resources", :action=>"destroy"}
                               DELETE /talks/:paper_id/resources/:id.:format      {:controller=>"resources", :action=>"destroy"}
+                  paper_photo POST   /talks/:paper_id/photo                      {:controller=>"photos", :action=>"create"}
+        formatted_paper_photo POST   /talks/:paper_id/photo.:format              {:controller=>"photos", :action=>"create"}
+              new_paper_photo GET    /talks/:paper_id/photo/new                  {:controller=>"photos", :action=>"new"}
+    formatted_new_paper_photo GET    /talks/:paper_id/photo/new.:format          {:controller=>"photos", :action=>"new"}
+             edit_paper_photo GET    /talks/:paper_id/photo/edit                 {:controller=>"photos", :action=>"edit"}
+   formatted_edit_paper_photo GET    /talks/:paper_id/photo/edit.:format         {:controller=>"photos", :action=>"edit"}
+                              GET    /talks/:paper_id/photo                      {:controller=>"photos", :action=>"show"}
+                              GET    /talks/:paper_id/photo.:format              {:controller=>"photos", :action=>"show"}
+                              PUT    /talks/:paper_id/photo                      {:controller=>"photos", :action=>"update"}
+                              PUT    /talks/:paper_id/photo.:format              {:controller=>"photos", :action=>"update"}
+                              DELETE /talks/:paper_id/photo                      {:controller=>"photos", :action=>"destroy"}
+                              DELETE /talks/:paper_id/photo.:format              {:controller=>"photos", :action=>"destroy"}
                               GET    /papers                                     {:controller=>"papers", :action=>"index"}
                               GET    /papers.:format                             {:controller=>"papers", :action=>"index"}
                               POST   /papers                                     {:controller=>"papers", :action=>"create"}
@@ -186,10 +198,10 @@ formatted_update_status_paper PUT    /papers/:id/update_status.:format          
           formatted_edit_cart GET    /pay/:id/edit.:format                       {:controller=>"carts", :action=>"edit"}
                 complete_cart GET    /pay/:id/complete                           {:controller=>"carts", :action=>"complete"}
       formatted_complete_cart GET    /pay/:id/complete.:format                   {:controller=>"carts", :action=>"complete"}
-                 confirm_cart POST   /pay/:id/confirm                            {:controller=>"carts", :action=>"confirm"}
-       formatted_confirm_cart POST   /pay/:id/confirm.:format                    {:controller=>"carts", :action=>"confirm"}
               notificate_cart POST   /pay/:id/notificate                         {:controller=>"carts", :action=>"notificate"}
     formatted_notificate_cart POST   /pay/:id/notificate.:format                 {:controller=>"carts", :action=>"notificate"}
+                 confirm_cart POST   /pay/:id/confirm                            {:controller=>"carts", :action=>"confirm"}
+       formatted_confirm_cart POST   /pay/:id/confirm.:format                    {:controller=>"carts", :action=>"confirm"}
                          cart GET    /pay/:id                                    {:controller=>"carts", :action=>"show"}
                formatted_cart GET    /pay/:id.:format                            {:controller=>"carts", :action=>"show"}
                               PUT    /pay/:id                                    {:controller=>"carts", :action=>"update"}

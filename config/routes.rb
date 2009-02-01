@@ -27,6 +27,7 @@ ActionController::Routing::Routes.draw do |map|
     paper.resources :votes
     paper.resources :attendees
     paper.resources :resources
+    paper.resource :photo
   end
   map.resources :papers, :member => { :update_status => :put }
 
