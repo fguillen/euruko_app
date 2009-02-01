@@ -3,6 +3,7 @@
 <% @papers.each do |paper| %>
   <div class="paper">
     <h3><%= link_to paper.title, paper %></h3>
+    <%= image_tag paper.photo.url(:medium) %>
     <p><%= simple_format(paper.description) %>
       
     <% if current_user && current_user.admin? %>

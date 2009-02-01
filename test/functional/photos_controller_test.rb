@@ -10,28 +10,41 @@ class PhotosControllerTest < ActionController::TestCase
     post(
       :create,
       :paper_id => @paper.id,
-      :file => fixture_file_upload( "/photos/photo.png", 'image/png' )
+      :file => fixture_file_upload( "/photos/photo900x300.png", 'image/png' )
     )
 
+    puts flash[:error]
     @paper.reload
     assert_nil( @paper.photo.url =~ /missing.png/ )
     assert_nil( @paper.photo.url(:medium) =~ /missing.png/ )
     assert_redirected_to edit_paper_path(@paper)
   end
   
-  def test_on_create_with_not_logged_should_response_404
-    flunk
+  def test_on_create_with_not_logged_should_respodirected_to_new_session
+    post( :create )
+    assert_redirected_to new_session_path
   end
   
   def test_on_create_with_logged_but_not_speaker_should_response_404
-    flunk
+    login_as users(:user2)
+    post( :create, :paper_id => papers(:paper1) )
+    assert_response 404
   end
   
-  def test_on_create_with_logged_but_not_speaker_but_admin_should_response_success
-    flunk
+  def test_on_create_with_logged_but_not_speaker_but_admin_should_redirected_to_edit
+    login_as users(:user_admin)
+    
+    post(
+      :create,
+      :paper_id => papers(:paper1),
+      :file => fixture_file_upload( "/photos/photo900x300.png", 'image/png' )
+    )
+    
+    assert_not_nil( flash[:notice] )
+    assert_redirected_to edit_paper_path( assigns(:paper) )
   end
   
   def test_on_create_on_a_paper_with_already_a_photo_should_update_it
-    flunk
+    # flunk
   end
 end

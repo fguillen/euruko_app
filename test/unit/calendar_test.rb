@@ -20,4 +20,9 @@ class CalendarTest < ActiveSupport::TestCase
     #   puts e.inspect
     # end
   end
+  
+  def test_order_date_asc
+    @rooms, @papers, @dates = Calendar.charge_calendar_elements
+    assert( @papers.first.date < @papers.last.date )
+  end
 end

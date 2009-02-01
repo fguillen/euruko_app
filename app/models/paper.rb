@@ -16,7 +16,8 @@ class Paper < ActiveRecord::Base
 
   validates_attachment_size :photo, :less_than => 1.megabytes
   validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
-
+  validates_attachment_width :photo, :greater_than => 576, :less_than => 1000
+  validates_attachment_height :photo, :greater_than => 150, :less_than => 300
     
   # 
   # has_many :attendees,      :through => :attendees, :source => :user

@@ -78,8 +78,8 @@ class PapersController < ApplicationController
         format.html { redirect_to( edit_paper_path(@paper) ) }
         format.xml  { head :ok }
       else
-        flash[:error] = "Some error trying to update the Paper: #{paper.errors.full_messages}."
-        format.html { redirect_to( edit_paper_path(@paper) ) }
+        flash[:error] = "Some error trying to update the Paper."
+        format.html { render :action => 'edit' }
         format.xml  { render :xml => @paper.errors, :status => :unprocessable_entity }
       end
     end

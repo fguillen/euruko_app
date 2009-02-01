@@ -1,6 +1,8 @@
 class PhotosController < ApplicationController
   before_filter :login_required
   before_filter :load_paper_by_paper_id
+  before_filter :speaker_or_admin_required, :only => [:create]
+
   
   def create
     logger.debug( "photos_controller.create, @paper.photo.url:#{@paper.photo.url}" )
