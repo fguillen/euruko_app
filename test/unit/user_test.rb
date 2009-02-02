@@ -35,6 +35,8 @@ class UserTest < ActiveSupport::TestCase
         :public_profile         => true
       )
     end
+    
+    assert( User.last.authenticated?( 'pass000' ) )
   end
   
   def test_create_with_public_profile_false
@@ -51,20 +53,18 @@ class UserTest < ActiveSupport::TestCase
   end
   
   def test_update
-    @user = users(:user1)
-    @user.update_attributes(
+    @user = users(:user2)
+    @user.update_attributes!(
       :name                   => 'other name',
       :login                  => 'other_login',
       :email                  => 'other_email@email.com',
-      :password               => 'other_pass',
-      :password_confirmation  => 'other_pass',
       :public_profile         => false
     )
     
+    @user.reload
     assert_equal( 'other name', @user.name )
     assert_equal( 'other_login', @user.login )
     assert_equal( 'other_email@email.com', @user.email )
-    assert_equal( 'other_pass', @user.password )
     assert_equal( false, @user.public_profile )
   end
   
@@ -77,6 +77,7 @@ class UserTest < ActiveSupport::TestCase
       :role => User::ROLE[:ADMIN]
     )
     
+    @user.reload
     assert_not_equal( !User::ROLE[:ADMIN], @user.role )
   end
   
@@ -218,5 +219,43 @@ class UserTest < ActiveSupport::TestCase
     Paper.all.each{ |p| p.status = Paper::STATUS[:PROPOSED]; p.save }
     assert_equal [], User.find_speakers
   end
+  
+  def test_not_update_password_on_update_if_not_change_password
+    @user = users(:user1)
+    old_crypte_password = @user.crypted_password
+    
+    @user.update_attributes(
+      :password              => 'otherpass',
+      :password_confirmation => 'otherpass'
+    )
+    
+    assert( @user.valid? )
+    assert_equal( old_crypte_password, @user.crypted_password )
+  end
+  
+  def test_update_password
+    @user = users(:user1)
+    puts @user.crypted_password
+    @user.expects(:authenticated?).with('pupupupu').returns(true)
+    
+    @user.update_attributes!(
+      :change_password       => '1',
+      :password_actual       => 'pupupupu',
+      :password              => 'otherpass',
+      :password_confirmation => 'otherpass'
+    )
+    
+    assert( @user.valid? )
+    assert( @user.authenticated?( 'otherpass' ) )
+  end
+  
+  def test_not_valid_user_on_update_if_change_password_and_not_password_actual_correct
+    
+  end
+  
+  def test_validations_on_update_if_change_password
+    
+  end
+  
   
 end

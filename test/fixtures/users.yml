@@ -13,7 +13,7 @@ user1:
   permalink: user-1
   login: user1
   email: user1@email.com
-  crypted_password: aaa
+  crypted_password: 05bea7969f70004f0c2a010fa6c748ffd0d0429f
   role: <%= User::ROLE[:USER] %>
   public_profile: true
   
