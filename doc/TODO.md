@@ -42,6 +42,7 @@ WISHLIST
 * Añadir ponentes al crear charla via js
 * Notificaciones a twitter de nuevos registros y nueva paper presentada
 * Paginar listados de usuarios
+* Optimizar cargas de javascript.
 
 
 DONE
