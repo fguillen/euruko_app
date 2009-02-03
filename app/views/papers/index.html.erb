@@ -19,4 +19,6 @@
 
 <br />
 
-<%= link_to 'New paper', new_paper_path %>
+<% if logged_in? %>
+  <%= link_to_unless_current 'Submit yours', new_paper_path %>
+<% end %>
