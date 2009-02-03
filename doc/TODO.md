@@ -12,6 +12,7 @@ TODOs
 * Tests photo
 * Paperclip sube la photo a la carpeta public/system ??
 * No se están ejecutando los tests de foreignkeys
+* Vigilar traduciones: "Participa en las siguientes charlas" => "Presenting"
 
 ## xuanxu:
 * Pantalla últimos comentarios
@@ -40,6 +41,8 @@ WISHLIST
 * Autocomplete en añadir speaker
 * Añadir ponentes al crear charla via js
 * Notificaciones a twitter de nuevos registros y nueva paper presentada
+* Paginar listados de usuarios
+
 
 DONE
 ------------------
