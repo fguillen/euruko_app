@@ -1,4 +1,5 @@
-<h2><%= @user.name %></h2>
+<% title "People: #{@user.name}" %>
+
 <%=
   gravatar(
     @user.email, 
@@ -25,7 +26,7 @@
 
 <% if !@user.speaker_on_visibles_for_user( current_user ).empty? %>
   <div>
-    <h3>Participa en las siguientes charlas</h3>
+    <h3>and Presenting</h3>
     <ul>
       <% @user.speaker_on_visibles_for_user( current_user ).each do |paper| %>
         <li>

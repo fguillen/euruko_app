@@ -1,4 +1,4 @@
-<h2>Editing user</h2>
+<% title "Editing User: #{@user.name}" %>
 
 <% form_for(@user) do |f| %>
   <%= f.error_messages %>
@@ -25,7 +25,7 @@
   <%= f.text_field :company_url %></p>
 
   <p><%= f.check_box :public_profile %>
-  <%= f.label 'public_profile', 'Public Profile' %></p>
+  <%= f.label 'public_profile', 'Public Profile' %> (email will not be showed)</p>
   
   <p><%= f.check_box :change_password, :onchange => "toggle_change_password_fields()" %>
   <%= f.label 'change_password', 'Change Password' %></p>
@@ -61,4 +61,6 @@
       $('#user_password_confirmation').val('');
     }
   }
+  
+  $(document).ready( function(){ toggle_change_password_fields(); } );
 </script>

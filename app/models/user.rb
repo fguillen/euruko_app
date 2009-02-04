@@ -44,6 +44,7 @@ class User < ActiveRecord::Base
   after_create  :send_password_if_forgotten
   
   named_scope :user_public, :conditions => { :public_profile => true }
+  named_scope :activated, :conditions => 'activated_at IS NOT NULL'
 
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation
@@ -155,14 +156,14 @@ class User < ActiveRecord::Base
   def forgot_password
 #    @forgotten_password = true
     self.make_password_reset_code
-UserMailer.deliver_forgotten_password(self)# if recently_forgot_password?    
+    UserMailer.deliver_forgotten_password(self)# if recently_forgot_password?    
   end
 
   def reset_password
     # First update the password_reset_code before setting the 
     # reset_password flag to avoid duplicate email notifications.
     update_attributes(:password_reset_code => nil)
-UserMailer.deliver_reset_password(self)# if recently_reset_password?
+    UserMailer.deliver_reset_password(self)# if recently_reset_password?
 #    @reset_password = true
   end
 

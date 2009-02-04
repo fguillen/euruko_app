@@ -248,10 +248,17 @@ class UsersControllerTest < ActionController::TestCase
     assert_select "form[action=#{forgot_password_path}]"
     assert_select "input[name=email]"
   end
+  
+  def test_forgot_password_not_sent_if_user_not_activated_and_shows_form_again
+    UserMailer.expects(:deliver_forgotten_password).never
+    post :forgot_password, :email => users(:user_not_actived).email
+    assert_select "form[action=#{forgot_password_path}]"
+    assert_select "input[name=email]"
+  end
 
   def test_reset_password_with_invalid_code
     get :reset_password, :id => 'bad_code'
-    assert_template 'invalid_code'
+    assert_response 404
   end
 
   def test_reset_password_with_valid_code_shows_password_form
@@ -264,12 +271,32 @@ class UsersControllerTest < ActionController::TestCase
     assert_select "input[name=password_confirmation]"
   end
   
+  def test_reset_password_with_valid_code_should_reset_password_reset_code
+    @user = users(:user1)
+    assert_nil( @user.password_reset_code )
+    
+    @user.forgot_password
+    
+    assert_not_nil( @user.password_reset_code )
+    
+    post(
+      :reset_password, 
+      :id => @user.password_reset_code, 
+      :password => 'new password', 
+      :password_confirmation => 'new password'
+    )
+
+    @user.reload
+    assert_nil( @user.password_reset_code )
+  end
+  
   def test_reset_password_with_valid_password_and_confirmation
     @user = users(:user1)
     old_pwd = @user.crypted_password
     @user.forgot_password
     post :reset_password, :id => @user.password_reset_code, :password => 'new password', :password_confirmation => 'new password'
-    assert old_pwd != @user.reload.crypted_password
+    assert_not_equal( old_pwd, @user.reload.crypted_password )
+    assert_not_nil( flash[:notice] )
     assert_redirected_to login_path
   end
   
@@ -294,5 +321,7 @@ class UsersControllerTest < ActionController::TestCase
     assert_select "input[name=password]"
     assert_select "input[name=password_confirmation]"
   end
+  
+
   
 end

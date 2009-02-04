@@ -21,6 +21,12 @@
 <% end %>
 
 <% if admin? %>
+
+  <!-- datepicker -->
+  <link rel="stylesheet" href="http://ui.jquery.com/latest/themes/flora/flora.datepicker.css" type="text/css" media="screen" title="Flora (Default)">
+  <script src="http://ui.jquery.com/latest/ui/ui.datepicker.js"></script>
+  <!-- datepicker -->
+
   <div>
     <h3>Room and Calendar</h3>
     <p>
@@ -46,4 +52,5 @@
       <%= select( 'paper', 'time_form', times_array( '08', '20' ), { :include_blank => true } ) %>
     </p>
   </div>
+  
 <% end %>

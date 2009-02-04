@@ -16,6 +16,7 @@ user1:
   crypted_password: aaa
   role: <%= User::ROLE[:USER] %>
   public_profile: true
+  activated_at: <%= '2008-01-01 01:01' %>
   
 user2:
   name: User 2

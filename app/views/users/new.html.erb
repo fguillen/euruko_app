@@ -1,9 +1,10 @@
-<h2>Sign up as a new user</h2>
+<% title "Sign up as a new user" %>
+
 <% @user.password = @user.password_confirmation = nil %>
 
 <%= error_messages_for :user %>
 
-<% form_for :user, :url => users_path do |f| -%>
+<% form_for @user, :url => users_path do |f| -%>
   <p><%= label_tag 'login' %><br/>
   <%= f.text_field :login %></p>
 
@@ -20,8 +21,7 @@
   <%= f.password_field :password_confirmation %></p>
   
   <p><%= f.check_box :public_profile %>
-  <%= label_tag 'public_profile', 'Public Profile' %>
-  </p>
+  <%= label_tag 'public_profile', 'Public Profile' %> (email will not be showed)</p>
   
   <p><%= submit_tag 'Sign up' %></p>
 <% end -%>

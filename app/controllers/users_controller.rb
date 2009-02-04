@@ -34,6 +34,7 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    @user.public_profile = true
   end
  
   def create
@@ -96,25 +97,26 @@ class UsersController < ApplicationController
 
   def forgot_password
     return unless request.post?
-    if @user = User.find_by_email(params[:email])
+    if @user = User.activated.find_by_email(params[:email])
       @user.forgot_password
       redirect_to(login_path)
       flash[:notice] = "You will receive an email to reset your password." 
     else
-      flash[:error] = "No user found with email #{params[:email]}"
+      flash[:error] = "No user activated found with email #{params[:email]}"
     end
   end
 
   def reset_password
-    @user = User.find_by_password_reset_code(params[:id])
+    @user = User.activated.find_by_password_reset_code(params[:id])
     if @user.nil? 
-      render :action => 'invalid_code'
+      record_not_found
     else
       return unless request.post? && !params[:password].blank?
-      @user.password = params[:password]
-      @user.password_confirmation = params[:password_confirmation]
+      @user.password                = params[:password]
+      @user.password_confirmation   = params[:password_confirmation]
+      @user.password_reset_code     = nil
       if @user.save
-        flash.now[:notice] = "You have changed your password successfully, use it to log in."
+        flash[:notice] = "You have changed your password successfully, use it to log in."
         redirect_to login_path
       end
     end

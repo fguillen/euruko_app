@@ -1,3 +1,5 @@
+<% title 'Confirm your Purchase' %>
+
 <% form_tag( @cart.paypal_url( complete_cart_url(@cart), notificate_cart_url(@cart) ) ) do %>
   <ul>
   <% @cart.events.each do |event| %>

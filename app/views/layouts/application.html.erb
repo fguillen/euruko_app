@@ -3,7 +3,7 @@
 <html>
   <head xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-    <title><%= h(yield(:title) || "Euruko: #{controller.action_name}") %></title>
+    <title>EuRuKo2009 - <%= yield(:title) || "European Ruby Conference" %></title>
     <!-- link rel="shortcut icon" href="favicon.ico" /-->
 
     <%= stylesheet_link_tag 'screen', :media => 'screen, projection' %>
@@ -13,11 +13,6 @@
     <![endif]-->
 
     <%= javascript_include_tag :defaults %>
-
-    <!-- datepicker -->
-    <link rel="stylesheet" href="http://ui.jquery.com/latest/themes/flora/flora.datepicker.css" type="text/css" media="screen" title="Flora (Default)">
-    <script src="http://ui.jquery.com/latest/ui/ui.datepicker.js"></script>
-    <!-- datepicker -->
   </head>
 
   <body>
@@ -44,6 +39,7 @@
 
       <div id="main" class="span-16">
         <div id="section">
+          <h2><%= yield(:title) %></h2>
           <%= yield %>
         </div>
       </div>

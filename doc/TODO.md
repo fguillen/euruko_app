@@ -12,7 +12,6 @@ TODOs
 * Tests photo
 * Paperclip sube la photo a la carpeta public/system ??
 * No se están ejecutando los tests de foreignkeys
-* Vigilar traduciones: "Participa en las siguientes charlas" => "Presenting"
 * Reset Password no lanza alert. Mensajes de error feos.
 
 ## xuanxu:
@@ -52,6 +51,7 @@ WISHLIST
 
 DONE
 ------------------
+* Vigilar traduciones: "Participa en las siguientes charlas" => "Presenting"
 * Listado de últimos pagos, con mini buscador
 * Ajax en añadir/eliminar ponente a Paper
 * Añadir Foto (una y sólo una) a Paper

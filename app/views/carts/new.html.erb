@@ -1,3 +1,5 @@
+<% title 'Purchase Events' %>
+
 <% form_tag(confirm_cart_path(@cart)) do %>
   <ul>
     <% Event.all.each do |event| %>
