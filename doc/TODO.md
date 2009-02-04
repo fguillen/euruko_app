@@ -13,6 +13,7 @@ TODOs
 * Paperclip sube la photo a la carpeta public/system ??
 * No se están ejecutando los tests de foreignkeys
 * Vigilar traduciones: "Participa en las siguientes charlas" => "Presenting"
+* Reset Password no lanza alert. Mensajes de error feos.
 
 ## xuanxu:
 * Pantalla últimos comentarios
@@ -43,6 +44,10 @@ WISHLIST
 * Notificaciones a twitter de nuevos registros y nueva paper presentada
 * Paginar listados de usuarios
 * Optimizar cargas de javascript.
+* Solo posible cambiar password si se introduce actual, problemas:
+** El admin debe poder hacerlo sin la actual
+** El reset password debe poder hacerlo sin la actual
+** La creación debe poder hacerlo, sin la actual
 
 
 DONE

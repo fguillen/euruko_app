@@ -31,9 +31,6 @@
   <%= f.label 'change_password', 'Change Password' %></p>
   
   <div id="change_password_fields" style="display:<%= @user.change_password ? "inline" : "none" %>">
-    <p><%= f.label :password_actual, "Actual Password" %><br />
-    <%= f.password_field :password_actual %></p>
-  
     <p><%= f.label :password, "New Password" %><br/>
     <%= f.password_field :password %></p>
 
@@ -60,6 +57,8 @@
       $('#change_password_fields').show("fast");
     }else{
       $('#change_password_fields').hide("fast");
+      $('#user_password').val('');
+      $('#user_password_confirmation').val('');
     }
   }
 </script>

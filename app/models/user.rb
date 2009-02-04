@@ -31,20 +31,17 @@ class User < ActiveRecord::Base
   validates_uniqueness_of   :email
   validates_format_of       :email,    :with => Authentication.email_regex, :message => Authentication.bad_email_message
   
-  validates_presence_of     :password_actual,       :if => :change_password, :on => :update
   validates_presence_of     :password,              :if => :change_password, :on => :update
   validates_presence_of     :password_confirmation, :if => :change_password, :on => :update
   
   validates_inclusion_of    :public_profile, :in => [true, false]
   
-  validate_on_update        :validate_change_password, :if => :change_password
 
   simple_text_fields
   
   before_create :make_activation_code 
   before_create :update_role
   after_create  :send_password_if_forgotten
-  after_update  :clear_change_password,  :if => :change_password
   
   named_scope :user_public, :conditions => { :public_profile => true }
 
@@ -57,7 +54,6 @@ class User < ActiveRecord::Base
     :name, 
     :password, 
     :password_confirmation,
-    :password_actual,
     :change_password,
     :text,
     :personal_web_name,
@@ -68,7 +64,7 @@ class User < ActiveRecord::Base
     :permalink_field_name
   )
 
-  attr_accessor :password_actual, :change_password
+  attr_accessor :change_password
   
 
   # CONSTANTS
@@ -183,20 +179,6 @@ UserMailer.deliver_reset_password(self)# if recently_reset_password?
 #    UserNotifier.deliver_reset_password(self) if recently_reset_password?
   end
 
-  # protecting the change of password if not password_actual correct
-  def validate_change_password
-    logger.info( "XXX: change_password: #{self.change_password}")
-    logger.info( "XXX: change_password: true")  if self.change_password
-    self.errors.add(:password_actual, 'not correct')  if !self.authenticated?( self.password_actual )
-  end
-  
-  def clear_change_password
-    puts "XXX: clear_change_password"
-    self.change_password        = false
-    self.password_actual        = nil
-    self.password               = nil
-    self.password_confirmation  = nil
-  end
 
   protected
 

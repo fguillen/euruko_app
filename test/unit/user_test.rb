@@ -58,6 +58,8 @@ class UserTest < ActiveSupport::TestCase
       :name                   => 'other name',
       :login                  => 'other_login',
       :email                  => 'other_email@email.com',
+      :password               => 'other_pass',
+      :password_confirmation  => 'other_pass',
       :public_profile         => false
     )
     
@@ -220,41 +222,17 @@ class UserTest < ActiveSupport::TestCase
     assert_equal [], User.find_speakers
   end
   
-  def test_not_update_password_on_update_if_not_change_password
-    @user = users(:user1)
-    old_crypte_password = @user.crypted_password
-    
-    @user.update_attributes(
-      :password              => 'otherpass',
-      :password_confirmation => 'otherpass'
-    )
-    
-    assert( @user.valid? )
-    assert_equal( old_crypte_password, @user.crypted_password )
-  end
-  
   def test_update_password
     @user = users(:user1)
-    puts @user.crypted_password
-    @user.expects(:authenticated?).with('pupupupu').returns(true)
+    assert( !@user.authenticated?( 'otherpass' ) )
     
     @user.update_attributes!(
-      :change_password       => '1',
-      :password_actual       => 'pupupupu',
       :password              => 'otherpass',
       :password_confirmation => 'otherpass'
     )
     
     assert( @user.valid? )
     assert( @user.authenticated?( 'otherpass' ) )
-  end
-  
-  def test_not_valid_user_on_update_if_change_password_and_not_password_actual_correct
-    
-  end
-  
-  def test_validations_on_update_if_change_password
-    
   end
   
   
