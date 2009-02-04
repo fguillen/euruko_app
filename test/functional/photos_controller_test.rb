@@ -43,8 +43,4 @@ class PhotosControllerTest < ActionController::TestCase
     assert_not_nil( flash[:notice] )
     assert_redirected_to edit_paper_path( assigns(:paper) )
   end
-  
-  def test_on_create_on_a_paper_with_already_a_photo_should_update_it
-    # flunk
-  end
 end
