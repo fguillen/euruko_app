@@ -66,7 +66,7 @@ class CartsControllerTest < ActionController::TestCase
     assert( !@cart.is_purchased? )
     assert( !events(:event2).is_paid_for_user?( users(:user1).id ) )
     
-    get(
+    post(
       :notificate,
       :invoice => @cart.id,
       :payment_status => 'Completed',
@@ -90,7 +90,7 @@ class CartsControllerTest < ActionController::TestCase
     assert( !@cart.is_purchased? )
     assert( !events(:event2).is_paid_for_user?( users(:user1).id ) )
     
-    get(
+    post(
       :notificate,
       :invoice => @cart.id,
       :payment_status => 'ERROR',
@@ -109,7 +109,7 @@ class CartsControllerTest < ActionController::TestCase
   end
   
   def test_on_notificate_with_not_valid_cart_id_should_respond_404
-    get(
+    post(
       :notificate,
       :invoice => -1,
       :payment_status => 'Completed',
