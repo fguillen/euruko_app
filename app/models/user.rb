@@ -179,6 +179,28 @@ class User < ActiveRecord::Base
 #    UserNotifier.deliver_forgot_password(self) if recently_forgot_password?
 #    UserNotifier.deliver_reset_password(self) if recently_reset_password?
   end
+  
+  alias_method :ar_to_xml, :to_xml
+  def to_xml(options = {})
+    default_except = [
+      :activated_at,
+      :activation_code,
+      :email,
+      :login,
+      :password_reset_code,
+      :permalink,
+      :public_profile,
+      :role,
+      :crypted_password, 
+      :salt, 
+      :remember_token, 
+      :remember_token_expires_at, 
+      :created_at, 
+      :updated_at
+    ]
+    options[:except] = (options[:except] ? options[:except] + default_except : default_except)   
+    self.ar_to_xml( options )
+  end
 
 
   protected
