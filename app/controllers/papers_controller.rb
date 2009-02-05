@@ -64,6 +64,15 @@ class PapersController < ApplicationController
   end
 
   def update
+    if admin?
+      @paper.status   = params[:paper][:status]   if params[:paper][:status]
+      @paper.minutes  = params[:paper][:minutes]  if params[:paper][:minutes]
+      @paper.family   = params[:paper][:family]   if params[:paper][:family]
+      @paper.room_id  = params[:paper][:room_id]  if params[:paper][:room_id]
+      @paper.status   = params[:paper][:status]   if params[:paper][:status]
+      @paper.date     = params[:paper][:date]     if params[:paper][:date]
+    end
+    
     respond_to do |format|
       if @paper.update_attributes(params[:paper])
         flash[:notice] = 'Paper was successfully updated.'
@@ -88,7 +97,7 @@ class PapersController < ApplicationController
         format.html { redirect_to( edit_paper_path(@paper) ) }
         format.xml  { head :ok }
       else
-        flash[:error] = "Some error trying to update the status of the Paper: #{@paper.errors.full_messages}."
+        flash[:error] = "Some error trying to update the status of the Paper."
         format.html { redirect_to( edit_paper_path(@paper) ) }
         format.xml  { render :xml => @paper.errors, :status => :unprocessable_entity }
       end

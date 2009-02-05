@@ -8,7 +8,6 @@ TODOs
 * Al modificar charla proteger campos room, fechas y demás.. sólo a administradores
 * Un usuario con carritos pagados no se debería poder eliminar
 * Tests exhaustivos de cart y carts controller
-* Paperclip sube la photo a la carpeta public/system ??
 * No se están ejecutando los tests de foreignkeys
 
 ## xuanxu:
@@ -47,6 +46,7 @@ WISHLIST
 
 DONE
 ------------------
+* Paperclip sube la photo a la carpeta public/system ??
 * Reset Password no lanza alert. Mensajes de error feos.
 * Títulos de páginas ( http://railscasts.com/episodes/30-pretty-page-title )
 * Tests photo

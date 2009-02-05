@@ -78,17 +78,16 @@ class UsersController < ApplicationController
   # PUT /users/1.xml
   def update
     respond_to do |format|
+      if admin? && params[:user][:role]
+        @user.role = params[:user][:role]
+      end
+      
       if @user.update_attributes(params[:user])
-        
-        if admin? && !params[:user][:role].nil?
-          @user.role = params[:user][:role]
-          @user.save!
-        end
-        
         flash[:notice] = 'User was successfully updated.'
         format.html { redirect_to(@user) }
         format.xml  { head :ok }
       else
+        flash[:error] = 'Some error trying to update the profile'
         format.html { render :action => "edit" }
         format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
       end

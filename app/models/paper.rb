@@ -46,9 +46,14 @@ class Paper < ActiveRecord::Base
   before_create :update_status
   after_create :notify_by_mail
   
-  attr_protected :status
-  attr_protected :creator_id
-  
+  attr_protected(
+    :status,
+    :creator_id,
+    :minutes,
+    :family,
+    :room_id,
+    :date
+  )
   
   STATUS = {
     :PROPOSED       => 'Proposed',
@@ -134,6 +139,6 @@ class Paper < ActiveRecord::Base
   private
   
     def update_status
-      self.status ||= Paper::STATUS[:PROPOSED]
+      self.status = Paper::STATUS[:PROPOSED]
     end
 end

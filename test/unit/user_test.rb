@@ -224,5 +224,20 @@ class UserTest < ActiveSupport::TestCase
     assert( @user.authenticated?( 'otherpass' ) )
   end
   
+  def test_on_create_role_should_be_user
+    @user =
+      User.create(
+        :name                   => 'User Name',
+        :login                  => 'other_login',
+        :email                  => 'email@email.com',
+        :password               => 'pass000',
+        :password_confirmation  => 'pass000',
+        :public_profile         => true,
+        :role                   => User::ROLE[:ADMIN]
+      )
+    
+    assert( @user.valid? )
+    assert_equal( User::ROLE[:USER], @user.role )
+  end
   
 end

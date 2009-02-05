@@ -42,7 +42,6 @@ class UsersControllerTest < ActionController::TestCase
           :email        => 'email@email.com',
           :password     => 'pass000',
           :password_confirmation => 'pass000',
-          :role         => User::ROLE[:USER],
           :public_profile => true
         }
       )
@@ -61,7 +60,6 @@ class UsersControllerTest < ActionController::TestCase
           :email        => 'email@email.com',
           :password     => 'pass000',
           :password_confirmation => 'pass000',
-          :role         => User::ROLE[:USER],
           :public_profile => false
         }
       )
@@ -188,7 +186,6 @@ class UsersControllerTest < ActionController::TestCase
         :email        => 'email@email.com',
         :password     => 'pass000',
         :password_confirmation => 'pass000',
-        :role         => User::ROLE[:USER],
         :public_profile => true
       }
     )
@@ -345,6 +342,34 @@ class UsersControllerTest < ActionController::TestCase
   def test_on_index_should_not_show_not_activated_users
     get :index
     assert( !assigns(:users).include?( users(:user_not_actived) ) )
+  end
+  
+  def test_on_update_with_not_admin_should_not_update_role
+    @user = users(:user1)
+    login_as @user
+    
+    post(
+      :update,
+      :id   => @user.id,
+      :user => { :role => User::ROLE[:ADMIN] }
+    )
+    
+    @user.reload
+    assert_equal( User::ROLE[:USER], @user.role)
+  end
+  
+  def test_on_update_with_admin_should_update_role
+    @user = users(:user1)
+    login_as users(:user_admin)
+    
+    post(
+      :update,
+      :id   => @user.id,
+      :user => { :role => User::ROLE[:ADMIN] }
+    )
+    
+    @user.reload
+    assert_equal( User::ROLE[:ADMIN], @user.role)
   end
   
 end

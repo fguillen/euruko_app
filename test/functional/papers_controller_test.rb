@@ -337,8 +337,6 @@ class PapersControllerTest < ActionController::TestCase
     assert_redirected_to papers_path
   end
   
-  
-  
   def test_on_create_should_initialize_creator_id
     login_as users(:user1)
     
@@ -355,4 +353,65 @@ class PapersControllerTest < ActionController::TestCase
     
     assert_equal( users(:user1).id, assigns(:paper).creator.id)
   end
+  
+  def test_on_update_with_not_admin_should_not_update_protected_attributes
+    login_as users(:user1)
+    @paper = papers(:paper1)
+    
+    assert_not_equal( Paper::STATUS[:PROPOSED], @paper.status )
+    assert_not_equal( 0, @paper.minutes )
+    assert_not_equal( Paper::FAMILY[:SESSION], @paper.family )
+    assert_not_equal( rooms(:room2), @paper.room )
+    assert_not_equal( 2001, @paper.date.year )
+    
+    post(
+      :update,
+      :id => @paper.id, 
+      :paper => { 
+        :status       => Paper::STATUS[:PROPOSED],
+        :minutes      => 0,
+        :family       => Paper::FAMILY[:SESSION],
+        :room_id      => rooms(:room2).id,
+        :date         => '2001-01-01 01:01'
+      }
+    )
+    
+    @paper.reload
+    assert_not_equal( Paper::STATUS[:PROPOSED], @paper.status )
+    assert_not_equal( 0, @paper.minutes )
+    assert_not_equal( Paper::FAMILY[:SESSION], @paper.family )
+    assert_not_equal( rooms(:room2), @paper.room )
+    assert_not_equal( 2001, @paper.date.year )
+  end
+  
+  def test_on_update_with_admin_should_update_protected_attributes
+    login_as users(:user_admin)
+    @paper = papers(:paper1)
+    
+    assert_not_equal( Paper::STATUS[:PROPOSED], @paper.status )
+    assert_not_equal( 0, @paper.minutes )
+    assert_not_equal( Paper::FAMILY[:SESSION], @paper.family )
+    assert_not_equal( rooms(:room2), @paper.room )
+    assert_not_equal( 2001, @paper.date.year )
+    
+    post(
+      :update,
+      :id => @paper.id, 
+      :paper => { 
+        :status       => Paper::STATUS[:PROPOSED],
+        :minutes      => 0,
+        :family       => Paper::FAMILY[:SESSION],
+        :room_id      => rooms(:room2).id,
+        :date         => '2001-01-01 01:01'
+      }
+    )
+    
+    @paper.reload
+    assert_equal( Paper::STATUS[:PROPOSED], @paper.status )
+    assert_equal( 0, @paper.minutes )
+    assert_equal( Paper::FAMILY[:SESSION], @paper.family )
+    assert_equal( rooms(:room2), @paper.room )
+    assert_equal( 2001, @paper.date.year )
+  end
+  
 end
