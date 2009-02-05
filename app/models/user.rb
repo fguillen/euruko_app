@@ -43,7 +43,7 @@ class User < ActiveRecord::Base
   before_create :update_role
   after_create  :send_password_if_forgotten
   
-  named_scope :user_public, :conditions => { :public_profile => true }
+  named_scope :public_profile, :conditions => { :public_profile => true }
   named_scope :activated, :conditions => 'activated_at IS NOT NULL'
 
   # HACK HACK HACK -- how to do attr_accessible from here?
@@ -128,10 +128,6 @@ class User < ActiveRecord::Base
   
   def self.find_speakers
     Paper.visible.collect(&:speakers).flatten.collect(&:user)
-  end
-  
-  def self.find_public
-    User.find(:all, :conditions => {:public_profile => true}, :order => :name )
   end
   
   def speaker?

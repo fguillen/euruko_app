@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     if( params[:speakers] )
       @users = User.find_speakers
     else
-      @users = admin? ? User.all : User.find_public
+      @users = admin? ? User.all : User.activated.public_profile
     end
 
     respond_to do |format|

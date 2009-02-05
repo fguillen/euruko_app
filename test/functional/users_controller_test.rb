@@ -342,4 +342,9 @@ class UsersControllerTest < ActionController::TestCase
     assert_not_nil( @response.body =~ /text/ )
   end
   
+  def test_on_index_should_not_show_not_activated_users
+    get :index
+    assert( !assigns(:users).include?( users(:user_not_actived) ) )
+  end
+  
 end

@@ -126,7 +126,7 @@ class Paper < ActiveRecord::Base
   end
 
   def user_candidates
-    User.find_public - self.speaking_users
+    User.activated.public_profile - self.speaking_users
   end
   
   private

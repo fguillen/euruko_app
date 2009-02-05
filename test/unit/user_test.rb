@@ -169,10 +169,10 @@ class UserTest < ActiveSupport::TestCase
     assert( !User.find_speakers.include?( users(:user2) ) )
   end
   
-  def test_find_public
-    assert( User.find_public )
-    assert( User.find_public.include?( users(:user1) ) )
-    assert( !User.find_public.include?( users(:private) ) )
+  def test_public_profile
+    assert( User.public_profile )
+    assert( User.public_profile.include?( users(:user1) ) )
+    assert( !User.public_profile.include?( users(:private) ) )
   end
   
   def test_is_speaker_on_or_admin
