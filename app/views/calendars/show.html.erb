@@ -1,7 +1,5 @@
 <% title 'Calendar' %>
 
-<h2>Calendar</h2>
-
 <% @dates.each do |date| %>
   <h3><%= date.strftime("%A %d %B %Y")  %></h3>
   <% @rooms.each do |room| %>
