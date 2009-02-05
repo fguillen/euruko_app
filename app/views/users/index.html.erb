@@ -1,4 +1,8 @@
 <% title "People" %>
+<ul>
+  <li><%= link_to 'All', users_path %></li>
+  <li><%= link_to 'Speakers', users_path( :params => { :speakers => '1' } ) %></li>
+</ul>
 
 <table>
   <tr>
