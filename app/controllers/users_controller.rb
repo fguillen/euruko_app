@@ -58,7 +58,7 @@ class UsersController < ApplicationController
     case
     when (!params[:activation_code].blank?) && user && !user.active?
       user.activate!
-      flash[:notice] = "Signup complete! Please sign in to continue."
+      flash[:notice] = "Signup complete! You have been autologged."
       self.current_user = user
       redirect_back_or_default('/')
     when params[:activation_code].blank?

@@ -6,7 +6,9 @@
     <% end %>
   </ul>
 </p>
-<h4>My valoration</h4>
-<p>
-  <%= render :partial => 'papers/votes', :locals => { :paper => @paper } %>
-</p>
+<% if logged_in? %>
+  <h4>My valoration</h4>
+  <p>
+    <%= render :partial => 'papers/votes', :locals => { :paper => @paper } %>
+  </p>
+<% end %>
