@@ -6,6 +6,7 @@ TODOs
 * Un usuario con carritos pagados no se debería poder eliminar
 * Tests exhaustivos de cart y carts controller
 * No se están ejecutando los tests de foreignkeys
+* Si pago no "Completed" sacar mensaje y decir que se pongan en contacto con admin
 
 ## xuanxu:
 * Pantalla últimos comentarios
