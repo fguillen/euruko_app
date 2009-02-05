@@ -153,7 +153,7 @@ namespace :populate do
     puts "Creating Speakers..."
     (1..50).each do |num|
       Speaker.create(
-        :user      => User.user_public.random(1),
+        :user      => User.public_profile.random(1),
         :paper     => Paper.random(1)
       )
     end
