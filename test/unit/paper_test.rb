@@ -275,4 +275,14 @@ class PaperTest < ActiveSupport::TestCase
     assert_equal( 'other text', @paper.description )
   end
   
+  # def test_new_record_poltergeist
+  #   paper =
+  #     Paper.create!(
+  #       :title        => 'el título',
+  #       :description  => 'la descripcíón',
+  #       :creator_id   => users(:user1)
+  #     )
+  #   
+  # end
+  
 end

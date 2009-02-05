@@ -13,7 +13,6 @@ class PhotosControllerTest < ActionController::TestCase
       :file => fixture_file_upload( "/photos/photo900x300.png", 'image/png' )
     )
 
-    puts flash[:error]
     @paper.reload
     assert_nil( @paper.photo.url =~ /missing.png/ )
     assert_nil( @paper.photo.url(:medium) =~ /missing.png/ )

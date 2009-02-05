@@ -7,6 +7,7 @@ TODOs
 * Tests exhaustivos de cart y carts controller
 * No se están ejecutando los tests de foreignkeys
 * Si pago no "Completed" sacar mensaje y decir que se pongan en contacto con admin
+* Una Paper no puede estar activa o confirmada si date is null
 
 ## xuanxu:
 * Pantalla últimos comentarios

@@ -8,7 +8,7 @@ namespace :populate do
     UserObserver.any_instance.stubs(:after_save).returns(true)
     
     user = 
-      User.new(
+      User.create!(
         :name         => 'Administrator',
         :login        => 'admin',
         :email        => 'admin@email.com',
@@ -42,7 +42,7 @@ namespace :populate do
     password = Faker::Lorem.words.join()
     
     user = 
-      User.create(
+      User.create!(
         :name               => Faker::Name.name,
         :login              => Faker::Internet.user_name,
         :email              => Faker::Internet.free_email,
@@ -132,14 +132,15 @@ namespace :populate do
           :title        => Faker::Lorem.sentence,
           :description  => Faker::Lorem.paragraphs.join("\n")
         )
+      paper.creator = User.random(1)
+      paper.save
         
       paper.family  = Paper::FAMILY.values.rand
       paper.minutes = Kernel.rand(101)
       paper.date    = random_datetime( '2009/04/10 08:00', '2009/04/14 21:00' )
       paper.room    = Room.random(1)
-      paper.creator = User.random(1)
       paper.status  = Paper::STATUS.values.rand
-      paper.save!
+      paper.save
     end
     
     puts "... #{Paper.count} papers created"
