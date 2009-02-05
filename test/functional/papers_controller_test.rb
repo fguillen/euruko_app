@@ -414,4 +414,61 @@ class PapersControllerTest < ActionController::TestCase
     assert_equal( 2001, @paper.date.year )
   end
   
+  def test_on_update_with_not_admin_if_paper_status_is_under_review_can_not_be_updated
+    login_as users(:user1)
+    
+    @paper = papers(:paper1)
+    @paper.update_attribute( :status, Paper::STATUS[:UNDER_REVIEW] )
+    
+    post(
+      :update,
+      :id => @paper.id,
+      :paper => { :title => 'other title' }
+    )
+    
+    @paper.reload
+    assert_not_equal( 'other title', @paper.title )
+    assert_not_nil( flash[:error] )
+    assert_redirected_to paper_path( @paper )
+  end
+  
+  def test_on_update_with_admin_if_paper_status_is_under_review_can_be_updated
+    login_as users(:user_admin)
+    
+    @paper = papers(:paper1)
+    @paper.update_attribute( :status, Paper::STATUS[:UNDER_REVIEW] )
+    
+    post(
+      :update,
+      :id => @paper.id,
+      :paper => { :title => 'other title' }
+    )
+    
+    @paper.reload
+    assert_equal( 'other title', @paper.title )
+    assert_not_nil( flash[:notice] )
+    assert_redirected_to edit_paper_path( @paper )
+  end
+  
+  def test_on_edit_with_not_admin_if_paper_status_is_under_review_should_redirected_to_show_with_error_flash
+    login_as users(:user1)
+    
+    @paper = papers(:paper1)
+    @paper.update_attribute( :status, Paper::STATUS[:UNDER_REVIEW] )
+    
+    get( :edit, :id => papers(:paper1).id )
+    assert_not_nil( flash[:error] )
+    assert_redirected_to paper_path( papers(:paper1) )
+  end
+  
+  def test_on_edit_with_admin_if_paper_status_is_under_review_should_response_success
+    login_as users(:user_admin)
+    
+    @paper = papers(:paper1)
+    @paper.update_attribute( :status, Paper::STATUS[:UNDER_REVIEW] )
+    
+    get( :edit, :id => papers(:paper1).id )
+    assert_nil( flash[:error] )
+    assert_response :success
+  end
 end

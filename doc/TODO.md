@@ -5,7 +5,6 @@ TODOs
 * Comunicación PayPal cifrada
 * En perfil de usuarios sólo mostrar las charlas en las que participa si la charla es .visible?
 * Una charla en estado UNDER REVIEW no puede se modificada más que por un admin
-* Al modificar charla proteger campos room, fechas y demás.. sólo a administradores
 * Un usuario con carritos pagados no se debería poder eliminar
 * Tests exhaustivos de cart y carts controller
 * No se están ejecutando los tests de foreignkeys
@@ -46,6 +45,7 @@ WISHLIST
 
 DONE
 ------------------
+* Al modificar charla proteger campos room, fechas y demás.. sólo a administradores
 * Paperclip sube la photo a la carpeta public/system ??
 * Reset Password no lanza alert. Mensajes de error feos.
 * Títulos de páginas ( http://railscasts.com/episodes/30-pretty-page-title )

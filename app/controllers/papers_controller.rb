@@ -4,6 +4,7 @@ class PapersController < ApplicationController
   before_filter :speaker_or_admin_required, :only => [:edit, :update, :update_status, :destroy ]
   before_filter :admin_required,            :only => [:destroy]
   before_filter :public_profile_required,   :only => [:new]
+  before_filter :admin_or_not_under_review_required, :only => [:edit, :update]
   
   
 
@@ -45,7 +46,6 @@ class PapersController < ApplicationController
 
   def create
     @paper            = Paper.new( params[:paper] )
-    @paper.family     = Paper::FAMILY[:SESSION]  if @paper.family.nil?
     @paper.creator_id = current_user.id
 
     respond_to do |format|
@@ -118,6 +118,13 @@ class PapersController < ApplicationController
       if !current_user.public_profile
         flash[:error] = "You can't not access to this action unless you set your profile as public"
         redirect_to edit_user_path( current_user )
+      end
+    end
+    
+    def admin_or_not_under_review_required
+      if !admin? && @paper.status == Paper::STATUS[:UNDER_REVIEW]
+        flash[:error] = "The paper is under review, now it can not be updated"
+        redirect_to paper_path( @paper )
       end
     end
 

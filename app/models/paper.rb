@@ -32,6 +32,7 @@ class Paper < ActiveRecord::Base
   validates_uniqueness_of :title
   validates_presence_of :description
   validates_presence_of :family
+  validates_presence_of :status
   validates_numericality_of :minutes
   validates_associated :creator
   validates_presence_of :creator
@@ -42,8 +43,9 @@ class Paper < ActiveRecord::Base
   
   simple_text_fields
   
+  before_validation_on_create :initialize_status
+  before_validation_on_create :initialize_family
   before_save :update_date
-  before_create :update_status
   after_create :notify_by_mail
   
   attr_protected(
@@ -138,7 +140,11 @@ class Paper < ActiveRecord::Base
   
   private
   
-    def update_status
+    def initialize_status
       self.status = Paper::STATUS[:PROPOSED]
+    end
+    
+    def initialize_family
+      self.family = Paper::FAMILY[:SESSION]
     end
 end

@@ -33,14 +33,17 @@ class PaperTest < ActiveSupport::TestCase
 
   def test_create
     assert_difference "Paper.count", 1 do
-      Paper.create!(
-        :title        => "Paper Title",
-        :description  => "Paper description",
-        :family       => Paper::FAMILY[:TUTORIAL],
-        :minutes      => 0,
-        :creator      => users(:user1)
-      )
+      @paper=
+        Paper.create(
+          :title        => "Paper Title",
+          :description  => "Paper description",
+          :creator      => users(:user1)
+        )
     end
+    
+    @paper.reload
+    assert_equal( Paper::STATUS[:PROPOSED], @paper.status )
+    assert_equal( Paper::FAMILY[:SESSION], @paper.family )
   end
 
   def test_permalink
@@ -48,8 +51,6 @@ class PaperTest < ActiveSupport::TestCase
       Paper.create(
         :title        => "Paper Title",
         :description  => "Paper description",
-        :family       => Paper::FAMILY[:TUTORIAL],
-        :minutes      => 0,
         :creator      => users(:user1)
       )
       
@@ -104,15 +105,12 @@ class PaperTest < ActiveSupport::TestCase
     assert( !paper.valid? )
     assert( paper.errors.on(:title) )
     assert( paper.errors.on(:description) )
-    assert( paper.errors.on(:family) )
     assert( paper.errors.on(:creator) )
     
     paper = 
       Paper.new(
         :title        => @paper.title + "some more",
         :description  => @paper.description,
-        :family       => @paper.family,
-        :minutes      => @paper.minutes,
         :creator      => users(:user1)
       )
     assert( paper.valid? )
@@ -132,9 +130,6 @@ class PaperTest < ActiveSupport::TestCase
       Paper.new(
         :title        => "Paper Title",
         :description  => "Paper description",
-        :family       => Paper::FAMILY[:TUTORIAL],
-        :status       => Paper::STATUS[:PROPOSED],
-        :minutes      => 0,
         :creator      => users(:user1)
       )
     
@@ -159,14 +154,13 @@ class PaperTest < ActiveSupport::TestCase
     assert_not_nil( @paper.date_form )
     assert_not_nil( @paper.time_form )
     
-    @paper.update_attributes( :date => nil )
+    @paper.update_attribute( :date, nil )
     assert_nil( @paper.date_form )
     assert_nil( @paper.time_form )
     
-    @paper.update_attributes( :date => Time.parse( "2009/12/30 10:11" ) )
+    @paper.update_attribute( :date, Time.parse( "2009/12/30 10:11" ) )
     assert_equal( '2009/12/30', @paper.date_form )
-    # TODO: what happend with this date?
-    # assert_equal( '10:11', @paper.time_form )
+    assert_equal( '10:11', @paper.time_form )
   end
   
   def test_find_all_by_status
