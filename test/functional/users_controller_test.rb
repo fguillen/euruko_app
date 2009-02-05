@@ -322,6 +322,24 @@ class UsersControllerTest < ActionController::TestCase
     assert_select "input[name=password_confirmation]"
   end
   
-
+  def test_on_index_with_xml_format_should_not_share_private_attributes
+    get(
+      :show,
+      :id     => users(:user1).id,
+      :format => 'xml'
+    )
+    assert_response :success
+    assert_nil( @response.body =~ /email/ )
+    assert_nil( @response.body =~ /password/ )
+    assert_not_nil( @response.body =~ /text/ )
+  end
+  
+  def test_on_show_with_xml_format_should_not_share_private_attributes
+    get :index, :format => 'xml'
+    assert_response :success
+    assert_nil( @response.body =~ /email/ )
+    assert_nil( @response.body =~ /password/ )
+    assert_not_nil( @response.body =~ /text/ )
+  end
   
 end
