@@ -1,5 +1,10 @@
 <% title "Paper: #{@paper.title}" %>
 
+<%= image_tag @paper.photo.url(:medium) %>
+
+<h3>Description</h3>
+<p><%= @paper.description %></p>
+
 <h3>Speakers</h3>
 <p>
   <ul>
@@ -25,9 +30,6 @@
   at <%= @paper.date %> 
   on <%= @paper.room.nil? ? 'not room yet' : @paper.room.name %>
 </p>
-
-<h3>Description</h3>
-<p><%= @paper.description %></p>
 
 <h3>Resources:</h3>
 <p>
@@ -87,5 +89,4 @@
   <% if logged_in? && current_user.is_speaker_on_or_admin?( @paper ) %>
     <%= link_to 'Edit', edit_paper_path(@paper) %> |
   <% end %>
-  <%= link_to 'Back', papers_path %>
 </div>

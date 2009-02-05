@@ -3,10 +3,10 @@ class PapersController < ApplicationController
   before_filter :load_paper_by_id,          :only => [:show, :edit, :update, :update_status, :destroy]
   before_filter :speaker_or_admin_required, :only => [:edit, :update, :update_status, :destroy ]
   before_filter :admin_required,            :only => [:destroy]
+  before_filter :public_profile_required,   :only => [:new]
   
   
-  # GET /papers
-  # GET /papers.xml
+
   def index
     @papers = Paper.all       if admin?
     @papers = Paper.visible  if !admin?
@@ -17,8 +17,6 @@ class PapersController < ApplicationController
     end
   end
 
-  # GET /papers/1
-  # GET /papers/1.xml
   def show
     if( !@paper.can_see_it?(current_user) )
       @paper = nil
@@ -31,8 +29,6 @@ class PapersController < ApplicationController
     end    
   end
 
-  # GET /papers/new
-  # GET /papers/new.xml
   def new
     @paper = Paper.new
     @paper.family = Paper::FAMILY[:SESSION]
@@ -43,12 +39,10 @@ class PapersController < ApplicationController
     end
   end
 
-  # GET /papers/1/edit
+
   def edit
   end
 
-  # POST /papers
-  # POST /papers.xml
   def create
     @paper            = Paper.new( params[:paper] )
     @paper.family     = Paper::FAMILY[:SESSION]  if @paper.family.nil?
@@ -69,8 +63,6 @@ class PapersController < ApplicationController
     end
   end
 
-  # PUT /papers/1
-  # PUT /papers/1.xml
   def update
     respond_to do |format|
       if @paper.update_attributes(params[:paper])
@@ -103,8 +95,6 @@ class PapersController < ApplicationController
     end
   end
 
-  # DELETE /papers/1
-  # DELETE /papers/1.xml
   def destroy
     @paper.destroy
 
@@ -113,5 +103,13 @@ class PapersController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  private
+    def public_profile_required
+      if !current_user.public_profile
+        flash[:error] = "You can't not access to this action unless you set your profile as public"
+        redirect_to edit_user_path( current_user )
+      end
+    end
 
 end

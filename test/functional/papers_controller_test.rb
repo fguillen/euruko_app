@@ -38,8 +38,7 @@ class PapersControllerTest < ActionController::TestCase
   def test_new_should_not_show_form_to_private_profiles
     login_as users(:private)
     get :new
-    assert_select ["form[action=#{papers_path}]"], 0
-    assert_response :success
+    assert_redirected_to edit_user_path( users(:private) )
   end
 
   def test_on_new_with_not_logged_should_redirect_to_new_session

@@ -10,8 +10,10 @@ class Paper < ActiveRecord::Base
   has_many :attendees,      :dependent => :destroy
   
   # paperclip
-  has_attached_file :photo, :styles => { :medium => "576x150#" }
-  # has_attached_file :photo, :styles => { :medium => "50x15#" }
+  has_attached_file :photo, 
+                    :styles => { :medium => "576x150#" },
+                    :url  => "/paper_photos/:id/:style/:basename.:extension",
+                    :path => ":rails_root/public/paper_photos/:id/:style/:basename.:extension"
 
 
   validates_attachment_size :photo, :less_than => 1.megabytes

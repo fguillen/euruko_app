@@ -1,7 +1,5 @@
 <% title 'New Paper Proposal' %>
 
-<% if current_user.public_profile? -%>
-
 <h2>New paper</h2>
 
 <% form_for(@paper) do |f| %>
@@ -13,9 +11,3 @@
     <%= f.submit "Create" %>
   </p>
 <% end %>
-
-<%= link_to 'Back', papers_path %>
-
-<% else -%>
-  You can't submit papers unless you set <%= link_to 'your profile', edit_user_path(current_user) %> as public.
-<% end -%>
