@@ -8,7 +8,7 @@ namespace :populate do
     UserObserver.any_instance.stubs(:after_save).returns(true)
     
     user = 
-      User.create!(
+      User.new(
         :name         => 'Administrator',
         :login        => 'admin',
         :email        => 'admin@email.com',
@@ -86,23 +86,28 @@ namespace :populate do
     UserObserver.any_instance.stubs(:after_save).returns(true)
     
     (1..100).each do |num|
-      password = Faker::Lorem.words.join()
+      begin
+
+        password = Faker::Lorem.words.join()
       
-      user = 
-        User.create(
-          :name               => Faker::Name.name,
-          :login              => Faker::Internet.user_name + num.to_s,
-          :email              => Faker::Internet.free_email,
-          :password           => password,
-          :password_confirmation => password,
-          :text               => Faker::Lorem.paragraphs.join("\n"),
-          :personal_web_name  => Faker::Lorem.words.join(" "),
-          :personal_web_url   => "http://#{Faker::Internet.domain_name}/#{Faker::Lorem.words.join('/')}",
-          :company_name       => Faker::Lorem.words.join(" "),
-          :company_url        => "http://#{Faker::Internet.domain_name}/#{Faker::Lorem.words.join('/')}",
-          :public_profile     => (1 == Kernel.rand(2))
-        )
-      user.activate!
+        user = 
+          User.create(
+            :name               => Faker::Name.name,
+            :login              => Faker::Internet.user_name + num.to_s,
+            :email              => Faker::Internet.free_email,
+            :password           => password,
+            :password_confirmation => password,
+            :text               => Faker::Lorem.paragraphs.join("\n"),
+            :personal_web_name  => Faker::Lorem.words.join(" "),
+            :personal_web_url   => "http://#{Faker::Internet.domain_name}/#{Faker::Lorem.words.join('/')}",
+            :company_name       => Faker::Lorem.words.join(" "),
+            :company_url        => "http://#{Faker::Internet.domain_name}/#{Faker::Lorem.words.join('/')}",
+            :public_profile     => (1 == Kernel.rand(2))
+          )
+        user.activate!
+
+      rescue Exception => e
+      end
     end
     
     puts "... #{User.count} users created"
@@ -123,16 +128,17 @@ namespace :populate do
     puts "Creating Papers..."
     (1..50).each do |num|
       paper =
-        Paper.create(
+        Paper.new(
           :title        => Faker::Lorem.sentence,
-          :description  => Faker::Lorem.paragraphs.join("\n"),
-          :family       => Paper::FAMILY.values.rand,
-          :minutes      => Kernel.rand(101),
-          :date         => random_datetime( '2009/04/10 08:00', '2009/04/14 21:00' ),
-          :room         => Room.random(1),
-          :creator      => User.random(1)
+          :description  => Faker::Lorem.paragraphs.join("\n")
         )
-      paper.status = Paper::STATUS.values.rand
+        
+      paper.family  = Paper::FAMILY.values.rand
+      paper.minutes = Kernel.rand(101)
+      paper.date    = random_datetime( '2009/04/10 08:00', '2009/04/14 21:00' )
+      paper.room    = Room.random(1)
+      paper.creator = User.random(1)
+      paper.status  = Paper::STATUS.values.rand
       paper.save!
     end
     
