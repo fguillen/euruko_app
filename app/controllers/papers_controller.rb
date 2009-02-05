@@ -26,7 +26,7 @@ class PapersController < ApplicationController
     else
       respond_to do |format|
         format.html # show.html.erb
-        format.xml  { render :xml => @user }
+        format.xml  { render :xml => @paper }
       end
     end    
   end

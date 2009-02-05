@@ -8,11 +8,8 @@ TODOs
 * Al modificar charla proteger campos room, fechas y demás.. sólo a administradores
 * Un usuario con carritos pagados no se debería poder eliminar
 * Tests exhaustivos de cart y carts controller
-* Títulos de páginas ( http://railscasts.com/episodes/30-pretty-page-title )
-* Tests photo
 * Paperclip sube la photo a la carpeta public/system ??
 * No se están ejecutando los tests de foreignkeys
-* Reset Password no lanza alert. Mensajes de error feos.
 
 ## xuanxu:
 * Pantalla últimos comentarios
@@ -28,7 +25,6 @@ TODOs
 
 ## anybody:
 * Control de textos: linkar links, ...
-* Modificar contraseña sólo si se introduce la actual correctamente
 * gem dependencies (http://railscasts.com/episodes/110-gem-dependencies) (mocha, faker, will-paginate )
 * buscadores avanzados de usuarios y charlas( railscasts 111 y 112 )
 * Una charla se puede quedar sin speakers.. :?
@@ -51,6 +47,9 @@ WISHLIST
 
 DONE
 ------------------
+* Reset Password no lanza alert. Mensajes de error feos.
+* Títulos de páginas ( http://railscasts.com/episodes/30-pretty-page-title )
+* Tests photo
 * Vigilar traduciones: "Participa en las siguientes charlas" => "Presenting"
 * Listado de últimos pagos, con mini buscador
 * Ajax en añadir/eliminar ponente a Paper

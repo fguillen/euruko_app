@@ -69,4 +69,5 @@ class PhotoTest < ActiveSupport::TestCase
     assert( !@paper.valid? )
     # puts "XXX10: #{@paper.errors.full_messages}"
   end
+  
 end
