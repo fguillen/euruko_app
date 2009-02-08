@@ -7,6 +7,7 @@ TODOs
 * No se están ejecutando los tests de foreignkeys
 * Si pago no "Completed" sacar mensaje y decir que se pongan en contacto con admin
 * Una Paper no puede estar activa o confirmada si date is null
+* Enviar email de notificación a usuario y a admin cuando concluye un pago.. haya sido correcto o no.
 
 ## xuanxu:
 * Pantalla últimos comentarios
