@@ -1,5 +1,4 @@
-	#$PAGINATION_TYPE = 'none'
-  require 'will_paginate'
+	#$PAGINATION_TYPE = 'none''
 	$PAGINATION_TYPE = 'will_paginate'
 	#WillPaginate.enable
   #require 'paginating_find'

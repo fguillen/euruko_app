@@ -2,7 +2,6 @@ TODOs
 ------------------
 
 ## fguillen:
-* Comunicación PayPal cifrada
 * Un usuario con carritos pagados no se debería poder eliminar
 * Tests exhaustivos de cart y carts controller
 * No se están ejecutando los tests de foreignkeys
@@ -26,7 +25,7 @@ TODOs
 * gem dependencies (http://railscasts.com/episodes/110-gem-dependencies) (mocha, faker, will-paginate )
 * buscadores avanzados de usuarios y charlas( railscasts 111 y 112 )
 * Una charla se puede quedar sin speakers.. :?
-
+* Método retrieve_speakers muy poco optimizado
 
 WISHLIST
 ------------------
@@ -45,6 +44,7 @@ WISHLIST
 
 DONE
 ------------------
+* Comunicación PayPal cifrada
 * En perfil de usuarios sólo mostrar las charlas en las que participa si la charla es .visible?
 * Una charla en estado UNDER REVIEW no puede se modificada más que por un admin
 * Al modificar charla proteger campos room, fechas y demás.. sólo a administradores

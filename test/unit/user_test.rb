@@ -42,7 +42,7 @@ class UserTest < ActiveSupport::TestCase
   end
   
   def test_update
-    @user = users(:user2)
+    @user = users(:user_not_speaker)
     @user.update_attributes!(
       :name                   => 'other name',
       :login                  => 'other_login',
@@ -162,13 +162,7 @@ class UserTest < ActiveSupport::TestCase
     @user.role = User::ROLE[:ADMIN]
     assert( @user.admin? )
   end
-  
-  def test_find_speakers
-    assert( User.find_speakers )
-    assert( User.find_speakers.include?( users(:user1) ) )
-    assert( !User.find_speakers.include?( users(:user2) ) )
-  end
-  
+    
   def test_public_profile
     assert( User.public_profile )
     assert( User.public_profile.include?( users(:user1) ) )
@@ -201,14 +195,15 @@ class UserTest < ActiveSupport::TestCase
   end
   
   def test_speakers_finder_returns_unique_users
-    users(:user1)
-    assert_equal 1, User.find_speakers.size
-    assert_equal [users(:user1)], User.find_speakers
+    assert_equal(
+      User.public_speaker.uniq, 
+      User.public_speaker
+    )
   end
 
   def test_speakers_finder_doesnt_return_users_without_accepted_papers
     Paper.all.each{ |p| p.status = Paper::STATUS[:PROPOSED]; p.save }
-    assert_equal [], User.find_speakers
+    assert_equal [], User.public_speaker
   end
   
   def test_update_password
@@ -240,4 +235,26 @@ class UserTest < ActiveSupport::TestCase
     assert_equal( User::ROLE[:USER], @user.role )
   end
   
+  def test_named_scope_public_profile
+    assert( User.public_profile )
+    assert( User.public_profile.include?( users(:user1) ) )
+    assert( !User.public_profile.include?( users(:private) ) )    
+  end
+    
+  def test_named_scope_public_speaker
+    assert( User.public_speaker)
+    assert( User.public_speaker.include?( users(:user1) ) )
+    assert( !User.public_speaker.include?( users(:user2) ) )   
+  end
+  
+  def test_named_scope_speaker
+    assert( User.speaker )
+    assert( User.speaker.include?( users(:user1) ) )
+    assert( User.speaker.include?( users(:user2) ) )
+  end
+  
+  def test_speaker
+    assert( users(:user1).speaker? )
+    assert( !users(:user_not_speaker).speaker? )
+  end
 end

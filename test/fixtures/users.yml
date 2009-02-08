@@ -18,6 +18,7 @@ user1:
   public_profile: true
   activated_at: <%= '2008-01-01 01:01' %>
   
+# hi has a proposed paper
 user2:
   name: User 2
   permalink: user-2
@@ -64,3 +65,13 @@ user_not_actived:
   public_profile: true
   activation_code: activation_code
 
+
+user_not_speaker:
+  name: User Not Speaker
+  permalink: user-not-spekaer
+  login: user_not_speaker
+  email: user_not_speaker@email.com
+  crypted_password: aaa
+  role: <%= User::ROLE[:USER] %>
+  public_profile: true
+  activation_code: activation_code

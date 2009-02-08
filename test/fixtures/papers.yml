@@ -38,3 +38,14 @@ paper3:
   minutes: 1
   room: room1
   creator: user1
+  
+paper4:
+  title: Paper 4
+  permalink: paper-4
+  description: Just a Paper 4
+  family: <%= Paper::FAMILY[:TUTORIAL] %>
+  status: <%= Paper::STATUS[:PROPOSED] %>
+  date: 2008-01-02 01:01
+  minutes: 1
+  room: room1
+  creator: user2

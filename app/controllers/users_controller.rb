@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   # GET /users.xml
   def index
     if( params[:speakers] )
-      @users = User.find_speakers
+      @users = admin? ? User.speaker : User.public_speaker
     else
       @users = admin? ? User.all : User.activated.public_profile
     end

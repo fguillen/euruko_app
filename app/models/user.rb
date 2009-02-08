@@ -45,7 +45,13 @@ class User < ActiveRecord::Base
   
   named_scope :public_profile, :conditions => { :public_profile => true }
   named_scope :activated, :conditions => 'activated_at IS NOT NULL'
-
+  named_scope :speaker, :joins => 'join speakers on speakers.user_id = users.id', :group => 'users.id'
+  named_scope(
+    :public_speaker, 
+    :joins => "join speakers on speakers.user_id = users.id join papers on speakers.paper_id = papers.id and papers.status in ('#{Paper::STATUS[:ACEPTED]}','#{Paper::STATUS[:CONFIRMED]}')", 
+    :group => 'users.id'
+  )
+  
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
@@ -125,13 +131,19 @@ class User < ActiveRecord::Base
   def admin?
     self.role == User::ROLE[:ADMIN]
   end
-  
-  def self.find_speakers
-    Paper.visible.collect(&:speakers).flatten.collect(&:user)
-  end
+
+  # def self.retrieve_users( user_who_ask_for )
+  #   return User.activated.public_profile   if !user_who_ask_for.admin?
+  #   return User.all                        if user_who_ask_for.admin?
+  # end
+  # 
+  # def self.retrieve_speakers( user_who_ask_for )
+  #   return Paper.visible.collect(&:speakers).flatten.collect(&:user).uniq  if !user_who_ask_for.admin?
+  #   return Paper.all.collect(&:speakers).flatten.collect(&:user).uniq      if user_who_ask_for.admin?
+  # end
   
   def speaker?
-    papers.empty?
+    !self.speaker_on.empty?
   end
   
   def is_speaker_on?( paper )
