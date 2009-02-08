@@ -3,7 +3,7 @@
 <%= image_tag @paper.photo.url(:medium) %>
 
 <h3>Description</h3>
-<p><%= @paper.description %></p>
+<p><%= simple_format @paper.description %></p>
 
 <h3>Speakers</h3>
 <p>
