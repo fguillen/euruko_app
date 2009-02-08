@@ -108,6 +108,8 @@ class EventsControllerTest < ActionController::TestCase
   def test_on_destroy_with_admin_should_destroy_event
     login_as users(:user_admin)
     
+    events(:event3).carts.destroy_all
+    
     assert_difference('Event.count', -1) do
       delete :destroy, :id => events(:event3).id
     end

@@ -257,4 +257,24 @@ class UserTest < ActiveSupport::TestCase
     assert( users(:user1).speaker? )
     assert( !users(:user_not_speaker).speaker? )
   end
+  
+  def test_everything_paid
+    assert( !users(:user1).everything_paid? )
+    @user = users(:user_everything_paid)
+    assert( @user.everything_paid? )
+
+    @event =
+      Event.create(
+        :name => 'event', 
+        :description => 'description'
+      )
+    assert( @event.valid? )
+    assert( !@user.everything_paid? )
+    
+    @event.destroy
+    assert( @user.everything_paid? )
+    
+    @user.carts.destroy_all
+    assert( !@user.everything_paid? )
+  end
 end

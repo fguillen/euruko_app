@@ -5,3 +5,15 @@ cart1_event1:
 cart2_event2:
   cart: cart_user1_event2_not_purchased
   event: event2
+
+cart_user_everything_paid_event1:
+  cart: cart_user_everything_paid
+  event: event1
+
+cart_user_everything_paid_event2:
+  cart: cart_user_everything_paid
+  event: event2
+  
+cart_user_everything_paid_event3:
+  cart: cart_user_everything_paid
+  event: event3

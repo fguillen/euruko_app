@@ -1,4 +1,4 @@
-<% title "Paper: #{@paper.title}" %>
+<% title "#{@paper.title}" %>
 
 <%= image_tag @paper.photo.url(:medium) %>
 
@@ -85,8 +85,8 @@
 <% end %>
 
 
-<div>
+<p>
   <% if logged_in? && current_user.is_speaker_on_or_admin?( @paper ) %>
     <%= link_to 'Edit', edit_paper_path(@paper) %>
   <% end %>
-</div>
+</p>

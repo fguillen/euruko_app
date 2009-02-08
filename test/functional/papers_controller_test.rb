@@ -471,4 +471,17 @@ class PapersControllerTest < ActionController::TestCase
     assert_nil( flash[:error] )
     assert_response :success
   end
+  
+  def test_on_index_with_not_admin_shoud_not_show_breaks
+    get( :index )
+    assert_not_nil( assigns(:papers) )
+    assert( !assigns(:papers).include?( papers(:paper_break) ) )
+  end
+  
+  def test_on_index_with_admin_shoud_show_breaks
+    login_as users(:user_admin)
+    get( :index )
+    assert_not_nil( assigns(:papers) )
+    assert( assigns(:papers).include? papers(:paper_break) )
+  end
 end

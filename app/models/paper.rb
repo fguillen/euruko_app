@@ -69,10 +69,12 @@ class Paper < ActiveRecord::Base
     :TUTORIAL => 'Tutorial',
     :SESSION  => 'Session',
     :KEYNOTE  => 'Keynote',
-    :EVENT    => 'Event' 
+    :BREAK    => 'Break'
   }
   
   named_scope :visible, :conditions => { :status => [Paper::STATUS[:ACEPTED], Paper::STATUS[:CONFIRMED] ]  }
+  named_scope :not_break, :conditions => [ "family != ?", Paper::FAMILY[:BREAK] ]
+  named_scope :break, :conditions => { :family => Paper::FAMILY[:BREAK] }
   
   def add_speaker(user)
     if user.public_profile?

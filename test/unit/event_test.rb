@@ -5,7 +5,7 @@ class EventTest < ActiveSupport::TestCase
   end
 
   def test_relations
-    assert_equal( 1, events(:event1).carts.size )
+    assert_equal( 2, events(:event1).carts.size )
   end
 
   def test_create

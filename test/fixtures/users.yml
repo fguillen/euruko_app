@@ -65,12 +65,21 @@ user_not_actived:
   public_profile: true
   activation_code: activation_code
 
-
 user_not_speaker:
   name: User Not Speaker
   permalink: user-not-spekaer
   login: user_not_speaker
   email: user_not_speaker@email.com
+  crypted_password: aaa
+  role: <%= User::ROLE[:USER] %>
+  public_profile: true
+  activation_code: activation_code
+  
+user_everything_paid:
+  name: User Everything Paid
+  permalink: user-everything-paid
+  login: user-everything-paid
+  email: user-everything-paid@email.com
   crypted_password: aaa
   role: <%= User::ROLE[:USER] %>
   public_profile: true

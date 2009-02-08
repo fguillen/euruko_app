@@ -23,16 +23,7 @@ class Event < ActiveRecord::Base
   end
   
   def is_paid_for_user?( user_id )
-    
-    # User.find(user_id).carts.purchased.events.exists?( :conditions => { :event_id => self.id } )
-    
     self.carts.purchased.exists?( :user_id => user_id )
-    # 
-    # if !Payment.find_by_event_id_and_user_id( self.id, user_id ).nil?
-    #   return true
-    # else
-    #   return false
-    # end
   end
   
   def price_euros

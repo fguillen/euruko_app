@@ -49,3 +49,14 @@ paper4:
   minutes: 1
   room: room1
   creator: user2
+  
+paper_break:
+  title: Paper Break
+  permalink: paper-break
+  description: Just a Paper Break
+  family: <%= Paper::FAMILY[:BREAK] %>
+  status: <%= Paper::STATUS[:ACEPTED] %>
+  date: 2008-01-02 01:01
+  minutes: 1
+  room: room1
+  creator: user_admin

@@ -9,8 +9,8 @@ class PapersController < ApplicationController
   
 
   def index
-    @papers = Paper.all       if admin?
-    @papers = Paper.visible  if !admin?
+    @papers = Paper.all                 if admin?
+    @papers = Paper.visible.not_break   if !admin?
 
     respond_to do |format|
       format.html # index.html.erb

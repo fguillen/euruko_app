@@ -1,7 +1,13 @@
 <ul>
 <% if logged_in? %>
   <li><%= menu_to 'Perfil', user_path(current_user) %></li>
-  <li><%= menu_to 'Pay!', new_cart_path, :class => "highlight" %></li>
+  
+  <% if current_user.everything_paid? %>
+    <li><%= menu_to 'Pay!', new_cart_path %></li>
+  <% else %>
+    <li><%= menu_to 'Pay!', new_cart_path, :class => "highlight" %></li>
+  <% end %>
+  
   <li><%= menu_to 'Logout', logout_path %></li>
 <% else %>
   <li><%= menu_to 'Register!', new_user_path, :class => "highlight" %></li>

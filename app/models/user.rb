@@ -213,6 +213,19 @@ class User < ActiveRecord::Base
     options[:except] = (options[:except] ? options[:except] + default_except : default_except)   
     self.ar_to_xml( options )
   end
+  
+  def everything_paid?
+    anything_to_pay = true
+    
+    Event.all.each do |event|
+      if !event.is_paid_for_user?( self )
+        anything_to_pay = false
+        break
+      end
+    end
+    
+    return anything_to_pay
+  end
 
 
   protected

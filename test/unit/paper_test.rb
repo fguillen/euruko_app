@@ -285,4 +285,13 @@ class PaperTest < ActiveSupport::TestCase
   #   
   # end
   
+  def test_named_scope_not_break
+    assert( Paper.not_break.include?( papers(:paper1) ) )
+    assert( !Paper.not_break.include?( papers(:paper_break) ) )
+  end
+  
+  def test_named_scope_break
+    assert( !Paper.break.include?( papers(:paper1) ) )
+    assert( Paper.break.include?( papers(:paper_break) ) )
+  end
 end

@@ -24,8 +24,9 @@ class CartsController < ApplicationController
   # if params[:id] sended return the Cart but only if admin?
   def new
     @cart = current_cart            if params[:id].nil?
-    @cart = Cart.find(params[:id])  if !params[:id].nil? && admin?
     record_not_found and return  if @cart.nil?
+    
+    flash[:notice] = "You have everything paid."  if current_user.everything_paid?
   end
   
   # this is colled for the user

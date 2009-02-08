@@ -7,8 +7,20 @@
     <% if !papers_on_room.empty? %>
       <h4>on room '<%= room.name %>'</h4>
       <% papers_on_room.each do |paper| %>
-        <h5>at <%= paper.date.strftime("%H:%M %p") %>, <%= link_to paper.title, paper %></h5>
-        <%= image_tag paper.photo.url(:medium) %>
+      
+        <% if paper.family == Paper::FAMILY[:BREAK] %>
+          <h5 class="break">Break at <%= paper.date.strftime("%H:%M %p") %>, <%= link_to paper.title, paper %></h5>
+        <% else %>
+          <h5>at <%= paper.date.strftime("%H:%M %p") %>, <%= link_to paper.title, paper %></h5>
+          <%= image_tag paper.photo.url(:medium) %>
+        <% end %>
+        
+        <p>
+          <% if admin? %>
+            <%= link_to 'Edit', edit_paper_path(paper) %>
+          <% end %>
+        </p>
+        
       <% end %>
     <% end %>
   <% end %>

@@ -16,14 +16,14 @@ class CartsControllerTest < ActionController::TestCase
     assert_redirected_to new_session_path
   end
   
-  def test_on_new_when_admin_logged_should_return_expecified_cart
-    login_as users(:user_admin)
-    
-    get :new, :id => carts(:cart_user1_event1_purchased).id
-    
-    assert_not_nil( assigns(:cart) )
-    assert_equal( carts(:cart_user1_event1_purchased), assigns(:cart) )
-  end
+  # def test_on_new_when_admin_logged_should_return_expecified_cart
+  #   login_as users(:user_admin)
+  #   
+  #   get :new, :id => carts(:cart_user1_event1_purchased).id
+  #   
+  #   assert_not_nil( assigns(:cart) )
+  #   assert_equal( carts(:cart_user1_event1_purchased), assigns(:cart) )
+  # end
   
   def test_on_confirm_with_user_logged_should_add_events_to_current_cart
     login_as users(:user1)    
@@ -204,5 +204,24 @@ class CartsControllerTest < ActionController::TestCase
     assert_equal( Cart::STATUS[:NOT_NOTIFIED], @cart.status )
     assert_not_nil( flash[:error] )
     assert_response :success
+  end
+  
+  def test_on_new_with_user_with_everything_paid_should_be_a_flash_notice
+    login_as users(:user_everything_paid)
+    
+    get :new
+    
+    assert_not_nil( flash[:notice] )
+    assert_not_nil( assigns(:cart) )
+  end
+  
+  def test_on_new_with_user_with_not_everything_paid_should_not_be_a_flash_notice
+    login_as users(:user_everything_paid)
+    users(:user_everything_paid).carts.destroy_all
+
+    get :new
+    
+    assert_nil( flash[:notice] )
+    assert_not_nil( assigns(:cart) )
   end
 end
