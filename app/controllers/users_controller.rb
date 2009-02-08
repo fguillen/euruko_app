@@ -7,10 +7,14 @@ class UsersController < ApplicationController
   # GET /users.xml
   def index
     if( params[:speakers] )
-      @users = admin? ? User.speaker : User.public_speaker
+      @users = User.ordered.speaker          if admin?
+      @users = User.ordered.public_speaker   if !admin?
     else
-      @users = admin? ? User.all : User.activated.public_profile
+      @users = User.ordered                            if admin?
+      @users = User.ordered.activated.public_profile   if !admin?
     end
+
+    @users = @users.paginate( :page => params[:page] )  if params[:page]
 
     respond_to do |format|
       format.html # index.html.erb

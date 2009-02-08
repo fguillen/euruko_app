@@ -372,4 +372,17 @@ class UsersControllerTest < ActionController::TestCase
     assert_equal( User::ROLE[:ADMIN], @user.role)
   end
   
+  def test_on_index_with_paginate
+    get :index, :page => 1
+    assert_response :success
+    assert_not_nil assigns(:users)
+    assert( assigns(:users).include?( users(:user1) ) )
+    assert( !assigns(:users).include?( users(:private) ) )
+    
+    get :index, :page => 2
+    assert_response :success
+    assert_not_nil assigns(:users)
+    assert assigns(:users).empty?
+  end
+  
 end

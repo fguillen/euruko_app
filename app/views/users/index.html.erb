@@ -1,8 +1,12 @@
 <% title "People" %>
 <ul>
-  <li><%= link_to 'All', users_path %></li>
-  <li><%= link_to 'Speakers', users_path( :params => { :speakers => '1' } ) %></li>
+  <li><%= link_to 'All', users_path( :page => '1' ) %></li>
+  <li><%= link_to 'Speakers', users_path( :params => { :speakers => '1', :page => '1' } ) %></li>
 </ul>
+
+<% if @users.respond_to?( 'total_pages' ) %>
+  <p><%= will_paginate @users %></p>
+<% end %>
 
 <table>
   <tr>
@@ -29,3 +33,7 @@
   </tr>
 <% end %>
 </table>
+
+<% if @users.respond_to?( 'total_pages' ) %>
+  <p><%= will_paginate @users %></p>
+<% end %>

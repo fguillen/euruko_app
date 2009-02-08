@@ -51,6 +51,7 @@ class User < ActiveRecord::Base
     :joins => "join speakers on speakers.user_id = users.id join papers on speakers.paper_id = papers.id and papers.status in ('#{Paper::STATUS[:ACEPTED]}','#{Paper::STATUS[:CONFIRMED]}')", 
     :group => 'users.id'
   )
+  named_scope :ordered, :order => 'name asc'
   
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation
@@ -73,6 +74,9 @@ class User < ActiveRecord::Base
 
   attr_accessor :change_password
   
+  cattr_reader :per_page
+  @@per_page = 50
+
 
   # CONSTANTS
   ROLE = {
