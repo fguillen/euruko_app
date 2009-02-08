@@ -22,6 +22,7 @@
   <p><strong>txn id:</strong> <%= cart.transaction_id %></p>
   <p><strong>purchased_at:</strong> <%= cart.purchased_at %></p>
   <p><strong>price:</strong> <%= cart.total_price_on_euros %></p>
+  <p><strong>paypal_errors:</strong> <%= cart.paypal_erros.join(',') %></p>
 
   <p>
     <strong>events:</strong>
