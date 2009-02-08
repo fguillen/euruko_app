@@ -10,3 +10,5 @@ public/resources/*
 test/performance/tmp/
 public/stylesheets/*.css
 public/paper_photos
+certs/*pem
+

@@ -1,15 +1,16 @@
 <% title 'Purchase Conclusion' %>
 
-  <ul>
-  <% @cart.events.each do |event| %>
-    <li>        
-      <%= event.name %> (<%= event.price_euros %>€)
-    </li>
-  <% end %>
-  </ul>
-  
-  <p>TOTAL: <span id="total"><%= @cart.total_price_on_euros %>€</span></p>
-  
-  <p>
-    <%= @cart.invoice_info %>
-  </p>
+<ul>
+<% @cart.events.each do |event| %>
+  <li>        
+    <%= link_to event.name, event_path(event) %> (<%= event.price_euros %>€)
+  </li>
+<% end %>
+</ul>
+
+<p>TOTAL: <span id="total"><%= @cart.total_price_on_euros %>€</span></p>
+
+<h3>Invoice info</h3>
+<p>
+  <%= simple_format @cart.invoice_info %>
+</p>
