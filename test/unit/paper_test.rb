@@ -252,7 +252,7 @@ class PaperTest < ActiveSupport::TestCase
         :family => Paper.first.family,
         :creator => users(:user1)
       )
-    SystemMailer.expects(:deliver_paper).with(APP_CONFIG['email_paper_recipients'], paper)
+    SystemMailer.expects(:deliver_paper).with(APP_CONFIG[:email_paper_recipients], paper)
     paper.save!
   end
   

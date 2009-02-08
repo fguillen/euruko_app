@@ -60,7 +60,7 @@ class CartsControllerTest < ActionController::TestCase
   end
 
   
-  def test_on_notificate_with_status_completed_should_update_the_cart
+  def test_on_notificate_with_good_params_should_update_the_cart
     @cart = carts(:cart_user1_event2_not_purchased)
     
     assert( !@cart.is_purchased? )
@@ -68,17 +68,24 @@ class CartsControllerTest < ActionController::TestCase
     
     post(
       :notificate,
-      :invoice => @cart.id,
-      :payment_status => 'Completed',
-      :txn_id => 1
+      :invoice          => @cart.id,
+      :payment_status   => Cart::STATUS[:COMPLETED],
+      :secret           => APP_CONFIG[:paypal_secret],
+      :receiver_email   => APP_CONFIG[:paypal_seller],
+      :mc_gross         => @cart.total_price_on_euros,
+      :mc_currency      => 'EUR',
+      :txn_id           => 1
     )
 
     @cart.reload
+    # puts @cart.paypal_errors
+    
     assert( @cart.is_purchased? )
     assert( events(:event2).is_paid_for_user?( users(:user1).id ) )
     
     assert_not_nil( @cart.paypal_notify_params )
-    assert_equal( 'Completed', @cart.status )
+    assert_equal( Cart::STATUS[:COMPLETED], @cart.paypal_status )
+    assert_equal( Cart::STATUS[:COMPLETED], @cart.status )
     assert_equal( '1', @cart.transaction_id )
     
     assert_response :success
@@ -102,7 +109,7 @@ class CartsControllerTest < ActionController::TestCase
     assert( !events(:event2).is_paid_for_user?( users(:user1).id ) )
     
     assert_not_nil( @cart.paypal_notify_params )
-    assert_equal( 'ERROR', @cart.status )
+    assert_equal( 'ERROR', @cart.paypal_status )
     assert_equal( '1', @cart.transaction_id )
     
     assert_response :success

@@ -6,6 +6,7 @@ class Cart < ActiveRecord::Base
   
   serialize :paypal_notify_params
   serialize :paypal_complete_params
+  serialize :paypal_errors
     
   validates_presence_of :user_id
   validates_presence_of :status
@@ -17,20 +18,22 @@ class Cart < ActiveRecord::Base
   STATUS = {
     :ON_SESSION       => 'On Session',
     :COMPLETED        => 'Completed',
-    :NOT_NOTIFIED     => 'Not Notified by PayPal'
+    :NOT_NOTIFIED     => 'Not Notified by PayPal',
+    :PAYPAL_ERROR     => 'PayPal Error'
   }
   
-  named_scope :purchased, :conditions => [ 'purchased_at is not null' ]
+  named_scope :purchased, :conditions => { :status => Cart::STATUS[:COMPLETED] }
   
-  def paypal_url( return_url, notify_url )
+  def paypal_encrypted( return_url, notify_url )
     values = {
-      :business       => APP_CONFIG['paypal_seller'],
+      :business       => APP_CONFIG[:paypal_seller],
       :cmd            => '_cart',
       :upload         => 1,
       :return         => return_url,
       :invoice        => self.id,
       :notify_url     => notify_url,
-      :currency_code  => 'EUR'
+      :currency_code  => 'EUR',
+      :cert_id        => APP_CONFIG[:paypal_cert_id]
     }
     
     self.events.each_with_index do |event, index|
@@ -41,8 +44,17 @@ class Cart < ActiveRecord::Base
         "quantity_#{index+1}"     => 1
       })
     end
-    
-    APP_CONFIG['paypal_url'] + "?" + values.to_query
+
+    Cart.encrypt_for_paypal(values)
+  end
+
+  PAYPAL_CERT_PEM = File.read("#{Rails.root}/certs/paypal_cert.pem")
+  APP_CERT_PEM = File.read("#{Rails.root}/certs/app_cert.pem")
+  APP_KEY_PEM = File.read("#{Rails.root}/certs/app_key.pem")
+
+  def self.encrypt_for_paypal(values)
+    signed = OpenSSL::PKCS7::sign(OpenSSL::X509::Certificate.new(APP_CERT_PEM), OpenSSL::PKey::RSA.new(APP_KEY_PEM, ''), values.map { |k, v| "#{k}=#{v}" }.join("\n"), [], OpenSSL::PKCS7::BINARY)
+    OpenSSL::PKCS7::encrypt([OpenSSL::X509::Certificate.new(PAYPAL_CERT_PEM)], signed.to_der, OpenSSL::Cipher::Cipher::new("DES3"), OpenSSL::PKCS7::BINARY).to_s.gsub("\n", "")
   end
   
   def total_price
@@ -64,7 +76,31 @@ class Cart < ActiveRecord::Base
   end
   
   def is_purchased?
-    return !self.purchased_at.nil?
+    # Cart.purchased.exists?( self.id )
+    return (self.status == Cart::STATUS[:COMPLETED])
+  end
+  
+  def paypal_notificate( params )
+    self.paypal_notify_params  = params
+    self.paypal_status         = params[:payment_status]
+    self.transaction_id        = params[:txn_id]
+    
+    self.paypal_errors = []
+    self.paypal_errors << "status not equal: #{Cart::STATUS[:COMPLETED]}, #{params[:payment_status]}"            if params[:payment_status] != Cart::STATUS[:COMPLETED]  
+    self.paypal_errors << "secret not equal: #{APP_CONFIG[:paypal_secret]}, #{params[:secret]}"                  if params[:secret]         != APP_CONFIG[:paypal_secret]  
+    self.paypal_errors << "receiver_email not equal: #{APP_CONFIG[:paypal_seller]}, #{params[:receiver_email]}"  if params[:receiver_email] != APP_CONFIG[:paypal_seller] 
+    self.paypal_errors << "mc_gross not equal: #{self.total_price_on_euros}, #{params[:mc_gross]}"               if params[:mc_gross]       != self.total_price_on_euros
+    self.paypal_errors << "mc_currency not equal: EUR, #{params[:mc_currency]}"                                  if params[:mc_currency]    != "EUR"
+
+    if self.paypal_errors.empty?
+      self.paypal_errors  = nil
+      self.purchased_at   = Time.now
+      self.status         = Cart::STATUS[:COMPLETED]
+    else
+      self.status         = Cart::STATUS[:PAYPAL_ERROR]
+    end
+    
+    self.save!
   end
   
   private

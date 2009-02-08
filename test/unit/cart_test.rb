@@ -30,8 +30,27 @@ class CartTest < ActiveSupport::TestCase
   end
   
   def test_paypal_url
-    assert( carts(:cart_user1_event1_purchased).paypal_url( 'return_url', 'notify_url' ) )
+    assert( carts(:cart_user1_event1_purchased).paypal_encrypted( 'return_url', 'notify_url' ) )
     # puts carts(:cart_user1_event1_purchased).paypal_url( 'return_url', 'notify_url' )
   end
   
+  def test_is_purchased
+    assert( carts(:cart_user1_event1_purchased).is_purchased? )
+    assert( !carts(:cart_user1_event2_not_purchased).is_purchased? )
+  end
+  
+  def test_name_scope_purchased
+    assert( Cart.purchased.include?( carts(:cart_user1_event1_purchased) ) )
+    assert( !Cart.purchased.include?( carts(:cart_user1_event2_not_purchased) ) )
+  end
+  
+  def test_encrypt_for_paypal
+    assert( Cart.encrypt_for_paypal( "texto" ) )
+  end
+  
+  def test_paypal_notificate
+    @cart = carts(:cart_user1_event1_purchased)
+    assert( @cart.paypal_notificate( {:payment_status => Cart::STATUS[:COMPLETED]} ) )
+    assert_equal( Cart::STATUS[:PAYPAL_ERROR], @cart.status )
+  end
 end

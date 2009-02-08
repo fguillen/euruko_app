@@ -57,7 +57,7 @@ class LoggedException < ActiveRecord::Base
   end
 
   def notify_recipients
-    APP_CONFIG['email_exception_recipients'].split(',').each{ |email| SystemMailer.deliver_exception(email, self) }
+    APP_CONFIG[:email_exception_recipients].split(',').each{ |email| SystemMailer.deliver_exception(email, self) }
   end
 
   private

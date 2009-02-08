@@ -13,7 +13,7 @@ class LoggedExceptionTest < ActiveSupport::TestCase
         :backtrace       => Faker::Lorem.sentence
       )
     
-    SystemMailer.expects(:deliver_exception).with(APP_CONFIG['email_exception_recipients'], logged_exception)
+    SystemMailer.expects(:deliver_exception).with(APP_CONFIG[:email_exception_recipients], logged_exception)
     logged_exception.save
   end
   

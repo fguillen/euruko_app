@@ -7,6 +7,8 @@ test:
   email_payment_recipients: fguillen.mail@gmail.com
   paypal_url: https://www.sandbox.paypal.com/cgi-bin/webscr
   paypal_seller: seller_1231200230_biz@gmail.com
+  paypal_cert_id: Q2CFREXZNUKKL
+  paypal_secret: paypal_secret
 
 development:
   site_url: 127.0.0.1:3000
@@ -17,7 +19,9 @@ development:
   email_payment_recipients: fguillen.mail@gmail.com
   paypal_url: https://www.sandbox.paypal.com/cgi-bin/webscr
   paypal_seller: seller_1231200230_biz@gmail.com
-        
+  paypal_cert_id: Q2CFREXZNUKKL
+  paypal_secret: paypal_secret
+
 production:
   site_url: eurukostaging.fernandoguillen.info
   site_name: EuRuKo
@@ -27,3 +31,6 @@ production:
   email_payment_recipients: fguillen.mail@gmail.com
   paypal_url: https://www.sandbox.paypal.com/cgi-bin/webscr
   paypal_seller: seller_1231200230_biz@gmail.com
+  paypal_cert_id: Q2CFREXZNUKKL
+  paypal_secret: paypal_secret
+

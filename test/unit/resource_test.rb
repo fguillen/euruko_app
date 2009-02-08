@@ -61,7 +61,7 @@ class ResourceTest < ActiveSupport::TestCase
 
     assert( resources(:resource2).is_local )
     assert_not_equal( resources(:resource2).url, resources(:resource2).url_link )
-    assert( resources(:resource2).url_link =~ /#{APP_CONFIG['site_url']}/ )
+    assert( resources(:resource2).url_link =~ /#{APP_CONFIG[:site_url]}/ )
   end
   
   def test_name_link
