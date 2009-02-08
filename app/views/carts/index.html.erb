@@ -7,30 +7,67 @@
   <% Cart::STATUS.keys.each do |key| %>
     <li><%= link_to Cart::STATUS[key], carts_path( :params => { :status => key } ) %></li>
   <% end %>
-  
 </ul>
 
-<% @carts.each do |cart| %>
-  <p><strong>id:</strong> <%= cart.id %></p>
-  <p><strong>date create:</strong> <%= cart.created_at %></p>
-  <p><strong>date updated:</strong> <%= cart.updated_at %></p>
-  <p><strong>user:</strong> <%= link_to cart.user.name, cart.user %></p>
-  <p><strong>status:</strong> <%= cart.status %></p>
-  <p><strong>notify params:</strong> <%= cart.paypal_notify_params %></p>
-  <p><strong>complete params:</strong> <%= cart.paypal_complete_params %></p>
-  <p><strong>invoice info:</strong> <%= cart.invoice_info %></p>
-  <p><strong>txn id:</strong> <%= cart.transaction_id %></p>
-  <p><strong>purchased_at:</strong> <%= cart.purchased_at %></p>
-  <p><strong>price:</strong> <%= cart.total_price_on_euros %></p>
-  <% if cart.paypal_errors && !cart.paypal_errors.empty? %>
-    <p><strong>paypal_errors:</strong> <%= cart.paypal_errors.join(',') %></p>
-  <% end %>
-  
-  <p>
-    <strong>events:</strong>
-    <% cart.events.each do |event| %>
-      <%= link_to event.name, event %>,
-    <% end %>
-  </p>
-<% end %>
+<div id="carts">
+  <% @carts.each do |cart| %>
+    <h2>
+      <%= cart.user.name %>
+      at <%= cart.updated_at %>
+      (<%= cart.status %>)
+      <%= link_to 'toogle', '#', :onclick => "toogle_cart_div( 'cart_#{cart.id}')" %>
+    </h2>
+    <div id="cart_<%= cart.id %>" style="display:none;">
+      <p><strong>id:</strong> <%= cart.id %></p>
+      <p><strong>date create:</strong> <%= cart.created_at %></p>
+      <p><strong>date updated:</strong> <%= cart.updated_at %></p>
+      <p><strong>user:</strong> <%= link_to cart.user.name, cart.user %></p>
+      <p><strong>status:</strong> <%= cart.status %></p>
 
+      <% if cart.paypal_notify_params %>
+        <p>
+          <strong>notify params:</strong>
+          <ul>
+           <% cart.paypal_notify_params.keys.each do |key| %>
+            <li><strong><%= key %>:</strong><%= cart.paypal_notify_params[key.to_sym] %></li>
+           <% end %>
+          </ul>
+        </p>
+      <% end %>
+    
+      <% if cart.paypal_complete_params %>
+        <p>
+          <strong>complete params:</strong>
+          <ul>
+           <% cart.paypal_complete_params.keys.each do |key| %>
+            <li><strong><%= key %>:</strong><%= cart.paypal_complete_params[key.to_sym] %></li>
+           <% end %>
+          </ul>
+        </p>
+      <% end %>
+    
+      <p><strong>invoice info:</strong> <%= cart.invoice_info %></p>
+      <p><strong>txn id:</strong> <%= cart.transaction_id %></p>
+      <p><strong>purchased_at:</strong> <%= cart.purchased_at %></p>
+      <p><strong>price:</strong> <%= cart.total_price_on_euros %></p>
+
+      <% if cart.paypal_errors %>
+        <p><strong>paypal_errors:</strong> <%= cart.paypal_errors.join(',') %></p>
+      <% end %>
+  
+      <p>
+        <strong>events:</strong>
+        <% cart.events.each do |event| %>
+          <%= link_to event.name, event %>,
+        <% end %>
+      </p>
+    </div>
+  <% end %>
+</div>
+
+<script>
+  function toogle_cart_div( id ){
+    $( '#' + id ).toggle();
+    return false;
+  }
+</script>
