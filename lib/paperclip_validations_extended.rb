@@ -14,7 +14,7 @@ module Paperclip
       message = options[:message] || "file width must be between :min and :max pixels."
 
       attachment_definitions[name][:validations][:width] = lambda do |attachment, instance|
-        if attachment.file? && !range.include?( Geometry.from_file(attachment.queued_for_write[:original]).width.to_i )
+        if attachment.queued_for_write[:original] && !range.include?( Geometry.from_file(attachment.queued_for_write[:original]).width.to_i )
           message.gsub(/:min/, min.to_s).gsub(/:max/, max.to_s)
         end
       end
@@ -33,7 +33,7 @@ module Paperclip
       message = options[:message] || "file height must be between :min and :max pixels."
 
       attachment_definitions[name][:validations][:height] = lambda do |attachment, instance|
-        if attachment.file? && !range.include?( Geometry.from_file(attachment.queued_for_write[:original]).height.to_i )
+        if attachment.queued_for_write[:original] && !range.include?( Geometry.from_file(attachment.queued_for_write[:original]).height.to_i )
           message.gsub(/:min/, min.to_s).gsub(/:max/, max.to_s)
         end
       end
