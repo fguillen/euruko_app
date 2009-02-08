@@ -6,7 +6,7 @@
       <%= link_to_unless_current '(Submit yours)', new_paper_path %>
     <% end %>
   </li>
-  <li><%= menu_to 'People', users_path %></li>
+  <li><%= menu_to 'People', users_path( :page => 1 ) %></li>
   <li><%= menu_to 'Blog', 'http://euruko2009.org' %></li>
   <li><%= menu_to 'Help', root_path %></li>
 </ul>
