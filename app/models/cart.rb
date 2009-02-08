@@ -66,11 +66,8 @@ class Cart < ActiveRecord::Base
   end
   
   def self.retrieve_on_sesion_or_new( user_id )
-    @cart = Cart.find( :first, :conditions => ["user_id = ? and status = ?", user_id, STATUS[:ON_SESSION]] )
-    
-    if @cart.nil?
-      @cart = User.find( user_id ).carts.create!()
-    end
+    @cart = Cart.find( :first, :conditions => ["user_id = ? and status = ?", user_id, Cart::STATUS[:ON_SESSION]] )
+    @cart = User.find( user_id ).carts.create!()  if @cart.nil?
     
     return @cart
   end

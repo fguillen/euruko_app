@@ -7,7 +7,7 @@ test:
   email_payment_recipients: fguillen.mail@gmail.com
   paypal_url: https://www.sandbox.paypal.com/cgi-bin/webscr
   paypal_seller: seller_1231200230_biz@gmail.com
-  paypal_cert_id: Q2CFREXZNUKKL
+  paypal_cert_id: Z954BH8ATL6XC
   paypal_secret: paypal_secret
 
 development:
@@ -19,7 +19,7 @@ development:
   email_payment_recipients: fguillen.mail@gmail.com
   paypal_url: https://www.sandbox.paypal.com/cgi-bin/webscr
   paypal_seller: seller_1231200230_biz@gmail.com
-  paypal_cert_id: Q2CFREXZNUKKL
+  paypal_cert_id: Z954BH8ATL6XC
   paypal_secret: paypal_secret
 
 production:
@@ -31,6 +31,6 @@ production:
   email_payment_recipients: fguillen.mail@gmail.com
   paypal_url: https://www.sandbox.paypal.com/cgi-bin/webscr
   paypal_seller: seller_1231200230_biz@gmail.com
-  paypal_cert_id: Q2CFREXZNUKKL
+  paypal_cert_id: Z954BH8ATL6XC
   paypal_secret: paypal_secret
 
