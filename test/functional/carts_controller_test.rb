@@ -224,4 +224,28 @@ class CartsControllerTest < ActionController::TestCase
     assert_nil( flash[:notice] )
     assert_not_nil( assigns(:cart) )
   end
+  
+  def test_on_new_should_initialize_the_invoce_info_from_user_invoice_info
+    login_as users(:user1)
+    
+    get :new
+    
+    assert_not_nil( assigns(:cart) )
+    assert_equal( users(:user1).invoice_info, assigns(:cart).invoice_info )
+  end
+  
+  def test_on_confirm_should_update_the_user_invoice_info_from_params
+    @user = users(:user1)
+    login_as @user
+    
+    get(
+      :confirm,
+      :invoice_info => 'other invoice info',
+      :event_ids => [events(:event1).id, events(:event2).id]
+    )
+    
+    @user.reload
+    assert_not_nil( assigns(:cart) )
+    assert_equal( 'other invoice info', @user.invoice_info )
+  end
 end

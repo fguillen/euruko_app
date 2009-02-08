@@ -17,6 +17,7 @@ user1:
   role: <%= User::ROLE[:USER] %>
   public_profile: true
   activated_at: <%= '2008-01-01 01:01' %>
+  invoice_info: Invoice Info
   
 # hi has a proposed paper
 user2:

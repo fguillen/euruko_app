@@ -19,6 +19,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string        :company_name
       t.string        :company_url
       t.boolean       :public_profile,        :null => false
+      t.text          :invoice_info
 
       t.timestamps
     end

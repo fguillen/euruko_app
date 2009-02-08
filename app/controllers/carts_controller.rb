@@ -23,8 +23,10 @@ class CartsController < ApplicationController
   # if not param[:id] sended return the current_cart
   # if params[:id] sended return the Cart but only if admin?
   def new
-    @cart = current_cart            if params[:id].nil?
+    @cart = current_cart
     record_not_found and return  if @cart.nil?
+    
+    @cart.invoice_info = current_user.invoice_info
     
     flash[:notice] = "You have everything paid."  if current_user.everything_paid?
   end
@@ -34,6 +36,9 @@ class CartsController < ApplicationController
   # only add the Event pass through params[:event_ids]
   def confirm
     current_cart.carts_events.destroy_all
+    
+    # update the default invoce_info of the user
+    current_user.update_attribute( :invoice_info, params[:invoice_info] )
     
     if( params[:event_ids].nil? )
       flash[:error] = 'You should select at less one Event'

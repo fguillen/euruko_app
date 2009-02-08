@@ -121,6 +121,8 @@ class User < ActiveRecord::Base
     return nil if login.blank? || password.blank?
     u = find :first, :conditions => ['login = ? and activated_at IS NOT NULL', login] # need to get the salt
     # logger.debug( "u: #{u.inspect} ")
+    # logger.debug( "aut: #{u.authenticated?(password)}")
+    # logger.debug( "cryt: #{u.crypted_password}")
     u && u.authenticated?(password) ? u : nil
   end
 

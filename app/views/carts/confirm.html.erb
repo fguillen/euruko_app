@@ -11,8 +11,9 @@
   
   <p>TOTAL: <span id="total"><%= @cart.total_price_on_euros %>€</span></p>
   
+  <h3>Invoice info</h3>
   <p>
-    <%= @cart.invoice_info %>
+    <%= simple_format @cart.invoice_info %>
   </p>
   
   <!-- PAYPAL parameters:INI -->

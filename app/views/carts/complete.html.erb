@@ -3,12 +3,12 @@
   <ul>
   <% @cart.events.each do |event| %>
     <li>        
-      <%= event.name %> (<%= event.price_cents %>)
+      <%= event.name %> (<%= event.price_euros %>€)
     </li>
   <% end %>
   </ul>
   
-  <p>TOTAL: <span id="total"><%= @cart.total_price %></span></p>
+  <p>TOTAL: <span id="total"><%= @cart.total_price_on_euros %>€</span></p>
   
   <p>
     <%= @cart.invoice_info %>

@@ -142,6 +142,7 @@ ActiveRecord::Schema.define(:version => 20090201022848) do
     t.string   "company_name"
     t.string   "company_url"
     t.boolean  "public_profile",                          :null => false
+    t.text     "invoice_info"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "password_reset_code",       :limit => 40
