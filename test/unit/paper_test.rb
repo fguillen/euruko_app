@@ -138,15 +138,13 @@ class PaperTest < ActiveSupport::TestCase
     @paper.save
     assert_nil( @paper.date )
     
-    @paper.update_attributes(
-      :date_form => '2009/01/01',
-      :time_form => '10:10'
-    )
+    @paper.date_form = '2009/01/01'
+    @paper.time_form = '10:10'
+    @paper.save
     
+    assert( @paper.valid? )
     assert_not_nil( @paper.date )
-    
-    # TODO: what happend with this date?
-    # assert_equal( '2009/01/01 10:10', @paper.date.strftime( "%Y/%m/%d %H:%M" ) )
+    assert_equal( '2009/01/01 10:10', @paper.date.strftime( "%Y/%m/%d %H:%M" ) )
   end
   
   def test_should_return_date_form_and_time_form_from_date
