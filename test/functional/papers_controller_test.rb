@@ -402,7 +402,8 @@ class PapersControllerTest < ActionController::TestCase
         :minutes      => 0,
         :family       => Paper::FAMILY[:SESSION],
         :room_id      => rooms(:room2).id,
-        :date         => '2001-01-01 01:01'
+        :date_form    => '2001/01/01',
+        :time_form    => '10:10'
       }
     )
     
@@ -483,5 +484,73 @@ class PapersControllerTest < ActionController::TestCase
     get( :index )
     assert_not_nil( assigns(:papers) )
     assert( assigns(:papers).include? papers(:paper_break) )
+  end
+  
+  def test_on_create_with_not_admin_should_ignore_family_date_status_room_minutes
+    @user = users(:user1)
+    login_as @user
+    
+    assert_difference( 'Speaker.count' ) do
+      assert_difference('Paper.count') do
+        post(
+          :create, 
+          :paper => { 
+            :title        => "Paper Title",
+            :description  => "Paper description",
+            :family       => Paper::FAMILY[:TUTORIAL],
+            :status       => Paper::STATUS[:ACEPTED],
+            :minutes      => 30,
+            :room_id      => rooms(:room1).id,
+            :date_form    => '2009/10/10',
+            :time_form    => '10:10',
+          }
+        )
+      end
+    end
+
+    @paper = assigns(:paper)
+    assert_equal( users(:user1), @paper.creator )
+    assert_equal( 'Paper Title', @paper.title )
+    assert_equal( 'Paper description', @paper.description )
+    assert_equal( Paper::FAMILY[:SESSION], @paper.family )
+    assert_equal( Paper::STATUS[:PROPOSED], @paper.status )
+    assert_equal( 0, @paper.minutes )
+    assert_nil( @paper.room )
+    assert_nil( @paper.date )
+  end
+  
+  def test_on_create_with_admin_should_initialize_everything
+    @user = users(:user_admin)
+    login_as @user
+    
+    assert_difference('Paper.count') do
+      post(
+        :create, 
+        :paper => { 
+          :title        => "Paper Title",
+          :description  => "Paper description",
+          :family       => Paper::FAMILY[:TUTORIAL],
+          :status       => Paper::STATUS[:ACEPTED],
+          :minutes      => 30,
+          :room_id      => rooms(:room1).id,
+          :date_form    => '2009/10/10',
+          :time_form    => '10:10',
+        }
+      )
+    end
+
+    @paper = assigns(:paper)
+    assert_equal( users(:user_admin), @paper.creator )
+    assert_equal( 'Paper Title', @paper.title )
+    assert_equal( 'Paper description', @paper.description )
+    assert_equal( Paper::FAMILY[:TUTORIAL], @paper.family )
+    assert_equal( Paper::STATUS[:ACEPTED], @paper.status )
+    assert_equal( 30, @paper.minutes )
+    assert_equal( rooms(:room1), @paper.room )
+    assert_equal( 2009, @paper.date.year )
+    assert_equal( 10, @paper.date.month )
+    assert_equal( 10, @paper.date.day )
+    assert_equal( 10, @paper.date.hour )
+    assert_equal( 10, @paper.date.min )
   end
 end

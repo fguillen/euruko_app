@@ -47,6 +47,16 @@ class PapersController < ApplicationController
   def create
     @paper            = Paper.new( params[:paper] )
     @paper.creator_id = current_user.id
+    
+    if admin?
+      @paper.status     = params[:paper][:status]     if params[:paper][:status]
+      @paper.minutes    = params[:paper][:minutes]    if params[:paper][:minutes]
+      @paper.family     = params[:paper][:family]     if params[:paper][:family]
+      @paper.room_id    = params[:paper][:room_id]    if params[:paper][:room_id]
+      @paper.status     = params[:paper][:status]     if params[:paper][:status]
+      @paper.date_form  = params[:paper][:date_form]  if params[:paper][:date_form]
+      @paper.time_form  = params[:paper][:time_form]  if params[:paper][:time_form]
+    end
 
     respond_to do |format|
       if @paper.save
@@ -65,12 +75,13 @@ class PapersController < ApplicationController
 
   def update
     if admin?
-      @paper.status   = params[:paper][:status]   if params[:paper][:status]
-      @paper.minutes  = params[:paper][:minutes]  if params[:paper][:minutes]
-      @paper.family   = params[:paper][:family]   if params[:paper][:family]
-      @paper.room_id  = params[:paper][:room_id]  if params[:paper][:room_id]
-      @paper.status   = params[:paper][:status]   if params[:paper][:status]
-      @paper.date     = params[:paper][:date]     if params[:paper][:date]
+      @paper.status     = params[:paper][:status]     if params[:paper][:status]
+      @paper.minutes    = params[:paper][:minutes]    if params[:paper][:minutes]
+      @paper.family     = params[:paper][:family]     if params[:paper][:family]
+      @paper.room_id    = params[:paper][:room_id]    if params[:paper][:room_id]
+      @paper.status     = params[:paper][:status]     if params[:paper][:status]
+      @paper.date_form  = params[:paper][:date_form]  if params[:paper][:date_form]
+      @paper.time_form  = params[:paper][:time_form]  if params[:paper][:time_form]
     end
     
     respond_to do |format|

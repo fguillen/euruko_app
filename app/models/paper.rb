@@ -54,7 +54,9 @@ class Paper < ActiveRecord::Base
     :minutes,
     :family,
     :room_id,
-    :date
+    :date,
+    :date_form,
+    :time_form
   )
   
   STATUS = {
@@ -143,10 +145,10 @@ class Paper < ActiveRecord::Base
   private
   
     def initialize_status
-      self.status = Paper::STATUS[:PROPOSED]
+      self.status ||= Paper::STATUS[:PROPOSED]
     end
     
     def initialize_family
-      self.family = Paper::FAMILY[:SESSION]
+      self.family ||= Paper::FAMILY[:SESSION]
     end
 end

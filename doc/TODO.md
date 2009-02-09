@@ -6,8 +6,9 @@ TODOs
 * Tests exhaustivos de cart y carts controller
 * No se están ejecutando los tests de foreignkeys
 * Si pago no "Completed" sacar mensaje y decir que se pongan en contacto con admin
-* Una Paper no puede estar activa o confirmada si date is null
+* Una Paper no puede estar activa o confirmada si date is null, o la room is null.. o sino por lo menos hacer que calendar soporte esta casuística
 * Enviar email de notificación a usuario y a admin cuando concluye un pago.. haya sido correcto o no.
+* En creación de Paper no se puede iniciar el estado.
 
 ## xuanxu:
 * Pantalla últimos comentarios
@@ -45,6 +46,7 @@ WISHLIST
 
 DONE
 ------------------
+* No se graba la room ni la duración ni family asignada en la creacíón de Paper por admin
 * Comunicación PayPal cifrada
 * En perfil de usuarios sólo mostrar las charlas en las que participa si la charla es .visible?
 * Una charla en estado UNDER REVIEW no puede se modificada más que por un admin
