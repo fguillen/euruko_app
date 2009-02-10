@@ -84,7 +84,7 @@ class CartsController < ApplicationController
     @cart.update_attribute( :paypal_complete_params, params )
     
     if @cart.status == Cart::STATUS[:COMPLETED]
-      flash[:notice] = 'Payment was successfully.'
+      flash[:notice] = 'Payment was successful!'
     else
       flash[:error] = 'Some error on payment!'
     end
