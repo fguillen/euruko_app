@@ -1,6 +1,6 @@
 <ul>
 <% if logged_in? %>
-  <li><%= menu_to 'Perfil', user_path(current_user) %></li>
+  <li><%= menu_to 'Profile', user_path(current_user) %></li>
   
   <% if current_user.everything_paid? %>
     <li><%= menu_to 'Pay!', new_cart_path %></li>
