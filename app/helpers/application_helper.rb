@@ -23,4 +23,12 @@ module ApplicationHelper
   def base_url
     request.protocol + request.host_with_port
   end
+  
+  # render an url or a simple text or a link
+  # depending of the presence of the arguments
+  def web_render( web_name, web_url )
+    return link_to( web_name, web_url )   if !web_name.empty? && !web_url.empty?
+    return link_to( web_url, web_url )    if web_name.empty? && !web_url.empty?
+    return web_name                       if !web_name.empty? && web_url.empty?
+  end
 end

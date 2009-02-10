@@ -12,16 +12,12 @@
 
 <%= simple_format( @user.text ) %>
 
-<% if !@user.personal_web_url.blank? %>
-  <p>
-    <%= link_to @user.personal_web_name, @user.personal_web_url %>
-  </p>
+<% if !@user.personal_web_name.blank? || !@user.personal_web_url.blank?  %>
+  <p><%= web_render( @user.personal_web_name, @user.personal_web_url ) %></p>
 <% end %>
 
-<% if !@user.company_url.blank? %>
-  <p>
-    And works at <%= link_to @user.company_name, @user.company_url %>
-  </p>
+<% if !@user.company_url.blank? || !@user.company_url.blank?  %>
+  <p>And works at <%= web_render( @user.company_name, @user.company_url ) %></p>
 <% end %>
 
 <% if !@user.speaker_on_visibles_for_user( current_user ).empty? %>

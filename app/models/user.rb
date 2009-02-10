@@ -35,9 +35,12 @@ class User < ActiveRecord::Base
   validates_presence_of     :password_confirmation, :if => :change_password, :on => :update
   
   validates_inclusion_of    :public_profile, :in => [true, false]
+  
   validates_format_of       :company_url,       :with => /^(http|https|ftp):\/\/.*\..*/, :if => lambda { |user| !user.company_url.blank? }
   validates_format_of       :personal_web_url,  :with => /^(http|https|ftp):\/\/.*\..*/, :if => lambda { |user| !user.personal_web_url.blank? }
-  
+  validates_presence_of     :personal_web_url, 
+                            :if => lambda { |user| !user.personal_web_name.blank? },
+                            :message => "can't be blank if you have defined a 'personal web name'"
 
   simple_text_fields
   

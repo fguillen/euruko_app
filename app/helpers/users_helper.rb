@@ -89,5 +89,5 @@ module UsersHelper
       link_to_login_with_IP content_text, options
     end
   end
-
+  
 end

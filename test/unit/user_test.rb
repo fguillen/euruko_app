@@ -306,4 +306,18 @@ class UserTest < ActiveSupport::TestCase
     assert( !@user.errors.on(:personal_web_url) )
     assert( !@user.errors.on(:company_url) )
   end
+  
+  def test_validation_user_should_has_a_personal_web_url_if_personal_web_name_defined
+    @user = users(:user1)
+    @user.personal_web_name = nil
+    @user.personal_web_url = nil
+    assert( @user.valid? )
+
+    @user.personal_web_name = "myweb"
+    assert( !@user.valid? )
+    assert( @user.errors.on(:personal_web_url) )
+    
+    @user.personal_web_url = "http://myweb.com"
+    assert( @user.valid? )
+  end
 end
