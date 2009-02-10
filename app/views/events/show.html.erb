@@ -3,5 +3,6 @@
 <h3>Price <%= @event.price_euros %>€</h2>
 <%= simple_format( @event.description ) %>
 
-
-<%= link_to 'Edit', edit_event_path(@event) %>
+<% if admin? %>
+  <p><%= link_to 'Edit', edit_event_path(@event) %></p>
+<% end %>

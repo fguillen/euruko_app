@@ -2,5 +2,6 @@
 
 <%= simple_format( @room.notes ) %>
 
-
-<%= link_to 'Edit', edit_room_path(@room) %>
+<% if admin? %>
+  <p><%= link_to 'Edit', edit_room_path(@room) %></p>
+<% end %>
