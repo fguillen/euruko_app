@@ -1,4 +1,4 @@
-<% title "People: #{@user.name}" %>
+<% title "#{@user.name}" %>
 
 <%=
   gravatar(
@@ -38,5 +38,5 @@
 <% end %>
 
 <% if logged_in? && (admin? || @user == current_user) %>
-  <%= link_to 'Edit', edit_user_path(@user) %> |
+  <%= link_to 'Edit', edit_user_path(@user) %>
 <% end %>
