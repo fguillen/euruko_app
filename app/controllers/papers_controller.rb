@@ -63,7 +63,7 @@ class PapersController < ApplicationController
       if @paper.save
         @paper.speakers.create!( :user => current_user )  unless admin?
 
-        flash[:notice] = 'Paper was successfully created. Now you can complete the Paper information'
+        flash[:notice] = "Paper was successfully created. Now you can complete the Paper information, or do it later if you don't have now all the information needed."
         format.html { redirect_to edit_paper_path(@paper) }
         format.xml  { render :xml => @paper, :status => :created, :location => @paper }
       else
