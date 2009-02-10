@@ -42,6 +42,7 @@ class PapersController < ApplicationController
 
 
   def edit
+    @resource = Resource.new
   end
 
   def create

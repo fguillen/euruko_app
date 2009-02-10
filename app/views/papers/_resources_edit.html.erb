@@ -1,4 +1,5 @@
-<p>
+<% if !paper.resources.empty? %>
+  <h4>Actual resources</h4>
   <ul>
     <% paper.resources.each do |resource| %>
       <li>
@@ -7,10 +8,12 @@
       </li>
     <% end %>
   </ul>
-</p>
+<% end %>
+
 <h4>New</h4>
 <p>
-  <% form_for [paper, Resource.new], :html => { :multipart => :true } do |f| -%>
+  <% form_for [paper, @resource], :html => { :multipart => :true } do |f| -%>
+    <%= f.error_messages %>
     <p>
       <%= f.label :name %> (could be blank)<br />
       <%= f.text_field :name %>

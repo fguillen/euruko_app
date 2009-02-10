@@ -9,6 +9,6 @@ config/initializers/site_keys.rb
 public/resources/*
 test/performance/tmp/
 public/stylesheets/*.css
-public/paper_photos
+public/paper_files
 certs/*pem
 

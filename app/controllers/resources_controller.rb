@@ -35,7 +35,7 @@ class ResourcesController < ApplicationController
         format.xml  { render :xml => @resource, :status => :created, :location => @resource }
       else
         flash[:error] = "Error creating Resource: #{@resource.errors.full_messages}"
-        format.html { redirect_to( edit_paper_path(@paper) ) }
+        format.html { render :template => 'papers/edit' }
         format.xml  { render :xml => @resource.errors, :status => :unprocessable_entity }
       end
     end

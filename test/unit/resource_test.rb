@@ -74,4 +74,24 @@ class ResourceTest < ActiveSupport::TestCase
     @resource.update_attribute( :name, '' )
     assert_equal( @resource.url_link, @resource.name_link )
   end
+  
+  def test_url_validation
+    @resource = 
+      Resource.new(
+        :is_local => false,
+        :url      => 'http://web.com',
+        :paper_id => papers(:paper1).id,
+        :user_id  => users(:user1).id
+      )
+    
+    @resource.valid?
+    puts @resource.errors.full_messages
+    assert( @resource.valid? )
+    
+    @resource.url = 'http://web'
+    assert( !@resource.valid? )
+    
+    @resource.is_local = true
+    assert( @resource.valid? )
+  end
 end

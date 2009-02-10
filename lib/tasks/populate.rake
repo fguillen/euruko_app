@@ -63,7 +63,7 @@ namespace :populate do
   task :random => :environment do
     require 'mocha'
     require 'faker'
-    puts "Populate with random..."
+    puts "Populate the environment #{RAILS_ENV} with random..."
     
     # delete everything
     puts "Deleting Everything..."
