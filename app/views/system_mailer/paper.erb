@@ -1,3 +1,8 @@
-The paper <%= @paper.title %> has been submitted to <%= @paper.family %>: <%= paper_url(@paper, :host => APP_CONFIG[:site_url]) %>
+The paper <%= @paper.title %> has been submitted: 
 
+<%= paper_url(@paper, :host => APP_CONFIG[:site_url]) %>
+
+For the user: <%= @paper.creator.name %> (<%= @paper.creator.id %>)
+
+Description:
 <%= @paper.description %>

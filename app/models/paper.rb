@@ -135,7 +135,7 @@ class Paper < ActiveRecord::Base
   end
 
   def notify_by_mail
-    APP_CONFIG[:email_paper_recipients].split(',').each{ |mail| SystemMailer.deliver_paper(mail, self) }
+    APP_CONFIG[:email_notification_recipients].split(',').each{ |mail| SystemMailer.deliver_paper(mail, self) }
   end
 
   def user_candidates
