@@ -25,10 +25,10 @@
   </ul>
 </p>
 
-<h3>Date</h3>
+<h3>Date and room</h3>
 <p>
-  at <%= @paper.date %> 
-  on <%= @paper.room.nil? ? 'not room yet' : @paper.room.name %>
+  at <%= @paper.date.nil? ? '(not date desgined yet)' : @paper.date.strftime("%b #{@paper.date.day.ordinalize}, %H:%M %p") %> 
+  on <%= @paper.room.nil? ? '(not room designed yet)' : @paper.room.name %>
 </p>
 
 <h3>Resources:</h3>
