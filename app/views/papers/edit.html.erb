@@ -11,12 +11,17 @@
 <% end %>
 
 <h3>Photo</h3>
+<p>You can add a photo for the talk, this can be a photo for the speakers or not,
+  something cool that make it look intesesting.</p>
+  
 <p>File types allowed: 'image/jpeg', 'image/png'. Max file size: 1MB. Width: between 576px and 1000px.
   Height: between 150px and 300px.</p>
+  
 <%= render :partial => 'papers/photo_edit', :locals => { :paper => @paper } %>
 
 <h3>Speakers</h3>
-<p>Here you can manage the speakers of this talk<./p>
+<p>Here you can manage the speakers of this talk.</p>
+  
 <div id="speakers">
   <%= render :partial => 'papers/speakers_edit', :locals => { :paper => @paper } %>
 </div>
@@ -27,8 +32,10 @@
 
 <h3>Resources</h3>
 <p>Here you can manage the resources associated to this talk, like PDF, presentations, online videos, etc.</p>
+
 <p>You can choose between upload a file from your computer or indicate an URL for the resource.
   Also you can indicate a name for the resource or leave just the URL.</p>
+  
 <%= render :partial => 'papers/resources_edit', :locals => { :paper => @paper } %>
   
 
