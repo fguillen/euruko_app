@@ -277,4 +277,33 @@ class UserTest < ActiveSupport::TestCase
     @user.carts.destroy_all
     assert( !@user.everything_paid? )
   end
+  
+  def test_urls_validations
+    @user = users(:user1)
+    @user.personal_web_url = nil
+    @user.company_url = nil
+    assert( @user.valid? )
+    
+    @user.personal_web_url = 'http://web.com'
+    @user.company_url = 'http://web.com'
+    assert( @user.valid? )
+
+    @user.personal_web_url = 'http://web'
+    @user.company_url = 'http://web.com'
+    assert( !@user.valid? )
+    assert( @user.errors.on(:personal_web_url) )
+    assert( !@user.errors.on(:company_url) )
+    
+    @user.personal_web_url = 'http://web.co/web/web.php'
+    @user.company_url = 'http://web'
+    assert( !@user.valid? )
+    assert( !@user.errors.on(:personal_web_url) )
+    assert( @user.errors.on(:company_url) )
+    
+    @user.personal_web_url = ''
+    @user.company_url = nil
+    assert( @user.valid? )
+    assert( !@user.errors.on(:personal_web_url) )
+    assert( !@user.errors.on(:company_url) )
+  end
 end

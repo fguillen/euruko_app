@@ -35,6 +35,8 @@ class User < ActiveRecord::Base
   validates_presence_of     :password_confirmation, :if => :change_password, :on => :update
   
   validates_inclusion_of    :public_profile, :in => [true, false]
+  validates_format_of       :company_url,       :with => /^(http|https|ftp):\/\/.*\..*/, :if => Proc.new { |user| !user.company_url.blank? }
+  validates_format_of       :personal_web_url,  :with => /^(http|https|ftp):\/\/.*\..*/, :if => Proc.new { |user| !user.personal_web_url.blank? }
   
 
   simple_text_fields
