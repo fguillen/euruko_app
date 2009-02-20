@@ -8,7 +8,6 @@ config/database.yml
 config/initializers/site_keys.rb
 public/resources/*
 test/performance/tmp/
-public/stylesheets/*.css
 public/paper_files
+public/paper_photos
 certs/*pem
-
