@@ -1,5 +1,6 @@
 <div id="main-menu">
   <ul>
+    <%= menu_to 'Home', root_path %>
     <%= menu_to 'Calendar', calendar_path %>
     <%= menu_to 'Talks', papers_path %>
     <% if logged_in? %>
@@ -7,7 +8,7 @@
     <% end %>
     <%= menu_to 'People', users_path(:page => 1) %>
     <%= menu_to 'Blog', 'http://euruko2009.org' %>
-    <%= menu_to 'Help', root_path %>
+    <%= menu_to 'Help', '/help' %>
   </ul>
 </div>
 

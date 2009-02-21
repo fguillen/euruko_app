@@ -25,9 +25,6 @@
 
     <div id="page">
 
-      <div id="header">
-      </div>
-      
       <div class="main">
         <% flash.each do |name, msg| %>
           <%= content_tag :div, msg, :id => name %>
@@ -35,7 +32,6 @@
       
         <div id="content-wrapper" class="span-16">
           <div id="content">
-            <h2><%= yield(:title) %></h2>
             <%= yield %>
           </div>
         </div>

@@ -45,7 +45,7 @@ h1 {
   text-transform: uppercase; }
 
 h2 {
-  color: #451811;
+  color: #435F79;
   font-family: Georgia, sans-serif;
   font-size: 270%;
   font-weight: normal;
@@ -53,9 +53,10 @@ h2 {
 
 h3 {
   font-family: Helvetica, Arial, Verdana, sans-serif;
-  font-size: 195%;
+  font-size: 155%;
   margin: 0px;
-  font-weight: bold; }
+  font-weight: bold;
+}
 
 h3 a {
   color: #451811;
@@ -67,15 +68,33 @@ h3 a:hover {
   color: #902f1c;
   border-bottom: none; }
 
+h4 {
+  font-family: Helvetica, Arial, Verdana, sans-serif;
+  font-size: 130%;
+  margin: 0px;
+  font-weight: bold;
+}
+
+h4 a {
+  color: #650505;
+  text-decoration: none;
+  border-bottom: none;
+  margin: 0px; }
+
+h4 a:hover {
+  color: #D50202;
+  border-bottom: none; }
+
+
 a {
-  color: #711e11;
+  color: #7D0707;
   text-decoration: none;
   border-bottom: 1px solid #DBD6D1; }  
 
 a:hover {
-  color: #451811;
+  color: #D50202;
   text-decoration: none;
-  border-bottom: 2px solid #DBD6D1; }
+  border-bottom: 1px solid #E20202; }
 
 p {
   color: #232323;
@@ -93,6 +112,9 @@ li {
 
 /*--- main ---*/  
 
+#cover {
+  margin-bottom: 10px; }
+  
 #content-wrapper {
   float: left;
   width: 580px; }
@@ -100,6 +122,9 @@ li {
 #content {
   padding: 0px; }
 
+#content h3 {
+  color: #111;
+  margin-bottom: 1em; }
 
 /*--- sidebar ---*/  
 
@@ -126,7 +151,10 @@ li {
 /*--- article ---*/ 
 
 .entry {
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #EEE;
+}
 
 .entry .info {
   margin-top: 1em;
@@ -135,9 +163,18 @@ li {
 .entry p {
   font-size: 1.1em; }
 
+.entry img {
+  float: left;
+  margin: 0 16px 8px 0;
+}
+
+.entry .avatar {
+  border: 1px solid #111;
+}
+
 .posted {
   color: #918C7E;
-  font-family: "lucida grande",arial,helvetica,verdana,sans-serif;
+  font-family: "Lucida Grande",arial,helvetica,verdana,sans-serif;
   font-size: 10px;
   margin: -3px 0 5px;
   padding: 0px; }
@@ -320,13 +357,13 @@ li {
 
 #nav ul li a:hover {
   color: #FFFFFF;
-  background: #49140c;
-  border-bottom: 1px solid #49140c; }
+  background: #BC0A0A;
+  border-bottom: 1px solid #820707; }
 
 #nav ul li.selected a {
   color: #FFFFFF;
-  background: #0b0b0a;
-  border-bottom: 1px solid #0b0b0a; }
+  background: #111111;
+  border-bottom: 1px solid #000000; }
   
 #user-menu {
   float: right; }

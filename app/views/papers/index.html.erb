@@ -1,21 +1,34 @@
 <% title 'List of Papers' %>
 
+<div id="cover"><%= image_tag 'cover.png' %></div>
+
+<div id="extra">
+  <div class="box">
+    <h2>Registration open!</h2>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+      nisi ut aliquip ex ea commodo consequat.
+    </p>
+  </div>
+</div>
+
+<h3><%= yield(:title) %></h3>
+
 <% @papers.each do |paper| %>
-  <div class="paper">
-    <h3><%= link_to paper.title, paper %></h3>
-    <%= image_tag paper.photo.url(:medium) %>
+  <div class="entry">
+    <%= image_tag paper.photo.url(:medium), :class => "avatar" %>
+    <h4><%= link_to paper.title, paper %></h4>
     <p><%= simple_format(paper.description) %>
-      
     <% if current_user && current_user.admin? %>
       <ul>
         <li><%= link_to 'Edit', edit_paper_path(paper) %></li>
         <li><%= link_to 'Destroy', paper, :confirm => 'Are you sure?', :method => :delete %></li>
       </ul>
     <% end %>
-    
   </div>
 <% end %>
-
 
 <br />
 
