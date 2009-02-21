@@ -14,7 +14,7 @@ input[type="text"], input[type="password"] {
   font-size: 1.25em;
   padding: 4px;
   background: #FFFFFF;
-  color: #555555;
+  color: #333;
   border: 1px solid #AAA;
   width: 65%; }
 
@@ -34,6 +34,9 @@ input[type="text"]:focus, input[type="password"]:focus, textarea:focus {
   font-size: 75%;
   color: #666;
 	font-family:"Lucida Grande", Tahoma, Arial, sans-serif; }
+
+.required {
+  color: #F00; }
 	
 #alert, #error, #notice {
   padding: 6px 10px 6px 10px;
@@ -54,7 +57,7 @@ input[type="text"]:focus, input[type="password"]:focus, textarea:focus {
   color: #FFF; }
   
 .errorExplanation {
-  margin-bottom: 18px;
+  margin-bottom: 30px;
   color: #000; }
 
 .errorExplanation h2 {
@@ -67,3 +70,7 @@ input[type="text"]:focus, input[type="password"]:focus, textarea:focus {
 
 .fieldWithErrors input {
   border: 2px solid #DA0202; }
+  
+.notes {
+  font-size: 12px;
+  font-family: Helvetica, Arial, Verdana, sans-serif;  }
