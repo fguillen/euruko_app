@@ -53,7 +53,7 @@ h2 {
 
 h3 {
   font-family: Helvetica, Arial, Verdana, sans-serif;
-  font-size: 155%;
+  font-size: 160%;
   margin: 0px;
   font-weight: bold;
 }
@@ -70,7 +70,7 @@ h3 a:hover {
 
 h4 {
   font-family: Helvetica, Arial, Verdana, sans-serif;
-  font-size: 130%;
+  font-size: 150%;
   margin: 0px;
   font-weight: bold;
 }
@@ -112,8 +112,11 @@ li {
 
 /*--- main ---*/  
 
+#logo {
+  margin-bottom: 15px; }
+
 #cover {
-  margin-bottom: 10px; }
+  margin-bottom: 15px; }
   
 #content-wrapper {
   float: left;
@@ -328,7 +331,7 @@ li {
   padding: 0 20px;
   width: 900px;
 	height: 38px;
-	margin-bottom: 12px;
+	margin-bottom: 20px;
 }
 
 #nav ul {
@@ -358,7 +361,7 @@ li {
 #nav ul li a:hover {
   color: #FFFFFF;
   background: #BC0A0A;
-  border-bottom: 1px solid #820707; }
+  border-bottom: 1px solid #8F0808; }
 
 #nav ul li.selected a {
   color: #FFFFFF;
