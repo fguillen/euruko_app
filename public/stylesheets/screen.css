@@ -33,7 +33,7 @@ body {
   background-color: white;
   float: left;
   width: 100%;
-  margin: 15px 0px 30px; }
+  margin: 15px 0px 0px 30px; }
 
 h1 {
   color: #FFFFFF;
@@ -250,7 +250,7 @@ li {
   padding: 0px 12px 10px 0px; }
 
 .box {
-  padding: 15px;
+  padding: 15px 15px 10px 15px;
   border: 1px solid #dbd6d1;
   background-color: #efedeb;
   margin-bottom: 20px; }
@@ -308,16 +308,14 @@ li {
 /*--- footer ---*/ 
 
 #footer-wrapper {
-  margin: 5px auto;
+  margin: 0px auto;
   width: 900px; }
 
 #footer {
   color: #595452;
   float: right;
   font-family: "Lucida Grande", Verdana, Helvetica, Arial, sans-serif;
-  font-size: 90%;
-  margin-bottom: 30px; }
-
+  font-size: 90%; }
 
 /*--- navigation  ---*/ 
 
