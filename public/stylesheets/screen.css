@@ -18,6 +18,7 @@ body {
   clear: both;
 }
 
+/*
 #header {
   color: #FFFFFF;
   font-family: Arial, Helvetica, Geneva, sans-serif;
@@ -26,6 +27,7 @@ body {
   letter-spacing: 0.02em;
   line-height: 0.72em;
   text-transform: uppercase; }
+*/
 
 #main {
   background-color: white;
@@ -279,10 +281,18 @@ li {
 
 /*--- navigation  ---*/ 
 
+#header {
+  background: transparent url(/images/nav-background.png) repeat-x top left;
+  width: 100%;
+}
+
 #nav {
+  margin: 0 auto;
+  padding: 0 20px;
+  width: 900px;
 	height: 38px;
 	margin-bottom: 12px;
-	background: transparent url(http://spurrd.com/assets/132/nav-background.gif) repeat-x top left; }
+}
 
 #nav ul {
 	display: block;
@@ -306,7 +316,7 @@ li {
 	text-decoration: none;
 	padding: 8px 16px 7px;
 	border-bottom: none;
-	background: transparent url(http://spurrd.com/assets/150/nav-divider.gif) no-repeat top right; }
+	background: transparent url(/images/nav-divider.png) no-repeat top right; }
 
 #nav ul li a:hover {
   color: #FFFFFF;
