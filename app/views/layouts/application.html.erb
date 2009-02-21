@@ -6,6 +6,7 @@
     <title>EuRuKo 2009 - <%= yield(:title) || "European Ruby Conference" %></title>
     <!-- link rel="shortcut icon" href="favicon.ico" /-->
 
+    <%= stylesheet_link_tag 'reset', :media => 'screen, projection' %>
     <%= stylesheet_link_tag 'screen', :media => 'screen, projection' %>
     <%= stylesheet_link_tag 'print', :media => 'print' %>
     <!--[if IE]> 
@@ -16,55 +17,51 @@
   </head>
 
   <body>
-    <div id="header">
-      <div class="content">
-        <div id="logo" class="span-5">
-          <h1><%= link_to_unless_current 'Euruko 2009', root_path %></h1>
-        </div>
-
-        <div id="main-menu" class="span-13">
-          <%= render :partial => 'layouts/main_menu' %>
-        </div>
-
-        <div id="user-menu" class="span-6 last">
-          <%= render :partial => 'layouts/user_menu' %>
-        </div>
-      </div>
-    </div>
-
-    <div class="content">
-      <% flash.each do |name, msg| %>
-        <%= content_tag :div, msg, :id => name %>
-      <% end %>
-
-      <div id="main" class="span-16">
-        <div id="section">
-          <h2><%= yield(:title) %></h2>
-          <%= yield %>
-        </div>
+    <div id="page">
+      <div id="nav">
+        <%= render :partial => 'layouts/menu' %>
       </div>
 
-      <div id="sidebar" class="prepend-1 span-7 last">
-        <% if admin? %>
-          <div id="admin-menu">
-            <%= render :partial => 'layouts/admin_menu' %>
-          </div>
+      <div id="header">
+      </div>
+      
+      <div class="main">
+        <% flash.each do |name, msg| %>
+          <%= content_tag :div, msg, :id => name %>
         <% end %>
+      
+        <div id="content-wrapper" class="span-16">
+          <div id="content">
+            <h2><%= yield(:title) %></h2>
+            <%= yield %>
+          </div>
+        </div>
+      
+        <div id="sidebar-wrapper">
+          <div id="sidebar">
+            <% if admin? %>
+              <div id="admin-menu">
+                <%= render :partial => 'layouts/admin_menu' %>
+              </div>
+            <% end %>
+      
+            <%= render :partial => 'layouts/sidebar' %>
 
-        <div id="sponsors"><p>Dude! sponsors here</p></div>
+          </div>
+        </div>
+        
+        <div style="clear: both;"/>
+
       </div>
 
-      <div id="footer" class="span-24 last">
-        <div id="footer-menu">
-          <%= render :partial => 'layouts/main_menu' %>
-        </div>
-
-        <div id="credits">
-          <%= render :partial => 'layouts/credits' %>
+      <div id="footer-wrapper">
+        <div id="footer">
+          <%= render :partial => 'layouts/footer' %>
         </div>
       </div>
 
-      <%= render :partial => 'layouts/analitycs' %>
     </div>
+
+    <%= render :partial => 'layouts/analitycs' %>
   </body>
 </html>

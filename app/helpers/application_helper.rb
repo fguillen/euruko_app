@@ -5,7 +5,7 @@ module ApplicationHelper
   end
 
   def menu_to(name, options = {}, html_options = {}, &block)
-    content = link_to_unless_current(name, options, html_options, &block).to_s
+    content = link_to(name, options, html_options, &block).to_s
     "<span>#{content}</span>"
   end
 

@@ -1,0 +1,356 @@
+/*---  screen.css  ---*/ 
+
+body {
+  background-color: #FFF;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 80%;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+#page {
+  margin: 0 auto;
+  padding: 0 20px;
+  width: 900px;
+  text-align: left;
+  background-color: #FFFFFF;
+  clear: both;
+}
+
+#header {
+  color: #FFFFFF;
+  font-family: Arial, Helvetica, Geneva, sans-serif;
+  font-size: 35px;
+  font-weight: bold;
+  letter-spacing: 0.02em;
+  line-height: 0.72em;
+  text-transform: uppercase; }
+
+#main {
+  background-color: white;
+  float: left;
+  width: 100%;
+  margin: 15px 0px 30px; }
+
+h1 {
+  color: #FFFFFF;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 35px;
+  font-weight: bold;
+  letter-spacing: 0.02em;
+  line-height: 0.72em;
+  text-transform: uppercase; }
+
+h2 {
+  color: #451811;
+  font-family: Georgia, sans-serif;
+  font-size: 270%;
+  font-weight: normal;
+  margin: 0px; }
+
+h3 {
+  font-family: Helvetica, Arial, Verdana, sans-serif;
+  font-size: 195%;
+  margin: 0px;
+  font-weight: bold; }
+
+h3 a {
+  color: #451811;
+  text-decoration: none;
+  border-bottom: none;
+  margin: 0px; }
+
+h3 a:hover {
+  color: #902f1c;
+  border-bottom: none; }
+
+a {
+  color: #711e11;
+  text-decoration: none;
+  border-bottom: 1px solid #DBD6D1; }  
+
+a:hover {
+  color: #451811;
+  text-decoration: none;
+  border-bottom: 2px solid #DBD6D1; }
+
+p {
+  color: #232323;
+  font-family: Georgia, Times, "Times New Roman";
+  font-size: 1.2em;
+  line-height: 1.25em;
+  margin: 0px 0px 10px; }
+
+ul {
+  padding: 0; }
+
+li {
+  padding: 0; }
+
+
+/*--- main ---*/  
+
+#content-wrapper {
+  float: left;
+  width: 580px; }
+
+#content {
+  padding: 0px; }
+
+
+/*--- sidebar ---*/  
+
+#sidebar-wrapper {
+  float: right;
+  width: 300px; }
+
+#sidebar {
+  font-size: 90%;
+  padding: 15px;
+  padding-top: 0px; }
+
+#sidebar h3 {
+  color: #222222;
+  font-family: Helvetica, Arial, Verdana, sans-serif;
+  font-size: 17px;
+  font-weight: bold;
+  margin: 0px; }
+
+#sidebar p {
+  line-height: 1.4em; }
+
+
+/*--- article ---*/ 
+
+.entry {
+  margin-bottom: 20px; }
+
+.entry .info {
+  margin-top: 1em;
+  font-size: 1em; }
+
+.entry p {
+  font-size: 1.1em; }
+
+.posted {
+  color: #918C7E;
+  font-family: "lucida grande",arial,helvetica,verdana,sans-serif;
+  font-size: 10px;
+  margin: -3px 0 5px;
+  padding: 0px; }
+
+.posted em {
+  color: #451811;
+  font-style: italic;
+  margin: 0px 6px;
+  font-weight: bold; }
+
+.posted img {
+  background: transparent none repeat scroll 0 0;
+  border: medium none;
+  margin: 0 4px -5px 2px;
+  text-decoration: none; }
+
+
+/*--- styles ---*/ 
+
+#extra {
+  margin-bottom: 10px; }
+
+#extra .box {
+  background-color: #e8f0f6;
+  border-color: #D5E9F6; }
+
+#extra p {
+  line-height: 1.2em;
+  margin: 0px 0px 5px 0px; }
+
+#extra em {
+  font-style: italic; }
+
+#extra span {
+  color: #d26511;
+  font-size: 120%; }
+
+#player, #gallery {
+  background: #FFFFFF;
+  float: left;
+  clear: both;
+  margin: 0px 15px 15px 0px;
+  padding: 3px;
+  border: 1px solid #a9cde5; }
+
+#gallery a, 
+#gallery a:hover, 
+#player a, 
+#player a:hover,
+#extra img a,
+#extra img a:hover {
+  border-bottom: none !important;
+  text-decoration: none !important; }
+
+#extra a img {
+  margin-bottom: -3px; }
+
+.spot {
+  margin-bottom: 20px;
+  clear: both; }
+
+.spot p {
+  font-family: Verdana, sans-serif;
+  font-size: 11px; 
+  color: #333333;
+  margin-top: 0px; }
+
+.spot img {
+  float: left;
+  padding: 0px 12px 10px 0px; }
+
+.box {
+  padding: 15px;
+  border: 1px solid #dbd6d1;
+  background-color: #efedeb;
+  margin-bottom: 20px; }
+
+.box h3 {
+  font-size: 18px;
+  margin-bottom: 2px; }
+
+.box input {
+  margin-top: 5px; }
+
+.box input.email {
+  font-size: 10px;
+  padding: 3px; 
+  color: #a29e96; 
+  width: 140px; }
+
+.box input.subscribe {
+  width: 70px;
+  margin-left: 5px;
+  color: #232323; }
+
+.box ul {
+  margin-left: 20px; }
+
+.hidden {
+  display: none; }
+
+.clear {
+  clear: both; }
+
+/*--- sitemap ---*/ 
+
+#sitemap ul {
+  list-style-type: disc;
+  margin: 5px 0px 10px 35px;
+  line-height: 2em; }
+
+#sitemap li a {
+  font-family: Helvetica, Arial, Verdana, sans-serif;
+  font-size: 180%;
+  font-weight: bold;
+  margin: 0px; 
+  color: #451811;
+  text-decoration: none;
+  border-bottom: none; }
+
+#sitemap li a:hover {
+  color: #902f1c;
+  border-bottom: none; }
+
+#sitemap ul.second {
+  font-size: 80%; }
+
+/*--- footer ---*/ 
+
+#footer-wrapper {
+  margin: 5px auto;
+  width: 900px; }
+
+#footer {
+  color: #595452;
+  float: right;
+  font-family: "Lucida Grande", Verdana, Helvetica, Arial, sans-serif;
+  font-size: 90%;
+  margin-bottom: 30px; }
+
+
+/*--- navigation  ---*/ 
+
+#nav {
+	height: 38px;
+	margin-bottom: 12px;
+	background: transparent url(http://spurrd.com/assets/132/nav-background.gif) repeat-x top left; }
+
+#nav ul {
+	display: block;
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	width: auto; }
+
+#nav ul li {
+	display: block;
+	float: left;
+	margin: 0;
+	padding: 0; }
+
+#nav ul li a {
+  font-family: "Lucida Sans", "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+	display: block;
+	float: left;
+	color: #3D3D3D;
+	text-decoration: none;
+	padding: 8px 16px 7px;
+	border-bottom: none;
+	background: transparent url(http://spurrd.com/assets/150/nav-divider.gif) no-repeat top right; }
+
+#nav ul li a:hover {
+  color: #FFFFFF;
+  background: #49140c;
+  border-bottom: 1px solid #49140c; }
+
+#nav ul li.selected a {
+  color: #FFFFFF;
+  background: #0b0b0a;
+  border-bottom: 1px solid #0b0b0a; }
+  
+#user-menu {
+  float: right; }
+
+#user-menu ul li a {
+  background-position: top left; }
+
+
+/*---  lightbox.css  ---*/ 
+
+#lightbox{	position: absolute;	left: 0; width: 100%; z-index: 100; text-align: center; line-height: 0;}
+#lightbox img{ width: auto; height: auto;}
+#lightbox a img{ border: none; }
+
+#outerImageContainer{ position: relative; background-color: #fff; width: 250px; height: 250px; margin: 0 auto; }
+#imageContainer{ padding: 10px; }
+
+#loading{ position: absolute; top: 40%; left: 0%; height: 25%; width: 100%; text-align: center; line-height: 0; }
+#hoverNav{ position: absolute; top: 0; left: 0; height: 100%; width: 100%; z-index: 10; border-bottom: none; }
+#imageContainer>#hoverNav{ left: 0;}
+#hoverNav a{ outline: none; border-bottom: none;}
+
+#prevLink, #nextLink{ width: 49%; height: 100%; background-image: url(data:image/gif;base64,AAAA); /* Trick IE into showing hover */ display: block; }
+#prevLink { left: 0; float: left;}
+#nextLink { right: 0; float: right;} 
+#prevLink:hover, #prevLink:visited:hover { background: url(http://spurrd.com/assets/192/prevlabel.gif) left 15% no-repeat; }
+#nextLink:hover, #nextLink:visited:hover { background: url(http://www.spurrd.com/assets/189/nextlabel.gif) right 15% no-repeat; }
+
+#imageDataContainer{ font: 10px Verdana, Helvetica, sans-serif; background-color: #fff; margin: 0 auto; line-height: 1.4em; overflow: auto; width: 100%	; }
+
+#imageData{	padding:0 10px; color: #666; }
+#imageData #imageDetails{ width: 70%; float: left; text-align: left; }	
+#imageData #caption{ font-weight: bold;	}
+#imageData #numberDisplay{ display: block; clear: left; padding-bottom: 1.0em;	}			
+#imageData #bottomNavClose{ width: 66px; float: right;  padding-bottom: 0.7em; outline: none;}	 	
+
+#overlay{ position: absolute; top: 0; left: 0; z-index: 90; width: 100%; height: 500px; background-color: #000; }
