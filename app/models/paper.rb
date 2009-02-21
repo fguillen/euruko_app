@@ -11,7 +11,7 @@ class Paper < ActiveRecord::Base
   
   # paperclip
   has_attached_file :photo, 
-                    :styles => { :medium => "576x150#" },
+                    :styles => { :medium => "200x200#", :medium => "150x150#", :small => "75x75#" },
                     :url  => "/paper_files/:id/photos/:style/:basename.:extension",
                     :path => ":rails_root/public/paper_files/:id/photos/:style/:basename.:extension"
 

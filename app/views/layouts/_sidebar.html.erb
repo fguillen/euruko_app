@@ -1,3 +1,9 @@
+<% if admin? %>
+<div class="box">
+  <%= render :partial => 'layouts/admin_menu' %>
+</div>
+<% end %>
+
 <div class="spot">
   <%= image_tag "europe.png" %>
   <h3>What's EuRuKo?</h3>
@@ -33,7 +39,12 @@
 
 <div class="spot">
   <h3>Sponsorship</h3>
-  <p>Donec tempor mollis ante. Nunc felis. Proin ac pede vel nulla lacinia congue. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi cursus, dui quis pretium blandit, erat massa lacinia neque, eu porttitor lacus erat ac leo.</p>
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+    nisi ut aliquip ex ea commodo consequat.
+  </p>
 </div>
 
 <div class="spot box">

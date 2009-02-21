@@ -4,12 +4,11 @@
 
 <div id="extra">
   <div class="box">
-    <h2>Registration open!</h2>
+    <%= link_to image_tag('register.png'), register_path, :id => "register-button" %>
+    <h5>Registration open!</h5>
     <p>
       Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-      nisi ut aliquip ex ea commodo consequat.
+      sed do eiusmod tempor incididunt ut labore et dolore.
     </p>
   </div>
 </div>
@@ -18,20 +17,14 @@
 
 <% @papers.each do |paper| %>
   <div class="entry">
-    <%= image_tag paper.photo.url(:medium), :class => "avatar" %>
+    <%= image_tag paper.photo.url(:small), :class => "avatar" %>
     <h4><%= link_to paper.title, paper %></h4>
-    <p><%= simple_format(paper.description) %>
     <% if current_user && current_user.admin? %>
-      <ul>
-        <li><%= link_to 'Edit', edit_paper_path(paper) %></li>
-        <li><%= link_to 'Destroy', paper, :confirm => 'Are you sure?', :method => :delete %></li>
-      </ul>
+    <div class="posted">
+        <%= image_tag "edit.png"%> <%= link_to 'Edit', edit_paper_path(paper) %>
+        <%= image_tag "delete.png"%> <%= link_to 'Destroy', paper, :confirm => 'Are you sure?', :method => :delete %>
+    </div>
     <% end %>
+    <p><%= simple_format(paper.description) %>
   </div>
-<% end %>
-
-<br />
-
-<% if logged_in? %>
-  <%= link_to_unless_current 'Submit yours', new_paper_path %>
 <% end %>
