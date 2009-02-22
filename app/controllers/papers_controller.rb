@@ -105,7 +105,7 @@ class PapersController < ApplicationController
     
     respond_to do |format|
       if @paper.save
-        flash[:notice] = 'Status Paper was successfully updated.'
+        flash[:notice] = 'Paper was successfully updated.'
         format.html { redirect_to( edit_paper_path(@paper) ) }
         format.xml  { head :ok }
       else
@@ -120,6 +120,7 @@ class PapersController < ApplicationController
     @paper.destroy
 
     respond_to do |format|
+      flash[:notice] = "The Paper has been removed."
       format.html { redirect_to(papers_path) }
       format.xml  { head :ok }
     end

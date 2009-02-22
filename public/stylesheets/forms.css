@@ -41,6 +41,7 @@ input[type="text"]:focus, input[type="password"]:focus, textarea:focus {
 #alert, #error, #notice {
   padding: 6px 10px 6px 10px;
   margin-bottom: 24px;
+  width: 96%;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px; }
 
