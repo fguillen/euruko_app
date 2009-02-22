@@ -1,17 +1,21 @@
-<% title 'List of Papers' %>
+<% title 'List of Talks' %>
 
-<div id="cover"><%= image_tag 'cover.png' %></div>
+<% if current_page?('/') %>
+  <div id="cover"><%= image_tag 'cover.png' %></div>
 
-<div id="extra">
-  <div class="box">
-    <%= link_to image_tag('register.png'), signup_path, :id => "register-button" %>
-    <h5>Registration open!</h5>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-      sed do eiusmod tempor incididunt ut labore et dolore.
-    </p>
+  <div id="extra">
+    <div class="box">
+      <%= link_to image_tag('register.png'), signup_path, :id => "register-button" %>
+      <h5>Registration open!</h5>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore.
+      </p>
+    </div>
   </div>
-</div>
+<% else%>
+  <hr/>
+<% end %>
 
 <h3><%= yield(:title) %></h3>
 
