@@ -1,7 +1,5 @@
 <% title "Sign up as a new user" %>
 
-<hr/>
-
 <h3><%= yield(:title) %></h3>
 
 <% @user.password = @user.password_confirmation = nil %>
@@ -27,7 +25,5 @@
   
   <p><%= submit_tag 'Sign up' %></p>
 <% end -%>
-
-<hr />
 
 <p class="notes">Fields marked with <span class="required">*</span> are required fields</p>

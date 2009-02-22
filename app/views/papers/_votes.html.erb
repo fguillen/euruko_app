@@ -1,26 +1,23 @@
 <% @vote = vote_find_actual( @paper.id ) %>
-
-<ul>
-  <% (1..5).each do |points| %>
-    <% if @vote.nil? || (@vote.points != points) %>
-      <li>
-        <%= 
-          link_to_remote(
-            "#{points}", 
-            :url => paper_votes_path( @paper, :points => points ), 
-            :method => 'post',
-            :update => { :success => "valorations", :failure => "error" },
-            :loading => "$('#valoration_loading').show()",
-            :complete => "$('#valoration_loading').hide()"
-          )
-        %>
-      </li>
-    <% else %>
-      <li><%= points %></li>
-    <% end %>
+I give this talk a 
+<% (1..5).each do |points| %>
+  <% if @vote.nil? || (@vote.points != points) %>
+      <%= 
+        link_to_remote(
+          "#{points}", 
+          :url => paper_votes_path( @paper, :points => points ), 
+          :method => 'post',
+          :update => { :success => "valorations", :failure => "error" },
+          :loading => "$('#valoration_loading').show()",
+          :complete => "$('#valoration_loading').hide()"
+        )
+      %>
+  <% else %>
+    <%= points %>
   <% end %>
-</ul>
-<div id='valoration_loading' style="display:none">
-  <%= image_tag 'spinner.gif' %>
-</div>
+<% end %>
 
+<span id='valoration_loading' style="display:none">
+  <br/>
+  <%= image_tag 'spinner.gif' %>
+</span>

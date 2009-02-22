@@ -1,15 +1,16 @@
-<li>
-  <div>
-    <%=
-      gravatar(
-        comment.user.email, 
-        :size => 32, 
-        :default => "#{base_url}/images/avatar.png",
-        :class => 'avatar',
-        :alt => "avatar de #{comment.user.name}"
-      )
-    %>
-  </div>
-  <div><strong><%= comment.user.name %></strong> say on <%= comment.created_at %></div>
-  <p><%= comment.text %></p>
-</li>
+<div class="comment">
+  <%=
+    gravatar(
+      comment.user.email, 
+      :size => 32, 
+      :default => "#{base_url}/images/avatar.png",
+      :class => 'avatar',
+      :alt => "avatar de #{comment.user.name}"
+    )
+  %>
+
+  <p>
+    <strong><%= comment.user.name %></strong> <span class="date">said on <%= comment.created_at %></span><br/>
+    <%= comment.text %>
+  </p>
+</div>

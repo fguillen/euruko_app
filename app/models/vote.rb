@@ -6,6 +6,4 @@ class Vote < ActiveRecord::Base
   validates_presence_of :user_id
   validates_numericality_of :points
   validates_uniqueness_of :paper_id, :scope => :user_id, :message => 'This User already has voted on this Paper'
-  
-
 end

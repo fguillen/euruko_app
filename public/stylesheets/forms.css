@@ -1,5 +1,5 @@
 form {
-  margin: 0;
+  margin: 18px 0 0 0;
   padding: 0; }
   
 label {
@@ -77,5 +77,9 @@ input[type="text"]:focus, input[type="password"]:focus, textarea:focus {
   border: 2px solid #DA0202; }
   
 .notes {
+  margin-top: 18px;
   font-size: 12px;
   font-family: Helvetica, Arial, Verdana, sans-serif;  }
+
+#comments textarea {
+  width: 90%; }

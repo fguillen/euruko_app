@@ -1,18 +1,6 @@
 <% title 'New Paper Proposal' %>
 
-<hr/>
-
 <h3><%= yield(:title) %></h3>
-
-
-<% form_for(@paper) do |f| %>
-  <%= f.error_messages %>
-  
-  <%= render :partial => 'basic_form', :locals => { :f => f } %>
-  <p><%= f.submit "Submit your talk" %></p>
-<% end %>
-
-<hr/>
 
 <p>Once the talk is created you will be able to:</p>  
 
@@ -22,6 +10,11 @@
   <li>Add other speakers to the talk (all speakers should be registered)</li>
 </ul>
 
-<hr/>
+<% form_for(@paper) do |f| %>
+  <%= f.error_messages %>
+  
+  <%= render :partial => 'basic_form', :locals => { :f => f } %>
+  <p><%= f.submit "Submit your talk" %></p>
+<% end %>
 
 <p class="notes">Fields marked with <span class="required">*</span> are required fields</p>

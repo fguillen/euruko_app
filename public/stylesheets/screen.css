@@ -100,10 +100,12 @@ ul {
 li {
   padding: 0; }
 
+/*
 hr {
   color: #FFFFFF;
   border: none;
   margin: 30px 0 25px 0; }
+*/
 
 /*--- main ---*/  
 
@@ -122,7 +124,7 @@ hr {
 
 #content h3 {
   color: #111;
-  margin-bottom: 1em; }
+  margin: 18px 0 18px 0; }
 
 /*--- sidebar ---*/  
 
@@ -149,7 +151,7 @@ hr {
 /*--- article ---*/ 
 
 .entry {
-  margin-bottom: 20px;
+  margin-bottom: 18px;
   padding-bottom: 5px;
 }
 
@@ -204,7 +206,7 @@ hr {
   display: block;
   text-align: center;
   width: 86px;
-  height: 120px;
+  height: 100px;
   margin-right: 10px;
   font-size: 80%; }
 
@@ -240,18 +242,6 @@ hr {
 #extra a img {
   margin-bottom: -3px; }
 
-#player, #gallery {
-  background: #FFFFFF;
-  float: left;
-  clear: both;
-  margin: 0px 15px 15px 0px;
-  padding: 3px;
-  border: 1px solid #a9cde5; }
-
-#gallery a, 
-#gallery a:hover, 
-#player a, 
-#player a:hover,
 #extra img a,
 #extra img a:hover {
   border-bottom: none !important;
@@ -313,16 +303,40 @@ hr {
 .pagination {
   clear: both; }
 
+#resources h6,
+#valorations h6,
+#attendees h6,
+#comments h6 {
+  margin: 25px 0 14px 0;
+}
+
+#attendee {
+  margin-bottom: 15px; }
+
+#valorations img {
+  float: none;
+  margin: 0 5px -10px 0; }
+
+.comment {
+  margin-bottom: 15px; }
+
+.comment .avatar {
+  position: absolute; }
+
+.comment p {
+  margin-left: 50px; }
+
 /*--- footer ---*/ 
 
 #footer-wrapper {
   margin: 0 auto;
-  margin-top: 20px;
+  margin-top: 30px;
   margin-bottom: 20px;
   width: 900px;
   clear: both; }
 
 #footer {
+  font-size: 80%;
   color: #595452;
   font-family: "Lucida Grande", Verdana, Helvetica, Arial, sans-serif; }
 
@@ -382,7 +396,11 @@ hr {
 .bar, .pagination {
   color: #999;
   font-size: 11px;
-  float: right; }
+  float: right;
+  margin-right: 10px; }
+  
+.bar {
+  margin-top: 8px; }
 
 .bar p, .pagination p {
   color: #999;

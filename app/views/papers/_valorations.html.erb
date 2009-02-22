@@ -1,14 +1,10 @@
-<h3>Valoration</h3>
-<p>
-  <ul>
-    <% @paper.votes.each do |vote| %>
-      <li><%= vote.user.name %> => <%= vote.points %></li>
-    <% end %>
-  </ul>
-</p>
+<h6>Valorations</h6>
+
 <% if logged_in? %>
-  <h4>My valoration</h4>
-  <p>
-    <%= render :partial => 'papers/votes', :locals => { :paper => @paper } %>
-  </p>
+  <p><%= render :partial => 'papers/votes', :locals => { :paper => @paper } %></p>
 <% end %>
+
+<% @paper.votes.each do |vote| %>
+  <p><%= image_tag "#{vote.points}_star.png" %> for <%= vote.user.name %><p>
+<% end %>
+

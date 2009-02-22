@@ -1,92 +1,80 @@
 <% title "#{@paper.title}" %>
 
-<%= image_tag @paper.photo.url(:medium) %>
+<h3>Talk Details</h3>
 
-<h3>Description</h3>
-<p><%= simple_format @paper.description %></p>
-
-<h3>Speakers</h3>
-<p>
-  <ul>
-      <% @paper.speakers.collect{ |s| s.user }.each do |user| %>
-        <li>
-          <%=
-            gravatar(
-              user.email, 
-              :size => 32, 
-              :default => "#{base_url}/images/avatar.png",
-              :class => 'avatar',
-              :alt => "avatar de #{user.name}"
-            )
-          %>
-          <%= link_to user.name, user %>
-        </li>
-      <% end %>
-  </ul>
-</p>
-
-<h3>Date and room</h3>
-<p>
-  at <%= @paper.date.nil? ? '(not date desgined yet)' : @paper.date.strftime("%b #{@paper.date.day.ordinalize}, %H:%M %p") %> 
-  on <%= @paper.room.nil? ? '(not room designed yet)' : @paper.room.name %>
-</p>
-
-<h3>Resources:</h3>
-<p>
-  <ul>
-    <% @paper.resources.each do |resource| %>
-      <li><%= link_to resource.url_link, resource.url_link %></li>
-    <% end %>
-  </ul>
-</p>
-
-<div id='valorations'>
-  <%= render :partial => 'papers/valorations', :locals => { :paper => @paper } %>
-</div>
-
-<h3>Attendees</h3>
-<div>
-  <ul>
-    <% @paper.attendees.each do |attendee| %>
-      <li><%= attendee.user.name %></li>
-    <% end %>
-  </ul>
-  <%= render :partial => 'papers/attendees', :locals => { :paper => @paper } %>  
-</div>
-
-<h3>Comments</h3>
-<div>
-  <ul id="comments">
-    <%= render :partial => 'papers/comment', :collection => @paper.comments %>
-  </ul>
-</div>
-
-<% if logged_in? %>
-  <h4>New Comment</h4>
-  <div id="comment_error"></div>
-  <div>
-    <%
-      form_remote_for(
-        [@paper, Comment.new],
-        :update => { :success => "comments", :failure => "comments" },
-        :position => :bottom,
-        :loading => "$('#comment_loading').show()",
-        :complete => "$('#comment_loading').hide();",
-        :success => "$('#comment_textarea').val('')"
-      ) do |f| 
-    -%>
-      <%= f.error_messages %>
-
-      <%= f.text_area :text, :id => 'comment_textarea' %>
-      <%= f.submit "Submit", :disable_with => 'Submiting...' %>
-      <div id='comment_loading' style="display:none"><%= image_tag 'spinner.gif' %></div>
-    <% end -%>
-  </div>
-<% end %>
-
-
-<p>
+<h4>
+  <%= yield(:title) %>
   <% if logged_in? && current_user.is_speaker_on_or_admin?( @paper ) %>
     <%= link_to 'Edit', edit_paper_path(@paper) %>
   <% end %>
-</p>
+</h4>
+
+<div class="entry">
+  <%= image_tag @paper.photo.url(:medium), :class => 'avatar' %>
+
+  <h6>
+    On <%= @paper.date.nil? ? '(not date designed yet)' : @paper.date.strftime("%b #{@paper.date.day.ordinalize}, %H:%M %p") %> 
+    at <%= @paper.room.nil? ? '(not room designed yet)' : @paper.room.name %>
+  </h6>
+  <p>
+    By
+    <% @paper.speakers.collect{ |s| s.user }.each do |user| %>
+      <%= link_to user.name, user %>
+    <% end %>
+  </p>
+  <%= simple_format @paper.description %>
+
+  <div id="resources">
+    <h6>Resources</h6>
+    <ul>
+      <% @paper.resources.each do |resource| %>
+        <li><%= link_to resource.url_link, resource.url_link %></li>
+      <% end %>
+    </ul>
+  </div>
+  
+  <div id="valorations">
+    <%= render :partial => 'papers/valorations', :locals => { :paper => @paper } %>
+  </div>
+  
+  <div id="attendees">
+    <h6>Attendees (<%=h @paper.attendees.count %>)</h6>
+    <%= render :partial => 'papers/attendees', :locals => { :paper => @paper } %>  
+
+    <ul>
+      <% @paper.attendees.each do |attendee| %>
+        <li><%= attendee.user.name %></li>
+      <% end %>
+    </ul>
+  </div>
+  
+  <div id="comments">
+    <h6>Comments (<%=h @paper.comments.count %>)</h6>
+    <div id="comments_list">
+      <%= render :partial => 'papers/comment', :collection => @paper.comments %>
+    </div>
+    
+    <% if logged_in? %>
+      <div class="comment_error"></div>
+
+        <%
+          form_remote_for(
+            [@paper, Comment.new],
+            :update => { :success => "comments_list", :failure => "comment_error" },
+            :position => :bottom,
+            :loading => "$('#comment_loading').show()",
+            :complete => "$('#comment_loading').hide();",
+            :success => "$('#comment_textarea').val('')"
+          ) do |f| 
+        -%>
+        <%= f.error_messages %>
+    
+        <%= f.label :new_comment, 'New Comment', :required => true %><br/>
+        <%= f.text_area :text, :id => 'comment_textarea' %><br/>
+        <div id='comment_loading' style="display:none"><%= image_tag 'spinner.gif' %></div>
+        <%= f.submit "Submit", :disable_with => 'Submiting...' %>
+        <% end -%>
+
+    <% end %>
+  </div>
+</div>

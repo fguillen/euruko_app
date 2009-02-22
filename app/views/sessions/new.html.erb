@@ -1,7 +1,5 @@
 <% title "Log In" %>
 
-<hr />
-
 <h3><%= yield(:title) %></h3>
 
 <% form_tag session_path do -%>
@@ -19,6 +17,4 @@
 <p><%= submit_tag 'Log in' %></p>
 <% end -%>
 
-<hr />
-
-<p><%= link_to 'Forgot your password?', forgot_password_path %></p>
+<p class="notes"><%= link_to 'Forgot your password?', forgot_password_path %></p>
