@@ -55,26 +55,28 @@ h3 a:hover {
   border-bottom: none; }
 
 h4 {
-  font-family: Helvetica, Arial, Verdana, sans-serif;
-  font-size: 130%;
-  margin: 0px;
-  font-weight: bold; }
+  font-family: Georgia, Times, "Times New Roman";
+  font-size: 125%;
+  margin: 0px; }
 
 h4 a {
   color: #650505;
-  text-decoration: none;
-  border-bottom: none;
   margin: 0px; }
 
 h4 a:hover {
-  color: #D50202;
-  border-bottom: none; }
+  color: #D50202; }
 
 h5 {
   color: #435F79;
   font-family: Georgia, sans-serif;
   font-size: 140%;
   margin: 0px; }
+  
+h6 {
+  font-size: 80%;
+  text-transform: uppercase;
+  margin: 20px 0 10px 0;
+  font-weight: bold; }
 
 a {
   color: #7D0707;
@@ -94,7 +96,7 @@ p {
   margin: 0px 0px 10px; }
 
 ul {
-  padding: 0; }
+  padding: 0 0 0 18px; }
 
 li {
   padding: 0; }
@@ -150,7 +152,6 @@ hr {
 .entry {
   margin-bottom: 20px;
   padding-bottom: 5px;
-  border-bottom: 1px solid #EEE;
 }
 
 .entry .info {

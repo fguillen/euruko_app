@@ -1,27 +1,34 @@
 <% title 'Calendar' %>
 
+<hr/>
+
+<h3><%= yield(:title) %></h3>
+
 <% @dates.each do |date| %>
-  <h3><%= date.strftime("%A %d %B %Y")  %></h3>
-  <% @rooms.each do |room| %>
-    <% papers_on_room = @papers.select{ |p| p.on_date_and_room_id?( date, room.id ) } %>
-    <% if !papers_on_room.empty? %>
-      <h4>on room '<%= room.name %>'</h4>
-      <% papers_on_room.each do |paper| %>
-      
-        <% if paper.family == Paper::FAMILY[:BREAK] %>
-          <h5 class="break">Break at <%= paper.date.strftime("%H:%M %p") %>, <%= link_to paper.title, paper %></h5>
-        <% else %>
-          <h5>at <%= paper.date.strftime("%H:%M %p") %>, <%= link_to paper.title, paper %></h5>
-          <%= image_tag paper.photo.url(:medium) %>
+  <div class="entry">
+    <h5><%= date.strftime("%A %d %B %Y")%></h5>
+
+    <% @rooms.each do |room| %>
+      <% papers_on_room = @papers.select{ |p| p.on_date_and_room_id?( date, room.id ) } %>
+
+      <% if !papers_on_room.empty? %>
+        <h6><%= room.name.capitalize %> Room</h6>
+
+        <% papers_on_room.each do |paper| %>
+          <p>
+            <% if paper.family == Paper::FAMILY[:BREAK] %>
+              <%= paper.date.strftime("%H:%M %p") %> Break (<%= link_to paper.title, paper %>)
+            <% else %>
+              <%= paper.date.strftime("%H:%M %p") %> <%= link_to paper.title, paper %>
+            <% end %>
+            <% if admin? %>
+              <span class="posted"><%= link_to image_tag('edit.png'), edit_paper_path(paper) %></span>
+            <% end %>
+          </p>
         <% end %>
-        
-        <p>
-          <% if admin? %>
-            <%= link_to 'Edit', edit_paper_path(paper) %>
-          <% end %>
-        </p>
-        
+
       <% end %>
+
     <% end %>
-  <% end %>
+  </div>
 <% end %>
