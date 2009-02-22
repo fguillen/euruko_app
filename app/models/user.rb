@@ -80,7 +80,7 @@ class User < ActiveRecord::Base
   attr_accessor :change_password
   
   cattr_reader :per_page
-  @@per_page = 50
+  @@per_page = 48
 
 
   # CONSTANTS

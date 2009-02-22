@@ -23,12 +23,14 @@
   <div class="entry">
     <%= image_tag paper.photo.url(:small), :class => "avatar" %>
     <h4><%= link_to paper.title, paper %></h4>
+
     <% if current_user && current_user.admin? %>
-    <div class="posted">
-        <%= image_tag "edit.png"%> <%= link_to 'Edit', edit_paper_path(paper) %>
-        <%= image_tag "delete.png"%> <%= link_to 'Destroy', paper, :confirm => 'Are you sure?', :method => :delete %>
-    </div>
+      <div class="actions">
+        <%= link_to image_tag('edit.png') + 'Edit', edit_paper_path(paper) %>
+        <%= link_to image_tag('delete.png') + 'Destroy', paper, :confirm => 'Are you sure?', :method => :delete %>
+      </div>
     <% end %>
+
     <p><%= simple_format(paper.description) %>
   </div>
 <% end %>

@@ -2,20 +2,17 @@
 
 <hr/>
 
-
 <div class="bar">
   <p>
-    Filter list showing
-    <%= link_to 'all', users_path( :page => '1' ) %> or 
-    <%= link_to 'speakers', users_path( :params => { :speakers => '1', :page => '1' } ) %>
-    <% if @users.respond_to?( 'total_pages' ) %><%= will_paginate @users %><% end %>
+    <%= link_to 'Show all', users_path( :page => '1' ) %> | 
+    <%= link_to 'Show speakers', users_path( :params => { :speakers => '1', :page => '1' } ) %>
   </p>
 </div>
 
 <h3><%= yield(:title) %></h3>
 
 <% for user in @users %>
-  <div class="person">
+  <div class="grid-item">
       <%=
         gravatar(
           user.email, 
@@ -31,8 +28,14 @@
       <%= link_to user.name, user %>
 
     <% if admin? %>
-      <td><%= link_to 'Edit', edit_user_path(user) %></td>
-      <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
+      <div class="tiny-actions">
+        <%= link_to image_tag('edit.png'), edit_user_path(user) %>
+        <%= link_to image_tag('delete.png'), user, :confirm => 'Are you sure?', :method => :delete %>
+      </div>
     <% end %>
   </div>
 <% end %>
+
+<div class="pagination">
+  <p><% if @users.respond_to?( 'total_pages' ) %><%= will_paginate @users %><% end %></p>
+</div>

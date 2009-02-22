@@ -17,12 +17,12 @@
         <% papers_on_room.each do |paper| %>
           <p>
             <% if paper.family == Paper::FAMILY[:BREAK] %>
-              <%= paper.date.strftime("%H:%M %p") %> Break (<%= link_to paper.title, paper %>)
+              <span class="date"><%= paper.date.strftime("%H:%M %p") %></span> Break (<%= link_to paper.title, paper %>)
             <% else %>
-              <%= paper.date.strftime("%H:%M %p") %> <%= link_to paper.title, paper %>
+              <span class="date"><%= paper.date.strftime("%H:%M %p") %></span> <%= link_to paper.title, paper %>
             <% end %>
             <% if admin? %>
-              <span class="posted"><%= link_to image_tag('edit.png'), edit_paper_path(paper) %></span>
+              <span class="actions"><%= link_to image_tag('edit.png'), edit_paper_path(paper) %></span>
             <% end %>
           </p>
         <% end %>
