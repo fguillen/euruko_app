@@ -1,5 +1,5 @@
 <p>
-  <%= f.label :title, "Title" %><br />
+  <%= f.label :title, "Title", :required => true %><br />
   <%= f.text_field :title %>
 </p>
 
@@ -28,7 +28,6 @@
   <!-- datepicker -->
 
   <div>
-    <h3>Room and Calendar</h3>
     <p>
       <%= f.label :room_id, "Room" %><br />
       <%=

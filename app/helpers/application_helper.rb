@@ -1,5 +1,6 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
+  
   def title(page_title)
     content_for(:title) { page_title }
   end
@@ -12,7 +13,15 @@ module ApplicationHelper
       "<li>#{content}</li>"
     end
   end
-
+  
+  def label(object_name, method, text = nil, options = {})
+    if options[:required]
+      "<label for=\"#{method}\">#{text} <span class=\"required\">*</span></label>"
+    else
+      "<label for=\"#{method}\">#{text}</label>"
+    end
+  end
+  
   def times_array( hour_ini = '00', hour_end = '24' )
     times = []
     (hour_ini..hour_end).each do |hh|

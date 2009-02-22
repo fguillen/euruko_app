@@ -1,19 +1,27 @@
 <% title 'New Paper Proposal' %>
 
+<hr/>
+
+<h3><%= yield(:title) %></h3>
+
+
 <% form_for(@paper) do |f| %>
   <%= f.error_messages %>
   
   <%= render :partial => 'basic_form', :locals => { :f => f } %>
-
-  <p>
-    Once the Talk is created you will can, if you want, and whenever you want:
-    <ul>
-      <li>Add a cool picture to the talk.</li>
-      <li>Attach files or online resources.</li>
-      <li>Add other speakers to the talk if you have company (all the speakers should be registered on the app).</li>
-    </ul>
-  </p>
-  <p>
-    <%= f.submit "Create" %>
-  </p>
+  <p><%= f.submit "Create" %></p>
 <% end %>
+
+<hr/>
+
+<p>Once the talk is created you will be able to:</p>  
+
+<ul>
+  <li>Add a cool picture</li>
+  <li>Attach files or online resources</li>
+  <li>Add other speakers to the talk (all speakers should be registered)</li>
+</ul>
+
+<hr/>
+
+<p class="notes">Fields marked with <span class="required">*</span> are required fields</p>

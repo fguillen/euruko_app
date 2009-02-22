@@ -3,7 +3,7 @@ form {
   padding: 0; }
   
 label {
-  font-size: 80%;
+  font-size: 90%;
   font-weight: bold;
 	font-family:"Lucida Grande", Tahoma, Arial, sans-serif; }
 	
@@ -68,7 +68,11 @@ input[type="text"]:focus, input[type="password"]:focus, textarea:focus {
   font-size: 100%;
   font-family: Helvetica, Arial, Verdana, sans-serif;  }
 
-.fieldWithErrors input {
+.fieldWithErrors {
+  margin: 0;
+  padding: 0; }
+
+.fieldWithErrors input, .fieldWithErrors textarea {
   border: 2px solid #DA0202; }
   
 .notes {
