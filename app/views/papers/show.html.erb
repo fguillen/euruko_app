@@ -60,7 +60,7 @@
         <%
           form_remote_for(
             [@paper, Comment.new],
-            :update => { :success => "comments_list", :failure => "comment_error" },
+            :update => { :success => "comments_list", :failure => ".comment_error" },
             :position => :bottom,
             :loading => "$('#comment_loading').show()",
             :complete => "$('#comment_loading').hide();",
@@ -74,7 +74,6 @@
         <div id='comment_loading' style="display:none"><%= image_tag 'spinner.gif' %></div>
         <%= f.submit "Submit", :disable_with => 'Submiting...' %>
         <% end -%>
-
     <% end %>
   </div>
 </div>

@@ -1,38 +1,38 @@
 <% title "#{@user.name}" %>
 
-<%=
-  gravatar(
-    @user.email, 
-    :size => 32, 
-    :default => "#{base_url}/images/avatar.png",
-    :class => 'avatar',
-    :alt => "avatar de #{@user.name}"
-  )
-%>
+<h3>
+  User Details: <%= yield(:title) %>
+  <% if logged_in? && (admin? || @user == current_user) %><%= link_to image_tag('edit.png'), edit_user_path(@user) %><% end %>
+</h3>
 
-<%= simple_format( @user.text ) %>
-
-<% if !@user.personal_web_name.blank? || !@user.personal_web_url.blank?  %>
-  <p><%= web_render( @user.personal_web_name, @user.personal_web_url ) %></p>
-<% end %>
-
-<% if !@user.company_url.blank? || !@user.company_url.blank?  %>
-  <p>And works at <%= web_render( @user.company_name, @user.company_url ) %></p>
-<% end %>
-
-<% if !@user.speaker_on_visibles_for_user( current_user ).empty? %>
-  <div>
-    <h3>and Presenting</h3>
-    <ul>
+<div class="entry">
+  <%=
+    gravatar(
+      @user.email, 
+      :size => 50, 
+      :default => "#{base_url}/images/avatar.png",
+      :class => 'avatar',
+      :alt => "avatar de #{@user.name}"
+    )
+  %>
+  
+  <%= simple_format(@user.text) %>
+  
+  <% if !@user.speaker_on_visibles_for_user( current_user ).empty? %>
+    <h6>Talking on</h6>
+    
       <% @user.speaker_on_visibles_for_user( current_user ).each do |paper| %>
-        <li>
-          <strong><%= link_to paper.title, paper %></strong> (<%= paper.status %>)
-        </li>
+        <p><%= paper.status %> <%= link_to paper.title, paper %><p>
       <% end %>
-    </ul>
-  </div>
-<% end %>
-
-<% if logged_in? && (admin? || @user == current_user) %>
-  <%= link_to 'Edit', edit_user_path(@user) %>
-<% end %>
+  <% end %>
+  
+  <h6>More information</h6>
+  
+  <% if !@user.company_url.blank? || !@user.company_url.blank?  %>
+    <p><%= web_render( @user.company_name, @user.company_url ) %> (company)</p>
+  <% end %>
+  
+  <% if !@user.personal_web_name.blank? || !@user.personal_web_url.blank?  %>
+    <p><%= web_render( @user.personal_web_name, @user.personal_web_url ) %> (personal website)</p>
+  <% end %>
+</div>

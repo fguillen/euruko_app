@@ -10,7 +10,7 @@
   %>
 
   <p>
-    <strong><%= comment.user.name %></strong> <span class="date">said on <%= comment.created_at %></span><br/>
+    <%= link_to comment.user.name, user_path(comment.user) %> <span class="date">said on <%= comment.created_at %></span><br/>
     <%= comment.text %>
   </p>
 </div>
