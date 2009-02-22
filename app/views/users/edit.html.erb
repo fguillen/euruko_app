@@ -1,4 +1,8 @@
-<% title "Editing User: #{@user.name}" %>
+<% title "Editing User" %>
+
+<hr/>
+
+<h3><%= yield(:title) %>: <%= link_to @user.name, @user %></h3>
 
 <% form_for(@user) do |f| %>
   <%= f.error_messages %>
@@ -12,20 +16,20 @@
   <p><%= f.label :text, "Text" %><br/>
   <%= f.text_area :text %></p>
   
-  <p><%= f.label :personal_web_name, "Personal Web Name" %> <span class="example">(Mi Personal Web)</span><br />
+  <p><%= f.label :personal_web_name, "Homepage Title" %> <span class="example">My Awesome Page</span><br />
   <%= f.text_field :personal_web_name %></p>
   
-  <p><%= f.label :personal_web_url, "Personal Web Url" %> <span class="example">(http://mypersonalweb.com)</span><br />
+  <p><%= f.label :personal_web_url, "Homepage URL" %> <span class="example">http://my-awesome-web.com</span><br />
   <%= f.text_field :personal_web_url %></p>
   
-  <p><%= f.label :company_name, "Company Name" %> <span class="example">(My Company)</span><br />
+  <p><%= f.label :company_name, "Company Name" %> <span class="example">My Company</span><br />
   <%= f.text_field :company_name %></p>
   
-  <p><%= f.label :company_url, "Company Url" %> <span class="example">(http://mycompany.com)</span><br />
+  <p><%= f.label :company_url, "Company Url" %> <span class="example">http://my-company.com</span><br />
   <%= f.text_field :company_url %></p>
 
   <p><%= f.check_box :public_profile %>
-  <%= f.label 'public_profile', 'Public Profile' %> <span class="example">(email will not be shown)</span></p>
+  <%= f.label 'public_profile', 'Public Profile' %> <span class="example">Email will not be shown</span></p>
   
   <p><%= f.check_box :change_password, :onchange => "toggle_change_password_fields()" %>
   <%= f.label 'change_password', 'Change Password' %></p>
@@ -47,8 +51,6 @@
     <%= f.submit "Update" %>
   </p>
 <% end %>
-
-<%= link_to 'Show', @user %>
 
 <script>
   function toggle_change_password_fields(){
