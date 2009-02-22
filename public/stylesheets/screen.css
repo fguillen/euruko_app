@@ -165,7 +165,7 @@ hr {
   float: left;
   margin: 0 16px 8px 0; }
 
-.entry .avatar {
+.entry .avatar, .person img {
   border: 1px solid #333333; }
 
 .posted {
@@ -187,6 +187,19 @@ hr {
   margin: 0 0 -5px 5px;
   text-decoration: none;
   float: none; }
+
+.person {
+  float: left;
+  display: block;
+  text-align: center;
+  width: 86px;
+  height: 100px;
+  margin-right: 10px;
+  font-size: 80%; }
+
+.person img {
+  width: 50px;
+  height: 50px; }
 
 /*--- styles ---*/ 
 
@@ -283,6 +296,12 @@ hr {
 .clear {
   clear: both; }
 
+.left {
+  float: left; }
+
+.right {
+  float: right; }
+
 /*--- footer ---*/ 
 
 #footer-wrapper {
@@ -342,9 +361,18 @@ hr {
   color: #FFFFFF;
   background: #111111;
   border-bottom: 1px solid #000000; }
+
+.bar {
+  font-size: 11px;
+  float: right; }
+
+.bar p {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  color: #555; }
   
 #user-menu {
   float: right; }
 
 #user-menu ul li a {
   background-position: top left; }
+  

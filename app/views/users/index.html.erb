@@ -1,39 +1,38 @@
 <% title "People" %>
-<ul>
-  <li><%= link_to 'All', users_path( :page => '1' ) %></li>
-  <li><%= link_to 'Speakers', users_path( :params => { :speakers => '1', :page => '1' } ) %></li>
-</ul>
 
-<% if @users.respond_to?( 'total_pages' ) %>
-  <p><%= will_paginate @users %></p>
-<% end %>
+<hr/>
 
-<table>
-  <tr>
-  </tr>
+
+<div class="bar">
+  <p>
+    Filter list showing
+    <%= link_to 'all', users_path( :page => '1' ) %> or 
+    <%= link_to 'speakers', users_path( :params => { :speakers => '1', :page => '1' } ) %>
+    <% if @users.respond_to?( 'total_pages' ) %><%= will_paginate @users %><% end %>
+  </p>
+</div>
+
+<h3><%= yield(:title) %></h3>
 
 <% for user in @users %>
-  <tr>
-    <td>
+  <div class="person">
       <%=
         gravatar(
           user.email, 
-          :size => 32, 
+          :size => 50, 
           :default => "#{base_url}/images/avatar.png",
           :class => 'avatar',
           :alt => "avatar de #{user.name}"
         )
       %>
-    </td>
-    <td><%= link_to user.name, user %></td>
+      
+      <br/>
+      
+      <%= link_to user.name, user %>
+
     <% if admin? %>
       <td><%= link_to 'Edit', edit_user_path(user) %></td>
       <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
     <% end %>
-  </tr>
-<% end %>
-</table>
-
-<% if @users.respond_to?( 'total_pages' ) %>
-  <p><%= will_paginate @users %></p>
+  </div>
 <% end %>
