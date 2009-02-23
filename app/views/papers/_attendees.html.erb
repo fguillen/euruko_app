@@ -35,4 +35,11 @@
     <% end %>
   </p>
   <% end %>
+  
+  <ul>
+    <% @paper.attendees.each do |attendee| %>
+      <li><%= attendee.user.name %></li>
+    <% end %>
+  </ul>
 </div>
+

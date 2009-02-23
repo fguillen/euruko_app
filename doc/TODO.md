@@ -24,6 +24,7 @@ TODOs
 * Tabla de vista de calendario
 * Mejorar un poco pantalla de carrito (Pay!), la new, la confirm y la complete
 * Mejorar listados, Papers, Users, ...
+* Botón en portada le falta una S ("Regiter now").
 
 
 ## anybody:

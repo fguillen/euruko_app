@@ -39,13 +39,7 @@
   
   <div id="attendees">
     <h6>Attendees (<%=h @paper.attendees.count %>)</h6>
-    <%= render :partial => 'papers/attendees', :locals => { :paper => @paper } %>  
-
-    <ul>
-      <% @paper.attendees.each do |attendee| %>
-        <li><%= attendee.user.name %></li>
-      <% end %>
-    </ul>
+    <%= render :partial => 'papers/attendees', :locals => { :paper => @paper } %>
   </div>
   
   <div id="comments">
