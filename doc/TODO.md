@@ -9,6 +9,9 @@ TODOs
 * Una Paper no puede estar activa o confirmada si date is null, o la room is null.. o sino por lo menos hacer que calendar soporte esta casuística
 * Enviar email de notificación a usuario y a admin cuando concluye un pago.. haya sido correcto o no.
 * En creación de Paper no se puede iniciar el estado.
+* Si adjuntos a la foto de la Paper un fichero que no es imagen peta 500
+* Borrar usuario parece no funcionar, creo que tampoco te puedes dar de baja voluntariamente
+* Cuando envías un comentario después de un error el error no desaparece
 
 ## xuanxu:
 * Pantalla últimos comentarios
