@@ -11,15 +11,15 @@ class Paper < ActiveRecord::Base
   
   # paperclip
   has_attached_file :photo, 
-                    :styles => { :medium => "200x200#", :medium => "150x150#", :small => "75x75#" },
+                    :styles => { :medium => "150x150#", :small => "75x75#" },
                     :url  => "/paper_files/:id/photos/:style/:basename.:extension",
                     :path => ":rails_root/public/paper_files/:id/photos/:style/:basename.:extension"
 
 
   validates_attachment_size :photo, :less_than => 1.megabytes
   validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
-  validates_attachment_width :photo, :greater_than => 576, :less_than => 1000
-  validates_attachment_height :photo, :greater_than => 150, :less_than => 300
+  validates_attachment_width :photo, :greater_than => 150, :less_than => 1000
+  validates_attachment_height :photo, :greater_than => 150, :less_than => 1000
     
   # 
   # has_many :attendees,      :through => :attendees, :source => :user
