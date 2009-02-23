@@ -28,7 +28,7 @@
   
   <h6>More information</h6>
   
-  <% if !@user.company_url.blank? || !@user.company_url.blank?  %>
+  <% if !@user.company_name.blank? || !@user.company_url.blank?  %>
     <p><%= web_render( @user.company_name, @user.company_url ) %> (company)</p>
   <% end %>
   
