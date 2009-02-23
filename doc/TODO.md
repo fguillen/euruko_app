@@ -32,6 +32,7 @@ TODOs
 * buscadores avanzados de usuarios y charlas( railscasts 111 y 112 )
 * Una charla se puede quedar sin speakers.. :?
 * Método retrieve_speakers muy poco optimizado
+* Cuando pinchas en Speakers no queda resaltado en menú People (claro porque es otra url)
 
 WISHLIST
 ------------------
