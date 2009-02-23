@@ -20,7 +20,6 @@ TODOs
 * Cambios de estilo en listados de Papers para diferenciar: familias y estados
 * Diseño: Pantalla 404
 * Diseño: Pantalla 500
-* Tabla de vista de calendario
 * Mejorar un poco pantalla de carrito (Pay!), la new, la confirm y la complete
 * Mejorar listados, Papers, Users, ...
 
