@@ -12,6 +12,7 @@ TODOs
 * Si adjuntos a la foto de la Paper un fichero que no es imagen peta 500
 * Borrar usuario parece no funcionar, creo que tampoco te puedes dar de baja voluntariamente
 * Cuando envías un comentario después de un error el error no desaparece
+* En el edit del user el campo company_url hace cosas raras si está vacío
 
 ## xuanxu:
 * Pantalla últimos comentarios
