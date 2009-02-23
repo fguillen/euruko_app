@@ -1,6 +1,6 @@
 <% title "Event: #{@event.name}" %>
 
-<h3>Price <%= @event.price_euros %>€</h2>
+<h3>Price <%= @event.price_euros %>€</h3>
 <%= simple_format( @event.description ) %>
 
 <% if admin? %>
