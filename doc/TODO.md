@@ -12,6 +12,7 @@ TODOs
 * Si adjuntos a la foto de la Paper un fichero que no es imagen peta 500
 * Borrar usuario parece no funcionar, creo que tampoco te puedes dar de baja voluntariamente
 * Cuando envías un comentario después de un error el error no desaparece
+* En el edit del user el campo company_url hace cosas raras si está vacío
 
 ## xuanxu:
 * Pantalla últimos comentarios
@@ -22,6 +23,7 @@ TODOs
 * Diseño: Pantalla 500
 * Mejorar un poco pantalla de carrito (Pay!), la new, la confirm y la complete
 * Mejorar listados, Papers, Users, ...
+* Botón en portada le falta una S ("Regiter now").
 
 
 ## anybody:
@@ -30,6 +32,7 @@ TODOs
 * buscadores avanzados de usuarios y charlas( railscasts 111 y 112 )
 * Una charla se puede quedar sin speakers.. :?
 * Método retrieve_speakers muy poco optimizado
+* Cuando pinchas en Speakers no queda resaltado en menú People (claro porque es otra url)
 
 WISHLIST
 ------------------
