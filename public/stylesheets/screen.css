@@ -124,7 +124,7 @@ hr {
 
 #content h3 {
   color: #111;
-  margin: 18px 0 18px 0; }
+  margin: 24px 0 18px 0; }
 
 /*--- sidebar ---*/  
 
@@ -315,7 +315,7 @@ hr {
 
 #valorations img {
   float: none;
-  margin: 0 5px -10px 0; }
+  margin: 0 4px -4px 0; }
 
 .comment {
   margin-bottom: 15px; }

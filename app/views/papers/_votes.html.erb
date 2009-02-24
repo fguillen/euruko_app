@@ -1,23 +1,26 @@
 <% @vote = vote_find_actual( @paper.id ) %>
-I give this talk a 
+<% labels = ['(Very bad)', '(Poor)', '(Average)', '(Good)', '(Excelent)'] %>
+
 <% (1..5).each do |points| %>
   <% if @vote.nil? || (@vote.points != points) %>
-      <%= 
-        link_to_remote(
-          "#{points}", 
-          :url => paper_votes_path( @paper, :points => points ), 
-          :method => 'post',
-          :update => { :success => "valorations", :failure => "error" },
-          :loading => "$('#valoration_loading').show()",
-          :complete => "$('#valoration_loading').hide()"
-        )
-      %>
+    <%= 
+      link_to_remote(
+        "#{points} #{labels[points-1]}", 
+        :url => paper_votes_path( @paper, :points => points ), 
+        :method => 'post',
+        :update => { :success => "valorations", :failure => "error" },
+        :loading => "$('#valoration_loading').show()",
+        :complete => "$('#valoration_loading').hide()"
+      )
+    %>
   <% else %>
-    <%= points %>
+    <%= "<strong>#{points} #{labels[points-1]}</strong>" %>
   <% end %>
+  <br/>
 <% end %>
 
 <span id='valoration_loading' style="display:none">
-  <br/>
   <%= image_tag 'spinner.gif' %>
 </span>
+
+<br/>

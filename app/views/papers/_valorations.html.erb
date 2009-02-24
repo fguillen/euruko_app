@@ -1,10 +1,7 @@
-<h6>Valorations</h6>
+<h6>Rate of this talk</h6>
 
 <% if logged_in? %>
   <p><%= render :partial => 'papers/votes', :locals => { :paper => @paper } %></p>
 <% end %>
 
-<% @paper.votes.each do |vote| %>
-  <p><%= image_tag "#{vote.points}_star.png" %> for <%= vote.user.name %><p>
-<% end %>
-
+<p><%= image_tag "#{@rate}_star.png" %> (<%=h @paper.votes.size %> votes so far)</p>
