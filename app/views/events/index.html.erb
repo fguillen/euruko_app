@@ -1,20 +1,27 @@
 <% title 'List of Events' %>
 
-<table>
-  <tr>
-  </tr>
+<h3><%= yield(:title) %></h3>
 
-<% for event in @events %>
-  <tr>
-    <td><%= link_to event.name, event %></td>
-    <% if admin? %>
-      <td><%= link_to 'Edit', edit_event_path(event) %></td>
-      <td><%= link_to 'Destroy', event, :confirm => 'Are you sure?', :method => :delete %></td>
-    <% end %>
-  </tr>
-<% end %>
-</table>
+<div class="entry">
 
-<br />
-
-<%= link_to 'New event', new_event_path %>
+  <p>
+    This is a list of things happenning at the conference:
+  </p>
+  
+  <ul>
+  <% for event in @events %>
+    <li><%= link_to event.name, event %></li>
+  
+    <p>
+      <% if admin? %>
+        <%= link_to image_tag('edit.png'), edit_event_path(event) %></td>
+        <%= link_to image_tag('delete.png'), event, :confirm => 'Are you sure?', :method => :delete %>
+      <% end %>
+    </p>
+  <% end %>
+  </ul>
+  
+  <% if logged_in? %>
+    <p><%= link_to 'New event', new_event_path %></p>
+  <% end %>
+</div>

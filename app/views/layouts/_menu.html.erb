@@ -6,6 +6,7 @@
     <% if logged_in? %>
       <%= menu_to 'Submit Talk', new_paper_path %>
     <% end %>
+    <%= menu_to 'Events', events_path %>
     <%= menu_to 'People', users_path(:page => 1) %>
     <%= menu_to 'Blog', 'http://euruko2009.org' %>
     <%= menu_to 'Help', '/help' %>
