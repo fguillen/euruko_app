@@ -142,6 +142,11 @@ class Paper < ActiveRecord::Base
     User.activated.public_profile - self.speaking_users
   end
   
+  def rate
+    return nil  if self.votes.count == 0
+    return self.votes.average(:points).round.to_i
+  end
+  
   private
   
     def initialize_status

@@ -5,8 +5,6 @@ class PapersController < ApplicationController
   before_filter :admin_required,            :only => [:destroy]
   before_filter :public_profile_required,   :only => [:new]
   before_filter :admin_or_not_under_review_required, :only => [:edit, :update]
-  before_filter :get_rate, :except => :index
-  
 
   def index
     @papers = Paper.all                 if admin?
@@ -138,14 +136,5 @@ class PapersController < ApplicationController
         flash[:error] = "The paper is under review, now it can not be updated"
         redirect_to paper_path( @paper )
       end
-    end
-    
-    def get_rate
-      sum, total = 0
-      @paper.votes.each do |vote|
-        sum += vote.points
-      end
-      total = @paper.votes.size*5
-      @rate = (sum*5/total).round
     end
 end

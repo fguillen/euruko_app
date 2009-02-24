@@ -4,4 +4,8 @@
   <p><%= render :partial => 'papers/votes', :locals => { :paper => @paper } %></p>
 <% end %>
 
-<p><%= image_tag "#{@rate}_star.png" %> (<%=h @paper.votes.size %> votes so far)</p>
+<% if @paper.votes.count > 0 %>
+  <p><%= image_tag "#{@paper.rate}_star.png" %> (<%=h @paper.votes.size %> votes so far)</p>
+<% else %>
+  <p>Not any valoration yet.</p>
+<% end %>

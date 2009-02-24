@@ -28,6 +28,24 @@ user2:
   crypted_password: aaa
   role: <%= User::ROLE[:USER] %>
   public_profile: true
+  
+user3:
+  name: User 3
+  permalink: user-3
+  login: user3
+  email: user3@email.com
+  crypted_password: aaa
+  role: <%= User::ROLE[:USER] %>
+  public_profile: true
+  
+user4:
+  name: User 4
+  permalink: user-4
+  login: user4
+  email: user4@email.com
+  crypted_password: aaa
+  role: <%= User::ROLE[:USER] %>
+  public_profile: true
 
 private:
   name: User with private profile

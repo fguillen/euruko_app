@@ -292,4 +292,23 @@ class PaperTest < ActiveSupport::TestCase
     assert( !Paper.break.include?( papers(:paper1) ) )
     assert( Paper.break.include?( papers(:paper_break) ) )
   end
+  
+  def test_rate
+    @paper = papers(:paper2)
+    @paper.votes.destroy_all
+    
+    assert_nil( @paper.rate )
+    
+    @paper.votes.create( :user => users(:user1), :points => 3 )
+    assert_equal( 3, @paper.rate )
+    
+    @paper.votes.create( :user => users(:user2), :points => 3 )
+    assert_equal( 3, @paper.rate )
+    
+    @paper.votes.create( :user => users(:user3), :points => 4 )
+    assert_equal( 3, @paper.rate )
+    
+    @paper.votes.create( :user => users(:user4), :points => 5 )
+    assert_equal( 4, @paper.rate )
+  end
 end

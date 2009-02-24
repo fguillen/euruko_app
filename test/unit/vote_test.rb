@@ -47,5 +47,13 @@ class VoteTest < ActiveSupport::TestCase
 
     vote = Vote.new(:user => @user, :paper => papers(:paper2), :points => 2)
     assert( vote.valid? )
+    
+    vote.points = 0
+    assert( !vote.valid? )
+    assert( vote.errors.on(:points) )
+    
+    vote.points = 6
+    assert( !vote.valid? )
+    assert( vote.errors.on(:points) )
   end
 end
