@@ -21,7 +21,7 @@
   <% end %>
   </ul>
   
-  <% if logged_in? %>
+  <% if admin? %>
     <p><%= link_to 'New event', new_event_path %></p>
   <% end %>
 </div>
