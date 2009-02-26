@@ -3,7 +3,7 @@
     <%= menu_to 'Home', root_path %>
     <%= menu_to 'Calendar', calendar_path %>
     <%= menu_to 'Talks', papers_path %>
-    <% if logged_in? %>
+    <% if admin? %>
       <%= menu_to 'Submit Talk', new_paper_path %>
     <% end %>
     <%= menu_to 'Events', events_path %>
