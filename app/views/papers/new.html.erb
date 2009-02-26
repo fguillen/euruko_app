@@ -2,13 +2,14 @@
 
 <h3><%= yield(:title) %></h3>
 
-<p>Once the talk is created you will be able to:</p>  
-
-<ul>
-  <li>Add a cool picture</li>
-  <li>Attach files or online resources</li>
-  <li>Add other speakers to the talk (all speakers should be registered)</li>
-</ul>
+<div class="box">
+  <p>Once the talk is created you will be able to:</p>  
+  <ul>
+    <li>Add a cool picture</li>
+    <li>Attach files or online resources</li>
+    <li>Add other speakers to the talk (all speakers should be registered)</li>
+  </ul>
+</div>
 
 <% form_for(@paper) do |f| %>
   <%= f.error_messages %>

@@ -1,5 +1,7 @@
 <% title 'Editing Event' %>
 
+<h3><%= yield(:title) %></h3>
+
 <% form_for(@event) do |f| %>
   <%= render :partial => 'form', :locals => { :f => f } %>
 
@@ -8,4 +10,10 @@
   </p>
 <% end %>
 
-<%= link_to 'Show', @event %>
+<p class="notes">Fields marked with <span class="required">*</span> are required fields</p>
+
+<br/>
+
+<p>
+  <%= link_to "&laquo; Go back to the event", @event %>
+</p>

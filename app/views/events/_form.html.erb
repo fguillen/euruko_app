@@ -1,14 +1,17 @@
 <%= f.error_messages %>
 
+
 <p>
-  <%= f.label :name %><br />
+  <%= f.label :name, "Name", :required => true %><br />
   <%= f.text_field :name %>
 </p>
+
 <p>
-  <%= f.label :price_cents %><br />
+  <%= f.label :price_cents, "Price in cents", :required => true %><br />
   <%= f.text_field :price_cents %>
 </p>
+
 <p>
-  <%= f.label :description %><br />
+  <%= f.label :description, "Description" %><br />
   <%= f.text_area :description %>
 </p>

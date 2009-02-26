@@ -152,12 +152,10 @@ hr {
 
 .entry {
   margin-bottom: 18px;
-  padding-bottom: 5px;
-}
+  padding-bottom: 5px; }
 
 .entry a {
-  font-family: Georgia, Times, "Times New Roman";
-}
+  font-family: Georgia, Times, "Times New Roman"; }
 
 .entry .info {
   margin-top: 1em;
@@ -194,19 +192,17 @@ hr {
   
 .tiny-actions {
   margin-top: 2px;
-  clear: both;
-}
+  clear: both; }
 
 .tiny-actions a {
-  border: none;
-}
+  border: none; }
 
 .grid-item {
   float: left;
   display: block;
   text-align: center;
   width: 86px;
-  height: 100px;
+  height: 115px;
   margin-right: 10px;
   font-size: 80%; }
 

@@ -1,8 +1,15 @@
 <% title "Event: #{@event.name}" %>
 
-<h3>Price <%= @event.price_euros %>€</h3>
-<%= simple_format( @event.description ) %>
+<h3><%= yield(:title) %></h3>
 
-<% if admin? %>
-  <p><%= link_to 'Edit', edit_event_path(@event) %></p>
-<% end %>
+<div class="entry">
+  <%= simple_format( @event.description ) %>
+  <p><strong>The price is <%= @event.price_euros %>&euro;</strong></p>
+
+  <br/>
+
+  <p>
+    <%= link_to "&laquo; Go back to events", events_path %>
+    <% if admin? %>| <%= link_to 'Edit', edit_event_path(@event) %><% end %>  
+  </p>
+</div>
