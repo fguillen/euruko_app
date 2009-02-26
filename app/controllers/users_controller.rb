@@ -130,7 +130,7 @@ class UsersController < ApplicationController
     end
     
     def should_be_current_user_or_admin
-      if( !admin? and current_user.id != @user.id )
+      if( !admin? and current_user != @user )
         record_not_found
       end
     end

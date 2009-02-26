@@ -44,6 +44,10 @@ WISHLIST
 ** El admin debe poder hacerlo sin la actual
 ** El reset password debe poder hacerlo sin la actual
 ** La creación debe poder hacerlo, sin la actual
+* El carrito en sesion lo veo raro. La manera de instaciarlo tambien
+  se puede revisar. Por lo general uno simplemente haria
+   @current_cart ||= current_user.cart
+ en un filtro sin mas complicaciones (y sin poner el cart en sesion).
 
 
 DONE
