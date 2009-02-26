@@ -1,6 +1,6 @@
 The paper <%= @paper.title %> has been submitted: 
 
-<%= paper_url(@paper, :host => APP_CONFIG[:site_url]) %>
+<%= paper_url(@paper, :host => APP_CONFIG[:site_domain]) %>
 
 For the user: <%= @paper.creator.name %> (<%= @paper.creator.id %>)
 

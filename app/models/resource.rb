@@ -21,7 +21,7 @@ class Resource < ActiveRecord::Base
   end
   
   def url_link
-    return "http://#{APP_CONFIG[:site_url]}/#{self.url}"   if self.is_local
+    return "http://#{APP_CONFIG[:site_domain]}/#{self.url}"   if self.is_local
     return self.url                                        if !self.is_local
   end
   

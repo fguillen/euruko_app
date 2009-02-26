@@ -4,7 +4,7 @@ class SystemMailer < ActionMailer::Base
     setup
     @recipients = email
     @subject    += "Exception: #{exception.exception_class}: #{exception.message}"
-    @body[:url]  = "http://#{APP_CONFIG[:site_url]}/"
+    @body[:url]  = "http://#{APP_CONFIG[:site_domain]}/"
     @body[:exception] = exception
   end
 
