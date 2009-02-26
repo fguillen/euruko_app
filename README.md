@@ -1,10 +1,10 @@
-The Euruko Conf 2009 Application
+The EuRuKo Conf 2009 Application
 ===
 
 Intenciones
 ---
 
-Crear una aplicación de registro para la conferencia **Euruko2009**.
+Crear una aplicación de registro para la conferencia **EuRuKo2009**.
 
 Debe ser **sencilla** tanto de manejo como de funcionalidades, sin grandes pretensiones.
 
