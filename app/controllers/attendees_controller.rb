@@ -17,7 +17,7 @@ class AttendeesController < ApplicationController
         format.js   { render :partial => 'papers/attendees' }
       else
         format.html do
-          flash[:notice] = 'Error trying to delete Attendee.'
+          flash[:notice] = 'Error trying to create Attendee.'
           redirect_to paper_path(@paper)
         end
         format.xml  { render :xml => @attendee.errors, :status => :unprocessable_entity }
