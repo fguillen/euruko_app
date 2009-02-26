@@ -5,7 +5,7 @@ class RoomsController < ApplicationController
   # GET /rooms
   # GET /rooms.xml
   def index
-    @rooms = Room.find(:all)
+    @rooms = Room.all
 
     respond_to do |format|
       format.html # index.html.erb

@@ -34,7 +34,7 @@
         select(
           'paper', 
           'room_id', 
-          Room.find(:all).collect {|r| [ r.name, r.id ] },
+          Room.all.collect {|r| [ r.name, r.id ] },
           { :include_blank => true }
         )
       %>
