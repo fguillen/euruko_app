@@ -48,7 +48,6 @@ class PapersController < ApplicationController
     @paper.creator_id = current_user.id
     
     if admin?
-      @paper.status     = params[:paper][:status]     if params[:paper][:status]
       @paper.minutes    = params[:paper][:minutes]    if params[:paper][:minutes]
       @paper.family     = params[:paper][:family]     if params[:paper][:family]
       @paper.room_id    = params[:paper][:room_id]    if params[:paper][:room_id]
@@ -73,7 +72,6 @@ class PapersController < ApplicationController
 
   def update
     if admin?
-      @paper.status     = params[:paper][:status]     if params[:paper][:status]
       @paper.minutes    = params[:paper][:minutes]    if params[:paper][:minutes]
       @paper.family     = params[:paper][:family]     if params[:paper][:family]
       @paper.room_id    = params[:paper][:room_id]    if params[:paper][:room_id]
