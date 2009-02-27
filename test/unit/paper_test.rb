@@ -325,12 +325,12 @@ class PaperTest < ActiveSupport::TestCase
     assert_nil( @paper.date )
   
     @paper.fill_admin(
-      :minutes => "10",
-      :family => Paper::FAMILY[:TUTORIAL],
-      :room_id => rooms(:room1).id,
-      :status => Paper::STATUS[:ACEPTED],
-      :date_form => '2009/01/01',
-      :time_form => '10:10'
+      :minutes    => "10",
+      :family     => Paper::FAMILY[:TUTORIAL],
+      :room_id    => rooms(:room1).id,
+      :status     => Paper::STATUS[:ACEPTED],
+      :date_form  => '2009/01/01',
+      :time_form  => '10:10'
     )
     
     assert( @paper.save )
