@@ -1,7 +1,7 @@
 <% title "Event: #{@event.name}" %>
 
-<h3>Price <%= @event.price_euros %>€</h3>
-<%= simple_format( @event.description ) %>
+<h3><%= yield(:title) %> (<%= @event.price_euros %>€)</h3>
+<p><%= simple_format( @event.description ) %></p>
 
 <% if admin? %>
   <p><%= link_to 'Edit', edit_event_path(@event) %></p>
