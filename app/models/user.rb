@@ -234,14 +234,6 @@ class User < ActiveRecord::Base
     
     return anything_to_pay
   end
-  
-  def create_paper(params)
-    paper            = Paper.new( params[:paper] )
-    paper.creator_id = id
-    
-    paper.fill_admin(params[:paper]) if admin?
-    paper
-  end
 
   protected
 

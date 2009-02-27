@@ -313,14 +313,31 @@ class PaperTest < ActiveSupport::TestCase
   end
   
   def test_fill_admin
-    @paper = Paper.new
-    @paper.creator_id = users(:user1).id
+    @paper              = Paper.new
+    @paper.creator_id   = users(:user1).id
+    @paper.title        = 'The title'
+    @paper.description  = 'The description'
+    
+    assert_not_equal( 10, @paper.minutes )
+    assert_not_equal( Paper::FAMILY[:TUTORIAL], @paper.family )
+    assert_nil( @paper.room )
+    assert_not_equal( Paper::STATUS[:ACEPTED], @paper.status )
+    assert_nil( @paper.date )
   
-    @paper.fill_admin :family => Paper::FAMILY[:TUTORIAL]
-    assert_equal(Paper::FAMILY[:TUTORIAL], @paper.family)
+    @paper.fill_admin(
+      :minutes => "10",
+      :family => Paper::FAMILY[:TUTORIAL],
+      :room_id => rooms(:room1).id,
+      :status => Paper::STATUS[:ACEPTED],
+      :date_form => '2009/01/01',
+      :time_form => '10:10'
+    )
     
-    @paper.save
-    
-    assert_equal(Paper::FAMILY[:TUTORIAL], @paper.family)
+    assert( @paper.save )
+    assert_equal( 10, @paper.minutes )
+    assert_equal( Paper::FAMILY[:TUTORIAL], @paper.family )
+    assert_equal( rooms(:room1).id, @paper.room.id )
+    assert_equal( Paper::STATUS[:ACEPTED], @paper.status )
+    assert_equal( '2009/01/01 10:10', @paper.date.strftime( "%Y/%m/%d %H:%M" ) )
   end
 end

@@ -44,7 +44,9 @@ class PapersController < ApplicationController
   end
 
   def create
-    @paper = current_user.create_paper(params)
+    @paper            = Paper.new( params[:paper] )
+    @paper.creator_id = current_user.id
+    @paper.fill_admin(params[:paper])  if admin?
 
     respond_to do |format|
       if @paper.save
@@ -61,7 +63,7 @@ class PapersController < ApplicationController
   end
 
   def update
-    @paper.fill_admin(params[:paper]) if admin?
+    @paper.fill_admin(params[:paper])  if admin?
     
     respond_to do |format|
       if @paper.update_attributes(params[:paper])
