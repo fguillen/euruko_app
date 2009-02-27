@@ -311,4 +311,16 @@ class PaperTest < ActiveSupport::TestCase
     @paper.votes.create( :user => users(:user4), :points => 5 )
     assert_equal( 4, @paper.rate )
   end
+  
+  def test_fill_admin
+    @paper = Paper.new
+    @paper.creator_id = users(:user1).id
+  
+    @paper.fill_admin :family => Paper::FAMILY[:TUTORIAL]
+    assert_equal(Paper::FAMILY[:TUTORIAL], @paper.family)
+    
+    @paper.save
+    
+    assert_equal(Paper::FAMILY[:TUTORIAL], @paper.family)
+  end
 end

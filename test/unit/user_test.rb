@@ -320,4 +320,14 @@ class UserTest < ActiveSupport::TestCase
     @user.personal_web_url = "http://myweb.com"
     assert( @user.valid? )
   end
+  
+  def test_create_paper
+    user = users(:user1)
+    paper = user.create_paper(:paper => {
+        :title => Faker::Lorem.sentence, 
+        :description => Faker::Lorem.paragraph
+    })
+    
+    assert_equal(user.id, paper.creator_id)
+  end
 end
