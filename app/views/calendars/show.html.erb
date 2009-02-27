@@ -2,31 +2,37 @@
 
 <h3><%= yield(:title) %></h3>
 
-<% @dates.each do |date| %>
-  <div class="entry">
-    <h5><%= date.strftime("%A %d %B %Y")%></h5>
+<% if @dates.empty? %>
+  Coming soon ...
+<% else %>
 
-    <% @rooms.each do |room| %>
-      <% papers_on_room = @papers.select{ |p| p.on_date_and_room_id?( date, room.id ) } %>
+  <% @dates.each do |date| %>
+    <div class="entry">
+      <h5><%= date.strftime("%A %d %B %Y")%></h5>
 
-      <% if !papers_on_room.empty? %>
-        <h6><%= room.name.capitalize %> Room</h6>
+      <% @rooms.each do |room| %>
+        <% papers_on_room = @papers.select{ |p| p.on_date_and_room_id?( date, room.id ) } %>
 
-        <% papers_on_room.each do |paper| %>
-          <p>
-            <% if paper.family == Paper::FAMILY[:BREAK] %>
-              <span class="date"><%= paper.date.strftime("%H:%M %p") %></span> Break (<%= link_to paper.title, paper %>)
-            <% else %>
-              <span class="date"><%= paper.date.strftime("%H:%M %p") %></span> <%= link_to paper.title, paper %>
-            <% end %>
-            <% if admin? %>
-              <span class="actions"><%= link_to image_tag('edit.png'), edit_paper_path(paper) %></span>
-            <% end %>
-          </p>
+        <% if !papers_on_room.empty? %>
+          <h6><%= room.name.capitalize %> Room</h6>
+
+          <% papers_on_room.each do |paper| %>
+            <p>
+              <% if paper.family == Paper::FAMILY[:BREAK] %>
+                <span class="date"><%= paper.date.strftime("%H:%M %p") %></span> Break (<%= link_to paper.title, paper %>)
+              <% else %>
+                <span class="date"><%= paper.date.strftime("%H:%M %p") %></span> <%= link_to paper.title, paper %>
+              <% end %>
+              <% if admin? %>
+                <span class="actions"><%= link_to image_tag('edit.png'), edit_paper_path(paper) %></span>
+              <% end %>
+            </p>
+          <% end %>
+
         <% end %>
 
       <% end %>
-
-    <% end %>
-  </div>
+    </div>
+  <% end %>
+  
 <% end %>
