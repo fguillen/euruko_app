@@ -17,8 +17,12 @@
 
 <h3><%= yield(:title) %></h3>
 
-<% @papers.each do |paper| %>
-  <div class="entry">
+<div class="entry">
+  <% if @papers.empty? %>
+    <p>Coming soon ...</p>
+  <% end %>
+
+  <% @papers.each do |paper| %>
     <%= image_tag paper.photo.url(:small), :class => "avatar" %>
     <h4><%= link_to paper.title, paper %></h4>
 
@@ -30,5 +34,5 @@
     <% end %>
 
     <p><%= simple_format(paper.description) %>
-  </div>
-<% end %>
+  <% end %>
+</div>
