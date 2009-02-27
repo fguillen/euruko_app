@@ -147,6 +147,15 @@ class Paper < ActiveRecord::Base
     return self.votes.average(:points).round.to_i
   end
   
+  def fill_admin(params)
+    self.minutes    = params[:minutes]    if params[:minutes]
+    self.family     = params[:family]     if params[:family]
+    self.room_id    = params[:room_id]    if params[:room_id]
+    self.status     = params[:status]     if params[:status]
+    self.date_form  = params[:date_form]  if params[:date_form]
+    self.time_form  = params[:time_form]  if params[:time_form]
+  end
+  
   private
   
     def initialize_status

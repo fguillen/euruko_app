@@ -235,7 +235,6 @@ class User < ActiveRecord::Base
     return anything_to_pay
   end
 
-
   protected
 
     def make_password_reset_code

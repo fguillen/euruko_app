@@ -1,7 +1,6 @@
 <% title "#{@paper.title}" %>
 
 <h3>
-  Talk:
   <%= yield(:title) %>
   <% if logged_in? && current_user.is_speaker_on_or_admin?( @paper ) %>
     <%= link_to image_tag('edit.png'), edit_paper_path(@paper) %>
