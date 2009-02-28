@@ -3,9 +3,10 @@
       <% paper.speakers.sort{ |a,b| a.user.name <=> b.user.name }.each do |speaker| %>
         <li>
           <%= link_to speaker.user.name, speaker.user %>
+          <span class="actions">
           <%= 
             link_to_remote(
-              'delete',
+              image_tag('delete.png'),
               :url => paper_speaker_path( @paper, speaker ), 
               :method => :delete,
               :update => { :success => "speakers", :failure => "speakers" },
@@ -14,6 +15,7 @@
               :confirm => 'Are you sure?'
             ) 
           %>
+          </span>
           <span id='speaker_<%= speaker.id %>' style="display:none"><%= image_tag 'spinner.gif' %></span>
         </li>
       <% end %>
