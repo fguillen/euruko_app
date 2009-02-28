@@ -1,5 +1,8 @@
 <% title 'Purchase Events' %>
 
+<h3><%= yield(:title) %></h3>
+
+<div class="entry">
 <% form_tag(confirm_cart_path(@cart)) do %>
   <ul>
     <% Event.all.each do |event| %>
@@ -33,10 +36,14 @@
     <% end %>
   </ul>
   
-  <p>TOTAL: <span id="total">0</span>€</p>
+  <br />
   
-  <h3><%= label_tag :invoice_info %></h3>
+  <p><strong>TOTAL: <span id="total">0</span>€</strong></p>
+  
+  <br />
+  
   <p>
+    <%= label_tag :invoice_info, "Invoice Info" %><br/>
     <%= text_area_tag :invoice_info, @cart.invoice_info %>
   </p>
   
@@ -45,6 +52,7 @@
   </p>
 <% end %>
 
+</div>
 
 <script>
   function update_total_cart_price(){
