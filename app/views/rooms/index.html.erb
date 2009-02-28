@@ -1,17 +1,23 @@
-<% title "List of Rooms" %>
+<% title 'List of Rooms' %>
 
-<table>
-<% @rooms.each do |room| %>
-  <tr>
-    <td><%= link_to room.name, room %></td>
-    <% if admin? %>
-      <td><%= link_to 'Edit', edit_room_path(room) %></td>
-      <td><%= link_to 'Destroy', room, :confirm => 'Are you sure?', :method => :delete %></td>
-    <% end %>
-  </tr>
-<% end %>
-</table>
+<h3><%= yield(:title) %></h3>
 
-<br />
-
-<%= link_to 'New room', new_room_path %>
+<div class="entry">
+  <% @rooms.each do |room| %>
+    <p>
+      <%= link_to room.name, room %>
+  
+      <% if admin? %>
+      <span class="actions">
+        <%= link_to image_tag('edit.png'), edit_room_path(room) %>
+        <%= link_to image_tag('delete.png'), room, :confirm => 'Are you sure?', :method => :delete %>
+      </span>  
+      <% end %>
+    </p>
+  <% end %>
+  
+  <% if admin? %>
+    <br/>
+    <p><%= link_to 'Create new room', new_room_path %></p>
+  <% end %>
+</div>

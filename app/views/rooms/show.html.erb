@@ -1,7 +1,13 @@
 <% title "Room: #{@room.name}" %>
 
-<%= simple_format( @room.notes ) %>
+<div class="entry">
+  <h3><%= yield(:title) %></h3>
+  <p><%= simple_format( @room.notes ) %></p>
 
-<% if admin? %>
-  <p><%= link_to 'Edit', edit_room_path(@room) %></p>
-<% end %>
+  <% if admin? %>
+    <p>
+      <%= link_to "&laquo; Go back to rooms", rooms_path %>
+      | <%= link_to 'Edit', edit_room_path(@room) %>
+    </p>
+  <% end %>  
+</div>
