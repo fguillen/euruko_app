@@ -285,10 +285,24 @@ hr {
 .box ul {
   margin-left: 20px; }
 
+.form-block {
+  width: 94%;
+  border-top: 1px solid #CCC;
+  padding: 20px 0 0 0;
+  margin: 25px 0; }
+
+.form-block h6 {
+  font-size: 120%;
+  text-transform: none;
+  margin: 0;
+  padding-bottom: 10px; }
+
+.form-block .tip {
+  color: #111; }
+
 .light {
   background-color: #F5F5F5;
   border-color: #F5F5F5; }
-
 
 .hidden {
   display: none; }
