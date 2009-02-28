@@ -2,6 +2,7 @@ TODOs
 ------------------
 
 ## fguillen:
+* Attendees a un talk no actualiza el número en el título por javascript
 * Un usuario con carritos pagados no se debería poder eliminar
 * Tests exhaustivos de cart y carts controller
 * No se están ejecutando los tests de foreignkeys
