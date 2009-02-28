@@ -1,23 +1,24 @@
-<% title 'List of Payments' %>
+<% title 'Payments' %>
 
-<h1>Listing payments</h1>
-
-<ul>
-  <li><%= link_to 'all', carts_path %></li>
+<div class="bar">
+  <%= link_to 'All', carts_path %>
   <% Cart::STATUS.keys.each do |key| %>
-    <li><%= link_to Cart::STATUS[key], carts_path( :params => { :status => key } ) %></li>
+    | <%= link_to Cart::STATUS[key], carts_path( :params => { :status => key } ) %> 
   <% end %>
-</ul>
+</div>
+
+<h3><%= yield(:title) %></h3>
 
 <div id="carts">
   <% @carts.each do |cart| %>
-    <h2>
-      <%= cart.user.name %>
+    <p>
+      <strong><%= cart.user.name %></strong>
       at <%= cart.updated_at %>
       (<%= cart.status %>)
       <%= link_to 'toogle', '#', :onclick => "toogle_cart_div( 'cart_#{cart.id}')" %>
-    </h2>
-    <div id="cart_<%= cart.id %>" style="display:none;">
+    </p>
+
+    <div id="cart_<%= cart.id %>" class="box" style="display:none;">
       <p><strong>id:</strong> <%= cart.id %></p>
       <p><strong>date create:</strong> <%= cart.created_at %></p>
       <p><strong>date updated:</strong> <%= cart.updated_at %></p>
