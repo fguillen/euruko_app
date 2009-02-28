@@ -18,7 +18,6 @@ TODOs
 * Pantalla últimos comentarios
 
 ## marze:
-* Mejorar un poco pantalla de carrito (Pay!), la new, la confirm y la complete
 
 ## anybody:
 * Control de textos: linkar links, ...
