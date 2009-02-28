@@ -1,4 +1,5 @@
 <div id="attendee">
+  <h6>Attendees (<%=h @paper.attendees.count %>)</h6>
   <ul>
     <% @paper.attendees.each do |attendee| %>
       <li><%= attendee.user.name %></li>
