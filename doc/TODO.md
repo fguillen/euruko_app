@@ -19,9 +19,6 @@ TODOs
 * Pantalla últimos comentarios
 
 ## marze:
-* Cambios de estilo en listados de Papers para diferenciar: familias y estados
-* Diseño: Pantalla 404
-* Diseño: Pantalla 500
 * Mejorar un poco pantalla de carrito (Pay!), la new, la confirm y la complete
 
 ## anybody:
