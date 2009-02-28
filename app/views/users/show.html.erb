@@ -18,6 +18,8 @@
   
   <%= simple_format(@user.text) %>
   
+  <br/>
+  
   <% if !@user.speaker_on_visibles_for_user( current_user ).empty? %>
     <h6>Talking on</h6>
     
@@ -26,13 +28,11 @@
       <% end %>
   <% end %>
   
-  <h6>More information</h6>
-  
   <% if !@user.company_name.blank? || !@user.company_url.blank?  %>
-    <p><%= web_render( @user.company_name, @user.company_url ) %> (company)</p>
+    <p><%= web_render( @user.company_name, @user.company_url ) %> <span class="tip">(company)</span></p>
   <% end %>
   
   <% if !@user.personal_web_name.blank? || !@user.personal_web_url.blank?  %>
-    <p><%= web_render( @user.personal_web_name, @user.personal_web_url ) %> (personal website)</p>
+    <p><%= web_render( @user.personal_web_name, @user.personal_web_url ) %> <span class="tip">(personal website)</span></p>
   <% end %>
 </div>
