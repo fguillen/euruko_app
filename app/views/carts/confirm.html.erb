@@ -1,5 +1,8 @@
-<% title 'Confirm your Purchase' %>
+<% title 'Confirm Your Purchase' %>
 
+<h3><%= yield(:title) %></h3>
+
+<div class="entry">
 <% form_tag( APP_CONFIG[:paypal_url] ) do %>
   <ul>
   <% @cart.events.each do |event| %>
@@ -9,12 +12,14 @@
   <% end %>
   </ul>
   
-  <p>TOTAL: <span id="total"><%= @cart.total_price_on_euros %>€</span></p>
+  <br/>
   
-  <h3>Invoice info</h3>
-  <p>
-    <%= simple_format @cart.invoice_info %>
-  </p>
+  <p><strong>TOTAL: <span id="total"><%= @cart.total_price_on_euros %>€</span></strong></p>
+  
+  <% if !@cart.invoice_info.empty? %>
+  <h6>Invoice info</h6>
+  <%= simple_format @cart.invoice_info %>
+  <% end %>
   
   <!-- PAYPAL parameters:INI -->
   <%= hidden_field_tag :cmd, "_s-xclick" %>
@@ -29,8 +34,11 @@
   %>
   <!-- PAYPAL parameters:END -->
   
+  <br/>
+  
   <p>
-    <%= submit_tag "Pay with Paypal", :disabled => false, :disable_with => "Please wait..." %> |
-    <%= link_to 'Modify cart', new_cart_path %>
+    <%= link_to 'Modify cart', new_cart_path %> &nbsp;
+    <%= submit_tag "Pay with Paypal", :disabled => false, :disable_with => "Please wait..." %>
   </p>
 <% end %>
+</div>

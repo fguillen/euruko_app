@@ -1,16 +1,28 @@
 <% title 'Purchase Conclusion' %>
 
-<ul>
-<% @cart.events.each do |event| %>
-  <li>        
-    <%= link_to event.name, event_path(event) %> (<%= event.price_euros %>€)
-  </li>
-<% end %>
-</ul>
+<h3><%= yield(:title) %></h3>
 
-<p>TOTAL: <span id="total"><%= @cart.total_price_on_euros %>€</span></p>
+<div class="entry">
+  <ul>
+  <% @cart.events.each do |event| %>
+    <li>        
+      <%= link_to event.name, event_path(event) %> (<%= event.price_euros %>€)
+    </li>
+  <% end %>
+  </ul>
 
-<h3>Invoice info</h3>
-<p>
-  <%= simple_format @cart.invoice_info %>
-</p>
+  <br/>
+
+  <p><strong>TOTAL: <span id="total"><%= @cart.total_price_on_euros %>€</span></strong></p>
+
+  <br/>
+
+  <h6>Invoice info</h6>
+  <p>
+    <%= simple_format @cart.invoice_info %>
+  </p>
+  
+  <br/>
+  
+  <p><%= link_to "&laquo; Go back home", root_path %></p>
+</div>
