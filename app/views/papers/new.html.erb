@@ -2,20 +2,27 @@
 
 <h3><%= yield(:title) %></h3>
 
-<div class="box">
+
+<div class="entry">
+
+<% form_for(@paper) do |f| %>
+  <%= f.error_messages %>
+  
+  <%= render :partial => 'basic_form', :locals => { :f => f } %>
+
+  <div class="more">
   <p>Once the talk is created you will be able to:</p>  
   <ul>
     <li>Add a cool picture</li>
     <li>Attach files or online resources</li>
     <li>Add other speakers to the talk (all speakers should be registered)</li>
   </ul>
-</div>
-
-<% form_for(@paper) do |f| %>
-  <%= f.error_messages %>
+  </div>
   
-  <%= render :partial => 'basic_form', :locals => { :f => f } %>
   <p><%= f.submit "Submit your talk" %></p>
+
 <% end %>
+
+</div>
 
 <p class="notes">Fields marked with <span class="required">*</span> are required fields</p>
