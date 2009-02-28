@@ -100,12 +100,13 @@ ul {
 li {
   padding: 0; }
 
-/*
+
 hr {
-  color: #FFFFFF;
-  border: none;
+  color: #FFF;
+  border-bottom: 1px solid #EEE;
+  width: 90%;
   margin: 30px 0 25px 0; }
-*/
+
 
 /*--- main ---*/  
 
@@ -284,6 +285,11 @@ hr {
 .box ul {
   margin-left: 20px; }
 
+.light {
+  background-color: #F5F5F5;
+  border-color: #F5F5F5; }
+
+
 .hidden {
   display: none; }
 
@@ -298,6 +304,11 @@ hr {
 
 .pagination {
   clear: both; }
+  
+.more {
+  font-size: 85%;
+  margin: 25px 0;
+}
 
 #resources h6,
 #valorations h6,
