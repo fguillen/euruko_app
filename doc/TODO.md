@@ -18,6 +18,7 @@ TODOs
 * Pantalla últimos comentarios
 
 ## marze:
+* favicon
 
 ## anybody:
 * Control de textos: linkar links, ...
