@@ -16,7 +16,7 @@
   
   <p><strong>TOTAL: <span id="total"><%= @cart.total_price_on_euros %>€</span></strong></p>
   
-  <% if !@cart.invoice_info.empty? %>
+  <% if !@cart.invoice_info.blank? %>
   <h6>Invoice info</h6>
   <%= simple_format @cart.invoice_info %>
   <% end %>
