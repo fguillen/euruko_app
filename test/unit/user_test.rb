@@ -320,4 +320,25 @@ class UserTest < ActiveSupport::TestCase
     @user.personal_web_url = "http://myweb.com"
     assert( @user.valid? )
   end
+  
+  def test_on_create_should_send_an_email_with_notification_recipients_as_bcc
+    ActionMailer::Base.deliveries = []
+    
+    assert( ActionMailer::Base.deliveries.empty? )
+    
+    @user = 
+      User.create(
+        :name                   => 'User Name',
+        :login                  => 'other_login',
+        :email                  => 'email@email.com',
+        :password               => 'pass000',
+        :password_confirmation  => 'pass000',
+        :public_profile         => true
+      )
+      
+    assert( !ActionMailer::Base.deliveries.empty? )
+    sent = ActionMailer::Base.deliveries.last
+    
+    assert_equal( APP_CONFIG[:email_notification_recipients], sent.bcc )
+  end
 end

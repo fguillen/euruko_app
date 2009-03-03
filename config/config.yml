@@ -2,7 +2,7 @@ test:
   site_domain: 127.0.0.1:3000
   site_name: EuRuKo_test
   email_sender: EuRuKo <euruko@euruko.org>
-  email_notification_recipients: fguillen.mail@gmail.com
+  email_notification_recipients: [fguillen.mail@gmail.com]
   paypal_url: https://www.sandbox.paypal.com/cgi-bin/webscr
   paypal_seller: seller_1231200230_biz@gmail.com
   paypal_cert_id: Z954BH8ATL6XC
@@ -12,7 +12,7 @@ development:
   site_domain: 127.0.0.1:3000
   site_name: EuRuKo_development
   email_sender: EuRuKo <euruko@euruko.org>
-  email_notification_recipients: fguillen.mail@gmail.com
+  email_notification_recipients: [fguillen.mail@gmail.com]
   paypal_url: https://www.sandbox.paypal.com/cgi-bin/webscr
   paypal_seller: seller_1231200230_biz@gmail.com
   paypal_cert_id: Z954BH8ATL6XC
@@ -22,7 +22,7 @@ production:
   site_domain: eurukostaging.fernandoguillen.info
   site_name: EuRuKo
   email_sender: EuRuKo <euruko@euruko.org>
-  email_notification_recipients: fguillen.mail@gmail.com
+  email_notification_recipients: [fguillen.mail@gmail.com]
   paypal_url: https://www.sandbox.paypal.com/cgi-bin/webscr
   paypal_seller: seller_1231200230_biz@gmail.com
   paypal_cert_id: Z954BH8ATL6XC

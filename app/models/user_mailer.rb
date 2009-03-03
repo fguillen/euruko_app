@@ -3,6 +3,7 @@ class UserMailer < ActionMailer::Base
   def signup_notification(user)
     setup_email(user)
     @subject    += 'Please activate your new account'
+    @bcc         = APP_CONFIG[:email_notification_recipients]
     @body[:url]  = "http://#{APP_CONFIG[:site_domain]}/activate/#{user.activation_code}"
   end
   
