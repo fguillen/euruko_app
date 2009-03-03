@@ -341,4 +341,20 @@ class UserTest < ActiveSupport::TestCase
     
     assert_equal( APP_CONFIG[:email_notification_recipients], sent.bcc )
   end
+  
+  def test_github_user_and_twitter_user
+    @user = users(:user1)
+    
+    assert_not_equal( "wadus_github", @user.github_user )
+    assert_not_equal( "wadus_twitter", @user.twitter_user )
+    
+    @user.update_attributes(
+      :github_user    => 'wadus_github',
+      :twitter_user   => 'wadus_twitter'
+    )
+    
+    @user.reload
+    assert_equal( "wadus_github", @user.github_user )
+    assert_equal( "wadus_twitter", @user.twitter_user )
+  end
 end

@@ -25,6 +25,12 @@
   
   <p><%= f.label :company_url, "Company Url" %> <span class="example">http://my-company.com</span><br />
   <%= f.text_field :company_url %></p>
+  
+  <p><%= f.label :twitter_user, 'Twitter User' %> <span class="example">my-twitter-user</span><br />
+  <%= f.text_field :twitter_user %></p>
+  
+  <p><%= f.label :github_user, 'Github User' %> <span class="example">my-github-user</span><br />
+  <%= f.text_field :github_user %></p>
 
   <p><%= f.check_box :public_profile %>
   <%= f.label 'public_profile', 'Public Profile' %> <span class="example">Email will not be shown</span></p>

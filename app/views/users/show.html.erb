@@ -35,4 +35,13 @@
   <% if !@user.personal_web_name.blank? || !@user.personal_web_url.blank?  %>
     <p><%= web_render( @user.personal_web_name, @user.personal_web_url ) %> <span class="tip">(personal website)</span></p>
   <% end %>
+
+  <% if !@user.twitter_user.blank? %>
+    <p><%= link_to "http://twitter.com/#{@user.twitter_user}", "http://twitter.com/#{@user.twitter_user}" %> <span class="tip">(twitter account)</span></p>
+  <% end %>
+    
+  <% if !@user.github_user.blank? %>
+    <p><%= link_to "http://github.com/#{@user.github_user}", "http://github.com/#{@user.github_user}" %> <span class="tip">(github account)</span></p>
+  <% end %>
+  
 </div>

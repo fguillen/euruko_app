@@ -75,7 +75,9 @@ class User < ActiveRecord::Base
     :company_name,
     :company_url,
     :public_profile,
-    :permalink_field_name
+    :permalink_field_name,
+    :github_user,
+    :twitter_user
   )
 
   attr_accessor :change_password

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090201022848) do
+ActiveRecord::Schema.define(:version => 20090303202420) do
 
   create_table "attendees", :force => true do |t|
     t.integer  "user_id",    :null => false
@@ -146,6 +146,8 @@ ActiveRecord::Schema.define(:version => 20090201022848) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "password_reset_code",       :limit => 40
+    t.string   "github_user"
+    t.string   "twitter_user"
   end
 
   add_index "users", ["permalink"], :name => "index_users_on_permalink", :unique => true
