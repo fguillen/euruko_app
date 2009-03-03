@@ -13,6 +13,9 @@ TODOs
 * Borrar usuario parece no funcionar, creo que tampoco te puedes dar de baja voluntariamente
 * Cuando envías un comentario después de un error el error no desaparece
 * En el edit del user el campo company_url hace cosas raras si está vacío
+* UserSearcher
+** emails de ponentes con charlas aprobadas
+** emails de ponentes con charlas rechazadas
 
 ## xuanxu:
 * Pantalla últimos comentarios
