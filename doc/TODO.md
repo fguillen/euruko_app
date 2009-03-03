@@ -16,6 +16,7 @@ TODOs
 * UserSearcher
 ** emails de ponentes con charlas aprobadas
 ** emails de ponentes con charlas rechazadas
+** emails de ponentes con charlas aprobadas y algún campo de descripción vacío en su ficha.
 
 ## xuanxu:
 * Pantalla últimos comentarios
