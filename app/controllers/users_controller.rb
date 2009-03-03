@@ -80,11 +80,18 @@ class UsersController < ApplicationController
   # PUT /users/1
   # PUT /users/1.xml
   def update
+    logger.info("XXX:1: #{params[:user][:password]}")
+    if params[:user][:change_password] == "0"
+      params[:user][:password] = nil
+      params[:user][:password_confirmation] = nil
+    end
+
+    logger.info("XXX:2: #{params[:user][:password]}")
+    
+    if admin? && params[:user][:role]
+      @user.role = params[:user][:role]
+    end
     respond_to do |format|
-      if admin? && params[:user][:role]
-        @user.role = params[:user][:role]
-      end
-      
       if @user.update_attributes(params[:user])
         flash[:notice] = 'User was successfully updated.'
         format.html { redirect_to(@user) }

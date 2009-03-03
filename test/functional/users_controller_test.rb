@@ -385,4 +385,62 @@ class UsersControllerTest < ActionController::TestCase
     assert assigns(:users).empty?
   end
   
+  def test_on_update_can_update_password
+    @user = users(:user1)
+    login_as @user
+    
+    assert( !@user.authenticated?( 'newpassword' ) )
+    
+    post(
+      :update,
+      :id => @user.id,
+      :user => {
+        :change_password        => '1',
+        :password               => 'newpassword',
+        :password_confirmation  => 'newpassword'
+      }
+    )
+    
+    @user.reload
+    assert( @user.authenticated?( 'newpassword' ) )
+  end
+  
+  def test_on_update_not_change_password_if_not_change_password_setted
+    @user = users(:user1)
+    login_as @user
+    
+    assert( !@user.authenticated?( 'newpassword' ) )
+    
+    post(
+      :update,
+      :id => @user.id,
+      :user => {
+        :change_password        => '0',
+        :password               => 'newpassword',
+        :password_confirmation  => 'newpassword'
+      }
+    )
+    
+    @user.reload
+    assert( !@user.authenticated?( 'newpassword' ) )
+  end
+  
+  def test_on_update_if_not_change_password_setted_should_delete_password_fields
+    @user = users(:user1)
+    login_as @user
+    
+    assert( !@user.authenticated?( 'newpassword' ) )
+    
+    post(
+      :update,
+      :id => @user.id,
+      :user => {
+        :change_password        => '0',
+        :password               => 'newpassword'
+      }
+    )
+    
+    @user.reload
+    assert( !@user.authenticated?( 'newpassword' ) )
+  end
 end
