@@ -33,6 +33,7 @@ TODOs
 
 WISHLIST
 ------------------
+* Poder comprar códigos promo para pagar la entrada a otras personas. Así los admin podrán generarlos para repartir también.
 * Si estamos usando sqlite no se deberían ejecutar los test de foreign-keys
 * Un usuario puede crear una charla y empezar a asignar speakers sin consentimiento :?
 * Autocomplete en añadir speaker
