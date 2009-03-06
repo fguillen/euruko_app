@@ -15,7 +15,7 @@
       <strong><%= cart.user.name %></strong>
       at <%= cart.updated_at %>
       (<%= cart.status %>)
-      <%= link_to 'toogle', '#', :onclick => "toogle_cart_div( 'cart_#{cart.id}')" %>
+      <%= link_to 'toogle', '#', :onclick => "toogle_cart_div( 'cart_#{cart.id}'); return false;" %>
     </p>
 
     <div id="cart_<%= cart.id %>" class="box" style="display:none;">
@@ -68,7 +68,7 @@
 
 <script>
   function toogle_cart_div( id ){
-    $( '#' + id ).toggle();
+    $( '#' + id ).slideToggle( 'fast' );
     return false;
   }
 </script>
