@@ -22,6 +22,11 @@ TODOs
 * Pantalla últimos comentarios
 
 ## marze:
+* Mejorar pantallas de eventos para resaltar el número de plazas vacantes:
+** pay/new
+** events/1
+
+* Mejorar pantalla pay/new para resaltar cuando el usuario ya ha pagado un evento o cuando no quedan plazas.. ahora salen textos (already paid), (out of capacity)
 
 ## anybody:
 * Control de textos: linkar links, ...
