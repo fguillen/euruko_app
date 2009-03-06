@@ -151,7 +151,8 @@ namespace :populate do
       Event.create(
         :name         => Faker::Lorem.sentence, 
         :description  => Faker::Lorem.paragraphs.join("\n"),
-        :price_cents  => Kernel.rand(10001)
+        :price_cents  => Kernel.rand(10001),
+        :capacity     => Kernel.rand(101)
       )
     end
     puts "... #{Event.count} events created"

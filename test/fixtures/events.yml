@@ -3,6 +3,7 @@ event1:
   permalink: event-1
   description: Just an Event
   price_cents: 100
+  capacity: 10
   
 
 event2:
@@ -10,9 +11,11 @@ event2:
   permalink: event-2
   description: Just another Event
   price_cents: 200
+  capacity: 10
 
 event3:
   name: Event 3
   permalink: event-3
   description: Just another Event
   price_cents: 200
+  capacity: 10

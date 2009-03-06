@@ -79,10 +79,20 @@ class EventsControllerTest < ActionController::TestCase
     @event = events(:event1)
     login_as users(:user_admin)
     
-    put :update, :id => @event.id, :event => { :name => 'other name' }
+    put(
+      :update, 
+      :id => @event.id, 
+      :event => { 
+        :name         => 'other name',
+        :price_cents  => '123',
+        :capacity     => '321'
+      }
+    )
     
     @event.reload
     assert_equal( 'other name', @event.name )
+    assert_equal( 123, @event.price_cents )
+    assert_equal( 321, @event.capacity )
     assert_not_nil( flash[:notice] )
     assert_redirected_to event_path(assigns(:event))
   end

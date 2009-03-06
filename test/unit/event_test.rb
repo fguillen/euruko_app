@@ -69,5 +69,45 @@ class EventTest < ActiveSupport::TestCase
     assert_equal( "1.00", events(:event1).price_euros )
     assert_equal( "2.00", events(:event2).price_euros )
   end
+  
+  def test_count_purchases
+    @event = 
+      Event.create!(
+        :name => 'event', 
+        :description => 'description'
+      )
+      
+    assert_equal( 0, @event.count_purchases )
+    
+    @cart = Cart.create!( :user => users(:user1) )
+    @cart.events << @event
+    @cart.reload
 
+    assert_equal( 0, @event.count_purchases )
+    
+    @cart.update_attribute( :status, Cart::STATUS[:COMPLETED] )
+    
+    assert_equal( 1, @event.count_purchases )
+  end
+
+  def test_count_purchases
+    @event = 
+      Event.create!(
+        :name         => 'event', 
+        :description  => 'description',
+        :capacity     => 10
+      )
+      
+    assert_equal( 10, @event.remaining_capacity )
+    
+    @cart = Cart.create!( :user => users(:user1) )
+    @cart.events << @event
+    @cart.reload
+
+    assert_equal( 10, @event.remaining_capacity )
+    
+    @cart.update_attribute( :status, Cart::STATUS[:COMPLETED] )
+    
+    assert_equal( 9, @event.remaining_capacity )
+  end
 end

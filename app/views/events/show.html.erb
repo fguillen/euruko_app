@@ -1,6 +1,7 @@
 <% title "Event: #{@event.name}" %>
 <div class="entry">
   <h3><%= yield(:title) %> (<%= @event.price_euros %>€)</h3>
+  <p>(remaining capacity: <%= pluralize( @event.remaining_capacity, 'place' ) %> available)</p>
   <p><%= simple_format( @event.description ) %></p>
 
   <% if admin? %>

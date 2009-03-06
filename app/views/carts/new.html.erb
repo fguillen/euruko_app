@@ -8,7 +8,12 @@
     <% Event.all.each do |event| %>
       <% if event.is_paid_for_user?( current_user ) %>
         <li class="paid">
-          X
+          (already paid)
+          <%= link_to event.name, event_path(event) %> (<%= event.price_euros %>€)
+        </li>
+      <% elsif event.out_of_capacity? %>
+        <li class="paid">
+          (out of capacity)
           <%= link_to event.name, event_path(event) %> (<%= event.price_euros %>€)
         </li>
       <% else %>
@@ -30,7 +35,9 @@
             )
           %>
         
-          <%= link_to event.name, event_path(event) %> (<%= event.price_euros %>€)
+          <%= link_to( event.name, event_path(event) ) %> 
+          (<%= event.price_euros %>€) 
+          (remaining capacity: <%= pluralize( event.remaining_capacity, 'place' ) %> available)
         </li>
       <% end %>
     <% end %>

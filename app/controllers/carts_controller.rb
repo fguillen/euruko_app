@@ -45,11 +45,23 @@ class CartsController < ApplicationController
       redirect_to :action => 'new'
       return
     end
-    
+  
     current_cart.events = Event.find( params[:event_ids] )
     current_cart.invoice_info = params[:invoice_info]
     
     current_cart.save!
+        
+    events_out_of_capacity = current_cart.events_out_of_capacity
+    if !events_out_of_capacity.empty?
+      flash[:error] = ''
+      events_out_of_capacity.each do |event|
+        flash[:error] << (flash[:error].blank? ? 'Sorry, ' : ', ')
+        flash[:error] << "the event '#{event.name}' is out of capacity"
+      end
+      flash[:error] << '.'
+      redirect_to :action => 'new'
+      return
+    end
     
     @cart = current_cart
   end

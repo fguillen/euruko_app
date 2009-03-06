@@ -53,4 +53,17 @@ class CartTest < ActiveSupport::TestCase
     assert( @cart.paypal_notificate( {:payment_status => Cart::STATUS[:COMPLETED]} ) )
     assert_equal( Cart::STATUS[:PAYPAL_ERROR], @cart.status )
   end
+  
+  def test_events_out_of_capacity
+    @event = events(:event1)
+    @cart = Cart.create!( :user => users(:user1) )
+    @cart.events << @event
+    
+    assert( @cart.events_out_of_capacity.empty? )
+    
+    @event.update_attribute( :capacity, 0 )
+    @cart.reload
+    
+    assert_equal( [@event], @cart.events_out_of_capacity )
+  end
 end

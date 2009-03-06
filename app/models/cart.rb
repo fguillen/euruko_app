@@ -100,6 +100,15 @@ class Cart < ActiveRecord::Base
     self.save!
   end
   
+  def events_out_of_capacity
+    _events_out_of_capacity = []
+    self.events.each do |event|
+      _events_out_of_capacity << event  if event.out_of_capacity?
+    end
+    
+    return _events_out_of_capacity
+  end
+  
   private
     def initialize_status
       self.status ||= STATUS[:ON_SESSION]

@@ -248,4 +248,27 @@ class CartsControllerTest < ActionController::TestCase
     assert_not_nil( assigns(:cart) )
     assert_equal( 'other invoice info', @user.invoice_info )
   end
+  
+  def test_on_confirm_if_any_events_has_not_more_remaining_capacity_should_flash_error
+    login_as users(:user1)    
+    @cart = carts(:cart_user1_empty_and_not_purchased)
+    load_current_cart @cart
+
+    @event01 = events(:event1)
+    @event02 = events(:event2)
+    
+    @event01.update_attribute( :capacity, 0 )
+    @event02.update_attribute( :capacity, 0 )
+        
+    assert_difference "CartsEvent.count", 2 do
+      post(
+        :confirm,
+        :event_ids => [@event01.id, @event02.id]
+      )
+    end
+    
+    assert_equal( 2, @cart.events.count )
+    assert_not_nil( flash[:error] )
+    assert_redirected_to new_cart_path
+  end
 end
