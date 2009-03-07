@@ -85,7 +85,7 @@ class CartTest < ActiveSupport::TestCase
     assert !ActionMailer::Base.deliveries.empty?
     to_user = ActionMailer::Base.deliveries[0]
     to_admin = ActionMailer::Base.deliveries[1]
-
+    
     assert( to_user.subject.include?( "We have received your paid!" ) )
     assert( to_user.body.include?( @cart.events[0].name ) )
     assert( to_user.body.include?( @cart.id.to_s ) )

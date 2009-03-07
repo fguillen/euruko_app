@@ -1,10 +1,10 @@
 New purcharse.
 
-* id:<%= @cart.id %>
+* id: <%= @cart.id %>
 * date create:<%= @cart.created_at %>
 * date updated:<%= @cart.updated_at %>
 * user: <%= @cart.user.name %>
-* status:<%= @cart.status %>
+* status: <%= @cart.status %>
 * events: 
 <% @cart.events.each do |event| -%>
   * <%= event.name %>

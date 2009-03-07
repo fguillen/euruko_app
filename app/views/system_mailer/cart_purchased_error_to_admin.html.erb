@@ -1,10 +1,10 @@
 Detected some problem on the purchase process.
 
-* id:<%= @cart.id %>
+* id: <%= @cart.id %>
 * date create:<%= @cart.created_at %>
 * date updated:<%= @cart.updated_at %>
 * user: <%= @cart.user.name %>
-* status:<%= @cart.status %>
+* status: <%= @cart.status %>
 
 * url: http://<%= APP_CONFIG[:site_domain] %>/pay#@cart_<%= @cart.id %>
 
