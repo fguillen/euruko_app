@@ -3,9 +3,10 @@ We have receive your purcharse for the events:
   * <%= event.name %>
 <% end -%>
 
+<% if !@cart.invoice_info.blank? -%>
 With this invoice info:
-
 <%= @cart.invoice_info %>
+<% end -%>
 
 Your purcharse ID is: <%= @cart.id %>
 

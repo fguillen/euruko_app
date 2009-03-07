@@ -10,6 +10,16 @@ New purcharse.
   * <%= event.name %>
 <% end -%>
 
+<% if !@cart.invoice_info.blank? %>
+* invoice info:
+<%= @cart.invoice_info %>
+<% end %>
+
+<% if !@cart.paypal_notify_params[:memo].blank? %>
+* memo:
+<%= @cart.paypal_notify_params[:memo] %>
+<% end %>
+
 * url: http://<%= APP_CONFIG[:site_domain] %>/pay#@cart_<%= @cart.id %>
 
 :)
