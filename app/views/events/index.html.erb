@@ -11,8 +11,13 @@
 
   <% for event in @events %>
     <p>
-      <%= link_to event.name, event %>
-  
+      <% if event.remaining_capacity == 0 %>
+        <strike><%= link_to event.name, event %></strike>
+        <span class="full">Complete</span>
+      <% else %>
+        <%= link_to event.name, event %>
+      <% end %>
+      
       <% if admin? %>
       <span class="actions">
         <%= link_to image_tag('edit.png'), edit_event_path(event) %>

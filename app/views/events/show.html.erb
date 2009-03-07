@@ -1,7 +1,13 @@
 <% title "Event: #{@event.name}" %>
 <div class="entry">
   <h3><%= yield(:title) %> (<%= @event.price_euros %>€)</h3>
-  <p>(remaining capacity: <%= pluralize( @event.remaining_capacity, 'place' ) %> available)</p>
+  <p>
+    <% if @event.remaining_capacity == 0 %>
+      Sorry, this event is <span class="full">Complete</span>
+    <% else %>
+      Remaining capacity <strong><%= pluralize( @event.remaining_capacity, 'place' ) %></strong>
+    <% end %>
+  </p>
   <p><%= simple_format( @event.description ) %></p>
 
   <% if admin? %>
