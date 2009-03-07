@@ -1,0 +1,17 @@
+New purcharse.
+
+* id:<%= @cart.id %>
+* date create:<%= @cart.created_at %>
+* date updated:<%= @cart.updated_at %>
+* user: <%= @cart.user.name %>
+* status:<%= @cart.status %>
+* events: 
+<% @cart.events.each do |event| -%>
+  * <%= event.name %>
+<% end -%>
+
+* url: http://<%= APP_CONFIG[:site_domain] %>/pay#@cart_<%= @cart.id %>
+
+:)
+
+

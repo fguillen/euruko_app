@@ -243,15 +243,21 @@ class PaperTest < ActiveSupport::TestCase
   end
   
   def test_new_papers_notification
+    ActionMailer::Base.deliveries = []
+    
     paper = 
-      Paper.new(
+      Paper.create!(
         :title => Faker::Lorem.sentence, 
         :description => Faker::Lorem.paragraph, 
         :family => Paper.first.family,
         :creator => users(:user1)
       )
-    SystemMailer.expects(:deliver_paper).with(APP_CONFIG[:email_notification_recipients], paper)
-    paper.save!
+        
+    assert( paper.valid? )
+    assert !ActionMailer::Base.deliveries.empty?
+    # sent = ActionMailer::Base.deliveries.last
+    # 
+    # puts sent
   end
   
   def test_on_mass_assignament_not_update_protected_attributes

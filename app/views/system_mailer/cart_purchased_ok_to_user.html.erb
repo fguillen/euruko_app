@@ -1,0 +1,16 @@
+We have receive your purcharse for the events:
+<% @cart.events.each do |event| -%>
+  * <%= event.name %>
+<% end -%>
+
+With this invoice info:
+
+<%= simple_format @cart.invoice_info %>
+
+Your purcharse ID is: <%= @cart.id %>
+
+Keep it for possible issues.
+
+Regards
+
+EuRuKo 2009 staff

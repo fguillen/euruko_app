@@ -66,4 +66,54 @@ class CartTest < ActiveSupport::TestCase
     
     assert_equal( [@event], @cart.events_out_of_capacity )
   end
+  
+  def test_on_paypal_notificate_should_send_email_notifications
+    @cart = carts(:cart_user1_event1_purchased)
+    
+    @cart.expects(:send_email_notifications).once
+    
+    @cart.paypal_notificate( {} )
+  end
+  
+  def test_send_email_notifications_ok_when_is_completed
+    ActionMailer::Base.deliveries = []
+    
+    @cart = carts(:cart_user1_event1_purchased)
+    @cart.status = Cart::STATUS[:COMPLETED]
+    @cart.send_email_notifications
+    
+    assert !ActionMailer::Base.deliveries.empty?
+    to_user = ActionMailer::Base.deliveries[0]
+    to_admin = ActionMailer::Base.deliveries[1]
+
+    assert( to_user.subject.include?( "We have received your paid!" ) )
+    assert( to_user.body.include?( @cart.events[0].name ) )
+    assert( to_user.body.include?( @cart.id.to_s ) )
+    assert_equal( @cart.user.email.to_a, to_user.to )
+
+    assert( to_admin.subject.include?( "New purcharse, id: #{@cart.id}" ) )
+    assert( to_admin.body.include?( @cart.events[0].name ) )
+    assert( to_admin.body.include?( @cart.id.to_s ) )
+    assert_equal( APP_CONFIG[:email_notification_recipients], to_admin.to )
+  end
+  
+  def test_send_email_notifications_error_when_is_not_completed
+    ActionMailer::Base.deliveries = []
+    
+    @cart = carts(:cart_user1_event1_purchased)
+    @cart.status = Cart::STATUS[:PAYPAL_ERROR]
+    @cart.send_email_notifications
+    
+    assert !ActionMailer::Base.deliveries.empty?
+    to_user = ActionMailer::Base.deliveries[0]
+    to_admin = ActionMailer::Base.deliveries[1]
+
+    assert( to_user.subject.include?( "Some errors found at the purcharse!" ) )
+    assert( to_user.body.include?( @cart.id.to_s ) )
+    assert_equal( @cart.user.email.to_a, to_user.to )
+
+    assert( to_admin.subject.include?( "Some errors found at the purcharse, id: #{@cart.id}" ) )
+    assert( to_admin.body.include?( @cart.id.to_s ) )
+    assert_equal( APP_CONFIG[:email_notification_recipients], to_admin.to )
+  end
 end

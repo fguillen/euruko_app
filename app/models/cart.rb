@@ -98,6 +98,19 @@ class Cart < ActiveRecord::Base
     end
     
     self.save!
+    
+    # email notifications
+    self.send_email_notifications
+  end
+
+  def send_email_notifications
+    if self.is_purchased?
+      SystemMailer.deliver_cart_purchased_ok_to_user( self )
+      SystemMailer.deliver_cart_purchased_ok_to_admin( self )
+    else
+      SystemMailer.deliver_cart_purchased_error_to_user( self )
+      SystemMailer.deliver_cart_purchased_error_to_admin( self )
+    end
   end
   
   def events_out_of_capacity

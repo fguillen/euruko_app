@@ -1,19 +1,51 @@
 class SystemMailer < ActionMailer::Base
   
-  def exception(email, exception)
+  def exception( exception )
     setup
-    @recipients = email
+    @recipients  = APP_CONFIG[:email_notification_recipients]
     @subject    += "Exception: #{exception.exception_class}: #{exception.message}"
     @body[:url]  = "http://#{APP_CONFIG[:site_domain]}/"
     @body[:exception] = exception
   end
 
-  def paper(email, paper)
+  def paper( paper )
     setup
-    @recipients = email
-    @subject    += "Paper submitted to #{paper.family}: #{paper.title}"
+    @recipients    = APP_CONFIG[:email_notification_recipients]
+    @subject      += "Paper submitted to #{paper.family}: #{paper.title}"
     @body[:paper]  = paper
   end
+  
+  def cart_purchased_ok_to_user( cart )
+    setup
+    @recipients   = cart.user.email
+    @subject     += "We have received your paid!"
+    @body[:cart]  = cart
+  end
+  
+  def cart_purchased_ok_to_admin( cart )
+    setup
+    @recipients   = APP_CONFIG[:email_notification_recipients]
+    @subject     += "New purcharse, id: #{cart.id}"
+    @body[:cart]  = cart
+  end
+  
+  def cart_purchased_error_to_user( cart )
+    setup
+    @recipients   = cart.user.email
+    @subject     += "Some errors found at the purcharse!"
+    @body[:cart]  = cart
+  end
+  
+  def cart_purchased_error_to_admin( cart )
+    setup
+    @recipients   = APP_CONFIG[:email_notification_recipients]
+    @subject     += "Some errors found at the purcharse, id: #{cart.id}"
+    @body[:cart]  = cart
+  end
+  
+  
+  
+  
   
   protected
   
