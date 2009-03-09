@@ -109,10 +109,14 @@ class PaperTest < ActiveSupport::TestCase
     
     paper = 
       Paper.new(
-        :title        => @paper.title + "some more",
+        :title        => @paper.title,
         :description  => @paper.description,
         :creator      => users(:user1)
       )
+    assert( !paper.valid? )
+    assert( paper.errors.on(:title) )
+
+    paper.title = "other title"
     assert( paper.valid? )
   end
   
@@ -345,5 +349,9 @@ class PaperTest < ActiveSupport::TestCase
     assert_equal( rooms(:room1).id, @paper.room.id )
     assert_equal( Paper::STATUS[:ACEPTED], @paper.status )
     assert_equal( '2009/01/01 10:10', @paper.date.strftime( "%Y/%m/%d %H:%M" ) )
+  end
+  
+  def test_user_candidates
+    assert( papers(:paper1).user_candidates )
   end
 end

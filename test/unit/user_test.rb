@@ -49,7 +49,9 @@ class UserTest < ActiveSupport::TestCase
       :email                  => 'other_email@email.com',
       :password               => 'other_pass',
       :password_confirmation  => 'other_pass',
-      :public_profile         => false
+      :public_profile         => false,
+      :location_name          => 'location_name_wadus',
+      :location_country          => 'location_country_wadus'
     )
     
     @user.reload
@@ -57,6 +59,8 @@ class UserTest < ActiveSupport::TestCase
     assert_equal( 'other_login', @user.login )
     assert_equal( 'other_email@email.com', @user.email )
     assert_equal( false, @user.public_profile )
+    assert_equal( 'location_name_wadus', @user.location_name )
+    assert_equal( 'location_country_wadus', @user.location_country )
   end
   
   def test_update_not_update_role
@@ -153,6 +157,7 @@ class UserTest < ActiveSupport::TestCase
     
     assert( !user.valid? )
     assert( user.errors.on(:login) )
+    assert( user.errors.on(:name) )
   end
   
   def test_admin
@@ -357,4 +362,24 @@ class UserTest < ActiveSupport::TestCase
     assert_equal( "wadus_github", @user.github_user )
     assert_equal( "wadus_twitter", @user.twitter_user )
   end
+  
+  # def test_on_new_with_name_already_exits_should_catch_the_error
+  #   
+  #   assert_difference "User.count", 0 do
+  #     @user =
+  #       User.create(
+  #         :name                   => users(:user1).name,
+  #         :login                  => 'other_login',
+  #         :email                  => 'email@email.com',
+  #         :password               => 'pass000',
+  #         :password_confirmation  => 'pass000',
+  #         :public_profile         => true,
+  #         :role                   => User::ROLE[:ADMIN]
+  #       )
+  #   end
+  # 
+  #   
+  #   assert( @user.valid? )
+  #   assert_equal( User::ROLE[:USER], @user.role )
+  # end
 end

@@ -26,8 +26,8 @@
           :url => paper_attendee_path( @paper, @attendee ), 
           :method => :delete,
           :update => { :success => "attendee", :failure => "attendee_error" },
-          :loading => "$('#attendee_loading').show()",
-          :complete => "$('#attendee_loading').hide()"
+          :loading => "$('#attendee_loading').show( 'fast' )",
+          :complete => "$('#attendee_loading').hide( 'fast' )"
         ) 
       %>
     <% else %>
@@ -37,8 +37,8 @@
           :url => paper_attendees_path( @paper ), 
           :method => :post,
           :update => { :success => "attendee", :failure => "attendee_error" },
-          :loading => "$('#attendee_loading').show()",
-          :complete => "$('#attendee_loading').hide()"
+          :loading => "$('#attendee_loading').show( 'fast' )",
+          :complete => "$('#attendee_loading').hide( 'fast' )"
         ) 
       %>
     <% end %>

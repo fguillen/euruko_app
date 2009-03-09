@@ -46,7 +46,9 @@ ActionController::Routing::Routes.draw do |map|
                 
   map.resource :session
   
-  map.resources :static_pages
+  map.resources :static_pages, :only => :show
+  
+  map.resources :location_searchs, :only => :create
 
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'

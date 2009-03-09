@@ -68,12 +68,12 @@
             :success => "$('#comment_textarea').val('')"
           ) do |f| 
         -%>
-        <%= f.error_messages %>
+          <%= f.error_messages %>
     
-        <%= f.label :new_comment, 'New Comment', :required => true %><br/>
-        <%= f.text_area :text, :id => 'comment_textarea' %><br/>
-        <div id='comment_loading' style="display:none"><%= image_tag 'spinner.gif' %></div>
-        <%= f.submit "Submit", :disable_with => 'Submiting...' %>
+          <%= f.label :new_comment, 'New Comment', :required => true %><br/>
+          <%= f.text_area :text, :id => 'comment_textarea' %><br/>
+          <div id='comment_loading' style="display:none"><%= image_tag 'spinner.gif' %></div>
+          <%= f.submit "Submit", :disable_with => 'Submiting...' %>
         <% end -%>
     <% end %>
   </div>

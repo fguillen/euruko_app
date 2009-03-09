@@ -13,6 +13,29 @@
 
   <p><%= f.label :text, "Text" %><br/>
   <%= f.text_area :text %></p>
+    
+  <p><%= f.label :location_name, "Your City/Town" %> <span class="example">Madrid, Spain</span><br/>
+  <%= f.text_field :location_name %></p>
+  <span id='location_search_loading' style="display:none"><%= image_tag 'spinner.gif' %></span>
+  <div id="location_search_places" style="display:none"></div>
+  
+  <p><%= f.label :location_country, "Your Country" %> <span class="example">Spain</span><br/>
+  <%= f.text_field :location_country %></p>
+  
+  <%= 
+    observe_field(
+      :user_location_name, 
+      :url        => location_searchs_path,
+      :method     => :post,
+      :frequency  => 0.5,
+      :update     => :location_search_places,
+      :loading    => "$('#location_search_loading').show( 'fast' )",
+      :complete   => "$('#location_search_loading').hide( 'fast' ); $('#location_search_places').show( 'fast' )",
+      :with       => 'query'
+    )
+  %>
+  
+    
   
   <p><%= f.label :personal_web_name, "Homepage Title" %> <span class="example">My Awesome Page</span><br />
   <%= f.text_field :personal_web_name %></p>

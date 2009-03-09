@@ -26,6 +26,7 @@ class User < ActiveRecord::Base
   validates_presence_of     :name
   validates_format_of       :name,     :with => Authentication.name_regex,  :message => Authentication.bad_name_message, :allow_nil => true
   validates_length_of       :name,     :maximum => 100
+  validates_uniqueness_of   :name
 
   validates_presence_of     :email
   validates_length_of       :email,    :within => 6..100 #r@a.wk
@@ -77,7 +78,9 @@ class User < ActiveRecord::Base
     :public_profile,
     :permalink_field_name,
     :github_user,
-    :twitter_user
+    :twitter_user,
+    :location_name,
+    :location_country
   )
 
   attr_accessor :change_password
