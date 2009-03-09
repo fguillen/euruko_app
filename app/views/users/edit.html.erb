@@ -5,14 +5,18 @@
 <% form_for(@user) do |f| %>
   <%= f.error_messages %>
 
-  <p><%= f.label :login, "Login" %><br/>
+  <p><%= f.label :login, "Login", :required => true %> <span class="example">my-nick</span><br/>
   <%= f.text_field :login %></p>
 
-  <p><%= f.label :name, "Name" %><br/>
+  <p><%= f.label :name, "Name", :required => true %> <span class="example">Jorge Perez</span><br/>
   <%= f.text_field :name %></p>
 
-  <p><%= f.label :text, "Text" %><br/>
+  <p><%= f.label :text, "Text" %> <span class="example">http://my-company.com</span><br/>
   <%= f.text_area :text %></p>
+  
+  <p><%= f.label :avatar, "Avatar" %><br/>
+  If you are looking where you can set your avatar look here:
+  <%= link_to 'Gravatar', 'http://gravatar.com', :title => 'Gravatar, globally recognized avatar', :target => '_blank' %></p>
     
   <p><%= f.label :location_name, "Your City/Town" %> <span class="example">Madrid, Spain</span><br/>
   <%= f.text_field :location_name %></p>
@@ -80,6 +84,8 @@
     <%= f.submit "Update" %>
   </p>
 <% end %>
+
+<p class="notes">Fields marked with <span class="required">*</span> are required fields</p>
 
 <script>
   function toggle_change_password_fields(){
