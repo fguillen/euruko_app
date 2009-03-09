@@ -27,6 +27,8 @@
   <div class="entry">
     <%= image_tag paper.photo.url(:small), :class => "avatar" %>
     <h4><%= link_to paper.title, paper %></h4>
+    
+    <%= render :partial => 'papers/by', :locals => { :paper => paper } %>
 
     <% if current_user && current_user.admin? %>
       <div class="actions">

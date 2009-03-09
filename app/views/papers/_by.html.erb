@@ -1,0 +1,11 @@
+<% if !paper.speakers.empty? -%>
+  <p>
+    By
+    <% counter = paper.speakers.size %>
+    <% paper.speakers.collect{ |s| s.user }.each do |user| %>
+      <%= counter > 1 && counter < paper.speakers.size ? "," : "and" unless counter >= paper.speakers.size %>
+      <%= link_to user.name, user %>
+      <% counter -= 1 %>
+    <% end %>
+  </p>
+<% end -%>
