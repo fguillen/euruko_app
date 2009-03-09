@@ -1,0 +1,23 @@
+<ul>
+<% @places.each do |place| -%>
+  <li class="location_search_place">
+    <a href="javascript:void(null)"><%= YahooGeoplanetSearchWrapper.place_to_s( place ) %></a>
+  </li>
+<% end -%>
+</ul>
+
+<script type="text/javascript">
+//<![CDATA[
+
+$(document).ready(function () {
+  $('.location_search_place').click( function() {
+    name    = $(this).text().replace(/^\s+|\s+$/g, '');
+    country = name.split(', ').reverse()[0];
+    $("#user_location_country").val( country );
+    $("#user_location_name").val( name );
+    $("#location_search_places").hide( 'fast' );
+  });
+});
+
+//]]> 
+</script>
