@@ -23,6 +23,7 @@ TODOs
 
 ## marze:
 * El datepicker de la edicción de las charlas se ha quedado sin estilo :/
+* El show de la Talk queda descalabrado si la descripción es corta.
 
 ## anybody:
 * Control de textos: linkar links, ...
