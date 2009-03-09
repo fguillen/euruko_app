@@ -22,6 +22,7 @@ TODOs
 * Pantalla últimos comentarios
 
 ## marze:
+* El datepicker de la edicción de las charlas se ha quedado sin estilo :/
 
 ## anybody:
 * Control de textos: linkar links, ...
