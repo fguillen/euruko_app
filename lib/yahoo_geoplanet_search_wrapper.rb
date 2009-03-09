@@ -47,7 +47,7 @@ class YahooGeoplanetSearchWrapper
   
   def self.place_to_s( place )
     place_s = "#{place[:name]}, "
-    place_s << "#{place[:pc]}, "  unless place[:pc].blank?
+    # place_s << "#{place[:pc]}, "  unless place[:pc].blank?
     place_s << "#{place[:admin1]}, "
     place_s << "#{place[:admin2]}, "
     place_s << "#{place[:country]}"
