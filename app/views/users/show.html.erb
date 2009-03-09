@@ -1,11 +1,15 @@
 <% title "#{@user.name}" %>
 
 <h3>
-  User Details: <%= yield(:title) %>
+  <%= yield(:title) %>
   <% if logged_in? && (admin? || @user == current_user) %><%= link_to image_tag('edit.png'), edit_user_path(@user) %><% end %>
 </h3>
 
 <div class="entry">
+  <% if !@user.location_name.blank?  %>
+    <p>From <%= @user.location_name %></p>
+  <% end %>
+  
   <%=
     gravatar(
       @user.email, 
