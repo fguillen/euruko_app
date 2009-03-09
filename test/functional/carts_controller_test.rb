@@ -115,9 +115,9 @@ class CartsControllerTest < ActionController::TestCase
     assert !ActionMailer::Base.deliveries.empty?
     to_user = ActionMailer::Base.deliveries[0]
     to_admin = ActionMailer::Base.deliveries[1]
-
-    assert( to_user.subject.include?( "We have received your paid!" ) )
-    assert( to_admin.subject.include?( "New purcharse, id: #{@cart.id}" ) )
+    
+    assert( to_user.subject.include?( "Payment received!" ) )
+    assert( to_admin.subject.include?( "New purchase, id: #{@cart.id}" ) )
   end
   
   def test_on_notificate_with_status_not_completed_should_update_the_cart_but_the_events_will_not_paid
@@ -165,8 +165,8 @@ class CartsControllerTest < ActionController::TestCase
     to_user = ActionMailer::Base.deliveries[0]
     to_admin = ActionMailer::Base.deliveries[1]
 
-    assert( to_user.subject.include?( "Some errors found at the purcharse!" ) )
-    assert( to_admin.subject.include?( "Some errors found at the purcharse, id: #{@cart.id}" ) )
+    assert( to_user.subject.include?( "Some errors found at the purchase!" ) )
+    assert( to_admin.subject.include?( "Some errors found at the purchase, id: #{@cart.id}" ) )
   end
   
   def test_on_notificate_with_not_valid_cart_id_should_respond_404

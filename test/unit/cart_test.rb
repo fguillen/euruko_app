@@ -86,12 +86,12 @@ class CartTest < ActiveSupport::TestCase
     to_user = ActionMailer::Base.deliveries[0]
     to_admin = ActionMailer::Base.deliveries[1]
     
-    assert( to_user.subject.include?( "We have received your paid!" ) )
+    assert( to_user.subject.include?( "Payment received!" ) )
     assert( to_user.body.include?( @cart.events[0].name ) )
     assert( to_user.body.include?( @cart.id.to_s ) )
     assert_equal( @cart.user.email.to_a, to_user.to )
 
-    assert( to_admin.subject.include?( "New purcharse, id: #{@cart.id}" ) )
+    assert( to_admin.subject.include?( "New purchase, id: #{@cart.id}" ) )
     assert( to_admin.body.include?( @cart.events[0].name ) )
     assert( to_admin.body.include?( @cart.id.to_s ) )
     assert_equal( APP_CONFIG[:email_notification_recipients], to_admin.to )
@@ -108,11 +108,11 @@ class CartTest < ActiveSupport::TestCase
     to_user = ActionMailer::Base.deliveries[0]
     to_admin = ActionMailer::Base.deliveries[1]
 
-    assert( to_user.subject.include?( "Some errors found at the purcharse!" ) )
+    assert( to_user.subject.include?( "Some errors found at the purchase!" ) )
     assert( to_user.body.include?( @cart.id.to_s ) )
     assert_equal( @cart.user.email.to_a, to_user.to )
 
-    assert( to_admin.subject.include?( "Some errors found at the purcharse, id: #{@cart.id}" ) )
+    assert( to_admin.subject.include?( "Some errors found at the purchase, id: #{@cart.id}" ) )
     assert( to_admin.body.include?( @cart.id.to_s ) )
     assert_equal( APP_CONFIG[:email_notification_recipients], to_admin.to )
   end
