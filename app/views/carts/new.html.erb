@@ -7,14 +7,14 @@
   <ul>
     <% Event.all.each do |event| %>
       <% if event.is_paid_for_user?( current_user ) %>
-        <li class="paid">
-          (already paid)
+        <li>
           <%= link_to event.name, event_path(event) %> (<%= event.price_euros %>€)
+          <span class="paid">Paid</span>
         </li>
       <% elsif event.out_of_capacity? %>
-        <li class="paid">
-          (out of capacity)
-          <%= link_to event.name, event_path(event) %> (<%= event.price_euros %>€)
+        <li>
+          <strike><%= link_to event.name, event_path(event) %> (<%= event.price_euros %>€)</strike>
+          <span class="full">Complete</span>
         </li>
       <% else %>
         <li>

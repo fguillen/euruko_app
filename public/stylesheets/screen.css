@@ -224,10 +224,6 @@ hr {
 
 #extra em {
   font-style: italic; }
-
-#extra span {
-  color: #d26511;
-  font-size: 120%; }
   
 #extra #register-button {
   float: left;
@@ -263,6 +259,8 @@ hr {
   border: 1px solid #dbd6d1;
   background-color: #efedeb;
   margin-bottom: 20px; }
+  
+.box span { font-weight: bold; }
 
 .box h3 {
   font-size: 18px;
@@ -321,8 +319,22 @@ hr {
   
 .more {
   font-size: 85%;
-  margin: 25px 0;
-}
+  margin: 25px 0; }
+
+.full, .paid {
+  font-family: Verdana, sans-serif;
+  font-size: 10px;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 2px 2px 2px 2px; }
+
+.full {
+  background: #9F9F9F;
+  color: #FFF; }
+
+.paid {
+  background: #FFFD9D;
+  color: #000; }
 
 #resources h6,
 #valorations h6,
