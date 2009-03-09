@@ -25,7 +25,7 @@ module ApplicationHelper
   def times_array( hour_ini = '00', hour_end = '24' )
     times = []
     (hour_ini..hour_end).each do |hh|
-      ['00','10','20','30','40','50'].each do |mm|
+      ['00','05','10','15','20','25','30','35','40','45','50','55'].each do |mm|
         times << "#{hh}:#{mm}" 
       end
     end
