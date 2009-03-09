@@ -18,28 +18,28 @@ class SystemMailer < ActionMailer::Base
   def cart_purchased_ok_to_user( cart )
     setup
     @recipients   = cart.user.email
-    @subject     += "We have received your paid!"
+    @subject     += "Payment received!"
     @body[:cart]  = cart
   end
   
   def cart_purchased_ok_to_admin( cart )
     setup
     @recipients   = APP_CONFIG[:email_notification_recipients]
-    @subject     += "New purcharse, id: #{cart.id}"
+    @subject     += "New purchase, id: #{cart.id}"
     @body[:cart]  = cart
   end
   
   def cart_purchased_error_to_user( cart )
     setup
     @recipients   = cart.user.email
-    @subject     += "Some errors found at the purcharse!"
+    @subject     += "Some errors found at the purchase!"
     @body[:cart]  = cart
   end
   
   def cart_purchased_error_to_admin( cart )
     setup
     @recipients   = APP_CONFIG[:email_notification_recipients]
-    @subject     += "Some errors found at the purcharse, id: #{cart.id}"
+    @subject     += "Some errors found at the purchase, id: #{cart.id}"
     @body[:cart]  = cart
   end
   
