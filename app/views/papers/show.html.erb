@@ -15,6 +15,7 @@
     at <%= @paper.room.nil? ? '(not room designed yet)' : @paper.room.name %>
   </h6>
 
+<% if !@paper.speakers.empty? -%>
   <p>
     By
     <% counter = @paper.speakers.size %>
@@ -24,6 +25,7 @@
       <% counter -= 1 %>
     <% end %>
   </p>
+<% end -%>
 
   <%= simple_format @paper.description %>
 
