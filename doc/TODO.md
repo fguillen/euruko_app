@@ -22,8 +22,6 @@ TODOs
 * Pantalla últimos comentarios
 
 ## marze:
-* El show de la Talk queda descalabrado si la descripción es corta.
-* Descuadre en el listado de Talks comentado por Xavier en la lista.
 
 ## anybody:
 * Control de textos: linkar links, ...
