@@ -8,7 +8,7 @@
       Remaining capacity <strong><%= pluralize( @event.remaining_capacity, 'place' ) %></strong>
     <% end %>
   </p>
-  <p><%= simple_format( @event.description ) %></p>
+  <p><%= simple_format(@event.description) %></p>
 
   <% if admin? %>
     <p>

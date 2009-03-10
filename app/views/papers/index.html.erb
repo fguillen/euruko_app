@@ -24,7 +24,7 @@
   <% end %>
 
   <% @papers.each do |paper| %>
-  <div class="entry">
+  <div class="entry shorten">
     <%= image_tag paper.photo.url(:small), :class => "avatar" %>
     <h4><%= link_to paper.title, paper %></h4>
     
@@ -37,6 +37,6 @@
       </div>
     <% end %>
 
-    <p><%= simple_format(paper.description) %>
+    <%= shorten(simple_format(paper.description), paper) %>
   </div>
 <% end %>

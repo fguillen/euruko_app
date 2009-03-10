@@ -22,6 +22,23 @@ module ApplicationHelper
     end
   end
   
+  def shorten (string, link, count = 300)
+    if string.length >= count
+      shortened = string[0, count]
+      splitted = shortened.split(/\s/)
+      words = splitted.length
+      if(splitted[words-1].include? "<")
+        str = splitted[0,words-2].join(" ").gsub(/<[p|br][^>]*>/, "")
+        '<p>' + str + ' ' + link_to('(Read more)', link) + '</p>'
+      else
+        str = splitted[0, words-1].join(" ").gsub(/<[p|br][^>]*>/, "")
+        '<p>' + str + ' ' + link_to('(Read more)', link) + '</p>'
+      end
+    else
+      string
+    end   
+  end
+  
   def times_array( hour_ini = '00', hour_end = '24' )
     times = []
     (hour_ini..hour_end).each do |hh|

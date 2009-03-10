@@ -22,10 +22,8 @@ TODOs
 * Pantalla últimos comentarios
 
 ## marze:
-* El datepicker de la edicción de las charlas se ha quedado sin estilo :/
 * El show de la Talk queda descalabrado si la descripción es corta.
 * Descuadre en el listado de Talks comentado por Xavier en la lista.
-* Dicen de poner el 
 
 ## anybody:
 * Control de textos: linkar links, ...
