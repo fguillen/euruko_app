@@ -22,6 +22,9 @@ TODOs
 * Pantalla últimos comentarios
 
 ## marze:
+* Add logos
+* Add topbar
+
 
 ## anybody:
 * Control de textos: linkar links, ...
