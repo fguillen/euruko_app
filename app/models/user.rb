@@ -221,7 +221,8 @@ class User < ActiveRecord::Base
       :remember_token, 
       :remember_token_expires_at, 
       :created_at, 
-      :updated_at
+      :updated_at,
+      :invoice_info
     ]
     options[:except] = (options[:except] ? options[:except] + default_except : default_except)   
     self.ar_to_xml( options )
