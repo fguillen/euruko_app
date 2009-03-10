@@ -20,7 +20,7 @@ class YahooGeoplanetSearchWrapperTest < ActiveSupport::TestCase
   def test_place_to_s
     @place = YahooGeoplanetSearchWrapper.search( 'pepe', APP_CONFIG[:yahoo_id] )[2]
     @place_s = YahooGeoplanetSearchWrapper.place_to_s( @place )
-    assert_equal( 'Madrid, Virginia, Augusta, United States', @place_s )
+    assert_equal( 'Madrid, Augusta, Virginia, United States', @place_s )
   end
   
 end
