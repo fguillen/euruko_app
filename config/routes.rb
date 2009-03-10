@@ -49,6 +49,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :static_pages, :only => :show
   
   map.resources :location_searchs, :only => :create
+  
+  map.resource  :avaliable_places_counter, :only => :show
 
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
