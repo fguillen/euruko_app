@@ -8,6 +8,6 @@ class AvailablePlacesCounterControllerTest < ActionController::TestCase
     )
     
     assert_response :success
-    assert_equal( 8, @response.body )
+    assert_equal( '8', @response.body )
   end
 end
