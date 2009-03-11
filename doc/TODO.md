@@ -22,7 +22,6 @@ TODOs
 * Pantalla últimos comentarios
 
 ## marze:
-* Add logos
 
 
 ## anybody:
