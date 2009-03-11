@@ -23,7 +23,6 @@ TODOs
 
 ## marze:
 * Add logos
-* Add topbar
 
 
 ## anybody:
