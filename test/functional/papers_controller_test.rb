@@ -483,7 +483,7 @@ class PapersControllerTest < ActionController::TestCase
     login_as users(:user_admin)
     get( :index )
     assert_not_nil( assigns(:papers) )
-    assert( assigns(:papers).include? papers(:paper_break) )
+    assert( assigns(:papers).include?( papers(:paper_break) ) )
   end
   
   def test_on_create_with_not_admin_should_ignore_family_date_status_room_minutes

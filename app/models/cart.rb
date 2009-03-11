@@ -33,7 +33,8 @@ class Cart < ActiveRecord::Base
       :invoice        => self.id,
       :notify_url     => notify_url,
       :currency_code  => 'EUR',
-      :cert_id        => APP_CONFIG[:paypal_cert_id]
+      :cert_id        => APP_CONFIG[:paypal_cert_id],
+      :lc             => 'US'
     }
     
     self.events.each_with_index do |event, index|
@@ -101,6 +102,9 @@ class Cart < ActiveRecord::Base
     
     # email notifications
     self.send_email_notifications
+    
+    # twitter notification
+    self.send_twitter_notifications
   end
 
   def send_email_notifications
@@ -110,6 +114,22 @@ class Cart < ActiveRecord::Base
     else
       SystemMailer.deliver_cart_purchased_error_to_user( self )
       SystemMailer.deliver_cart_purchased_error_to_admin( self )
+    end
+  end
+  
+  def send_twitter_notifications
+    return  if !self.is_purchased?
+    
+    self.events.each do |event|
+      remaining_capacity = event.remaining_capacity
+    
+      if( ( remaining_capacity % APP_CONFIG[:twitter_notification_step].to_i ) == 0 )
+        begin
+          TwitterWrapper.post( "Only #{remaining_capacity} places available on #{event.name}" )
+        rescue Exception => e 
+          logger.error( "Error trying to post on twitter: #{e}" )
+        end
+      end
     end
   end
   

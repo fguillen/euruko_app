@@ -8,7 +8,10 @@ test:
   paypal_cert_id: Z954BH8ATL6XC
   paypal_secret: paypal_secret
   yahoo_id: qvONq5jV34GLKDBadNyEtXoS9dR22TK1gacPRBXZqqXrAfwCYUd6fMMIze9zIbWe9a7juSXIGlfH
-
+  twitter_user: pepe
+  twitter_pass: pepe
+  twitter_notification_step: 1
+  
 development:
   site_domain: 127.0.0.1:3000
   site_name: EuRuKo_development
@@ -19,7 +22,10 @@ development:
   paypal_cert_id: Z954BH8ATL6XC
   paypal_secret: paypal_secret
   yahoo_id: qvONq5jV34GLKDBadNyEtXoS9dR22TK1gacPRBXZqqXrAfwCYUd6fMMIze9zIbWe9a7juSXIGlfH
-
+  twitter_user: pepe
+  twitter_pass: pepe
+  twitter_notification_step: 1
+  
 production:
   site_domain: eurukostaging.fernandoguillen.info
   site_name: EuRuKo
@@ -30,3 +36,6 @@ production:
   paypal_cert_id: Z954BH8ATL6XC
   paypal_secret: paypal_secret
   yahoo_id: qvONq5jV34GLKDBadNyEtXoS9dR22TK1gacPRBXZqqXrAfwCYUd6fMMIze9zIbWe9a7juSXIGlfH
+  twitter_user: pepe
+  twitter_pass: pepe
+  twitter_notification_step: 1

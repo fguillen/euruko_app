@@ -91,7 +91,9 @@ class CartsControllerTest < ActionController::TestCase
     assert_response :success
   end
   
-  def test_on_notificate_with_good_params_should_send_emails
+  def test_on_notificate_with_good_params_should_send_emails_and_twitter_notification
+    TwitterWrapper.expects(:post).once
+    
     ActionMailer::Base.deliveries = []
     
     @cart = carts(:cart_user1_event2_not_purchased)

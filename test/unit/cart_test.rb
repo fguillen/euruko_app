@@ -50,7 +50,7 @@ class CartTest < ActiveSupport::TestCase
   
   def test_paypal_notificate
     @cart = carts(:cart_user1_event1_purchased)
-    assert( @cart.paypal_notificate( {:payment_status => Cart::STATUS[:COMPLETED]} ) )
+    @cart.paypal_notificate( {:payment_status => Cart::STATUS[:COMPLETED] } )
     assert_equal( Cart::STATUS[:PAYPAL_ERROR], @cart.status )
   end
   
@@ -115,5 +115,15 @@ class CartTest < ActiveSupport::TestCase
     assert( to_admin.subject.include?( "Some errors found at the purchase, id: #{@cart.id}" ) )
     assert( to_admin.body.include?( @cart.id.to_s ) )
     assert_equal( APP_CONFIG[:email_notification_recipients], to_admin.to )
+  end
+  
+  def test_send_twitter_notifications
+    TwitterWrapper.expects(:post).once
+    
+    @cart = carts(:cart_user1_event1_purchased)
+    @cart.status = Cart::STATUS[:COMPLETED]
+    @cart.send_email_notifications
+    
+    @cart.send_twitter_notifications
   end
 end
