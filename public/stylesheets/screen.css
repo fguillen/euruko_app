@@ -104,8 +104,8 @@ li {
 hr {
   color: #FFF;
   border-bottom: 1px solid #EEE;
-  width: 90%;
-  margin: 30px 0 25px 0; }
+  width: 100%;
+  margin: 20px 0 0 0; }
 
 
 /*--- main ---*/  
@@ -152,7 +152,7 @@ hr {
 /*--- article ---*/ 
 
 .entry {
-  margin-bottom: 30px;
+  margin-bottom: 1em;
   padding-bottom: 5px; }
 
 .entry a {
@@ -239,6 +239,13 @@ hr {
 #extra img a:hover {
   border-bottom: none !important;
   text-decoration: none !important; }
+
+#extra .soldout img {
+  float: left;
+  margin-right: 20px; }
+
+#extra .soldout {
+  height: 90px; }
 
 .spot {
   margin-bottom: 20px;
@@ -495,5 +502,5 @@ hr {
 }
 
 .shorten {
-  clear:both;
-  margin-bottom: 30px; }
+  padding-bottom: 20px;
+  min-height: 100px; }
