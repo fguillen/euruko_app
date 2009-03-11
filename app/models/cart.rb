@@ -33,7 +33,8 @@ class Cart < ActiveRecord::Base
       :invoice        => self.id,
       :notify_url     => notify_url,
       :currency_code  => 'EUR',
-      :cert_id        => APP_CONFIG[:paypal_cert_id]
+      :cert_id        => APP_CONFIG[:paypal_cert_id],
+      :lc             => 'EN'
     }
     
     self.events.each_with_index do |event, index|
