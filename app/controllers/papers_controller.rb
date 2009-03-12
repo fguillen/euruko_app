@@ -7,9 +7,15 @@ class PapersController < ApplicationController
   before_filter :admin_or_not_under_review_required, :only => [:edit, :update]
 
   def index
-    @papers = Paper.all                 if admin?
-    @papers = Paper.visible.not_break   if !admin?
-
+    @conditions = {}
+    
+    if !params[:status].blank?
+      @conditions = { :status => params[:status] }
+    end    
+    
+    @papers = Paper.all( :conditions => @conditions )                 if admin?
+    @papers = Paper.visible.not_break( :conditions => @conditions )   if !admin?
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @papers }

@@ -327,4 +327,24 @@ class CartsControllerTest < ActionController::TestCase
     assert_not_nil( flash[:error] )
     assert_redirected_to new_cart_path
   end
+  
+  def test_on_index_with_status_param_should_only_show_the_carts_on_this_status
+    login_as users(:user_admin)
+    
+    get :index
+  
+    assert_response :success
+    assert_not_nil( assigns(:carts) )
+    assert( assigns(:carts).include?( carts(:cart_user1_event1_purchased) ) )
+    assert( assigns(:carts).include?( carts(:cart_user1_event2_not_purchased) ) )
+
+    get :index, :status => Cart::STATUS[:COMPLETED]
+  
+    assert_response :success
+    assert_not_nil( assigns(:carts) )
+    assert( assigns(:carts).include?( carts(:cart_user1_event1_purchased) ) )
+    assert( !assigns(:carts).include?( carts(:cart_user1_event2_not_purchased) ) )
+
+
+  end
 end

@@ -3,7 +3,8 @@
 <div class="bar">
   <%= link_to 'All', carts_path %>
   <% Cart::STATUS.keys.each do |key| %>
-    | <%= link_to Cart::STATUS[key], carts_path( :params => { :status => key } ) %> 
+    | <%= link_to Cart::STATUS[key], carts_path( :params => { :status => Cart::STATUS[key] } ) %>
+    (<%= Cart.count(:conditions => {:status => Cart::STATUS[key]} ) %>)
   <% end %>
 </div>
 

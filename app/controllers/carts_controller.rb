@@ -8,7 +8,7 @@ class CartsController < ApplicationController
     @conditions = {}
     
     if !params[:status].blank?
-      @conditions = { :status => Cart::STATUS[params[:status].intern] }
+      @conditions = { :status => params[:status] }
     end
     
     @carts = Cart.find(:all, :conditions => @conditions, :order => 'updated_at desc')

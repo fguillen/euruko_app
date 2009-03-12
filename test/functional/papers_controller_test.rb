@@ -553,4 +553,29 @@ class PapersControllerTest < ActionController::TestCase
     assert_equal( 10, @paper.date.hour )
     assert_equal( 10, @paper.date.min )
   end
+  
+  def test_on_index_with_status_param_should_charge_only_papers_on_this_status
+    login_as users(:user_admin)
+    
+    get :index
+    
+    assert_response :success
+    assert_not_nil assigns(:papers)
+    assert( assigns(:papers).include?( papers(:paper1) ) )
+    assert( assigns(:papers).include?( papers(:paper2) ) )
+    assert( assigns(:papers).include?( papers(:paper3) ) )
+    assert( assigns(:papers).include?( papers(:paper4) ) )
+    
+    get(
+      :index,
+      :status => Paper::STATUS[:ACEPTED]
+    )
+
+    assert_response :success
+    assert_not_nil assigns(:papers)
+    assert( assigns(:papers).include?( papers(:paper1) ) )
+    assert( assigns(:papers).include?( papers(:paper2) ) )
+    assert( !assigns(:papers).include?( papers(:paper3) ) )
+    assert( !assigns(:papers).include?( papers(:paper4) ) )
+  end
 end

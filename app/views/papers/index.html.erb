@@ -9,6 +9,15 @@
 <% end %>
 
 <h3><%= yield(:title) %></h3>
+  <% if admin? %>
+    <div class="bar">
+      <%= link_to 'All', papers_path %>
+      <% Paper::STATUS.keys.each do |key| %>
+        | <%= link_to Paper::STATUS[key], papers_path( :params => { :status => Paper::STATUS[key] } ) %>
+        (<%= Paper.count(:conditions => {:status => Paper::STATUS[key]} ) %>)
+      <% end %>
+    </div>
+  <% end %>
 
   <% if @papers.empty? %>
   <div class="entry">
@@ -20,6 +29,10 @@
   <div class="entry shorten">
     <%= image_tag paper.photo.url(:small), :class => "avatar" %>
     <h4><%= link_to paper.title, paper %></h4>
+    
+    <% if admin? %>
+      <h5>Status: <%= paper.status %></h5>
+    <% end %>
     
     <%= render :partial => 'papers/by', :locals => { :paper => paper } %>
 
