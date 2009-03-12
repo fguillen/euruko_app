@@ -118,11 +118,22 @@ class CartTest < ActiveSupport::TestCase
   end
   
   def test_send_twitter_notifications
-    TwitterWrapper.expects(:post).once
+    TwitterWrapper.expects(:post).with( 'Only 8 places available on Event 1' ).once
     
     @cart = carts(:cart_user1_event1_purchased)
     @cart.status = Cart::STATUS[:COMPLETED]
-    @cart.send_email_notifications
+    
+    @cart.send_twitter_notifications
+  end
+  
+  def test_send_twitter_notifications_with_sold_out
+    TwitterWrapper.expects(:post).with( 'Event 1 SOLD OUT!' ).once
+    
+    @event = events(:event1)
+    @event.update_attribute(:capacity, 0)
+    
+    @cart = carts(:cart_user1_event1_purchased)
+    @cart.status = Cart::STATUS[:COMPLETED]
     
     @cart.send_twitter_notifications
   end

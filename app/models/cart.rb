@@ -122,8 +122,14 @@ class Cart < ActiveRecord::Base
     
     self.events.each do |event|
       remaining_capacity = event.remaining_capacity
-    
-      if( ( remaining_capacity % APP_CONFIG[:twitter_notification_step].to_i ) == 0 )
+      
+      if( remaining_capacity <= 0 )
+        begin
+          TwitterWrapper.post( "#{event.name} SOLD OUT!" )
+        rescue Exception => e 
+          logger.error( "Error trying to post on twitter: #{e}" )
+        end       
+      elsif( ( remaining_capacity % APP_CONFIG[:twitter_notification_step].to_i ) == 0 )
         begin
           TwitterWrapper.post( "Only #{remaining_capacity} places available on #{event.name}" )
         rescue Exception => e 
