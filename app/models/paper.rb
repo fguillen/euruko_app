@@ -77,6 +77,7 @@ class Paper < ActiveRecord::Base
   named_scope :visible, :conditions => { :status => [Paper::STATUS[:ACEPTED], Paper::STATUS[:CONFIRMED] ]  }
   named_scope :not_break, :conditions => [ "family != ?", Paper::FAMILY[:BREAK] ]
   named_scope :break, :conditions => { :family => Paper::FAMILY[:BREAK] }
+  named_scope :date_ordered, :order => 'date asc'
   
   def add_speaker(user)
     if user.public_profile?

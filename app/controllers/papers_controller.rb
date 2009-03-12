@@ -13,8 +13,10 @@ class PapersController < ApplicationController
       @conditions = { :status => params[:status] }
     end    
     
-    @papers = Paper.all( :conditions => @conditions )                 if admin?
-    @papers = Paper.visible.not_break( :conditions => @conditions )   if !admin?
+    @papers = Paper.date_ordered                      if admin?
+    @papers = Paper.visible.not_break.date_ordered    if !admin?
+    
+    @papers = @papers.all( :conditions => @conditions, :order => 'date asc' )
     
     respond_to do |format|
       format.html # index.html.erb
