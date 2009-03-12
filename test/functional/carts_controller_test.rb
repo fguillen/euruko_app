@@ -90,37 +90,38 @@ class CartsControllerTest < ActionController::TestCase
     
     assert_response :success
   end
-  
-  def test_on_notificate_with_good_params_should_send_emails_and_twitter_notification
-    TwitterWrapper.expects(:post).once
-    
-    ActionMailer::Base.deliveries = []
-    
-    @cart = carts(:cart_user1_event2_not_purchased)
-    
-    assert( !@cart.is_purchased? )
-    assert( !events(:event2).is_paid_for_user?( users(:user1).id ) )
-    
-    post(
-      :notificate,
-      :invoice          => @cart.id,
-      :payment_status   => Cart::STATUS[:COMPLETED],
-      :secret           => APP_CONFIG[:paypal_secret],
-      :receiver_email   => APP_CONFIG[:paypal_seller],
-      :mc_gross         => @cart.total_price_on_euros,
-      :mc_currency      => 'EUR',
-      :txn_id           => 1
-    )
 
-    @cart.reload
-    
-    assert !ActionMailer::Base.deliveries.empty?
-    to_user = ActionMailer::Base.deliveries[0]
-    to_admin = ActionMailer::Base.deliveries[1]
-    
-    assert( to_user.subject.include?( "Payment received!" ) )
-    assert( to_admin.subject.include?( "New purchase, id: #{@cart.id}" ) )
-  end
+  # comment because no more twitter notification
+  # def test_on_notificate_with_good_params_should_send_emails_and_twitter_notification
+  #   TwitterWrapper.expects(:post).once
+  #   
+  #   ActionMailer::Base.deliveries = []
+  #   
+  #   @cart = carts(:cart_user1_event2_not_purchased)
+  #   
+  #   assert( !@cart.is_purchased? )
+  #   assert( !events(:event2).is_paid_for_user?( users(:user1).id ) )
+  #   
+  #   post(
+  #     :notificate,
+  #     :invoice          => @cart.id,
+  #     :payment_status   => Cart::STATUS[:COMPLETED],
+  #     :secret           => APP_CONFIG[:paypal_secret],
+  #     :receiver_email   => APP_CONFIG[:paypal_seller],
+  #     :mc_gross         => @cart.total_price_on_euros,
+  #     :mc_currency      => 'EUR',
+  #     :txn_id           => 1
+  #   )
+  # 
+  #   @cart.reload
+  #   
+  #   assert !ActionMailer::Base.deliveries.empty?
+  #   to_user = ActionMailer::Base.deliveries[0]
+  #   to_admin = ActionMailer::Base.deliveries[1]
+  #   
+  #   assert( to_user.subject.include?( "Payment received!" ) )
+  #   assert( to_admin.subject.include?( "New purchase, id: #{@cart.id}" ) )
+  # end
   
   def test_on_notificate_with_status_not_completed_should_update_the_cart_but_the_events_will_not_paid
     @cart = carts(:cart_user1_event2_not_purchased)

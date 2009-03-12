@@ -104,7 +104,7 @@ class Cart < ActiveRecord::Base
     self.send_email_notifications
     
     # twitter notification
-    self.send_twitter_notifications
+    # self.send_twitter_notifications
   end
 
   def send_email_notifications
