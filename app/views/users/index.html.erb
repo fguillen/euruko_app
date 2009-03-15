@@ -1,9 +1,41 @@
-<% title "People" %>
+<% 
+  if( !params[:search].blank? && params[:search] == 'speakers' )
+    title( 'Speakers' )
+    
+  elsif( 
+    !params[:search].blank? && 
+    params[:search] == 'event_attendees' &&
+    !params[:event_id].blank?
+  )
+    title( 'Attendees' )
+  
+  else
+    title( 'All Registered Users' )
+  
+  end
+%>
 
 <div class="bar">
   <p>
-    <%= link_to 'Show all', users_path( :page => '1' ) %> | 
-    <%= link_to 'Show speakers', users_path( :params => { :speakers => '1', :page => '1' } ) %>
+    <%= link_to 'Show All', users_path( :page => '1' ) %> 
+    (<%= admin? ? User.count : User.public_profile.count %>) | 
+    
+    <%= 
+      link_to(
+        'Show Attendees', 
+        users_path( 
+          :params => { 
+            :search => 'event_attendees', 
+            :event_id => '1', 
+            :page => '1'
+          } 
+        )
+      )
+    %> 
+    (<%= admin? ? User.has_paid(1).count : User.public_profile.has_paid(1).count %>) | 
+    
+    <%= link_to 'Show Speakers', users_path( :params => { :search => 'speakers', :page => '1' } ) %>
+    (<%= admin? ? User.speaker.count : User.public_speaker.count %>)
   </p>
 </div>
 

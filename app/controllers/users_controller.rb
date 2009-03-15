@@ -6,12 +6,24 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.xml
   def index
-    if( params[:speakers] )
+  
+         
+    if( !params[:search].blank? && params[:search] == 'speakers' )
       @users = User.ordered.speaker          if admin?
       @users = User.ordered.public_speaker   if !admin?
+      
+    elsif( 
+      !params[:search].blank? && 
+      params[:search] == 'event_attendees' &&
+      !params[:event_id].blank?
+    )
+      @users = User.ordered.has_paid( params[:event_id] )                 if admin?
+      @users = User.ordered.public_profile.has_paid( params[:event_id] )  if !admin?
+      
     else
       @users = User.ordered                            if admin?
       @users = User.ordered.activated.public_profile   if !admin?
+      
     end
 
     @users = @users.paginate( :page => params[:page] )  if params[:page]

@@ -168,7 +168,7 @@ class UsersControllerTest < ActionController::TestCase
   end
   
   def test_when_search_speakers_only_assings_speakers
-    get :index, :speakers => true
+    get :index, :search => 'speakers'
     
     assert_not_nil( assigns(:users) )
     assert( assigns(:users).include?( users(:user1) ) )
@@ -442,5 +442,18 @@ class UsersControllerTest < ActionController::TestCase
     
     @user.reload
     assert( !@user.authenticated?( 'newpassword' ) )
+  end
+  
+  def test_on_index_with_search_atteendes
+    get(
+      :index,
+      :search     => 'event_attendees',
+      :event_id   => events(:event1).id
+    )
+    
+    assert_response :success
+    assert_equal( 2, assigns(:users).size )
+    assert( assigns(:users).include?( users(:user1 ) ) )
+    assert( assigns(:users).include?( users(:user_everything_paid ) ) )
   end
 end

@@ -59,7 +59,16 @@ class User < ActiveRecord::Base
     :group => 'users.id'
   )
   named_scope :ordered, :order => 'name asc'
-  
+  named_scope(
+    :has_paid, 
+    lambda{ |*args| {
+      :joins => 'join carts on carts.user_id = users.id join carts_events on carts_events.cart_id = carts.id', 
+      :conditions => ["carts.status = 'Completed' and carts_events.event_id = ?", args.first] 
+    }}
+  )
+    
+  #   carts.purchased.exists?( :user_id => user_id )
+  #   
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.

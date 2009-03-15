@@ -382,4 +382,11 @@ class UserTest < ActiveSupport::TestCase
   #   assert( @user.valid? )
   #   assert_equal( User::ROLE[:USER], @user.role )
   # end
+  
+  def test_named_scope_has_paid
+    users = User.has_paid( events(:event1).id )
+    assert_equal( 2, users.size )
+    assert( users.include?( users(:user1 ) ) )
+    assert( users.include?( users(:user_everything_paid ) ) )
+  end
 end
