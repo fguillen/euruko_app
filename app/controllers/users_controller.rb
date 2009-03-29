@@ -128,7 +128,7 @@ class UsersController < ApplicationController
   end
 
   def reset_password
-    @user = User.activated.find_by_password_reset_code(params[:id]) unless params[:id].blank?
+    @user = User.activated.find_by_password_reset_code(params[:id]) unless params[:id].nil?
     if @user.nil? 
       record_not_found
     else
