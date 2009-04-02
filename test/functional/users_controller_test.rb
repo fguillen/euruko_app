@@ -456,4 +456,9 @@ class UsersControllerTest < ActionController::TestCase
     assert( assigns(:users).include?( users(:user1 ) ) )
     assert( assigns(:users).include?( users(:user_everything_paid ) ) )
   end
+  
+  def test_on_reset_password_if_code_null_should_response_404
+    get :reset_password
+    assert_response 404
+  end
 end

@@ -17,6 +17,7 @@ TODOs
 ** emails de ponentes con charlas aprobadas
 ** emails de ponentes con charlas rechazadas
 ** emails de ponentes con charlas aprobadas y algún campo de descripción vacío en su ficha.
+* Al resetear password no se dice el Login del usuario osea que si también se le ha olvidado estamo jodidos.
 
 ## xuanxu:
 * Pantalla últimos comentarios
