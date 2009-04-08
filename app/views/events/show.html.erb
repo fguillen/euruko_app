@@ -2,7 +2,7 @@
 <div class="entry">
   <h3><%= yield(:title) %> (<%= @event.price_euros %>€)</h3>
   <p>
-    <% if @event.remaining_capacity == 0 %>
+    <% if @event.out_of_capacity? %>
       Sorry, this event is <span class="full">Complete</span>
     <% else %>
       Remaining capacity <strong><%= pluralize( @event.remaining_capacity, 'place' ) %></strong>
