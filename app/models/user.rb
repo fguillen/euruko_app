@@ -89,7 +89,8 @@ class User < ActiveRecord::Base
     :github_user,
     :twitter_user,
     :location_name,
-    :location_country
+    :location_country,
+    :invoice_info
   )
 
   attr_accessor :change_password

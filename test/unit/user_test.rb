@@ -51,7 +51,8 @@ class UserTest < ActiveSupport::TestCase
       :password_confirmation  => 'other_pass',
       :public_profile         => false,
       :location_name          => 'location_name_wadus',
-      :location_country          => 'location_country_wadus'
+      :location_country       => 'location_country_wadus',
+      :invoice_info           => 'other invoice info'
     )
     
     @user.reload
@@ -61,6 +62,7 @@ class UserTest < ActiveSupport::TestCase
     assert_equal( false, @user.public_profile )
     assert_equal( 'location_name_wadus', @user.location_name )
     assert_equal( 'location_country_wadus', @user.location_country )
+    assert_equal( 'other invoice info', @user.invoice_info )
   end
   
   def test_update_not_update_role

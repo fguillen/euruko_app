@@ -461,4 +461,20 @@ class UsersControllerTest < ActionController::TestCase
     get :reset_password
     assert_response 404
   end
+  
+  def test_on_update_invoice_info
+    @user = users(:user1)
+    login_as @user
+    
+    put(
+      :update, 
+      :id => @user.id, 
+      :user => { :invoice_info => 'other invoice info' }
+    )
+    
+    @user.reload
+    assert_not_nil( flash[:notice] )
+    assert_equal( 'other invoice info', @user.invoice_info )
+    assert_redirected_to user_path(assigns(:user))
+  end
 end

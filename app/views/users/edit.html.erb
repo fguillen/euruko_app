@@ -10,6 +10,9 @@
 
   <p><%= f.label :name, "Name", :required => true %> <span class="example">Jorge Perez</span><br/>
   <%= f.text_field :name %></p>
+  
+  <p><%= f.label :email, "Email" %> <span class="example">If you wanna change it contact with us</span><br/>
+  <%= @user.email %></p>
 
   <p><%= f.label :text, "Text" %> <span class="example">Tell us something about you</span><br/>
   <%= f.text_area :text %></p>
@@ -60,7 +63,7 @@
   <%= f.text_field :github_user %></p>
 
   <p><%= f.check_box :public_profile %>
-  <%= f.label 'public_profile', 'Public Profile' %> <span class="example">Email will not be shown</span></p>
+  <%= f.label 'public_profile', 'Public Profile' %> <span class="example">Email and Invoice Info will not be shown</span></p>
   
   <p><%= f.check_box :change_password, :onchange => "toggle_change_password_fields()" %>
   <%= f.label 'change_password', 'Change Password' %></p>
@@ -72,6 +75,9 @@
     <p><%= f.label :password_confirmation, 'Confirm New Password' %><br/>
     <%= f.password_field :password_confirmation %></p>
   </div>
+  
+  <p><%= f.label :invoice_info, "Invoice Info" %> <span class="example">Bussiness Details (Full Name, Address, VAT number, etc)</span><br/>
+  <%= f.text_area :invoice_info %></p>
   
   <% if admin? %>
     <p><%= f.label :role, "Role" %><br />

@@ -18,6 +18,8 @@ TODOs
 ** emails de ponentes con charlas rechazadas
 ** emails de ponentes con charlas aprobadas y algún campo de descripción vacío en su ficha.
 * Al resetear password no se dice el Login del usuario osea que si también se le ha olvidado estamo jodidos.
+* "Meanwhile on the others tracks:"
+* Exportar PDF de las charlas
 
 ## xuanxu:
 * Pantalla últimos comentarios
