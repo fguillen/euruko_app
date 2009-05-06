@@ -20,6 +20,9 @@
 <h4>Total price</h4>
 <p><strong><%= @cart.total_price_on_euros %>€</strong></p>
 
+<h4>Invoice info</h4>
+<p><%= simple_format(@cart.invoice_info) %></p>
+
 <!--
 <h4>Invoice</h4>
 <% if @cart.invoice %>
