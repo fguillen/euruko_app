@@ -12,7 +12,10 @@ class CartsController < ApplicationController
     end
     
     @carts = Cart.find(:all, :conditions => @conditions, :order => 'updated_at desc')
-
+    
+    # paginate?
+    @carts = @carts.paginate( :page => params[:page] )  if params[:page]
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @carts }
@@ -100,6 +103,11 @@ class CartsController < ApplicationController
     else
       flash[:error] = 'Some error on payment!'
     end
+  end
+  
+  def show
+    @cart = Cart.find( params[:id] )                if admin?
+    @cart = current_user.carts.find( params[:id] )  if !admin?
   end
   
 end

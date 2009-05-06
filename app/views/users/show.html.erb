@@ -2,7 +2,9 @@
 
 <h3>
   <%= yield(:title) %>
-  <% if logged_in? && (admin? || @user == current_user) %><%= link_to image_tag('edit.png'), edit_user_path(@user) %><% end %>
+  <% if admin_or_current_user?(@user) %>
+    <%= link_to image_tag('edit.png'), edit_user_path(@user) %>
+  <% end %>
 </h3>
 
 <div class="entry">
@@ -46,6 +48,23 @@
     
   <% if !@user.github_user.blank? %>
     <p><%= link_to "http://github.com/#{@user.github_user}", "http://github.com/#{@user.github_user}" %> <span class="tip">(github account)</span></p>
+  <% end %>
+  
+  <% if admin_or_current_user?( @user ) %>
+    <h6>Your purchases</h6>
+    <ul>
+      <% @user.carts.purchased.each do |cart| %>
+        <li>
+          <%= cart.purchased_at.to_s(:date) %> :
+          <% cart.events.each do |event| %>
+            <%= link_to event.name, event %>, 
+          <% end %>
+          (<%= cart.total_price_on_euros %> €)
+          <%= link_to 'View', cart %>
+        </li>
+      <% end %>
+    </ul>
+    
   <% end %>
   
 </div>

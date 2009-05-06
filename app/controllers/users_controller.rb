@@ -6,8 +6,6 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.xml
   def index
-  
-         
     if( !params[:search].blank? && params[:search] == 'speakers' )
       @users = User.ordered.speaker          if admin?
       @users = User.ordered.public_speaker   if !admin?

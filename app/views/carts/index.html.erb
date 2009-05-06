@@ -1,9 +1,9 @@
 <% title 'Payments' %>
 
 <div class="bar">
-  <%= link_to 'All', carts_path %>
+  <%= link_to 'All', carts_path( :params => { :page => '1' } ) %>
   <% Cart::STATUS.keys.each do |key| %>
-    | <%= link_to Cart::STATUS[key], carts_path( :params => { :status => Cart::STATUS[key] } ) %>
+    | <%= link_to Cart::STATUS[key], carts_path( :params => { :status => Cart::STATUS[key], :page => '1' } ) %>
     (<%= Cart.count(:conditions => {:status => Cart::STATUS[key]} ) %>)
   <% end %>
 </div>
@@ -13,6 +13,7 @@
 <div id="carts">
   <% @carts.each do |cart| %>
     <p>
+      (<%= cart.id %>)
       <strong><%= cart.user.name %></strong>
       at <%= cart.updated_at %>
       (<%= cart.status %>)
@@ -20,9 +21,10 @@
     </p>
 
     <div id="cart_<%= cart.id %>" class="box" style="display:none;">
+      <p><%= link_to 'Show', cart %></p>
       <p><strong>id:</strong> <%= cart.id %></p>
-      <p><strong>date create:</strong> <%= cart.created_at %></p>
-      <p><strong>date updated:</strong> <%= cart.updated_at %></p>
+      <p><strong>date create:</strong> <%= cart.created_at.to_s(:cool) %></p>
+      <p><strong>date updated:</strong> <%= cart.updated_at.to_s(:cool) %></p>
       <p><strong>user:</strong> <%= link_to cart.user.name, cart.user %></p>
       <p><strong>status:</strong> <%= cart.status %></p>
 
@@ -65,6 +67,10 @@
       </p>
     </div>
   <% end %>
+</div>
+
+<div class="pagination">
+  <p><% if @carts.respond_to?( 'total_pages' ) %><%= will_paginate @carts %><% end %></p>
 </div>
 
 <script>

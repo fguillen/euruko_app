@@ -61,4 +61,9 @@ module ApplicationHelper
     return link_to( web_url, web_url )    if web_name.empty? && !web_url.empty?
     return web_name                       if !web_name.empty? && web_url.empty?
   end
+  
+  
+  def admin_or_current_user?(user)
+    return (logged_in? && (admin? || user == current_user))
+  end
 end

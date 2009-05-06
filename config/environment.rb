@@ -83,3 +83,9 @@ Rails::Initializer.run do |config|
   # restful_authentication
   config.active_record.observers = :user_observer
 end
+
+# custom date formats
+ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.merge!(
+  :cool => "%A %d %B %Y at %H:%M %p",
+  :date => "%A %d %B %Y"
+)

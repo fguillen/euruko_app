@@ -345,7 +345,68 @@ class CartsControllerTest < ActionController::TestCase
     assert_not_nil( assigns(:carts) )
     assert( assigns(:carts).include?( carts(:cart_user1_event1_purchased) ) )
     assert( !assigns(:carts).include?( carts(:cart_user1_event2_not_purchased) ) )
-
-
   end
+  
+  def test_on_index_with_page_parameter_should_be_paginated
+    login_as users(:user_admin)
+    
+    get :index, :page => '1'
+    
+    assert_response :success
+    assert( assigns(:carts).respond_to?( 'total_pages' ) )
+  end
+  
+  def test_on_index_without_page_parameter_should_not_be_paginated
+    login_as users(:user_admin)
+    
+    get :index
+    
+    assert_response :success
+    assert( !assigns(:carts).respond_to?( 'total_pages' ) )
+  end
+  
+  def test_on_show_with_not_logged_user_should_redirect_to_login
+    get(
+      :show,
+      :id => carts(:cart_user1_event1_purchased).id
+    )
+    
+    assert_redirected_to new_session_path
+  end
+  
+  def test_on_show_with_not_valid_user_should_response_404
+    login_as users(:user2)
+    
+    get(
+      :show,
+      :id => carts(:cart_user1_event1_purchased).id
+    )
+    
+    assert_response 404
+  end
+
+  def test_on_show_with_valid_user_should_response_success
+    login_as users(:user1)
+    
+    get(
+      :show,
+      :id => carts(:cart_user1_event1_purchased).id
+    )
+    
+    assert_response :success
+    assert_not_nil( assigns(:cart) )
+  end
+  
+  def test_on_show_with_admin_should_response_success
+    login_as users(:user_admin)
+    
+    get(
+      :show,
+      :id => carts(:cart_user1_event1_purchased).id
+    )
+    
+    assert_response :success
+    assert_not_nil( assigns(:cart) )
+  end
+
 end

@@ -1,0 +1,30 @@
+<% title "Purchase for #{@cart.user.name} on #{@cart.purchased_at.to_s(:cool)}" %>
+
+<h3><%= yield(:title) %></h3>
+
+<p><strong>id:</strong> <%= @cart.id %></p>
+<p><strong>purchased at:</strong> <%= @cart.purchased_at.to_s(:cool) %></p>
+<p><strong>user:</strong> <%= link_to @cart.user.name, @cart.user %></p>
+<p><strong>status:</strong> <%= @cart.status %></p>
+<p><strong>transaction id:</strong> <%= @cart.transaction_id %></p>
+
+<h4>Events purchased</h4>
+<p>
+  <ul>
+    <% @cart.events.each do |event| %>
+      <li><%= link_to event.name, event %> (<%= event.price_euros %>€)</li>
+    <% end %>
+  </ul>
+</p>
+
+<h4>Total price</h4>
+<p><strong><%= @cart.total_price_on_euros %>€</strong></p>
+
+<!--
+<h4>Invoice</h4>
+<% if @cart.invoice %>
+  <%= link_to 'Download invoice', @cart.invoice %>
+<% else %>
+  <%= link_to 'Download invoice', invoices_path( :id => @cart.id ), :method => 'post'  %>
+<% end %>
+-->
