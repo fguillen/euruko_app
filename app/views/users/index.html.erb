@@ -69,3 +69,14 @@
 <div class="pagination">
   <p><% if @users.respond_to?( 'total_pages' ) %><%= will_paginate @users %><% end %></p>
 </div>
+
+<% if admin? %>
+  <h4>Export list</h4>
+  <p>
+    <ul>
+      <li><%= link_to 'PDF', formatted_users_path( params.merge( :page => nil, :format => :pdf ) ) %></li>
+      <li><%= link_to 'XML', formatted_users_path( params.merge( :page => nil, :format => :xml ) ) %></li>
+      <li><%= link_to 'CSV', formatted_users_path( params.merge( :page => nil, :format => :csv ) ) %></li>
+    </ul>
+  </p>
+<% end %>

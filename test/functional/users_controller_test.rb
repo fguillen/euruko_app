@@ -477,4 +477,41 @@ class UsersControllerTest < ActionController::TestCase
     assert_equal( 'other invoice info', @user.invoice_info )
     assert_redirected_to user_path(assigns(:user))
   end
+  
+  def test_on_index_with_not_user_with_csv_format
+    get(
+      :index,
+      :format => 'csv'
+    )
+
+    assert_response :success
+    assert_match( /#{users(:user1).name}/, @response.body )
+    assert_no_match( /#{users(:user1).email}/, @response.body )
+  end
+  
+  def test_on_index_with_valid_user_with_csv_format
+    login_as users(:user1)
+
+    get(
+      :index,
+      :format => 'csv'
+    )
+
+    assert_response :success
+    assert_match( /#{users(:user1).name}/, @response.body )
+    assert_no_match( /#{users(:user1).email}/, @response.body )
+  end
+  
+  def test_on_index_with_admin_user_with_csv_format
+    login_as users(:user_admin)
+
+    get(
+      :index,
+      :format => 'csv'
+    )
+
+    assert_response :success
+    assert_match( /#{users(:user1).name}/, @response.body )
+    assert_match( /#{users(:user1).email}/, @response.body )
+  end
 end

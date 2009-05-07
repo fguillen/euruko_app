@@ -66,4 +66,16 @@ module ApplicationHelper
   def admin_or_current_user?(user)
     return (logged_in? && (admin? || user == current_user))
   end
+  
+  def users_to_csv( users )
+    out = ""
+    
+    users.each_with_index do |user,index|
+      out += "#{"%03d" % index}, #{"%03d" % user.id}, #{user.name}"
+      out += ", #{user.email}"  if admin?
+      out += "\n"
+    end
+    
+    return out
+  end
 end

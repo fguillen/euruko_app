@@ -27,8 +27,10 @@ class UsersController < ApplicationController
     @users = @users.paginate( :page => params[:page] )  if params[:page]
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.xml  { render :xml => @users }
+      format.csv  { render :csv => @users, :layout => false }
+      format.pdf  { send_data( PDFGenerator.users_list(@users), :type => 'application/pdf' ) }
     end
   end
 
