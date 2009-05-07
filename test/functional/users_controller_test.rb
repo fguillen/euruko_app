@@ -514,4 +514,14 @@ class UsersControllerTest < ActionController::TestCase
     assert_match( /#{users(:user1).name}/, @response.body )
     assert_match( /#{users(:user1).email}/, @response.body )
   end
+  
+  def test_on_index_with_pdf_format
+    get(
+      :index,
+      :format => 'pdf'
+    )
+
+    assert_response :success
+    assert_equal( 'application/pdf', @response.content_type )
+  end
 end

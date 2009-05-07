@@ -78,4 +78,22 @@ module ApplicationHelper
     
     return out
   end
+  
+  def user_index_title
+    out = ""
+
+    if( !params[:search].blank? && params[:search] == 'speakers' )
+      out = 'Speakers'
+    elsif( 
+      !params[:search].blank? && 
+      params[:search] == 'event_attendees' &&
+      !params[:event_id].blank?
+    )
+      out = 'Attendees'
+    else
+      out = 'All Registered Users'
+    end
+    
+    return out
+  end
 end
