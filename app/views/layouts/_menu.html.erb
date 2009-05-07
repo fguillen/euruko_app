@@ -9,7 +9,9 @@
     <% end %>
     <%= menu_to 'People', users_path(:page => 1) %>
     <%= menu_to 'Blog', 'http://euruko2009.org' %>
-    <%= menu_to 'Help', static_page_path( 'help' ) %>
+    <% StaticPage.all.each do |static_page| %>
+      <%= menu_to static_page.title, static_page_path( static_page ) %>
+    <% end %>
   </ul>
 </div>
 

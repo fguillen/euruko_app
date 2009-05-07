@@ -1,0 +1,19 @@
+<% title "Editing Page: #{@static_page.title}" %>
+
+<h3><%= yield(:title) %></h3>
+
+<% form_for(@static_page) do |f| %>
+  <%= render :partial => 'form', :locals => { :f => f } %>
+
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<p class="notes">Fields marked with <span class="required">*</span> are required fields</p>
+
+<br/>
+
+<p>
+  <%= link_to "&laquo; Go back to the Page", @page %>
+</p>

@@ -1,6 +1,7 @@
 <ul>
   <li><%= link_to_unless_current 'Rooms', rooms_path %></li>
   <li><%= link_to_unless_current 'Events', events_path %></li>
+  <li><%= link_to_unless_current 'Pages', static_pages_path %></li>
   <li><%= link_to_unless_current 'Payments', carts_path( :page => '1' ) %></li>
   <li><%= link_to_unless_current 'Exceptions', :controller => 'logged_exceptions' %></li>
 </ul>

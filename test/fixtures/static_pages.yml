@@ -1,0 +1,6 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+static_page1:
+  title: title-1
+  content: content-1
+  permalink: permalink-1

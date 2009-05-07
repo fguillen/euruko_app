@@ -1,6 +1,6 @@
-<% title 'New Event' %>
+<% title 'New Page' %>
 
-<% form_for(@event) do |f| %>
+<% form_for(@static_page) do |f| %>
   <%= render :partial => 'form', :locals => { :f => f } %>
 
   <p>
@@ -11,5 +11,5 @@
 <p class="notes">Fields marked with <span class="required">*</span> are required fields</p>
 
 <p>
-  <%= link_to "&laquo; Go back to events", events_path %>
+  <%= link_to "&laquo; Go back to pages", static_pages_path %>
 </p>

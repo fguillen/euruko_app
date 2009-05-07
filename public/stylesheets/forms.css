@@ -24,6 +24,14 @@ textarea {
   padding: 5px;
   border: 1px solid #AAA;
   color: #555; }
+  
+textarea.large {
+  width: 75%;
+  height: 450px;
+  padding: 5px;
+  border: 1px solid #AAA;
+  color: #555; }
+
 
 input[type="text"]:focus, input[type="password"]:focus, textarea:focus {
   background: #FFFBCA;

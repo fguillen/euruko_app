@@ -1,5 +1,4 @@
 ActionController::Routing::Routes.draw do |map|
-
   map.root :controller => 'papers'
 
   # fguillen 2009-01-15: exception_notification
@@ -33,7 +32,6 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :rooms
   map.resources :events
-
   map.resource :calendar
   
   map.resources :carts, 
@@ -45,13 +43,10 @@ ActionController::Routing::Routes.draw do |map|
                 }
                 
   map.resource :session
-  
-  map.resources :static_pages, :only => :show
   map.resources :invoices, :only => :create
-  
   map.resources :location_searchs, :only => :create
-  
   map.resource  :avaliable_places_counter, :only => :show
+  map.resources :static_pages
 
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'

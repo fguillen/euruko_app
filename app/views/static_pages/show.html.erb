@@ -1,0 +1,13 @@
+<% title "#{@static_page.title}" %>
+
+<div class="entry">
+  <h3><%= yield(:title) %></h3>
+  <p><%= markdown( @static_page.content ) %></p>
+</div>
+
+<% if admin? %>
+  <p>
+    <%= link_to "&laquo; Go back to pages", static_pages_path %>
+    | <%= link_to 'Edit', edit_static_page_path(@static_page) %>
+  </p>
+<% end %>
