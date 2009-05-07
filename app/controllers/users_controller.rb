@@ -28,16 +28,9 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.xml { render :xml => @users }
-      format.csv { render :csv => @users, :layout => false }
-      format.pdf do 
-        send_data( 
-          PDFGenerator.users_list(@users, current_user), 
-          :type => 'application/pdf',
-          :filename => "people.pdf", # TODO: use the helper.user_index_title method
-          :disposition => 'inline'
-        )
-      end
+      format.xml  { render :xml => @users }
+      format.csv  { render :csv => @users, :layout => false }
+      format.pdf  { send_data( PDFGenerator.users_list(@users), :type => 'application/pdf' ) }
     end
   end
 
