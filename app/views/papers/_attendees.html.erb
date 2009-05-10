@@ -1,10 +1,15 @@
 <div id="attendee">
   <h6>Attendees (<%=h @paper.attendees.count %>)</h6>
-  <ul>
-    <% @paper.attendees.each do |attendee| %>
-      <li><%= attendee.user.name %></li>
-    <% end %>
-  </ul>
+  <%= link_to 'toogle', '#', :onclick => "$( '#attendees_list' ).slideToggle( 'fast' ); return false;"%>
+  <div id="attendees_list" style="display:none">
+    <p>
+    <ul>
+      <% @paper.attendees.each do |attendee| %>
+        <li><%= attendee.user.name %></li>
+      <% end %>
+    </ul>
+    </p>
+  </div>
 
   <span id='attendee_error'></span>
 
