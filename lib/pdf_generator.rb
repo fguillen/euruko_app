@@ -18,7 +18,7 @@ class PDFGenerator
     pdf.image( "#{RAILS_ROOT}/public/images/invoice_header.jpg" )
     
     # pdf.add_text_wrap( 100, pdf.y, 150, "#{APP_CONFIG[:seller_invoice_info]}", 14, :right )
-    pdf.text( APP_CONFIG[:seller_invoice_info], :font_size => 14, :left => 250, :justification => :left )
+    pdf.text( APP_CONFIG[:seller_invoice_info], :font_size => 14, :left => 210, :justification => :left )
     
     pdf.move_pointer( 50 )
     pdf.text( "Invoice ID: <b>#{APP_CONFIG[:invoices_serial_prefix]}#{invoice.serial}</b>" )
