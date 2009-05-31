@@ -23,9 +23,11 @@
 <h4>Invoice info</h4>
 <p><%= simple_format(@cart.invoice_info) %></p>
 
-<h4>Invoice</h4>
-<% if @cart.invoice %>
-  <%= link_to 'Download invoice', @cart.invoice.url_path %>
-<% else %>
-  <%= link_to 'Create invoice', invoices_path( :id => @cart.id ), :method => 'post'  %>
+<% if admin? %>
+  <h4>Invoice</h4>
+  <% if @cart.invoice %>
+    <%= link_to 'Download invoice', @cart.invoice.url_path %>
+  <% else %>
+    <%= link_to 'Create invoice', invoices_path( :id => @cart.id ), :method => 'post'  %>
+  <% end %>
 <% end %>
