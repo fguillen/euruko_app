@@ -137,4 +137,5 @@ class CartTest < ActiveSupport::TestCase
     
     @cart.send_twitter_notifications
   end
+  
 end

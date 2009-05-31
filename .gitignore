@@ -11,4 +11,6 @@ public/resources/*
 test/performance/tmp/
 public/paper_files
 public/paper_photos
+public/invoices
+tmp/invoices
 certs/*pem

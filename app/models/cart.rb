@@ -3,6 +3,8 @@ class Cart < ActiveRecord::Base
   has_many :events, :through => :carts_events
   
   belongs_to :user
+
+  has_one :invoice
   
   serialize :paypal_notify_params
   serialize :paypal_complete_params

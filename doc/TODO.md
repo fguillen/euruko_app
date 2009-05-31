@@ -21,6 +21,7 @@ TODOs
 * "Meanwhile on the others tracks:"
 * Exportar PDF de las charlas
 * Editor static pages
+* Campo serial de invoice debería tener el serial completo no sólo el entero: euruko-2009-0001
 
 ## xuanxu:
 * Pantalla últimos comentarios
