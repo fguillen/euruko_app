@@ -408,5 +408,17 @@ class CartsControllerTest < ActionController::TestCase
     assert_response :success
     assert_not_nil( assigns(:cart) )
   end
+  
+  def test_on_show_with_on_session_cart
+    login_as users(:user_admin)
+    
+    get(
+      :show,
+      :id => carts(:cart_user1_event2_not_purchased).id
+    )
+    
+    assert_response :success
+    assert_not_nil( assigns(:cart) )
+  end
 
 end

@@ -1,9 +1,15 @@
-<% title "Purchase for #{@cart.user.name} on #{@cart.purchased_at.to_s(:cool)}" %>
+<% if @cart.purchased_at %>
+  <% title "Purchase for #{@cart.user.name} on #{@cart.purchased_at.to_s(:cool)}" %>
+<% else %>
+  <% title "Created for #{@cart.user.name} on #{@cart.created_at.to_s(:cool)}" %>
+<% end %>
 
 <h3><%= yield(:title) %></h3>
 
 <p><strong>id:</strong> <%= @cart.id %></p>
-<p><strong>purchased at:</strong> <%= @cart.purchased_at.to_s(:cool) %></p>
+<% if @cart.purchased_at %>
+  <p><strong>purchased at:</strong> <%= @cart.purchased_at.to_s(:cool) %></p>
+<% end %>
 <p><strong>user:</strong> <%= link_to @cart.user.name, @cart.user %></p>
 <p><strong>status:</strong> <%= @cart.status %></p>
 <p><strong>transaction id:</strong> <%= @cart.transaction_id %></p>
@@ -23,7 +29,7 @@
 <h4>Invoice info</h4>
 <p><%= simple_format(@cart.invoice_info) %></p>
 
-<% if admin? %>
+<% if admin? and @cart.is_purchased? %>
   <h4>Invoice</h4>
   <% if @cart.invoice %>
     <%= link_to 'Download invoice', @cart.invoice.url_path %>
