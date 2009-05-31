@@ -9,6 +9,8 @@ class Invoice < ActiveRecord::Base
   validates_uniqueness_of :path
   validates_uniqueness_of :serial
   
+  before_destroy :delete_pdf_file
+  
   def url_path
     self.path.gsub( "#{RAILS_ROOT}//public", '' )
   end
@@ -44,4 +46,10 @@ class Invoice < ActiveRecord::Base
       return Kernel.sprintf( "%03d", 1 )
     end
   end
+  
+  private
+    
+    def delete_pdf_file
+      File.delete( self.path )  if File.exists?( self.path )
+    end
 end

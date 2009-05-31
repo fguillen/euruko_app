@@ -50,4 +50,15 @@ class InvoiceTest < ActiveSupport::TestCase
     
     assert_equal( "/invoices/myinvoice.pdf", invoice.url_path )
   end
+  
+  def test_on_destroy_delete_pdf_file
+    cart = Factory(:cart)
+    invoice = Invoice.print( cart )
+    
+    assert( File.exists?( invoice.path ) )
+    
+    invoice.destroy
+    
+    assert( !File.exists?( invoice.path ) )
+  end
 end
