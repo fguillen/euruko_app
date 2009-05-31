@@ -21,7 +21,7 @@ class PDFGenerator
     pdf.text( APP_CONFIG[:seller_invoice_info], :font_size => 14, :left => 210, :justification => :left )
     
     pdf.move_pointer( 50 )
-    pdf.text( "Invoice ID: <b>#{APP_CONFIG[:invoices_serial_prefix]}#{invoice.serial}</b>" )
+    pdf.text( "Invoice Number: <b>#{APP_CONFIG[:invoices_serial_prefix]}#{invoice.serial}</b>" )
     pdf.text( "Date: <b>#{invoice.date.strftime( '%d of %b of %Y' )}</b>" )
     pdf.text( "To:", :top => 1000 )
     
@@ -39,11 +39,11 @@ class PDFGenerator
     table_elements.data = []
     invoice.cart.events.each do |event|
       # puts "XX: event: #{event}"
-      table_elements.data << { "concept" => event.name, "price" => Utils.cents_to_euros(Utils.total_without_tax(event.price_cents)) }
+      table_elements.data << { "concept" => event.name, "price" => "#{Utils.cents_to_euros(Utils.total_without_tax(event.price_cents))} \x80" }
     end
     
     if invoice.cart.events.empty?
-      table_elements.data << { "concept" => "", "price" => "0" }
+      table_elements.data << { "concept" => "", "price" => "0€" }
     end
     
     table_elements.column_order = [ "concept", "price" ]
@@ -70,9 +70,9 @@ class PDFGenerator
     
     table_totals = PDF::SimpleTable.new
     table_totals.data = [
-      { "concept" => "Total", "price" => Utils.cents_to_euros(Utils.total_without_tax(invoice.cart.total_price)) },
-      { "concept" => "Tax #{APP_CONFIG[:tax_percent]}%", "price" => Utils.cents_to_euros(Utils.total_tax(invoice.cart.total_price)) },
-      { "concept" => "<b>Total + Tax</b>", "price" => Utils.cents_to_euros( invoice.cart.total_price ) }
+      { "concept" => "Total", "price" => "#{Utils.cents_to_euros(Utils.total_without_tax(invoice.cart.total_price))} \x80" },
+      { "concept" => "Tax #{APP_CONFIG[:tax_percent]}%", "price" => "#{Utils.cents_to_euros(Utils.total_tax(invoice.cart.total_price))} \x80" },
+      { "concept" => "<b>Total + Tax</b>", "price" => "#{Utils.cents_to_euros( invoice.cart.total_price )} \x80" }
     ]
     table_totals.column_order = [ "concept", "price" ]
     
