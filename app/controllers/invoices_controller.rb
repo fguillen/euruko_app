@@ -2,7 +2,6 @@ class InvoicesController < ApplicationController
   before_filter :login_required 
   
   def create
-    puts "XXX: create"
     @cart = Cart.find( params[:id] )                if admin?
     @cart = current_user.carts.find( params[:id] )  if !admin?
     

@@ -99,6 +99,6 @@ class PDFGenerator
     FileUtils.mkdir_p( File.dirname( invoice.path ) )
     File.open( invoice.path, 'w' ) { |f| f.write( pdf.render ) }
     
-    puts "XXX: printed invoice on: #{invoice.path}"
+    # puts "XXX: printed invoice on: #{invoice.path}"
   end
 end
