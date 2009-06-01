@@ -25,8 +25,8 @@ class PDFGenerator
     pdf.text( "Date: <b>#{invoice.date.strftime( '%d of %b of %Y' )}</b>" )
     pdf.text( "To:", :top => 1000 )
     
-    if invoice.cart.invoice_info
-      invoice.cart.invoice_info.each_line do |line|
+    if invoice.cart.user.invoice_info
+      invoice.cart.user.invoice_info.each_line do |line|
         pdf.text( "#{line}" )
       end
     end
@@ -38,7 +38,6 @@ class PDFGenerator
     table_elements = PDF::SimpleTable.new     
     table_elements.data = []
     invoice.cart.events.each do |event|
-      # puts "XX: event: #{event}"
       table_elements.data << { "concept" => event.name, "price" => "#{Utils.cents_to_euros(Utils.total_without_tax(event.price_cents))} \x80" }
     end
     

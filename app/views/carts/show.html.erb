@@ -27,7 +27,7 @@
 <p><strong><%= @cart.total_price_on_euros %>€</strong></p>
 
 <h4>Invoice info</h4>
-<p><%= simple_format(@cart.invoice_info) %></p>
+<p><%= simple_format(@cart.user.invoice_info) %></p>
 
 <% if admin? and @cart.is_purchased? %>
   <h4>Invoice</h4>

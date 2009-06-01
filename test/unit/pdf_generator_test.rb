@@ -7,7 +7,7 @@ class PDFGeneratorTest < ActiveSupport::TestCase
   
   def test_create_invoice
     cart = Factory(:cart)
-    cart.update_attribute( :invoice_info, "My Compaty\nMy street" )
+    cart.user.update_attribute( :invoice_info, "My Compaty\nMy street\n123456798H" )
     
     4.times do 
       cart.events << Factory(:event)
