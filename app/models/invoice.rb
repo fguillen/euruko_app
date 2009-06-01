@@ -38,7 +38,7 @@ class Invoice < ActiveRecord::Base
   end
   
   def self.get_next_serial
-    last_invoice = Invoice.find(:last, :select => 'serial', :order => 'serial desc')
+    last_invoice = Invoice.find(:first, :select => 'serial', :order => 'serial desc')
     
     if last_invoice
       return Kernel.sprintf( "%03d", (last_invoice.serial.to_i + 1) )

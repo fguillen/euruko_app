@@ -33,6 +33,26 @@ class InvoiceTest < ActiveSupport::TestCase
     assert_not_nil( invoice.date )
   end
   
+  def test_bug_on_the_third_invoice
+    cart = Factory(:cart)
+    
+    assert_difference "Invoice.count", 1 do
+      Invoice.print( cart )
+    end
+    
+    cart = Factory(:cart)
+    
+    assert_difference "Invoice.count", 1 do
+      Invoice.print( cart )
+    end
+    
+    cart = Factory(:cart)
+    
+    assert_difference "Invoice.count", 1 do
+      Invoice.print( cart )
+    end
+  end
+  
   # def test_threads
   #   
   #   100.times do
