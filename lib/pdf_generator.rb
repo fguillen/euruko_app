@@ -22,7 +22,8 @@ class PDFGenerator
     
     pdf.move_pointer( 50 )
     pdf.text( "Invoice Number: <b>#{APP_CONFIG[:invoices_serial_prefix]}#{invoice.serial}</b>" )
-    pdf.text( "Date: <b>#{invoice.date.strftime( '%d of %b of %Y' )}</b>" )
+    pdf.text( "Date: <b>#{Time.local(2009,5,29).strftime( '%d of %b of %Y' )}</b>" )
+    # pdf.text( "Date: <b>#{invoice.date.strftime( '%d of %b of %Y' )}</b>" )
     pdf.text( "To:", :top => 1000 )
     
     if invoice.cart.user.invoice_info
