@@ -29,11 +29,14 @@
 <h4>Invoice info</h4>
 <p><%= simple_format(@cart.user.invoice_info) %></p>
 
-<% if admin? and @cart.is_purchased? %>
-  <h4>Invoice</h4>
-  <% if @cart.invoice %>
-    <%= link_to 'Download invoice', @cart.invoice.url_path %>
-  <% else %>
-    <%= link_to 'Create invoice', invoices_path( :id => @cart.id ), :method => 'post'  %>
+<!-- Invoice creation closed -->
+<% if false %>
+  <% if admin? and @cart.is_purchased? %>
+    <h4>Invoice</h4>
+    <% if @cart.invoice %>
+      <%= link_to 'Download invoice', @cart.invoice.url_path %>
+    <% else %>
+      <%= link_to 'Create invoice', invoices_path( :id => @cart.id ), :method => 'post'  %>
+    <% end %>
   <% end %>
 <% end %>

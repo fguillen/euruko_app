@@ -50,6 +50,7 @@
     <p><%= link_to "http://github.com/#{@user.github_user}", "http://github.com/#{@user.github_user}" %> <span class="tip">(github account)</span></p>
   <% end %>
   
+
   <% if admin_or_current_user?( @user ) && !@user.carts.purchased.empty? %>
     <h6>Your purchases</h6>
     <ul>
@@ -64,7 +65,6 @@
         </li>
       <% end %>
     </ul>
-    
   <% end %>
   
 </div>
