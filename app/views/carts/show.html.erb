@@ -30,7 +30,7 @@
 <p><%= simple_format(@cart.user.invoice_info) %></p>
 
 <!-- Invoice creation closed -->
-<!--% if false %-->
+<% if false %>
   <% if admin? && @cart.is_purchased? %>
     <h4>Invoice</h4>
     <% if @cart.invoice %>
@@ -39,4 +39,4 @@
       <%= link_to 'Create invoice', invoices_path( :id => @cart.id ), :method => 'post'  %>
     <% end %>
   <% end %>
-<!--% end %-->
+<% end %>

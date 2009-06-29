@@ -5,11 +5,11 @@ class InvoicesController < ApplicationController
     @cart = Cart.find( params[:id] )                if admin?
     @cart = current_user.carts.find( params[:id] )  if !admin?
     
-    # # fguillen 2009-06-23: 
-    # # closing the invoice creation
-    # flash[:alert] = 'Invoice generation proccess has been closed.'
-    # redirect_to :controller => 'carts', :action => 'show', :id => @cart 
-    # return
+    # fguillen 2009-06-23: 
+    # closing the invoice creation
+    flash[:alert] = 'Invoice generation proccess has been closed.'
+    redirect_to :controller => 'carts', :action => 'show', :id => @cart 
+    return
     
     record_not_found and return  unless @cart.is_purchased?
     record_not_found and return  unless @cart.invoice.nil?
