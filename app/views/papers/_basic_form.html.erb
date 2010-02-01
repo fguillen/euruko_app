@@ -23,8 +23,8 @@
 <% if admin? %>
 
   <!-- datepicker -->
-  <link rel="stylesheet" href="http://ui.jquery.com/latest/themes/flora/flora.datepicker.css" type="text/css" media="screen" title="Flora (Default)">
-  <script src="http://ui.jquery.com/latest/ui/ui.datepicker.js"></script>
+  <%= stylesheet_link_tag '/jquery_datepicker/ui.datepicker.css', :media => 'screen, projection' %>
+  <%= javascript_include_tag '/jquery_datepicker/ui.datepicker.js' %>
   <!-- datepicker -->
 
   <div>
