@@ -86,7 +86,7 @@ Three differences between development and production:
 * **site_domain** Your production domain, used on static urls like email urls. ej: euruko2010.org
 * **site_name** ej: EuRuKo2010
 * **email_sender** ej: EuRuKo <info@euruko2009.org>
-* **email_notification_recipients**  Array with the emails to receive app notifications. ej: [fguillen.mail@gmail.com,pepe@pepe.com]
+* **email_notification_recipients**  Array with the emails to receive app notifications. ej: [f.@gmail.com,pepe@pepe.com]
 * **paypal_url** normally: https://www.paypal.com/cgi-bin/webscr
 * **paypal_seller** paypal username. ej: myuser@gmail.com
 * **paypal_cert_id** paypal cert id. ej: Z954BH8ATL6XC
