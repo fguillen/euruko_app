@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- root -->
+  <url>
+    <loc>http://127.0.0.1:3000</loc>
+    <lastmod>2010-08-09</lastmod>
+  </url>
+  <!-- calendar -->
+  <url>
+    <loc>http://127.0.0.1:3000/calendar</loc>
+    <lastmod>2010-08-09</lastmod>
+  </url>
+  <!-- talks -->
+  <!-- talks:index -->
+  <url>
+    <loc>http://127.0.0.1:3000/talks</loc>
+    <lastmod>2010-08-09</lastmod>
+  </url>
+  <!-- talks:each -->
+  <url>
+    <loc>http://127.0.0.1:3000/talks/1-paper-1</loc>
+    <lastmod>2010-08-09</lastmod>
+  </url>
+  <url>
+    <loc>http://127.0.0.1:3000/talks/2-paper-2</loc>
+    <lastmod>2010-08-09</lastmod>
+  </url>
+  <!-- people -->
+  <!-- people:all -->
+  <!-- people:all:index -->
+  <url>
+    <loc>http://127.0.0.1:3000/people?page=1</loc>
+    <lastmod>2010-08-09</lastmod>
+  </url>
+  <url>
+    <loc>http://127.0.0.1:3000/people?page=2</loc>
+    <lastmod>2010-08-09</lastmod>
+  </url>
+  <!-- people:all:each -->
+  <url>
+    <loc>http://127.0.0.1:3000/people/1-user-1</loc>
+    <lastmod>2010-08-09</lastmod>
+  </url>
+  <url>
+    <loc>http://127.0.0.1:3000/people/2-user-2</loc>
+    <lastmod>2010-08-09</lastmod>
+  </url>
+  <!-- people:attendees -->
+  <!-- people:attendees:index -->
+  <url>
+    <loc>http://127.0.0.1:3000/people?event_id=1&amp;page=1&amp;search=event_attendees</loc>
+    <lastmod>2010-08-09</lastmod>
+  </url>
+  <!-- people:speakers -->
+  <!-- people:speakers:index -->
+  <url>
+    <loc>http://127.0.0.1:3000/people?page=1&amp;search=speakers</loc>
+    <lastmod>2010-08-09</lastmod>
+  </url>
+  <!-- static_pages -->
+  <url>
+    <loc>http://127.0.0.1:3000/static_pages/static_page</loc>
+    <lastmod>2010-08-09</lastmod>
+  </url>
+</urlset>

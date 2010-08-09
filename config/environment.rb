@@ -27,6 +27,7 @@ Rails::Initializer.run do |config|
   config.gem 'will_paginate', :version => '~> 2.3.11', :source => 'http://gemcutter.org'
   config.gem 'pdf-writer', :lib => 'pdf/writer'
   config.gem 'bluecloth'
+  config.gem 'factory_girl', :source => 'http://gemcutter.org', :version => '1.2.4'
 
   # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
   # config.gem "sqlite3-ruby", :lib => "sqlite3"
