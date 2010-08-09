@@ -15,7 +15,7 @@
   end
 %>
 
-<div class="bar">
+<div class="bar" style="display:none">
   <p>
     <%= link_to 'Show All', users_path( :page => '1' ) %> 
     (<%= admin? ? User.count : User.public_profile.count %>) | 

@@ -37,11 +37,9 @@ class SitemapGenerator
       xml.comment! 'people'
       xml.comment! 'people:all'
       xml.comment! 'people:all:index'
-      (1..((User.ordered.activated.public_profile.count/User.per_page.to_f).ceil)).each do |page|
-        xml.url do
-          xml.loc "#{host}/people?page=#{page}"
-          xml.lastmod User.ordered.activated.public_profile.first(:order => 'updated_at desc').updated_at.to_date
-        end
+      xml.url do
+        xml.loc "#{host}/people"
+        xml.lastmod User.ordered.activated.public_profile.first(:order => 'updated_at desc').updated_at.to_date
       end
       
       xml.comment! 'people:all:each'
@@ -50,28 +48,7 @@ class SitemapGenerator
           xml.loc "#{host}/people/#{user.to_param}"
           xml.lastmod user.updated_at.to_date
         end
-      end
-      
-      xml.comment! 'people:attendees'
-      xml.comment! 'people:attendees:index'
-      if Event.count > 0
-        (1..((User.ordered.public_profile.has_paid( 1 ).count/User.per_page.to_f).ceil)).each do |page|
-          xml.url do
-            xml.loc "#{host}/people?event_id=1&page=#{page}&search=event_attendees"
-            xml.lastmod User.ordered.public_profile.has_paid( 1 ).first(:order => 'updated_at desc').updated_at.to_date
-          end
-        end
-      end
-      
-      xml.comment! 'people:speakers'
-      xml.comment! 'people:speakers:index'
-      (1..((User.ordered.public_speaker.count/User.per_page.to_f).ceil)).each do |page|
-        xml.url do
-          xml.loc "#{host}/people?page=#{page}&search=speakers"
-          xml.lastmod User.ordered.public_speaker.first(:order => 'updated_at desc').updated_at.to_date
-        end
-      end
-      
+      end      
       
       xml.comment! 'static_pages'
       StaticPage.all.each do |static_page|      

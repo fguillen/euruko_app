@@ -29,11 +29,7 @@
   <!-- people:all -->
   <!-- people:all:index -->
   <url>
-    <loc>http://127.0.0.1:3000/people?page=1</loc>
-    <lastmod>2010-08-09</lastmod>
-  </url>
-  <url>
-    <loc>http://127.0.0.1:3000/people?page=2</loc>
+    <loc>http://127.0.0.1:3000/people</loc>
     <lastmod>2010-08-09</lastmod>
   </url>
   <!-- people:all:each -->
@@ -43,18 +39,6 @@
   </url>
   <url>
     <loc>http://127.0.0.1:3000/people/2-user-2</loc>
-    <lastmod>2010-08-09</lastmod>
-  </url>
-  <!-- people:attendees -->
-  <!-- people:attendees:index -->
-  <url>
-    <loc>http://127.0.0.1:3000/people?event_id=1&amp;page=1&amp;search=event_attendees</loc>
-    <lastmod>2010-08-09</lastmod>
-  </url>
-  <!-- people:speakers -->
-  <!-- people:speakers:index -->
-  <url>
-    <loc>http://127.0.0.1:3000/people?page=1&amp;search=speakers</loc>
     <lastmod>2010-08-09</lastmod>
   </url>
   <!-- static_pages -->
