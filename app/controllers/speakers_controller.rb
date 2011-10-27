@@ -16,7 +16,7 @@ class SpeakersController < ApplicationController
     respond_to do |format|
       if @speaker.save
         format.html do
-          flash[:notice] = 'Speaker was successfully created.'          
+          flash[:notice] = 'Speaker was successfully created.'
           redirect_to( edit_paper_path(@paper) )
         end
         format.xml  { render :xml => @speaker, :status => :created, :location => @speaker }
@@ -56,6 +56,6 @@ class SpeakersController < ApplicationController
       end
     end
   end
-  
+
 
 end

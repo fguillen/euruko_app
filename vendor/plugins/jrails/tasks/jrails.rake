@@ -9,7 +9,7 @@ namespace :jrails do
 			puts "files copied successfully."
 		end
 	end
-	
+
 	namespace :install do
 		desc "Installs the jQuery and jRails javascripts to public/javascripts"
 		task :javascripts do

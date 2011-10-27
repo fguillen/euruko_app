@@ -5,7 +5,7 @@ class ForeignKeysTest < ActiveSupport::TestCase
     assert_raise(ActiveRecord::StatementInvalid) do
       Attendee.create(:user => users(:user1), :paper_id => 23)
     end
-    
+
     assert_raise(ActiveRecord::StatementInvalid) do
       Attendee.create(:user_id => 23, :paper => papers(:paper1))
     end
@@ -20,7 +20,7 @@ class ForeignKeysTest < ActiveSupport::TestCase
       Comment.create(:user_id => 23, :paper => papers(:paper1), :text => 'Just a Comment')
     end
   end
-  
+
   def test_paper_foreign_keys
     assert_raise(ActiveRecord::StatementInvalid) do
       Paper.create(
@@ -40,7 +40,7 @@ class ForeignKeysTest < ActiveSupport::TestCase
         :event_id   => -1
       )
     end
-    
+
     assert_raise(ActiveRecord::StatementInvalid) do
       CartsEvent.create(
         :cart_id    => -1,
@@ -48,7 +48,7 @@ class ForeignKeysTest < ActiveSupport::TestCase
       )
     end
   end
-  
+
   def test_resource_foreign_keys
     assert_raise(ActiveRecord::StatementInvalid) do
       Resource.create(:user => users(:user1), :paper_id => -1, :url => 'http://mi.url')
@@ -58,12 +58,12 @@ class ForeignKeysTest < ActiveSupport::TestCase
       Resource.create(:user_id => -1, :paper => papers(:paper1), :url => 'http://mi.url')
     end
   end
-  
+
   def test_speaker_foreign_keys
     assert_raise(ActiveRecord::StatementInvalid) do
       Speaker.create(:user => users(:user1), :paper_id => -1)
     end
-    
+
     assert_raise(ActiveRecord::StatementInvalid) do
       Speaker.create(:user_id => -1, :paper => papers(:paper1))
     end

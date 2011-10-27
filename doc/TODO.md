@@ -87,16 +87,16 @@ DONE
 * Al añadir ponente a charla hay que filtrar por públicos
 * Al añadir ponente a charla el listado de salir ordenado alfabéticamente
 * Speakers sólo son speakers si alguna de sus charlas está aceptada o confirmada.. vamos si es paper.visible?
-* Speakers salen duplicados.. creo que el join no está bien igual mola más un :include.. o meter un distinct.. 
+* Speakers salen duplicados.. creo que el join no está bien igual mola más un :include.. o meter un distinct..
 * ¿Qué pasa si un user tiene el perfil no-público y además es un speaker? -> no puede
 * Notificaciones por email: charla presentada
 * Al añadir recurso a charla la url del link no es correcta
 * YOURSITE en notificaciones de registro => modificar intentar que sea dinámico
 * El speaker no puede ver su propia charla
-* Al crear charla si no es Admin no debe ver los campos de room, fechas y demás.. 
+* Al crear charla si no es Admin no debe ver los campos de room, fechas y demás..
 * Avatares de gravatar
 * Urls amigables
-* Namescope para Paper.visible 
+* Namescope para Paper.visible
 * Capturar finds no encontrados y mandar a 404
 * Seguridad de acceso de sólo administradores
 * Seguridad en http://localhost:3000/logged_exceptions

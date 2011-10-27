@@ -5,7 +5,7 @@
 <div class="entry">
   <ul>
   <% @cart.events.each do |event| %>
-    <li>        
+    <li>
       <%= link_to event.name, event_path(event) %> (<%= event.price_euros %>€)
     </li>
   <% end %>
@@ -21,8 +21,8 @@
   <p>
     <%= simple_format @cart.invoice_info %>
   </p>
-  
+
   <br/>
-  
+
   <p><%= link_to "&laquo; Go back home", root_path %></p>
 </div>

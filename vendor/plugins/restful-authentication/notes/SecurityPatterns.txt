@@ -17,7 +17,7 @@ h2. Terms
 
 * Identification: Assign this visitor a name and an associated identity
   (picture, website, favorite pokemon, trust metric, security roles).
-  
+
   bq. "Behold. I am not Gandalf the Grey, whom you betrayed, I am Gandalf the White,
   who has returned from death." -- Tolkien
 
@@ -30,9 +30,9 @@ h2. Terms
   bq. "Of every tree of the garden thou mayest freely eat: But of the tree of
   the knowledge of good and evil, thou shalt not eat of it: for in the day that
   thou eatest thereof thou shalt surely die." -- Gen 2:16-17
-  
+
 * Trust: Confidence this visitor will act reliably.
-  
+
   bq. "A copper! A copper! How d'ya like that, boys? And we went for it. _I_ went
   for it. Treated him like a kid brother. And I was gonna split fifty-fifty with
   a copper." -- James Cagney, White Heat
@@ -58,7 +58,7 @@ h2. Terms
   Reservoir Dogs
 
 * Access control
-  
+
 ** Role
   * http://en.wikipedia.org/wiki/Role-based_access_control
   * "Role-Based Access Control FAQ":http://csrc.nist.gov/groups/SNS/rbac/faq.html
@@ -109,7 +109,7 @@ only let them post to Ye Flaming Pitte of Flamage.
 
 We can to reasonable satisfaction authenticate a token: only grant that
 identity to visitors who bear that token.  So this part is fine:
-  
+
     person   (token)<- identity
 
 But we have no control over authentication token - identity correspondence.
@@ -119,7 +119,7 @@ This part is broken:
 
 The only one who does have that control is the person behind that identity.
 They can reasonably guarantee
-  
+
     person ->(token)<- identity
 
 If that person is going to be in your community, they have an interest in their
@@ -127,20 +127,20 @@ identity: they want to be known as someone who isn't a punk, or doesn't troll,
 or does troll and better than anyone, or won't rat you out to the cops.  The
 actions of a person are moderated by their interest in maintaining their
 reputation:
-  
+
     past actions -> reputation ->person
 
 So give up authorization in favor of auditing and recoverability, and authorize
 based on reputation -- on the past behavior and vouchsafes offered by the
 identity,
-  
+
     reputation -> trust -> permissions ->actions
 
 They want to know that they have full control of their identity; among other
 things, privacy and an understanding that nobody can act without permission on
 their behalf. In fact, we can assure that only a token-holder can assume the
 corresponding identity:
-  
+
     person ->(token)<->identity ->(trust) actions ->reputation ->person
 
 poop
@@ -156,7 +156,7 @@ So we need to
 Instead of
 
   authorization -> user -> token -> identity
-  
+
 we assign roles based on
 
   authorization <- trust <- reputation <- identity <- token <- person

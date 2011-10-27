@@ -7,16 +7,16 @@ module AuthenticatedTestHelper
   def authorize_as(<%= file_name %>)
     @request.env["HTTP_AUTHORIZATION"] = <%= file_name %> ? ActionController::HttpAuthentication::Basic.encode_credentials(<%= table_name %>(<%= file_name %>).login, 'monkey') : nil
   end
-  
+
 <% if options[:rspec] -%>
   # rspec
   def mock_<%= file_name %>
     <%= file_name %> = mock_model(<%= class_name %>, :id => 1,
       :login  => 'user_name',
       :name   => 'U. Surname',
-      :to_xml => "<%= class_name %>-in-XML", :to_json => "<%= class_name %>-in-JSON", 
+      :to_xml => "<%= class_name %>-in-XML", :to_json => "<%= class_name %>-in-JSON",
       :errors => [])
     <%= file_name %>
-  end  
+  end
 <% end -%>
 end

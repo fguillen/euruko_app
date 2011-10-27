@@ -5,7 +5,7 @@ end
 
 class FindRandomTest < Test::Unit::TestCase
   fixtures :fr_users
-  
+
   def test_size_of_found_collection
     assert_equal 4, FrUser.random(4).size
   end

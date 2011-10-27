@@ -16,7 +16,7 @@ Story: Logging in
     Then  she should be at the new <%= controller_file_name %> page
      And  the page should look AWESOME
      And  she should see a <form> containing a textfield: Login, password: Password, and submit: 'Log in'
-  
+
   #
   # Log in successfully, but don't remember me
   #
@@ -29,7 +29,7 @@ Story: Logging in
     Then  she should see a notice message 'Logged in successfully'
      And  reggie should be logged in
      And  she should not have an auth_token cookie
-   
+
   Scenario: Logged-in <%= file_name %> who logs in should be the new one
     Given an activated <%= file_name %> named 'reggie'
      And  an activated <%= file_name %> logged in as 'oona'
@@ -39,7 +39,7 @@ Story: Logging in
     Then  she should see a notice message 'Logged in successfully'
      And  reggie should be logged in
      And  she should not have an auth_token cookie
-  
+
   #
   # Log in successfully, remember me
   #
@@ -54,11 +54,11 @@ Story: Logging in
      And  she should have an auth_token cookie
 	      # assumes fixtures were run sometime
      And  her session store should have <%= file_name %>_id: 4
-   
+
   #
   # Log in unsuccessfully
   #
-  
+
   Scenario: Logged-in <%= file_name %> who fails logs in should be logged out
     Given an activated <%= file_name %> named 'oona'
     When  she creates a singular <%= controller_file_name %> with login: 'oona', password: '1234oona', remember me: '1'
@@ -73,7 +73,7 @@ Story: Logging in
      And  she should not be logged in
      And  she should not have an auth_token cookie
      And  her session store should not have <%= file_name %>_id
-  
+
   Scenario: Log-in with bogus info should fail until it doesn't
     Given an activated <%= file_name %> named 'reggie'
     When  she creates a singular <%= controller_file_name %> with login: 'reggie', password: 'i_haxxor_joo'

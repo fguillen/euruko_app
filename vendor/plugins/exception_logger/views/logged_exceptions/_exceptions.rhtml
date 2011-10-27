@@ -26,8 +26,8 @@
 
 </td>
       <td nowrap=nowrap class="time">
-<% 
-if Date.today == exc.created_at.to_date 
+<%
+if Date.today == exc.created_at.to_date
 	if exc.created_at > Time.now - 4.hours
 	%>
 		<%= time_ago_in_words(exc.created_at).gsub(/about /,"~ ") %> ago

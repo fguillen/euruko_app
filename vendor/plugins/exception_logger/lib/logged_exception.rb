@@ -14,15 +14,15 @@ class LoggedException < ActiveRecord::Base
         :backtrace       => exception.backtrace,
         :request         => controller.request
     end
-    
+
     def find_exception_class_names
       connection.select_values "SELECT DISTINCT exception_class FROM #{table_name} ORDER BY exception_class"
     end
-    
+
     def find_exception_controllers_and_actions
       find(:all, :select => "DISTINCT controller_name, action_name", :order => "controller_name, action_name").collect(&:controller_action)
     end
-    
+
     def host_name
       `hostname -s`.chomp
     end
@@ -42,7 +42,7 @@ class LoggedException < ActiveRecord::Base
         env << '* ' + ("%-*s: %s" % [max.length, key, request.env[key].to_s.strip])
       end
       write_attribute(:environment, (env << "* Process: #{$$}" << "* Server : #{self.class.host_name}") * "\n")
-      
+
       write_attribute(:request, [
         "* URL:#{" #{request.method.to_s.upcase}" unless request.get?} #{request.protocol}#{request.env["HTTP_HOST"]}#{request.request_uri}",
         "* Format: #{request.format.to_s}",

@@ -12,4 +12,4 @@ h3. Authentication security projects for a later date
   (see "Secure Programs HOWTO":http://www.dwheeler.com/secure-programs/Secure-Programs-HOWTO/web-authentication.html)
 
 * Log HTTP request on authentication / authorization failures
-  http://palisade.plynt.com/issues/2004Jul/safe-auth-practices  
+  http://palisade.plynt.com/issues/2004Jul/safe-auth-practices

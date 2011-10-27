@@ -107,7 +107,7 @@ class StorageTest < Test::Unit::TestCase
           assert true
         end
       end
-      
+
       context "and remove" do
         setup do
           @s3_mock     = stub

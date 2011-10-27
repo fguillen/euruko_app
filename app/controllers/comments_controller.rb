@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
   before_filter :login_required
   before_filter :load_paper_by_paper_id
-  
+
   # POST /comments
   # POST /comments.xml
   def create
@@ -11,11 +11,11 @@ class CommentsController < ApplicationController
         :paper  => @paper,
         :user   => current_user
       )
-    
+
     respond_to do |format|
       if @comment.save
         logger.debug( "comentario guardado")
-        format.html do 
+        format.html do
           flash[:notice] = 'Comment was successfully created.'
           redirect_to paper_path(@paper)
         end
@@ -23,7 +23,7 @@ class CommentsController < ApplicationController
         format.js   { render :partial => 'papers/comment', :object => @comment }
       else
         logger.debug( "error en comentario: #{@comment.errors.full_messages}")
-        format.html do 
+        format.html do
           flash[:error] = 'Error when try to save the Comment.'
           render :template => 'papers/show'
         end
@@ -32,6 +32,6 @@ class CommentsController < ApplicationController
       end
     end
   end
-  
+
 
 end

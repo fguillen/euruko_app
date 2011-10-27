@@ -1,4 +1,4 @@
-## MYSQL  
+## MYSQL
 development:
   adapter: mysql
   encoding: utf8

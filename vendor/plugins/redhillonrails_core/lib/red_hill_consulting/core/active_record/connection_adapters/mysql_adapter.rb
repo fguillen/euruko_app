@@ -9,7 +9,7 @@ module RedHillConsulting::Core::ActiveRecord::ConnectionAdapters
     def set_table_comment(table_name, comment)
       execute "ALTER TABLE #{table_name} COMMENT='#{quote_string(comment)}'"
     end
-    
+
     def clear_table_comment(table_name)
       execute "ALTER TABLE #{table_name} COMMENT=''"
     end

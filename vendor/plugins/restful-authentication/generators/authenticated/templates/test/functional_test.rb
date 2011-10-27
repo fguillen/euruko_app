@@ -42,7 +42,7 @@ class <%= controller_class_name %>ControllerTest < ActionController::TestCase
     puts @response.cookies["auth_token"]
     assert @response.cookies["auth_token"].blank?
   end
-  
+
   def test_should_delete_token_on_logout
     login_as :quentin
     get :destroy
@@ -75,7 +75,7 @@ class <%= controller_class_name %>ControllerTest < ActionController::TestCase
     def auth_token(token)
       CGI::Cookie.new('name' => 'auth_token', 'value' => token)
     end
-    
+
     def cookie_for(<%= file_name %>)
       auth_token <%= table_name %>(<%= file_name %>).remember_token
     end

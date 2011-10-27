@@ -1,7 +1,7 @@
 # require File.dirname(__FILE__) + '/../test_helper'
-# 
+#
 # class PaymentNotificationsControllerTest < ActionController::TestCase
-#   
+#
 #   def test_create
 #     post(
 #       :create,
@@ -9,6 +9,6 @@
 #       :payment_status   => 'status',
 #       :txn_id           => 'txn_id'
 #     )
-#     
+#
 #   end
 # end

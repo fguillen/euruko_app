@@ -28,8 +28,8 @@ class StaticPagesControllerTest < ActionController::TestCase
     login_as users(:user_admin)
     assert_difference('StaticPage.count') do
       post(
-        :create, 
-        :static_page => { 
+        :create,
+        :static_page => {
           :title => 'static_page',
           :content => 'static_page content',
           :permalink => 'static_page_permalink'
@@ -45,8 +45,8 @@ class StaticPagesControllerTest < ActionController::TestCase
     login_as users(:user1)
     assert_difference('StaticPage.count', 0) do
       post(
-        :create, 
-        :static_page => { 
+        :create,
+        :static_page => {
           :title => 'static_page',
           :content => 'static_page content',
           :permalink => 'static_page permalink'
@@ -78,9 +78,9 @@ class StaticPagesControllerTest < ActionController::TestCase
   def test_on_update_with_admin_should_update_static_page
     @static_page = static_pages(:static_page1)
     login_as users(:user_admin)
-    
+
     put :update, :id => @static_page.permalink, :static_page => { :title => 'other_title' }
-    
+
     @static_page.reload
     assert_equal( 'other_title', @static_page.title)
     assert_not_nil( flash[:notice] )
@@ -91,7 +91,7 @@ class StaticPagesControllerTest < ActionController::TestCase
     @static_page = static_pages(:static_page1)
     login_as users(:user1)
     put :update, :id => @static_page.permalink, :static_page => { :title => 'other_title' }
-    
+
     @static_page.reload
     assert_not_equal( 'other_title', @static_page.title)
     assert_nil( flash[:notice] )
@@ -100,7 +100,7 @@ class StaticPagesControllerTest < ActionController::TestCase
 
   def test_on_destroy_with_admin_should_destroy_static_page
     login_as users(:user_admin)
-    
+
     assert_difference('StaticPage.count', -1) do
       delete :destroy, :id => static_pages(:static_page1).permalink
     end
@@ -108,15 +108,15 @@ class StaticPagesControllerTest < ActionController::TestCase
     assert_not_nil( flash[:notice] )
     assert_redirected_to static_pages_path
   end
-  
+
   def test_on_destroy_with_not_admin_should_response_404
     login_as users(:user1)
-    
+
     assert_difference('StaticPage.count', 0) do
       delete :destroy, :id => static_pages(:static_page1).permalink
     end
 
-    
+
     assert_nil( flash[:notice] )
     assert_response 404
   end

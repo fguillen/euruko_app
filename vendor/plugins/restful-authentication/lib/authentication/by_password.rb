@@ -5,7 +5,7 @@ module Authentication
       recipient.extend(ModelClassMethods)
       recipient.class_eval do
         include ModelInstanceMethods
-        
+
         # Virtual attribute for the unencrypted password
         attr_accessor :password
         validates_presence_of     :password,                   :if => :password_required?
@@ -33,25 +33,25 @@ module Authentication
           digest = secure_digest(digest, salt, password, REST_AUTH_SITE_KEY)
         end
         digest
-      end      
+      end
     end # class methods
 
     #
     # Instance Methods
     #
     module ModelInstanceMethods
-      
+
       # Encrypts the password with the user salt
       def encrypt(password)
         self.class.password_digest(password, salt)
       end
-      
+
       def authenticated?(password)
         # logger.debug( "#{crypted_password} == #{encrypt(password)}")
         crypted_password == encrypt(password)
       end
-      
-      # before filter 
+
+      # before filter
       def encrypt_password
         return if password.blank?
         self.salt = self.class.make_token if new_record?

@@ -5,7 +5,7 @@ New purchase.
 * date updated: <%= @cart.updated_at %>
 * user: <%= @cart.user.name %>
 * status: <%= @cart.status %>
-* events: 
+* events:
 <% @cart.events.each do |event| -%>
   * <%= event.name %>
 <% end -%>

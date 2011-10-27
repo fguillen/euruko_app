@@ -7,7 +7,7 @@ class LoggedExceptionsController < ActionController::Base
     @controller_actions = LoggedException.find_exception_controllers_and_actions
 
     query
-    
+
     respond_to do |format|
       format.html { render :action => 'index' unless action_name == 'index' }
       format.js   { render :action => 'query.rjs'  }
@@ -42,12 +42,12 @@ class LoggedExceptionsController < ActionController::Base
     end
     if $PAGINATION_TYPE == 'will_paginate' then
       logger.debug( "---------aqui" )
-			@exceptions = LoggedException.paginate :order => 'created_at desc', :per_page => 30, 
+			@exceptions = LoggedException.paginate :order => 'created_at desc', :per_page => 30,
       :conditions => conditions.empty? ? nil : parameters.unshift(conditions * ' and '), :page => params[:page]
 		elsif $PAGINATION_TYPE == 'paginating_find' then
 			params[:limit] ||= 25
 			params[:page] ||= 1
-			@exceptions = LoggedException.find (:all,:order => 'created_at desc',:page => {:size => params[:limit], :current => params[:page]}, 
+			@exceptions = LoggedException.find (:all,:order => 'created_at desc',:page => {:size => params[:limit], :current => params[:page]},
       :conditions => conditions.empty? ? nil : parameters.unshift(conditions * ' and '))
 		else
 			#we have no pagination so do basic sql pagination
@@ -59,18 +59,18 @@ class LoggedExceptionsController < ActionController::Base
 			end
 			@exceptions = LoggedException.find(:all, :limit => "#{page},#{params[:limit]}", :conditions => conditions.empty? ? nil : parameters.unshift(conditions * ' and '))
 		end
-    
+
 
   end
-  
+
   def show
     @exc = LoggedException.find params[:id]
   end
-  
+
   def destroy
     LoggedException.destroy params[:id]
   end
-  
+
   def destroy_all
     LoggedException.delete_all ['id in (?)', params[:ids]] unless params[:ids].blank?
     query
@@ -88,6 +88,6 @@ class LoggedExceptionsController < ActionController::Base
     def get_auth_data
       auth_key  = @@http_auth_headers.detect { |h| request.env.has_key?(h) }
       auth_data = request.env[auth_key].to_s.split unless auth_key.blank?
-      return auth_data && auth_data[0] == 'Basic' ? Base64.decode64(auth_data[1]).split(':')[0..1] : [nil, nil] 
+      return auth_data && auth_data[0] == 'Basic' ? Base64.decode64(auth_data[1]).split(':')[0..1] : [nil, nil]
     end
 end

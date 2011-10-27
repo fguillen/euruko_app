@@ -7,8 +7,8 @@ describe UsersHelper do
   before do
     @user = mock_user
   end
-  
-  describe "if_authorized" do 
+
+  describe "if_authorized" do
     it "yields if authorized" do
       should_receive(:authorized?).with('a','r').and_return(true)
       if_authorized?('a','r'){|action,resource| [action,resource,'hi'] }.should == ['a','r','hi']
@@ -18,7 +18,7 @@ describe UsersHelper do
       if_authorized?('a','r'){ 'hi' }.should be_nil
     end
   end
-  
+
   describe "link_to_user" do
     it "should give an error on a nil user" do
       lambda { link_to_user(nil) }.should raise_error('Invalid user')

@@ -13,7 +13,7 @@ class CreateCarts < ActiveRecord::Migration
       t.timestamps
     end
   end
-  
+
   def self.down
     drop_table :carts
   end

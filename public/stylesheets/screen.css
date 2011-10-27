@@ -1,4 +1,4 @@
-/*---  screen.css  ---*/ 
+/*---  screen.css  ---*/
 
 body {
   background-color: #FFF;
@@ -71,7 +71,7 @@ h5 {
   font-family: Georgia, sans-serif;
   font-size: 140%;
   margin: 0px; }
-  
+
 h6 {
   font-size: 80%;
   text-transform: uppercase;
@@ -81,7 +81,7 @@ h6 {
 a {
   color: #7D0707;
   text-decoration: none;
-  border-bottom: 1px solid #DBD6D1; }  
+  border-bottom: 1px solid #DBD6D1; }
 
 a:hover {
   color: #D50202;
@@ -108,14 +108,14 @@ hr {
   margin: 20px 0 0 0; }
 
 
-/*--- main ---*/  
+/*--- main ---*/
 
 #logo {
   margin: 10px 0 15px 0; }
 
 #cover {
   margin-bottom: 15px; }
-  
+
 #content-wrapper {
   float: left;
   width: 580px; }
@@ -127,7 +127,7 @@ hr {
   color: #111;
   margin: 24px 0 18px 0; }
 
-/*--- sidebar ---*/  
+/*--- sidebar ---*/
 
 #sidebar-wrapper {
   float: right;
@@ -149,7 +149,7 @@ hr {
   line-height: 1.4em; }
 
 
-/*--- article ---*/ 
+/*--- article ---*/
 
 .entry {
   margin-bottom: 1em;
@@ -190,7 +190,7 @@ hr {
   margin: 0 2px -4px 0;
   text-decoration: none;
   float: none; }
-  
+
 .tiny-actions {
   margin-top: 2px;
   clear: both; }
@@ -224,7 +224,7 @@ hr {
 
 #extra em {
   font-style: italic; }
-  
+
 #extra #register-button {
   float: left;
   margin: 12px 20px 15px 5px; }
@@ -254,7 +254,7 @@ hr {
 
 .spot p {
   font-family: Verdana, sans-serif;
-  font-size: 11px; 
+  font-size: 11px;
   color: #333333;
   margin-top: 0px; }
 
@@ -267,7 +267,7 @@ hr {
   border: 1px solid #dbd6d1;
   background-color: #efedeb;
   margin-bottom: 20px; }
-  
+
 .box span { font-weight: bold; }
 
 .box h3 {
@@ -279,8 +279,8 @@ hr {
 
 .box input.email {
   font-size: 10px;
-  padding: 3px; 
-  color: #a29e96; 
+  padding: 3px;
+  color: #a29e96;
   width: 140px; }
 
 .box input.subscribe {
@@ -324,7 +324,7 @@ hr {
 
 .pagination {
   clear: both; }
-  
+
 .more {
   font-size: 85%;
   margin: 25px 0; }
@@ -367,7 +367,7 @@ hr {
 .comment p {
   margin-left: 50px; }
 
-/*--- footer ---*/ 
+/*--- footer ---*/
 
 #footer-wrapper {
   margin: 0 auto;
@@ -381,7 +381,7 @@ hr {
   color: #595452;
   font-family: "Lucida Grande", Verdana, Helvetica, Arial, sans-serif; }
 
-/*--- navigation  ---*/ 
+/*--- navigation  ---*/
 
 #header {
   background: transparent url(/images/nav-background.png) repeat-x top left;
@@ -439,7 +439,7 @@ hr {
   font-size: 11px;
   float: right;
   margin-right: 10px; }
-  
+
 .bar {
   margin-top: 8px; }
 
@@ -481,7 +481,7 @@ hr {
 .ui-datepicker .ui-datepicker-title { margin: 0 2.3em; line-height: 1.8em; text-align: center; }
 .ui-datepicker .ui-datepicker-title select { float:left; font-size:1em; margin:1px 0; }
 .ui-datepicker select.ui-datepicker-month-year {width: 100%;}
-.ui-datepicker select.ui-datepicker-month, 
+.ui-datepicker select.ui-datepicker-month,
 .ui-datepicker select.ui-datepicker-year { width: 49%;}
 .ui-datepicker .ui-datepicker-title select.ui-datepicker-year { float: right; }
 .ui-datepicker table {width: 100%; font-size: .9em; border-collapse: collapse; margin:0 0 .4em; }
@@ -491,7 +491,7 @@ hr {
 .ui-datepicker .ui-datepicker-buttonpane { background-image: none; margin: .7em 0 0 0; padding:0 .2em; border-left: 0; border-right: 0; border-bottom: 0; }
 .ui-datepicker .ui-datepicker-buttonpane button { float: right; margin: .5em .2em .4em; cursor: pointer; padding: .2em .6em .3em .6em; width:auto; overflow:visible; }
 .ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-current { float:left; }
-  
+
 .ui-datepicker-cover {
     display: none; /*sorry for IE5*/
     display/**/: block; /*sorry for IE5*/

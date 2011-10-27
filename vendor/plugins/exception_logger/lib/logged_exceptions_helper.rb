@@ -6,7 +6,7 @@ module LoggedExceptionsHelper
   def pagination_remote_links(collection)
 		ret = ''
 		if $PAGINATION_TYPE == 'will_paginate'
-			pagination = will_paginate (collection, 
+			pagination = will_paginate (collection,
 				:renderer   => 'LoggedExceptionsHelper::PaginationRenderer',
 				:prev_label => '',
 				:next_label => '',
@@ -25,11 +25,11 @@ module LoggedExceptionsHelper
 				prev_page = params[:page].to_i - 1
 				prev_link = "<a href=\"?page=#{prev_page}\"> Previous page</a>"
 			end
-			next_link = "<a href=\"?page=#{next_page}\">Next page</a>"		
+			next_link = "<a href=\"?page=#{next_page}\">Next page</a>"
 			ret = "Pagination not available#{prev_link} - #{next_link}"
 		end
   end
-	
+
   if $PAGINATION_TYPE == 'will_paginate'
 		class PaginationRenderer < WillPaginate::LinkRenderer
 			def page_link_or_span(page, span_class = 'current', text = nil)

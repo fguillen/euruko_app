@@ -15,7 +15,7 @@ test:
   seller_invoice_info: "Name Company \nAddress Company with éxtraños carácteres \nG65037772"
   invoices_pdf_path: /tmp/invoices
   invoices_serial_prefix: euruko-2009-
-  
+
 development:
   site_domain: 127.0.0.1:3000
   site_name: EuRuKo_development
@@ -33,7 +33,7 @@ development:
   seller_invoice_info: "Name Company \nAddress Company with éxtraños carácteres \nG65037772"
   invoices_pdf_path: /public/invoices
   invoices_serial_prefix: euruko-2009-
-    
+
 production:
   site_domain: eurukostaging.fernandoguillen.info
   site_name: EuRuKo

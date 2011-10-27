@@ -228,5 +228,5 @@
         formatted_location_searchs POST   /location_searchs.:format                   {:controller=>"location_searchs", :action=>"create"}
           avaliable_places_counter GET    /avaliable_places_counter                   {:controller=>"avaliable_places_counters", :action=>"show"}
 formatted_avaliable_places_counter GET    /avaliable_places_counter.:format           {:controller=>"avaliable_places_counters", :action=>"show"}
-                                          /:controller/:action/:id                    
-                                          /:controller/:action/:id.:format            
+                                          /:controller/:action/:id
+                                          /:controller/:action/:id.:format

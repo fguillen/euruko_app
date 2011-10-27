@@ -24,7 +24,7 @@ module GreenRiver #:nodoc:
           options.delete(:limit)
           options.delete(:order)
           sql = construct_finder_sql(options)
-          all_ids = connection.select_all(sql, "#{name} Load IDs (find_random plugin)").collect!{|r| r['id']} 
+          all_ids = connection.select_all(sql, "#{name} Load IDs (find_random plugin)").collect!{|r| r['id']}
           find(Array.new([limit, all_ids.length].min){|i| all_ids.delete_at(rand(all_ids.length - 1))})
         end
       end

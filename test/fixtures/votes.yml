@@ -6,7 +6,7 @@ vote1:
   user: user1
   paper: paper1
   points: 1
-  
+
 vote2:
   user: user2
   paper: paper1

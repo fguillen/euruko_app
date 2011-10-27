@@ -4,6 +4,6 @@ class PasswordResetCode < ActiveRecord::Migration
   end
 
   def self.down
-    remove_column "users", "password_reset_code" 
+    remove_column "users", "password_reset_code"
   end
 end

@@ -1,10 +1,10 @@
 if ARGV[0].nil?
-  puts "Indica la ruta al fichero" 
+  puts "Indica la ruta al fichero"
   exit
 end
 
 if not File.exists?(ARGV[0])
-  puts "Fichero no encontrado: #{ARGV[0]}" 
+  puts "Fichero no encontrado: #{ARGV[0]}"
   exit
 end
 
@@ -20,7 +20,7 @@ File.open(ARGV[0]).read.each do |line|
 
     line = "  " + line + "\n"
   end
-  
+
   result << line
 end
 

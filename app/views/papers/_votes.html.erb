@@ -3,10 +3,10 @@
 
 <% (1..5).each do |points| %>
   <% if @vote.nil? || (@vote.points != points) %>
-    <%= 
+    <%=
       link_to_remote(
-        "#{points} #{labels[points-1]}", 
-        :url => paper_votes_path( @paper, :points => points ), 
+        "#{points} #{labels[points-1]}",
+        :url => paper_votes_path( @paper, :points => points ),
         :method => 'post',
         :update => { :success => "valorations", :failure => "error" },
         :loading => "$('#valoration_loading').show()",

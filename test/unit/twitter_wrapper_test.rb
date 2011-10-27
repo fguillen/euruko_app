@@ -5,7 +5,7 @@ class TwitterWrapperTest < ActiveSupport::TestCase
     Net::HTTP.any_instance.expects(:request).returns( Net::HTTPSuccess.new( nil, nil, nil ) ).once
     assert_equal( "OK", TwitterWrapper.post( "yes we can.." ) )
   end
-  
+
   # def test_on_post_when_error_should_raise_exception
   #   Net::HTTP.any_instance.expects(:request).returns( Net::HTTPUnauthorized.new( nil, nil, nil ) ).once
   #   assert_raise( Net::HTTPServerException ) { TwitterWrapper.post( "yes we can.." ) }

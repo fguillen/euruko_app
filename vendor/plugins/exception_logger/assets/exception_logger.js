@@ -4,7 +4,7 @@ ExceptionLogger = {
     $('#page').val(num);
     $('#query-form').submit();
   },
-  
+
   setFilter: function(context, name) {
     var filterName = '#' + context + '_filter'
     $(filterName).value = ($(filterName).val() == name) ? '' : name;
@@ -19,7 +19,7 @@ ExceptionLogger = {
       a.className = (value && (a.getAttribute('title') == value || a.innerHTML == value)) ? 'selected' : '';
     });
   },
-  
+
   deleteAll: function() {
     return $('#query-form').serialize() + '&' + jQuery.map($('tr.exception'), function(tr) { return 'ids[]=' + tr.id.replace(/^\w+-/, '') }).join('&');
   }
@@ -34,5 +34,5 @@ $(document).ready(function(){
 
 $("#activity")
   .ajaxStart(function(){ $(this).show(250); })
-  .ajaxStop(function(){ $(this).hide(250); }); 
+  .ajaxStop(function(){ $(this).hide(250); });
 

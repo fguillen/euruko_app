@@ -10,28 +10,28 @@
 
   <p><%= f.label :name, "Name", :required => true %> <span class="example">Jorge Perez</span><br/>
   <%= f.text_field :name %></p>
-  
+
   <p><%= f.label :email, "Email" %> <span class="example">If you wanna change it contact with us</span><br/>
   <%= @user.email %></p>
 
   <p><%= f.label :text, "Text" %> <span class="example">Tell us something about you</span><br/>
   <%= f.text_area :text %></p>
-  
+
   <p><%= f.label :avatar, "Avatar" %><br/>
   If you are looking where you can set your avatar, look here:
   <%= link_to 'Gravatar', 'http://gravatar.com', :title => 'Gravatar, globally recognized avatar', :target => '_blank' %></p>
-    
+
   <p><%= f.label :location_name, "Your City/Town" %> <span class="example">Madrid, Spain</span><br/>
   <%= f.text_field :location_name %></p>
   <span id='location_search_loading' style="display:none"><%= image_tag 'spinner.gif' %></span>
   <div id="location_search_places" style="display:none"></div>
-  
+
   <p><%= f.label :location_country, "Your Country" %> <span class="example">Spain</span><br/>
   <%= f.text_field :location_country %></p>
-  
-  <%= 
+
+  <%=
     observe_field(
-      :user_location_name, 
+      :user_location_name,
       :url        => location_searchs_path,
       :method     => :post,
       :frequency  => 0.5,
@@ -41,33 +41,33 @@
       :with       => 'query'
     )
   %>
-  
-    
-  
+
+
+
   <p><%= f.label :personal_web_name, "Homepage Title" %> <span class="example">My Awesome Page</span><br />
   <%= f.text_field :personal_web_name %></p>
-  
+
   <p><%= f.label :personal_web_url, "Homepage URL" %> <span class="example">http://my-awesome-web.com</span><br />
   <%= f.text_field :personal_web_url %></p>
-  
+
   <p><%= f.label :company_name, "Company Name" %> <span class="example">My Company</span><br />
   <%= f.text_field :company_name %></p>
-  
+
   <p><%= f.label :company_url, "Company Url" %> <span class="example">http://my-company.com</span><br />
   <%= f.text_field :company_url %></p>
-  
+
   <p><%= f.label :twitter_user, 'Twitter User' %> <span class="example">my-twitter-user</span><br />
   <%= f.text_field :twitter_user %></p>
-  
+
   <p><%= f.label :github_user, 'Github User' %> <span class="example">my-github-user</span><br />
   <%= f.text_field :github_user %></p>
 
   <p><%= f.check_box :public_profile %>
   <%= f.label 'public_profile', 'Public Profile' %> <span class="example">Email and Invoice Info will not be shown</span></p>
-  
+
   <p><%= f.check_box :change_password, :onchange => "toggle_change_password_fields()" %>
   <%= f.label 'change_password', 'Change Password' %></p>
-  
+
   <div id="change_password_fields" style="display:<%= @user.change_password ? "inline" : "none" %>">
     <p><%= f.label :password, "New Password" %><br/>
     <%= f.password_field :password %></p>
@@ -75,17 +75,17 @@
     <p><%= f.label :password_confirmation, 'Confirm New Password' %><br/>
     <%= f.password_field :password_confirmation %></p>
   </div>
-  
+
   <p><%= f.label :invoice_info, "Invoice Info" %> <span class="example">Bussiness Details (Full Name, Address, VAT number, etc)</span><br/>
   <%= f.text_area :invoice_info %></p>
-  
+
   <% if admin? %>
     <p><%= f.label :role, "Role" %><br />
     <%= select( "user", "role", User::ROLE.values ) %></p>
   <% end %>
-  
+
   <br/>
-  
+
   <p>
     <%= f.submit "Update" %>
   </p>
@@ -103,6 +103,6 @@
       $('#user_password_confirmation').val('');
     }
   }
-  
+
   $(document).ready( function(){ toggle_change_password_fields(); } );
 </script>

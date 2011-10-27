@@ -11,8 +11,8 @@
     <%= stylesheet_link_tag 'forms', :media => 'screen, projection' %>
     <%= stylesheet_link_tag 'print', :media => 'print' %>
 
-    <!--[if IE]> 
-      <%= stylesheet_link_tag 'ie', :media => "screen, projection" %>  
+    <!--[if IE]>
+      <%= stylesheet_link_tag 'ie', :media => "screen, projection" %>
     <![endif]-->
 
     <%= javascript_include_tag :defaults %>
@@ -31,20 +31,20 @@
         <% flash.each do |name, msg| %>
           <%= content_tag :div, msg, :id => name %>
         <% end %>
-      
+
         <div id="content-wrapper" class="span-16">
           <div id="content">
             <div id="logo"><%= image_tag 'logo.png' %></div>
             <%= yield %>
           </div>
         </div>
-      
+
         <div id="sidebar-wrapper">
-          <div id="sidebar">      
+          <div id="sidebar">
             <%= render :partial => 'layouts/sidebar' %>
           </div>
         </div>
-        
+
         <div class="clear"></div>
       </div>
 

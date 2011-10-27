@@ -9,19 +9,19 @@ class UsersController < ApplicationController
     if( !params[:search].blank? && params[:search] == 'speakers' )
       @users = User.ordered.speaker          if admin?
       @users = User.ordered.public_speaker   if !admin?
-      
-    elsif( 
-      !params[:search].blank? && 
+
+    elsif(
+      !params[:search].blank? &&
       params[:search] == 'event_attendees' &&
       !params[:event_id].blank?
     )
       @users = User.ordered.has_paid( params[:event_id] )                 if admin?
       @users = User.ordered.public_profile.has_paid( params[:event_id] )  if !admin?
-      
+
     else
       @users = User.ordered                            if admin?
       @users = User.ordered.activated.public_profile   if !admin?
-      
+
     end
 
     @users = @users.paginate( :page => params[:page] )  if params[:page]
@@ -30,9 +30,9 @@ class UsersController < ApplicationController
       format.html
       format.xml { render :xml => @users }
       format.csv { render :csv => @users, :layout => false }
-      format.pdf do 
-        send_data( 
-          PDFGenerator.users_list(@users, current_user), 
+      format.pdf do
+        send_data(
+          PDFGenerator.users_list(@users, current_user),
           :type => 'application/pdf',
           :filename => "people.pdf", # TODO: use the helper.user_index_title method
           :disposition => 'inline'
@@ -59,12 +59,12 @@ class UsersController < ApplicationController
     @user = User.new
     @user.public_profile = true
   end
- 
+
   def create
     logout_keeping_session!
-    
+
     @user = User.new(params[:user])
-    
+
     success = @user && @user.save
     if success && @user.errors.empty?
       redirect_back_or_default('/')
@@ -86,12 +86,12 @@ class UsersController < ApplicationController
     when params[:activation_code].blank?
       flash[:error] = "The activation code was missing.  Please follow the URL from your email."
       redirect_back_or_default('/')
-    else 
+    else
       flash[:error]  = "We couldn't find a user with that activation code -- check your email? Or maybe you've already activated -- try signing in."
       redirect_back_or_default('/')
     end
   end
-  
+
   # GET /users/1/edit
   def edit
   end
@@ -106,7 +106,7 @@ class UsersController < ApplicationController
     end
 
     logger.info("XXX:2: #{params[:user][:password]}")
-    
+
     if admin? && params[:user][:role]
       @user.role = params[:user][:role]
     end
@@ -128,7 +128,7 @@ class UsersController < ApplicationController
     if @user = User.activated.find_by_email(params[:email])
       @user.forgot_password
       redirect_to(login_path)
-      flash[:notice] = "You will receive an email to reset your password." 
+      flash[:notice] = "You will receive an email to reset your password."
     else
       flash[:error] = "No user activated found with email #{params[:email]}"
     end
@@ -136,8 +136,8 @@ class UsersController < ApplicationController
 
   def reset_password
     @user = User.activated.find_by_password_reset_code(params[:id])  unless params[:id].nil?
-    
-    if @user.nil? 
+
+    if @user.nil?
       record_not_found
     else
       return unless request.post? && !params[:password].blank?
@@ -150,12 +150,12 @@ class UsersController < ApplicationController
       end
     end
   end
-  
+
   private
     def load_user
       @user = User.find(params[:id])
     end
-    
+
     def should_be_current_user_or_admin
       if( !admin? and current_user != @user )
         record_not_found
