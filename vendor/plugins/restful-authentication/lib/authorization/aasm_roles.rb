@@ -3,7 +3,7 @@ module Authorization
     unless Object.constants.include? "STATEFUL_ROLES_CONSTANTS_DEFINED"
       STATEFUL_ROLES_CONSTANTS_DEFINED = true # sorry for the C idiom
     end
-    
+
     def self.included( recipient )
       recipient.extend( StatefulRolesClassMethods )
       recipient.class_eval do
@@ -20,15 +20,15 @@ module Authorization
         aasm_event :register do
           transitions :from => :passive, :to => :pending, :guard => Proc.new {|u| !(u.crypted_password.blank? && u.password.blank?) }
         end
-        
+
         aasm_event :activate do
-          transitions :from => :pending, :to => :active 
+          transitions :from => :pending, :to => :active
         end
-        
+
         aasm_event :suspend do
           transitions :from => [:passive, :pending, :active], :to => :suspended
         end
-        
+
         aasm_event :delete do
           transitions :from => [:passive, :pending, :active, :suspended], :to => :deleted
         end

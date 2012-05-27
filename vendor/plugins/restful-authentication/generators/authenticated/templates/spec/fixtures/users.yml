@@ -20,13 +20,13 @@ quentin:
   remember_token_expires_at: <%%= 1.days.from_now.to_s %>
   remember_token:            <%= make_fake_token %>
 <% if options[:include_activation] -%>
-  activation_code:           
+  activation_code:
   activated_at:              <%%= 5.days.ago.to_s :db %>
 <% end -%>
 <% if options[:stateful] -%>
   state:                     active
 <% end -%>
-      
+
 aaron:
   id:                        2
   login:                     aaron
@@ -34,11 +34,11 @@ aaron:
   salt:                      <%= salts[1]   %> # SHA1('1')
   crypted_password:          <%= passwds[1] %> # 'monkey'
   created_at:                <%%= 1.days.ago.to_s :db %>
-  remember_token_expires_at: 
-  remember_token:            
+  remember_token_expires_at:
+  remember_token:
 <% if options[:include_activation] -%>
   activation_code:           <%= make_fake_token %>
-  activated_at:              
+  activated_at:
 <% end -%>
 <% if options[:stateful] %>
   state:                     pending
@@ -53,7 +53,7 @@ old_password_holder:
   crypted_password:          00742970dc9e6319f8019fd54864d3ea740f04b1 # test
   created_at:                <%%= 1.days.ago.to_s :db %>
 <% if options[:include_activation] %>
-  activation_code:           
+  activation_code:
   activated_at:              <%%= 5.days.ago.to_s :db %>
 <% end %>
 <% if options[:stateful] %>

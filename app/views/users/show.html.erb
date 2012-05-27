@@ -11,33 +11,33 @@
   <% if !@user.location_name.blank?  %>
     <p>From <%= @user.location_name %></p>
   <% end %>
-  
+
   <%=
     gravatar(
-      @user.email, 
-      :size => 50, 
+      @user.email,
+      :size => 50,
       :default => "#{base_url}/images/avatar.png",
       :class => 'avatar',
       :alt => "avatar de #{@user.name}"
     )
   %>
-  
+
   <%= simple_format(@user.text) %>
-  
+
   <br/>
-  
+
   <% if !@user.speaker_on_visibles_for_user( current_user ).empty? %>
     <h6>Talking on</h6>
-    
+
       <% @user.speaker_on_visibles_for_user( current_user ).each do |paper| %>
         <p><%= paper.status %> <%= link_to paper.title, paper %><p>
       <% end %>
   <% end %>
-  
+
   <% if !@user.company_name.blank? || !@user.company_url.blank?  %>
     <p><%= web_render( @user.company_name, @user.company_url ) %> <span class="tip">(company)</span></p>
   <% end %>
-  
+
   <% if !@user.personal_web_name.blank? || !@user.personal_web_url.blank?  %>
     <p><%= web_render( @user.personal_web_name, @user.personal_web_url ) %> <span class="tip">(personal website)</span></p>
   <% end %>
@@ -45,11 +45,11 @@
   <% if !@user.twitter_user.blank? %>
     <p><%= link_to "http://twitter.com/#{@user.twitter_user}", "http://twitter.com/#{@user.twitter_user}" %> <span class="tip">(twitter account)</span></p>
   <% end %>
-    
+
   <% if !@user.github_user.blank? %>
     <p><%= link_to "http://github.com/#{@user.github_user}", "http://github.com/#{@user.github_user}" %> <span class="tip">(github account)</span></p>
   <% end %>
-  
+
 
   <% if admin_or_current_user?( @user ) && !@user.carts.purchased.empty? %>
     <h6>Your purchases</h6>
@@ -58,7 +58,7 @@
         <li>
           <%= cart.purchased_at.to_s(:date) %> :
           <% cart.events.each do |event| %>
-            <%= link_to event.name, event %>, 
+            <%= link_to event.name, event %>,
           <% end %>
           (<%= cart.total_price_on_euros %> €)
           <%= link_to 'View', cart %>
@@ -66,5 +66,5 @@
       <% end %>
     </ul>
   <% end %>
-  
+
 </div>

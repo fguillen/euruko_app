@@ -1,39 +1,39 @@
-<% 
+<%
   if( !params[:search].blank? && params[:search] == 'speakers' )
     title( 'Speakers' )
-    
-  elsif( 
-    !params[:search].blank? && 
+
+  elsif(
+    !params[:search].blank? &&
     params[:search] == 'event_attendees' &&
     !params[:event_id].blank?
   )
     title( 'Attendees' )
-  
+
   else
     title( 'All Registered Users' )
-  
+
   end
 %>
 
 <div class="bar">
   <p>
-    <%= link_to 'Show All', users_path( :page => '1' ) %> 
-    (<%= admin? ? User.count : User.public_profile.count %>) | 
-    
-    <%= 
+    <%= link_to 'Show All', users_path( :page => '1' ) %>
+    (<%= admin? ? User.count : User.public_profile.count %>) |
+
+    <%=
       link_to(
-        'Show Attendees', 
-        users_path( 
-          :params => { 
-            :search => 'event_attendees', 
-            :event_id => '1', 
+        'Show Attendees',
+        users_path(
+          :params => {
+            :search => 'event_attendees',
+            :event_id => '1',
             :page => '1'
-          } 
+          }
         )
       )
-    %> 
-    (<%= admin? ? User.has_paid(1).count : User.public_profile.has_paid(1).count %>) | 
-    
+    %>
+    (<%= admin? ? User.has_paid(1).count : User.public_profile.has_paid(1).count %>) |
+
     <%= link_to 'Show Speakers', users_path( :params => { :search => 'speakers', :page => '1' } ) %>
     (<%= admin? ? User.speaker.count : User.public_speaker.count %>)
   </p>
@@ -45,16 +45,16 @@
   <div class="grid-item">
       <%=
         gravatar(
-          user.email, 
-          :size => 50, 
+          user.email,
+          :size => 50,
           :default => "#{base_url}/images/avatar.png",
           :class => 'avatar',
           :alt => "avatar de #{user.name}"
         )
       %>
-      
+
       <br/>
-      
+
       <%= link_to user.name, user %>
 
     <% if admin? %>

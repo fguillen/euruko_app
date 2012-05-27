@@ -9,7 +9,7 @@ h2. Reputation
 * Reputation systems
 ** Akismet, Viking, etc.
 
-* prove_as_human Completing a 
+* prove_as_human Completing a
 * validate_email
 
   logged_in

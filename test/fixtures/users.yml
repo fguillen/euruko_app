@@ -18,7 +18,7 @@ user1:
   public_profile: true
   activated_at: <%= '2008-01-01 01:01' %>
   invoice_info: Invoice Info
-  
+
 # hi has a proposed paper
 user2:
   name: User 2
@@ -28,7 +28,7 @@ user2:
   crypted_password: aaa
   role: <%= User::ROLE[:USER] %>
   public_profile: true
-  
+
 user3:
   name: User 3
   permalink: user-3
@@ -37,7 +37,7 @@ user3:
   crypted_password: aaa
   role: <%= User::ROLE[:USER] %>
   public_profile: true
-  
+
 user4:
   name: User 4
   permalink: user-4
@@ -73,7 +73,7 @@ user_admin:
   crypted_password: aaa
   role: <%= User::ROLE[:ADMIN] %>
   public_profile: true
-  
+
 user_not_actived:
   name: User Not Activated
   permalink: user-not-activated
@@ -93,7 +93,7 @@ user_not_speaker:
   role: <%= User::ROLE[:USER] %>
   public_profile: true
   activation_code: activation_code
-  
+
 user_everything_paid:
   name: User Everything Paid
   permalink: user-everything-paid

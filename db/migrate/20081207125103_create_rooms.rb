@@ -8,7 +8,7 @@ class CreateRooms < ActiveRecord::Migration
     end
     add_index( :rooms, :name,       :unique => true )
     add_index( :rooms, :permalink,  :unique => true )
-    
+
   end
 
   def self.down

@@ -70,7 +70,7 @@ ten times longer; hash 100,000 times and an attack takes 100,000 times longer.
 
 Now, adding even a 0.2s delay to page requests isn't justifiable for most online
 applications, and storing r is unnecessary (at least on your first design
-iteration).  But 
+iteration).  But
   On a 1G Slicehost already under moderate load:
   irb(main):005:0> puts Time.now; (10**6).times{ secure_digest(Time.now, rand) }; puts Time.now
   Fri May 16 08:26:16 +0000 2008

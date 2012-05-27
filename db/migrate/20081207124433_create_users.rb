@@ -11,7 +11,7 @@ class CreateUsers < ActiveRecord::Migration
       t.datetime      :remember_token_expires_at
       t.string        :activation_code,                         :limit => 40
       t.datetime      :activated_at
-      
+
       t.string        :role,                  :null => false
       t.text          :text
       t.string        :personal_web_name
@@ -26,7 +26,7 @@ class CreateUsers < ActiveRecord::Migration
     add_index :users, :login,     :unique => true
     add_index :users, :email,     :unique => true
     add_index :users, :permalink, :unique => true
-    
+
   end
 
   def self.down

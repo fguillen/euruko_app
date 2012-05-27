@@ -43,7 +43,7 @@ Story: Creating an account
   Scenario: Anonymous user can not create an account replacing a non-activated account
     Given an anonymous user
      And  a registered user named 'Reggie'
-     And  the user has activation_code: 'activate_me', activated_at: nil! 
+     And  the user has activation_code: 'activate_me', activated_at: nil!
      And  we try hard to remember the user's updated_at, and created_at
     When  she registers an account with login: 'reggie', password: 'monkey', and email: 'different@example.com'
     Then  she should be at the 'users/new' page
@@ -56,7 +56,7 @@ Story: Creating an account
      And  the user's created_at should stay the same under to_s
      And  the user's updated_at should stay the same under to_s
      And  she should not be logged in
-     
+
   Scenario: Anonymous user can not create an account replacing an activated account
     Given an anonymous user
      And  an activated user named 'Reggie'
@@ -84,7 +84,7 @@ Story: Creating an account
     Then  she should be at the 'users/new' page
      And  she should     see an errorExplanation message 'Login can't be blank'
      And  no user with login: 'oona' should exist
-     
+
   Scenario: Anonymous user can not create an account with no password
     Given an anonymous user
      And  no user with login: 'Oona' exists
@@ -92,7 +92,7 @@ Story: Creating an account
     Then  she should be at the 'users/new' page
      And  she should     see an errorExplanation message 'Password can't be blank'
      And  no user with login: 'oona' should exist
-     
+
   Scenario: Anonymous user can not create an account with no password_confirmation
     Given an anonymous user
      And  no user with login: 'Oona' exists
@@ -100,7 +100,7 @@ Story: Creating an account
     Then  she should be at the 'users/new' page
      And  she should     see an errorExplanation message 'Password confirmation can't be blank'
      And  no user with login: 'oona' should exist
-     
+
   Scenario: Anonymous user can not create an account with mismatched password & password_confirmation
     Given an anonymous user
      And  no user with login: 'Oona' exists
@@ -108,7 +108,7 @@ Story: Creating an account
     Then  she should be at the 'users/new' page
      And  she should     see an errorExplanation message 'Password doesn't match confirmation'
      And  no user with login: 'oona' should exist
-     
+
   Scenario: Anonymous user can not create an account with bad email
     Given an anonymous user
      And  no user with login: 'Oona' exists
@@ -127,7 +127,7 @@ Story: Creating an account
      And  the user's activated_at    should     be nil
      And  she should not be logged in
 
-     
+
 
 Story: Activating an account
   As a registered, but not yet activated, user
@@ -139,7 +139,7 @@ Story: Activating an account
   #
   Scenario: Not-yet-activated user can activate her account
     Given a registered user named 'Reggie'
-     And  the user has activation_code: 'activate_me', activated_at: nil! 
+     And  the user has activation_code: 'activate_me', activated_at: nil!
      And  we try hard to remember the user's updated_at, and created_at
     When  she goes to /activate/activate_me
     Then  she should be redirected to 'login'
@@ -156,7 +156,7 @@ Story: Activating an account
   #
   Scenario: Not-yet-activated user can't activate her account with a blank activation code
     Given a registered user named 'Reggie'
-     And  the user has activation_code: 'activate_me', activated_at: nil! 
+     And  the user has activation_code: 'activate_me', activated_at: nil!
      And  we try hard to remember the user's updated_at, and created_at
     When  she goes to /activate/
     Then  she should be redirected to the home page
@@ -166,10 +166,10 @@ Story: Activating an account
      And  the user should have login: 'reggie', activation_code: 'activate_me', and activated_at: nil!
      And  the user's updated_at should stay the same under to_s
      And  she should not be logged in
-  
+
   Scenario: Not-yet-activated user can't activate her account with a bogus activation code
     Given a registered user named 'Reggie'
-     And  the user has activation_code: 'activate_me', activated_at: nil! 
+     And  the user has activation_code: 'activate_me', activated_at: nil!
      And  we try hard to remember the user's updated_at, and created_at
     When  she goes to /activate/i_haxxor_joo
     Then  she should be redirected to the home page

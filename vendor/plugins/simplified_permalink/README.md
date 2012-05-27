@@ -1,6 +1,6 @@
 # Simplified Permalink
 
-I know there are some plugins out there that do the same, but this one 
+I know there are some plugins out there that do the same, but this one
 fits my needs.
 
 ## Example

@@ -4,8 +4,8 @@ class LoggedExceptionTest < ActiveSupport::TestCase
 
   def test_email_notification_when_an_exception_is_throwed
     ActionMailer::Base.deliveries = []
-    
-    logged_exception = 
+
+    logged_exception =
       LoggedException.create!(
         :exception_class => Faker::Name.name,
         :controller_name => Faker::Name.name,
@@ -18,8 +18,8 @@ class LoggedExceptionTest < ActiveSupport::TestCase
     assert( logged_exception.valid? )
     assert !ActionMailer::Base.deliveries.empty?
     # sent = ActionMailer::Base.deliveries.last
-    # 
-    # puts sent    
+    #
+    # puts sent
   end
-  
+
 end

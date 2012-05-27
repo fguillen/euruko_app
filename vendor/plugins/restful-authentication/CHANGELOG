@@ -39,7 +39,7 @@ h3. Changes to users_controller
 
 h3. users_helper
 
-* link_to_user, link_to_current_user, link_to_signin_with_IP 
+* link_to_user, link_to_current_user, link_to_signin_with_IP
 * if_authorized(action, resource, &block) view function (with appropriate
   warning)
 
@@ -52,7 +52,7 @@ h3. authenticated_system
 * added uniform logout! methods
 * format.any (as found in access_denied) doesn't work until
   http://dev.rubyonrails.org/changeset/8987 lands.
-* cookies are now refreshed each time we cross the logged out/in barrier, as 
+* cookies are now refreshed each time we cross the logged out/in barrier, as
   "best":http://palisade.plynt.com/issues/2004Jul/safe-auth-practices/
   "practice":http://www.owasp.org/index.php/Session_Management#Regeneration_of_Session_Tokens
 

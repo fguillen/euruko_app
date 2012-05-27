@@ -16,8 +16,8 @@ class VoteTest < ActiveSupport::TestCase
   def test_create
     assert_difference "Vote.count", 1 do
       Vote.create(
-        :user => @user, 
-        :paper => papers(:paper2), 
+        :user => @user,
+        :paper => papers(:paper2),
         :points => 2
       )
     end
@@ -28,7 +28,7 @@ class VoteTest < ActiveSupport::TestCase
       @vote.destroy
     end
   end
-  
+
   def test_uniqueness
     assert_difference "Attendee.count", 0 do
       Vote.create(
@@ -47,11 +47,11 @@ class VoteTest < ActiveSupport::TestCase
 
     vote = Vote.new(:user => @user, :paper => papers(:paper2), :points => 2)
     assert( vote.valid? )
-    
+
     vote.points = 0
     assert( !vote.valid? )
     assert( vote.errors.on(:points) )
-    
+
     vote.points = 6
     assert( !vote.valid? )
     assert( vote.errors.on(:points) )

@@ -11,7 +11,7 @@
   <%= image_tag @paper.photo.url(:medium), :class => 'avatar' %>
 
   <h6>
-    On <%= @paper.date.nil? ? '(not date designed yet)' : @paper.date.strftime("%b #{@paper.date.day.ordinalize}, %H:%M %p") %> 
+    On <%= @paper.date.nil? ? '(not date designed yet)' : @paper.date.strftime("%b #{@paper.date.day.ordinalize}, %H:%M %p") %>
     at <%= @paper.room.nil? ? '(not room designed yet)' : @paper.room.name %>
   </h6>
 
@@ -31,21 +31,21 @@
     </ul>
   </div>
   <% end %>
-  
+
   <div id="valorations">
     <%= render :partial => 'papers/valorations', :locals => { :paper => @paper } %>
   </div>
-  
+
   <div id="attendees">
     <%= render :partial => 'papers/attendees', :locals => { :paper => @paper } %>
   </div>
-  
+
   <div id="comments">
     <h6>Comments (<%=h @paper.comments.count %>)</h6>
     <div id="comments_list">
       <%= render :partial => 'papers/comment', :collection => @paper.comments %>
     </div>
-    
+
     <% if logged_in? %>
       <div class="comment_error"></div>
 
@@ -57,10 +57,10 @@
             :loading => "$('#comment_loading').show()",
             :complete => "$('#comment_loading').hide();",
             :success => "$('#comment_textarea').val('')"
-          ) do |f| 
+          ) do |f|
         -%>
           <%= f.error_messages %>
-    
+
           <%= f.label :new_comment, 'New Comment', :required => true %><br/>
           <%= f.text_area :text, :id => 'comment_textarea' %><br/>
           <div id='comment_loading' style="display:none"><%= image_tag 'spinner.gif' %></div>

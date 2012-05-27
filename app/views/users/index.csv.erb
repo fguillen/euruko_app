@@ -1,17 +1,17 @@
-<% 
+<%
   if( !params[:search].blank? && params[:search] == 'speakers' )
     title( 'Speakers' )
-    
-  elsif( 
-    !params[:search].blank? && 
+
+  elsif(
+    !params[:search].blank? &&
     params[:search] == 'event_attendees' &&
     !params[:event_id].blank?
   )
     title( 'Attendees' )
-  
+
   else
     title( 'All Registered Users' )
-  
+
   end
 -%>
 <%= yield(:title) %>

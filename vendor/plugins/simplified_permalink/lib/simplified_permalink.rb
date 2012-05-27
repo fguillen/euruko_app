@@ -24,11 +24,11 @@ module SimplifiedPermalink
           record.send "#{permalink_field_name}=", record.send(field_name).parameterize
         end
       end
-      
+
       include SimplifiedPermalink::InstanceMethods
     end
   end
-  
+
   module InstanceMethods
     def to_param
       "#{self.id}-#{self.permalink}"

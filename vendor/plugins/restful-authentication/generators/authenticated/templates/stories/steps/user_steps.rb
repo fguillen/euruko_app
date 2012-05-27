@@ -7,38 +7,38 @@ steps_for(:<%= file_name %>) do
   #
   # Setting
   #
-  
-  Given "an anonymous <%= file_name %>" do 
+
+  Given "an anonymous <%= file_name %>" do
     log_out!
   end
 
   Given "$an $<%= file_name %>_type <%= file_name %> with $attributes" do |_, <%= file_name %>_type, attributes|
     create_<%= file_name %>! <%= file_name %>_type, attributes.to_hash_from_story
   end
-  
+
   Given "$an $<%= file_name %>_type <%= file_name %> named '$login'" do |_, <%= file_name %>_type, login|
     create_<%= file_name %>! <%= file_name %>_type, named_<%= file_name %>(login)
   end
-  
+
   Given "$an $<%= file_name %>_type <%= file_name %> logged in as '$login'" do |_, <%= file_name %>_type, login|
     create_<%= file_name %>! <%= file_name %>_type, named_<%= file_name %>(login)
     log_in_<%= file_name %>!
   end
-  
+
   Given "$actor is logged in" do |_, login|
     log_in_<%= file_name %>! @<%= file_name %>_params || named_<%= file_name %>(login)
   end
-  
+
   Given "there is no $<%= file_name %>_type <%= file_name %> named '$login'" do |_, login|
     @<%= file_name %> = <%= class_name %>.find_by_login(login)
     @<%= file_name %>.destroy! if @<%= file_name %>
     @<%= file_name %>.should be_nil
   end
-  
+
   #
   # Actions
   #
-  When "$actor logs out" do 
+  When "$actor logs out" do
     log_out
   end
 
@@ -51,33 +51,33 @@ steps_for(:<%= file_name %>) do
   When "$actor registers an account with $attributes" do |_, attributes|
     create_<%= file_name %> attributes.to_hash_from_story
   end
-<% if options[:include_activation] %>  
+<% if options[:include_activation] %>
   When "$actor activates with activation code $attributes" do |_, activation_code|
     activation_code = '' if activation_code == 'that is blank'
-    activate 
-  end<% end %>  
+    activate
+  end<% end %>
 
   When "$actor logs in with $attributes" do |_, attributes|
     log_in_<%= file_name %> attributes.to_hash_from_story
   end
-  
+
   #
   # Result
   #
   Then "$actor should be invited to sign in" do |_|
     response.should render_template('/<%= controller_file_path %>/new')
   end
-  
+
   Then "$actor should not be logged in" do |_|
     controller.logged_in?.should_not be_true
   end
-    
+
   Then "$login should be logged in" do |login|
     controller.logged_in?.should be_true
     controller.current_<%= file_name %>.should === @<%= file_name %>
     controller.current_<%= file_name %>.login.should == login
   end
-    
+
 end
 
 def named_<%= file_name %> login
@@ -95,10 +95,10 @@ end
 # The ! methods are 'just get the job done'.  It's true, they do some testing of
 # their own -- thus un-DRY'ing tests that do and should live in the <%= file_name %> account
 # stories -- but the repetition is ultimately important so that a faulty test setup
-# fails early.  
+# fails early.
 #
 
-def log_out 
+def log_out
   get '/<%= controller_file_path %>/destroy'
 end
 
@@ -119,12 +119,12 @@ def create_<%= file_name %>!(<%= file_name %>_type, <%= file_name %>_params)
   create_<%= file_name %> <%= file_name %>_params
   response.should redirect_to('/')
   follow_redirect!
-<% if options[:include_activation] %> 
+<% if options[:include_activation] %>
   # fix the <%= file_name %>'s activation status
   activate_<%= file_name %>! if <%= file_name %>_type == 'activated'<% end %>
 end
 
-<% if options[:include_activation] %> 
+<% if options[:include_activation] %>
 def activate_<%= file_name %> activation_code=nil
   activation_code = @<%= file_name %>.activation_code if activation_code.nil?
   get "/activate/#{activation_code}"

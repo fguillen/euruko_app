@@ -7,7 +7,7 @@ Handles Euruko 2010 site and allows to register to both attendees and speakers a
 Make sure you have bundler gem installed:
 
     gem install bundler
-    
+
 ## Step by Step
 
 These are the steps to put up the application with fake data:
@@ -23,18 +23,18 @@ These are the steps to put up the application with fake data:
 
 Got to
     http://localhost:3000
-    
+
 Login as admin using:
     login: admin
     pass: adminpass
     email: admin@email.com
-    
+
 Login as user using:
     login: newton
     pass: consequunturvoluptatemquae
     email: litzy@hotmail.com
 
-    
+
 ## Details
 
 The application uses Paypal payment implementing the Ryan's Paypal Tutorial:
@@ -48,7 +48,7 @@ So better take a look to these screencasts.
 ### Configuration
 Review the:
     config/config.yml
-    
+
 ### Certs
 
 Create the certs:
@@ -57,7 +57,7 @@ Create the certs:
 
 Download you paypal cert:
     certs/paypal_cert.pem
-    
+
 View the [Ryan's Paypal certs screen cast](http://railscasts.com/episodes/143-paypal-security)
 
 ## Deploy on production
@@ -73,12 +73,12 @@ Three differences between development and production:
 #### Clone
     git clone git://github.com/bragi/euruko_app.git
     cd euruko_app
-    
+
 #### The Bundler Gem
     cd euruko_app
     gem install bundler             # or sudo gem install bundler
     gem bundle
-    
+
 #### Configuration
     rake init:config_files db=mysql user=euruko password=euruko
 
@@ -99,7 +99,7 @@ Three differences between development and production:
 * **seller_invoice_info** Used on the invoice creation, is the Seller invoice info.
 * **invoices_pdf_path** Relative path to the root directory where the invoices PDFs will be stored. ej:  /public/invoices
 * **invoices_serial_prefix** Serial prefix for the invoices numbers. ej: euruko-2010-
-    
+
 
 #### Init Databases
     mysql -uroot
@@ -115,7 +115,7 @@ Three differences between development and production:
     rake db:migrate RAILS_ENV=production
     rake db:migrate RAILS_ENV=development
     rake db:migrate RAILS_ENV=test
-    
+
 #### The Certificates
 View the [Ryan's Paypal certs screen cast](http://railscasts.com/episodes/143-paypal-security)
 
@@ -127,10 +127,10 @@ All the certs are on the **/certs** folder.
 
 #### Runt Tests
     rake
-    
+
 #### Create Admin account
     rake populate:admin RAILS_ENV=production
-    
+
 ## Start to fill the application
 
 Always logged as admin.
@@ -224,7 +224,7 @@ All the users associated to a Talk on 'Accepted' status will appear in this list
 If an Admin is logged he will see all the users associated to a Talk even the Talk is no on 'Accepted' status.
 
 ##### Exports
-All the lists could be exported to: 
+All the lists could be exported to:
 
 * xml
 * pdf
@@ -271,7 +271,7 @@ You can create static pages as:
 * Help
 * How to arrive
 * Payments instructions
-* FAQ 
+* FAQ
 
 Use your admin menu to access to the Pages.
 
@@ -288,7 +288,7 @@ The users could access to his profile and see all the purchases he has done. He 
 You have to configure the seller invoice info on the config/config.yml:
 
     seller_invoice_info: "Spanish Ruby Users Group \nTravessera de les Corts 48, Sobreático 2a \n08903 L'Hospitalet de Llobregat \nBarcelona (Spain) \nG65037772"
-    
+
 You have to configure the TAX of the invoice on the config/config.yml:
 
     tax_percent: 16
@@ -296,11 +296,11 @@ You have to configure the TAX of the invoice on the config/config.yml:
 The place where the PDFs will be stored:
 
     invoices_pdf_path:  /public/invoices
-    
+
 And the serial prefix for the invoices numeration:
-    
+
     invoices_serial_prefix: euruko-2009-
-    
+
 Using this serial prefix the invoices will be numbered like this:
 
 * euruko-2009-001

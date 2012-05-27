@@ -4,16 +4,16 @@
         <li>
           <%= link_to speaker.user.name, speaker.user %>
           <span class="actions">
-          <%= 
+          <%=
             link_to_remote(
               image_tag('delete.png'),
-              :url => paper_speaker_path( @paper, speaker ), 
+              :url => paper_speaker_path( @paper, speaker ),
               :method => :delete,
               :update => { :success => "speakers", :failure => "speakers" },
               :loading => "$('#speaker_#{speaker.id}').show()",
               :complete => "$('#speaker_#{speaker.id}').hide()",
               :confirm => 'Are you sure?'
-            ) 
+            )
           %>
           </span>
           <span id='speaker_<%= speaker.id %>' style="display:none"><%= image_tag 'spinner.gif' %></span>
@@ -32,9 +32,9 @@
   %>
     <%=
       select(
-        "speaker", 
-        "user_id", 
-        paper.user_candidates.collect{|u| [ u.name, u.id ] }, 
+        "speaker",
+        "user_id",
+        paper.user_candidates.collect{|u| [ u.name, u.id ] },
         { :include_blank => true }
       )
     %>

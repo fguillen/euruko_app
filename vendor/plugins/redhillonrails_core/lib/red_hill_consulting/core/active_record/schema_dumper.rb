@@ -44,7 +44,7 @@ module RedHillConsulting::Core::ActiveRecord
       end
       stream.puts unless foreign_keys.empty?
     end
-    
+
     def views(stream)
       views = @connection.views
       views.each do |view_name|

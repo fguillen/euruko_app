@@ -2,7 +2,7 @@ class StaticPagesController < ApplicationController
   before_filter :login_required, :except => [:index, :show]
   before_filter :admin_required, :except => [:index, :show]
   before_filter :load_static_page, :only => [:destroy, :update, :edit, :show]
-  
+
   # GET /static_pages
   # GET /static_pages.xml
   def index
@@ -81,7 +81,7 @@ class StaticPagesController < ApplicationController
       format.xml  { head :ok }
     end
   end
-  
+
   protected
     def load_static_page
       @static_page = StaticPage.find_by_permalink(params[:id])

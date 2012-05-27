@@ -38,7 +38,7 @@
           </ul>
         </p>
       <% end %>
-    
+
       <% if cart.paypal_complete_params %>
         <p>
           <strong>complete params:</strong>
@@ -49,7 +49,7 @@
           </ul>
         </p>
       <% end %>
-    
+
       <p><strong>invoice info:</strong> <%= simple_format(cart.invoice_info) %></p>
       <p><strong>txn id:</strong> <%= cart.transaction_id %></p>
       <p><strong>purchased_at:</strong> <%= cart.purchased_at %></p>
@@ -58,7 +58,7 @@
       <% if cart.paypal_errors %>
         <p><strong>paypal_errors:</strong> <%= cart.paypal_errors.join(',') %></p>
       <% end %>
-  
+
       <p>
         <strong>events:</strong>
         <% cart.events.each do |event| %>

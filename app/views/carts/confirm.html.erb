@@ -6,25 +6,25 @@
 <% form_tag( APP_CONFIG[:paypal_url] ) do %>
   <ul>
   <% @cart.events.each do |event| %>
-    <li>        
+    <li>
       <%= link_to event.name, event_path(event) %> (<%= event.price_euros %>€)
     </li>
   <% end %>
   </ul>
-  
+
   <br/>
-  
+
   <p><strong>TOTAL: <span id="total"><%= @cart.total_price_on_euros %>€</span></strong></p>
-  
+
   <% if !@cart.invoice_info.blank? %>
   <h6>Invoice info</h6>
   <%= simple_format @cart.invoice_info %>
   <% end %>
-  
+
   <!-- PAYPAL parameters:INI -->
   <%= hidden_field_tag :cmd, "_s-xclick" %>
   <%=
-    hidden_field_tag( 
+    hidden_field_tag(
       :encrypted,
       @cart.paypal_encrypted(
         complete_cart_url( @cart ),
@@ -33,9 +33,9 @@
     )
   %>
   <!-- PAYPAL parameters:END -->
-  
+
   <br/>
-  
+
   <p>
     <%= link_to 'Modify cart', new_cart_path %> &nbsp;
     <%= submit_tag "Pay with Paypal", :disabled => false, :disable_with => "Please wait..." %>

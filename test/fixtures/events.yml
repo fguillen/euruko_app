@@ -4,7 +4,7 @@ event1:
   description: Just an Event
   price_cents: 100
   capacity: 10
-  
+
 
 event2:
   name: Event 2

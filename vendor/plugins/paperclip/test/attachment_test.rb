@@ -32,7 +32,7 @@ class AttachmentTest < Test::Unit::TestCase
       setup do
         @dummy = Dummy.new
       end
-      
+
       should "return false when asked exists?" do
         assert !@dummy.avatar.exists?
       end
@@ -46,7 +46,7 @@ class AttachmentTest < Test::Unit::TestCase
 
       Paperclip::Attachment.default_options.keys.each do |key|
         should "be the default_options for #{key}" do
-          assert_equal @old_default_options[key], 
+          assert_equal @old_default_options[key],
                        @attachment.instance_variable_get("@#{key}"),
                        key
         end
@@ -170,7 +170,7 @@ class AttachmentTest < Test::Unit::TestCase
     end
   end
 
-  geometry_specs = [ 
+  geometry_specs = [
     [ lambda{|z| "50x50#" }, :png ],
     lambda{|z| "50x50#" },
     { :geometry => lambda{|z| "50x50#" } }
@@ -372,7 +372,7 @@ class AttachmentTest < Test::Unit::TestCase
   context "Attachment with strange letters" do
     setup do
       rebuild_model
-      
+
       @not_file = mock
       @tempfile = mock
       @not_file.stubs(:nil?).returns(false)
@@ -381,7 +381,7 @@ class AttachmentTest < Test::Unit::TestCase
       @not_file.expects(:to_tempfile).returns(@tempfile)
       @not_file.expects(:original_filename).returns("sheep_say_bæ.png\r\n")
       @not_file.expects(:content_type).returns("image/png\r\n")
-      
+
       @dummy = Dummy.new
       @attachment = @dummy.avatar
       @attachment.expects(:valid_assignment?).with(@not_file).returns(true)
@@ -391,11 +391,11 @@ class AttachmentTest < Test::Unit::TestCase
       @attachment.expects(:validate)
       @dummy.avatar = @not_file
     end
-    
+
     should "remove strange letters and replace with underscore (_)" do
       assert_equal "sheep_say_b_.png", @dummy.avatar.original_filename
     end
-    
+
   end
 
   context "An attachment" do
@@ -426,13 +426,13 @@ class AttachmentTest < Test::Unit::TestCase
       assert_equal "/avatars/original/missing.png", @attachment.url
       assert_equal "/avatars/blah/missing.png", @attachment.url(:blah)
     end
-    
+
     should "return nil as path when no file assigned" do
       assert @attachment.to_file.nil?
       assert_equal nil, @attachment.path
       assert_equal nil, @attachment.path(:blah)
     end
-    
+
     context "with a file assigned in the database" do
       setup do
         @attachment.stubs(:instance_read).with(:file_name).returns("5k.png")
@@ -451,7 +451,7 @@ class AttachmentTest < Test::Unit::TestCase
       should "make sure the updated_at mtime is in the url if it is defined" do
         assert_match %r{#{Time.now.to_i}$}, @attachment.url(:blah)
       end
- 
+
       should "make sure the updated_at mtime is NOT in the url if false is passed to the url method" do
         assert_no_match %r{#{Time.now.to_i}$}, @attachment.url(:blah, false)
       end
@@ -471,7 +471,7 @@ class AttachmentTest < Test::Unit::TestCase
       end
 
       should "return the proper path when filename has multiple .'s" do
-        @attachment.stubs(:instance_read).with(:file_name).returns("5k.old.png")      
+        @attachment.stubs(:instance_read).with(:file_name).returns("5k.old.png")
         assert_equal "./test/../tmp/avatars/dummies/original/#{@instance.id}/5k.old.png", @attachment.path
       end
 
@@ -525,7 +525,7 @@ class AttachmentTest < Test::Unit::TestCase
                 cmd = %Q[identify -format "%w %h %b %m" "#{@attachment.path(style.first)}"]
                 out = `#{cmd}`
                 width, height, size, format = out.split(" ")
-                assert_equal style[1].to_s, width.to_s 
+                assert_equal style[1].to_s, width.to_s
                 assert_equal style[2].to_s, height.to_s
                 assert_equal style[3].to_s, format.to_s
               end

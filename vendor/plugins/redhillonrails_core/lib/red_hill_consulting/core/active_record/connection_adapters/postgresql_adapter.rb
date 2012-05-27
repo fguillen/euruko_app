@@ -88,7 +88,7 @@ module RedHillConsulting::Core::ActiveRecord::ConnectionAdapters
          WHERE schemaname IN (#{schemas})
       SQL
     end
-    
+
     def view_definition(view_name, name = nil)
       result = query(<<-SQL, name)
         SELECT pg_get_viewdef(oid)

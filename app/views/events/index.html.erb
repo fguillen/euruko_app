@@ -17,16 +17,16 @@
       <% else %>
         <%= link_to event.name, event %>
       <% end %>
-      
+
       <% if admin? %>
       <span class="actions">
         <%= link_to image_tag('edit.png'), edit_event_path(event) %>
         <%= link_to image_tag('delete.png'), event, :confirm => 'Are you sure?', :method => :delete %>
-      </span>  
+      </span>
       <% end %>
     </p>
   <% end %>
-  
+
   <% if admin? %>
     <br/>
     <p><%= link_to 'Create new event', new_event_path %></p>

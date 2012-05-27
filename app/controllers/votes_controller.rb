@@ -1,7 +1,7 @@
 class VotesController < ApplicationController
   before_filter :login_required
   before_filter :load_paper_by_paper_id
-  
+
   # POST /votes
   # POST /votes.xml
   def create
@@ -12,12 +12,12 @@ class VotesController < ApplicationController
     end
 
     @vote.update_attributes( :points => params[:points].to_i )
-    
+
     respond_to do |format|
       if @vote.save
         format.html do
           flash[:notice] = 'Vote was successfully sended.'
-          redirect_to( @paper ) 
+          redirect_to( @paper )
         end
         format.xml  { render :xml => @vote, :status => :created, :location => @vote }
         format.js   { render :partial => 'papers/valorations' }
@@ -37,7 +37,7 @@ class VotesController < ApplicationController
   # def update
   #   logger.debug( "XXX: on update" )
   #   @vote = current_user.votes.find_by_paper_id!( params[:paper_id].to_i )
-  # 
+  #
   #   respond_to do |format|
   #     if @vote.update_attributes( :points => params[:points].to_i )
   #       flash[:notice] = 'Vote was successfully updated.'
@@ -46,7 +46,7 @@ class VotesController < ApplicationController
   #       format.js   { render :partial => 'valorations' }
   #     else
   #       puts "XXX: #{@vote.errors.full_messages}"
-  #       flash[:error] = "Error trying to update the vote: #{@vote.errors.full_messages}."        
+  #       flash[:error] = "Error trying to update the vote: #{@vote.errors.full_messages}."
   #       format.html { redirect_to( @paper ) }
   #       format.xml  { render :xml => @vote.errors, :status => :unprocessable_entity }
   #     end

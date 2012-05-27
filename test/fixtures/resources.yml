@@ -1,14 +1,14 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 resource1:
-  paper: paper1 
+  paper: paper1
   url: http://mydomain.com/files/myfile1
   user: user1
   is_local: false
   name: the name of resource 1
 
 resource2:
-  paper: paper1 
+  paper: paper1
   url: /files/myfile2
   user: user1
   is_local: true

@@ -12,7 +12,7 @@
 
 <p>
   <% if admin? %>
-    Change to 
+    Change to
     <% @first_status = true %>
     <% Paper::STATUS.keys.each do |status_key| %>
       <% if @paper.status != Paper::STATUS[status_key]%>
@@ -26,7 +26,7 @@
 
 <p>
   <% if logged_in? && current_user.is_speaker_on?( paper ) && paper.status == Paper::STATUS[:ACEPTED] %>
-    go to 
+    go to
     <%= link_to( Paper::STATUS[:CONFIRMED], update_status_paper_path( paper, :status => Paper::STATUS[:CONFIRMED] ), :method => 'put' ) %>
   <% end %>
 </p>

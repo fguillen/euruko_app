@@ -73,7 +73,7 @@ describe "<%= model_controller_class_name %>Helper.link_to_signin_with_IP" do
   it "should by default be like school in summer and have no class" do
     link_to_signin_with_IP().should_not have_tag("a.nickname")
   end
-  
+
   it "should have some class if you tell it to" do
     result = link_to_signin_with_IP(:class => 'foo bar')
     result.should have_tag("a.foo")

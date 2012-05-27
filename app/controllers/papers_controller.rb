@@ -8,16 +8,16 @@ class PapersController < ApplicationController
 
   def index
     @conditions = {}
-    
+
     if !params[:status].blank?
       @conditions = { :status => params[:status] }
-    end    
-    
+    end
+
     @papers = Paper.date_ordered                      if admin?
     @papers = Paper.visible.not_break.date_ordered    if !admin?
-    
+
     @papers = @papers.all( :conditions => @conditions, :order => 'date asc' )
-    
+
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @papers }
@@ -33,7 +33,7 @@ class PapersController < ApplicationController
         format.html # show.html.erb
         format.xml  { render :xml => @paper }
       end
-    end    
+    end
   end
 
   def new
@@ -72,7 +72,7 @@ class PapersController < ApplicationController
 
   def update
     @paper.fill_admin(params[:paper])  if admin?
-    
+
     respond_to do |format|
       if @paper.update_attributes(params[:paper])
         flash[:notice] = 'Paper was successfully updated.'
@@ -85,12 +85,12 @@ class PapersController < ApplicationController
       end
     end
   end
-  
+
   def update_status
     if( @paper.can_change_status_to?( current_user, params[:status] ) )
       @paper.status = params[:status]
     end
-    
+
     respond_to do |format|
       if @paper.save
         flash[:notice] = 'Paper was successfully updated.'
@@ -113,7 +113,7 @@ class PapersController < ApplicationController
       format.xml  { head :ok }
     end
   end
-  
+
   private
     def public_profile_required
       if !current_user.public_profile
@@ -121,7 +121,7 @@ class PapersController < ApplicationController
         redirect_to edit_user_path( current_user )
       end
     end
-    
+
     def admin_or_not_under_review_required
       if !admin? && @paper.status == Paper::STATUS[:UNDER_REVIEW]
         flash[:error] = "The paper is under review, now it can not be updated"

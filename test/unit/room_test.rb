@@ -17,13 +17,13 @@ class RoomTest < ActiveSupport::TestCase
       )
     end
   end
-  
+
   def test_permalink
-    @room = 
+    @room =
       Room.create(
         :name => 'Room Name'
-      )      
-      
+      )
+
     assert( @room.valid? )
     assert_not_nil( @room.permalink )
     assert_equal( @room.id, @room.to_param.to_i )
@@ -33,7 +33,7 @@ class RoomTest < ActiveSupport::TestCase
     room = Room.new()
     assert( !room.valid? )
     assert( room.errors.on(:name) )
-    
+
     room = Room.new(:name => 'room')
     assert( room.valid? )
   end

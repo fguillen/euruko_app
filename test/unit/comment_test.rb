@@ -16,8 +16,8 @@ class CommentTest < ActiveSupport::TestCase
   def test_create
     assert_difference "Comment.count", 1 do
       Comment.create(
-        :user => @user, 
-        :paper => @paper, 
+        :user => @user,
+        :paper => @paper,
         :text => 'Just a Comment'
       )
     end

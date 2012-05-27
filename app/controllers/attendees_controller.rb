@@ -9,7 +9,7 @@ class AttendeesController < ApplicationController
 
     respond_to do |format|
       if @attendee.save
-        format.html do 
+        format.html do
           flash[:notice] = 'Attendee was successfully created.'
           redirect_to paper_path(@paper)
         end

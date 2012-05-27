@@ -49,7 +49,7 @@ class PaperclipTest < Test::Unit::TestCase
       setup do
         File.expects(:exists?).with("/dev/null").returns(false)
       end
-      
+
       should "return 'NUL'" do
         assert_equal "NUL", Paperclip.bit_bucket
       end
@@ -59,7 +59,7 @@ class PaperclipTest < Test::Unit::TestCase
       setup do
         File.expects(:exists?).with("/dev/null").returns(true)
       end
-      
+
       should "return '/dev/null'" do
         assert_equal "/dev/null", Paperclip.bit_bucket
       end
@@ -95,7 +95,7 @@ class PaperclipTest < Test::Unit::TestCase
 
         @dummy.attributes = { :other => "I'm set!",
                               :avatar => @file }
-        
+
         assert_equal "I'm set!", @dummy.other
         assert ! @dummy.avatar?
       end
@@ -105,7 +105,7 @@ class PaperclipTest < Test::Unit::TestCase
 
         @dummy.other  = "I'm set!"
         @dummy.avatar = @file
-        
+
         assert_equal "I'm set!", @dummy.other
         assert @dummy.avatar?
       end
@@ -229,7 +229,7 @@ class PaperclipTest < Test::Unit::TestCase
       validation, options, valid_file, invalid_file = args
       valid_file   &&= File.open(File.join(FIXTURES_DIR, valid_file), "rb")
       invalid_file &&= File.open(File.join(FIXTURES_DIR, invalid_file), "rb")
-      
+
       should_validate validation, options, valid_file, invalid_file
     end
 

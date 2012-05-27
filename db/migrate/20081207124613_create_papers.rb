@@ -12,7 +12,7 @@ class CreatePapers < ActiveRecord::Migration
       t.integer     :creator_id,  :null => true
       t.timestamps
     end
-    
+
     add_index :papers, :permalink, :name => 'idx_papers_permalink', :unique => true
   end
 

@@ -45,7 +45,7 @@ Story: Creating an account
   Scenario: Anonymous <%= file_name %> can not create an account replacing a non-activated account
     Given an anonymous <%= file_name %>
      And  a registered <%= file_name %> named 'Reggie'
-     And  the <%= file_name %> has activation_code: 'activate_me', activated_at: nil! 
+     And  the <%= file_name %> has activation_code: 'activate_me', activated_at: nil!
      And  we try hard to remember the <%= file_name %>'s updated_at, and created_at
     When  she registers an account with login: 'reggie', password: 'monkey', and email: 'different@example.com'
     Then  she should be at the '<%= model_controller_routing_path %>/new' page
@@ -58,7 +58,7 @@ Story: Creating an account
      And  the <%= file_name %>'s created_at should stay the same under to_s
      And  the <%= file_name %>'s updated_at should stay the same under to_s
      And  she should not be logged in<% end %>
-     
+
   Scenario: Anonymous <%= file_name %> can not create an account replacing an activated account
     Given an anonymous <%= file_name %>
      And  an activated <%= file_name %> named 'Reggie'
@@ -86,7 +86,7 @@ Story: Creating an account
     Then  she should be at the '<%= model_controller_routing_path %>/new' page
      And  she should     see an errorExplanation message 'Login can't be blank'
      And  no <%= file_name %> with login: 'oona' should exist
-     
+
   Scenario: Anonymous <%= file_name %> can not create an account with no password
     Given an anonymous <%= file_name %>
      And  no <%= file_name %> with login: 'Oona' exists
@@ -94,7 +94,7 @@ Story: Creating an account
     Then  she should be at the '<%= model_controller_routing_path %>/new' page
      And  she should     see an errorExplanation message 'Password can't be blank'
      And  no <%= file_name %> with login: 'oona' should exist
-     
+
   Scenario: Anonymous <%= file_name %> can not create an account with no password_confirmation
     Given an anonymous <%= file_name %>
      And  no <%= file_name %> with login: 'Oona' exists
@@ -102,7 +102,7 @@ Story: Creating an account
     Then  she should be at the '<%= model_controller_routing_path %>/new' page
      And  she should     see an errorExplanation message 'Password confirmation can't be blank'
      And  no <%= file_name %> with login: 'oona' should exist
-     
+
   Scenario: Anonymous <%= file_name %> can not create an account with mismatched password & password_confirmation
     Given an anonymous <%= file_name %>
      And  no <%= file_name %> with login: 'Oona' exists
@@ -110,7 +110,7 @@ Story: Creating an account
     Then  she should be at the '<%= model_controller_routing_path %>/new' page
      And  she should     see an errorExplanation message 'Password doesn't match confirmation'
      And  no <%= file_name %> with login: 'oona' should exist
-     
+
   Scenario: Anonymous <%= file_name %> can not create an account with bad email
     Given an anonymous <%= file_name %>
      And  no <%= file_name %> with login: 'Oona' exists
@@ -131,7 +131,7 @@ Story: Creating an account
 <% else %>
      And  oona should be logged in
 <% end %>
-     
+
 <% if options[:include_activation] %>
 Story: Activating an account
   As a registered, but not yet activated, <%= file_name %>
@@ -143,7 +143,7 @@ Story: Activating an account
   #
   Scenario: Not-yet-activated <%= file_name %> can activate her account
     Given a registered <%= file_name %> named 'Reggie'
-     And  the <%= file_name %> has activation_code: 'activate_me', activated_at: nil! 
+     And  the <%= file_name %> has activation_code: 'activate_me', activated_at: nil!
      And  we try hard to remember the <%= file_name %>'s updated_at, and created_at
     When  she goes to /activate/activate_me
     Then  she should be redirected to 'login'
@@ -160,7 +160,7 @@ Story: Activating an account
   #
   Scenario: Not-yet-activated <%= file_name %> can't activate her account with a blank activation code
     Given a registered <%= file_name %> named 'Reggie'
-     And  the <%= file_name %> has activation_code: 'activate_me', activated_at: nil! 
+     And  the <%= file_name %> has activation_code: 'activate_me', activated_at: nil!
      And  we try hard to remember the <%= file_name %>'s updated_at, and created_at
     When  she goes to /activate/
     Then  she should be redirected to the home page
@@ -170,10 +170,10 @@ Story: Activating an account
      And  the <%= file_name %> should have login: 'reggie', activation_code: 'activate_me', and activated_at: nil!
      And  the <%= file_name %>'s updated_at should stay the same under to_s
      And  she should not be logged in
-  
+
   Scenario: Not-yet-activated <%= file_name %> can't activate her account with a bogus activation code
     Given a registered <%= file_name %> named 'Reggie'
-     And  the <%= file_name %> has activation_code: 'activate_me', activated_at: nil! 
+     And  the <%= file_name %> has activation_code: 'activate_me', activated_at: nil!
      And  we try hard to remember the <%= file_name %>'s updated_at, and created_at
     When  she goes to /activate/i_haxxor_joo
     Then  she should be redirected to the home page

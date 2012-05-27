@@ -5,13 +5,13 @@ ActionController::Routing::Routes.draw do |map|
   map.connect "logged_exceptions/:action/:id", :controller => "logged_exceptions"
 
   # restful_authentication
-  map.activate          '/activate/:activation_code', :controller => 'users',     :action => 'activate', :activation_code => nil 
+  map.activate          '/activate/:activation_code', :controller => 'users',     :action => 'activate', :activation_code => nil
   map.logout            '/logout',                    :controller => 'sessions',  :action => 'destroy'
   map.login             '/login',                     :controller => 'sessions',  :action => 'new'
   map.register          '/register',                  :controller => 'users',     :action => 'create'
   map.signup            '/signup',                    :controller => 'users',     :action => 'new'
-  map.forgot_password   '/forgot_password',           :controller => 'users',     :action => 'forgot_password'  
-  map.reset_password    '/reset_password/:id',        :controller => 'users',     :action => 'reset_password'  
+  map.forgot_password   '/forgot_password',           :controller => 'users',     :action => 'forgot_password'
+  map.reset_password    '/reset_password/:id',        :controller => 'users',     :action => 'reset_password'
 
   # shopping cart
   # map.current_cart 'cart', :controller => 'carts', :action => 'show', :id => 'current'
@@ -33,21 +33,21 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :rooms
   map.resources :events
   map.resource :calendar
-  
-  map.resources :carts, 
-                :as => 'pay', 
-                :member => { 
-                  :confirm    => :post, 
-                  :complete   => :get, 
+
+  map.resources :carts,
+                :as => 'pay',
+                :member => {
+                  :confirm    => :post,
+                  :complete   => :get,
                   :notificate => :post
                 }
-                
+
   map.resource :session
   map.resources :invoices, :only => :create
   map.resources :location_searchs, :only => :create
   map.resource  :avaliable_places_counter, :only => :show
   map.resources :static_pages
-  
+
   map.resource  :sitemap, :only => :show
 
   map.connect ':controller/:action/:id'

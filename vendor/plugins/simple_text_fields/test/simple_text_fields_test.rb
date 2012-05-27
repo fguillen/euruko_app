@@ -18,16 +18,16 @@ class MyModel < ActiveRecord::Base
 end
 
 class ActsWithoutScriptsTest < Test::Unit::TestCase
-  
+
   def test_removing_tags
     text  = '<h1>this is the title</h1>'
-    
+
     post = MyModel.create!(:title => text, :body => text)
     assert_equal('this is the title', post.title)
     assert_equal(text, post.body)
-    
+
     text = '&lt;h1&gt;this is the title&lt;/h1&gt;'
-    
+
     post = MyModel.create!(:title => text, :body => text)
     assert_equal(text, post.title)
     assert_equal(text, post.body)

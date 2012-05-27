@@ -3,7 +3,7 @@ class RemovePermalinkIndexes < ActiveRecord::Migration
     remove_index( :users, :permalink )
     remove_index( :papers, :name => 'idx_papers_permalink' )
     remove_index( :rooms, :permalink )
-    remove_index( :events, :name => 'idx_events_permalink_unique' )    
+    remove_index( :events, :name => 'idx_events_permalink_unique' )
   end
 
   def self.down
